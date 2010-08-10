@@ -1,14 +1,8 @@
 GIT
-  remote: git://github.com/javierv/simple_form.git
-  revision: db9c1b8
+  remote: /home/javi/programas/work/rails
+  revision: 565fa28
+  branch: branch
   specs:
-    simple_form (1.2.2)
-
-GEM
-  remote: http://rubygems.org/
-  specs:
-    RedCloth (4.2.3)
-    abstract (1.0.0)
     actionmailer (3.0.0.rc)
       actionpack (= 3.0.0.rc)
       mail (~> 2.2.5)
@@ -35,6 +29,31 @@ GEM
       activemodel (= 3.0.0.rc)
       activesupport (= 3.0.0.rc)
     activesupport (3.0.0.rc)
+    rails (3.0.0.rc)
+      actionmailer (= 3.0.0.rc)
+      actionpack (= 3.0.0.rc)
+      activerecord (= 3.0.0.rc)
+      activeresource (= 3.0.0.rc)
+      activesupport (= 3.0.0.rc)
+      bundler (>= 1.0.0.rc.1)
+      railties (= 3.0.0.rc)
+    railties (3.0.0.rc)
+      actionpack (= 3.0.0.rc)
+      activesupport (= 3.0.0.rc)
+      rake (>= 0.8.3)
+      thor (~> 0.14.0)
+
+GIT
+  remote: git://github.com/javierv/simple_form.git
+  revision: db9c1b8
+  specs:
+    simple_form (1.2.2)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    RedCloth (4.2.3)
+    abstract (1.0.0)
     acts-as-taggable-on (2.0.6)
     arel (0.4.0)
       activesupport (>= 3.0.0.beta)
@@ -91,20 +110,7 @@ GEM
       rack (>= 1.0.0)
     rack-test (0.5.4)
       rack (>= 1.0)
-    rails (3.0.0.rc)
-      actionmailer (= 3.0.0.rc)
-      actionpack (= 3.0.0.rc)
-      activerecord (= 3.0.0.rc)
-      activeresource (= 3.0.0.rc)
-      activesupport (= 3.0.0.rc)
-      bundler (>= 1.0.0.rc.1)
-      railties (= 3.0.0.rc)
     rails3-generators (0.12.1)
-    railties (3.0.0.rc)
-      actionpack (= 3.0.0.rc)
-      activesupport (= 3.0.0.rc)
-      rake (>= 0.8.3)
-      thor (~> 0.14.0)
     rake (0.8.7)
     rubyzip (0.9.4)
     selenium-webdriver (0.0.27)
@@ -141,7 +147,7 @@ DEPENDENCIES
   meta_where
   mocha
   paperclip
-  rails (= 3.0.0.rc)
+  rails!
   rails3-generators
   shoulda
   simple_form!
