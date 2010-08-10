@@ -3,7 +3,7 @@
 class CajasController < ApplicationController
   respond_to :html
 
-  before_filter :find_caja, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_caja, :only => [:edit, :update, :destroy]
   before_filter :new_caja, :only => [:new, :create]
   before_filter :update_caja, :only => :update
 
@@ -12,10 +12,6 @@ class CajasController < ApplicationController
     @cajas = @search.paginate :page => params[:page],
       :per_page => Caja.per_page
     respond_with @cajas
-  end
-
-  def show
-    respond_with @caja
   end
 
   def new

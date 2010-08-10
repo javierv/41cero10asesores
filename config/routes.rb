@@ -1,5 +1,5 @@
 Calesur::Application.routes.draw do
-  resources :cajas
+  resources :cajas, :except => :show
 
   resources :paginas
 

@@ -46,13 +46,6 @@ class CajasControllerTest < ActionController::TestCase
     end
   end
 
-  context "show action" do
-    setup do
-      get :show, :id => @caja.to_param
-    end
-    should respond_with(:success)
-  end
-
   context "edit action" do
     setup do
       get :edit, :id => @caja.to_param
