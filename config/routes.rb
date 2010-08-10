@@ -1,4 +1,6 @@
 Calesur::Application.routes.draw do
+  resources :cajas
+
   resources :paginas
 
   # The priority is based upon order of creation:

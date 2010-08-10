@@ -1,0 +1,12 @@
+- title @caja
+
+%p
+  %b Titulo:
+  = @caja.titulo
+%p
+  %b Cuerpo:
+  = @caja.cuerpo
+
+= link_to 'Edit', edit_caja_path(@caja)
+\|
+= link_to 'Back', cajas_path
