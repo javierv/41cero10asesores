@@ -1,0 +1,12 @@
+- title @pagina
+
+%p
+  %b Titulo:
+  = @pagina.titulo
+%p
+  %b Cuerpo:
+  = @pagina.cuerpo
+
+= link_to 'Edit', edit_pagina_path(@pagina)
+\|
+= link_to 'Back', paginas_path
