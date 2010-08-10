@@ -3,4 +3,7 @@ class Pagina < ActiveRecord::Base
   validates :titulo, :presence => true
   validates :cuerpo, :presence => true
   display_name :titulo
+
+  has_many :sidebars
+  has_many :cajas, :through => :sidebars
 end
