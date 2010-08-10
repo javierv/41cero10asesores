@@ -3,4 +3,7 @@ class Sidebar < ActiveRecord::Base
   validates :pagina_id, :presence => true
   validates :caja_id, :presence => true
   validates :orden, :presence => true
+
+  belongs_to :caja
+  belongs_to :pagina
 end
