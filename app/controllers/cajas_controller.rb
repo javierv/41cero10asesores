@@ -23,13 +23,23 @@ class CajasController < ApplicationController
   end
 
   def create
-    flash[:notice] = 'Caja se creó correctamente.' if @caja.save
-    respond_with @caja
+    if @caja.save
+      flash[:notice] = 'Caja se creó correctamente.'
+      opciones = {:location => edit_caja_path(@caja)}
+    else
+      opciones = {}
+    end
+    respond_with @caja, opciones
   end
 
   def update
-    flash[:notice] = 'Caja se actualizó correctamente.' if @caja.save
-    respond_with @caja
+    flash[:notice] = 'Caja se actualizó correctamente.'
+    if @caja.save
+      opciones = {:location => edit_caja_path(@caja)}
+    else
+      opciones = {}
+    end
+    respond_with @caja, opciones
   end
 
   def destroy

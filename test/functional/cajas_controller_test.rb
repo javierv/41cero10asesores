@@ -42,7 +42,7 @@ class CajasControllerTest < ActionController::TestCase
         Caja.any_instance.stubs(:valid?).returns(true)
         post :create
       end
-      should redirect_to('') {caja_path(assigns(:caja))}
+      should redirect_to('') {edit_caja_path(assigns(:caja))}
     end
   end
 
@@ -72,7 +72,7 @@ class CajasControllerTest < ActionController::TestCase
         Caja.any_instance.stubs(:valid?).returns(true)
         put :update, :id => @caja.to_param, :caja => @caja.attributes
       end
-      should redirect_to('') {caja_path(@caja)}
+      should redirect_to('') {edit_caja_path(@caja)}
     end
   end
 
