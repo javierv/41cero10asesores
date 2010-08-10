@@ -8,14 +8,18 @@ class PaginaTest < ActiveSupport::TestCase
 
   should have_many(:cajas).through(:sidebars)
 
-  should 'ordenar las cajas' do
-    pagina = Factory(:pagina)
-    cajas = [Factory(:caja), Factory(:caja), Factory(:caja)]
+  context 'ordenar las cajas' do
+    setup do
+      @pagina = Factory(:pagina)
+      @cajas = [Factory(:caja), Factory(:caja), Factory(:caja)]
+      @pagina.build_sidebar([@cajas[1].id, @cajas[0].id, @cajas[2].id])
+      @pagina.save
+    end
 
-    pagina.build_sidebar([cajas[1].id, cajas[0].id, cajas[2].id])
-    pagina.save
-    assert Sidebar.where(:pagina_id => pagina.id, :caja_id => cajas[1].id, :orden => 1).first
-    assert Sidebar.where(:pagina_id => pagina.id, :caja_id => cajas[0].id, :orden => 2).first
-    assert Sidebar.where(:pagina_id => pagina.id, :caja_id => cajas[2].id, :orden => 3).first
+    should 'ordenar las cajas' do      
+      assert Sidebar.where(:pagina_id => @pagina.id, :caja_id => @cajas[1].id, :orden => 1).first
+      assert Sidebar.where(:pagina_id => @pagina.id, :caja_id => @cajas[0].id, :orden => 2).first
+      assert Sidebar.where(:pagina_id => @pagina.id, :caja_id => @cajas[2].id, :orden => 3).first
+    end
   end
 end
