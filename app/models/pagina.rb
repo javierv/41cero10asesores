@@ -8,6 +8,7 @@ class Pagina < ActiveRecord::Base
   has_many :cajas, :through => :sidebars
 
   def build_sidebar(caja_ids)
+    sidebars.destroy_all
     caja_ids.each_with_index do |caja_id, index|
       sidebars.build(:caja_id => caja_id, :orden => index + 1)
     end

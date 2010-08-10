@@ -23,5 +23,11 @@ class PaginaTest < ActiveSupport::TestCase
       assert Sidebar.where(:pagina_id => @pagina.id, :caja_id => @cajas[0].id, :orden => 2).first
       assert Sidebar.where(:pagina_id => @pagina.id, :caja_id => @cajas[2].id, :orden => 3).first
     end
+
+    should 'borrar las cajas si ya tenía' do
+      @pagina.build_sidebar([])
+      @pagina.save
+      assert !Sidebar.where(:pagina_id => @pagina.id).first
+    end
   end
 end
