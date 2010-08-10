@@ -5,6 +5,7 @@ class PaginasController < ApplicationController
 
   before_filter :find_pagina, :only => [:show, :edit, :update, :destroy]
   before_filter :new_pagina, :only => [:new, :create]
+  before_filter :build_sidebar, :only => [:create, :update]
   before_filter :update_pagina, :only => :update
 
   def index
@@ -52,5 +53,12 @@ private
 
   def update_pagina
     @pagina.attributes = params[:pagina]
+  end
+
+  def build_sidebar
+    if params[:pagina][:caja_ids]
+      @pagina.build_sidebar(params[:pagina][:caja_ids])
+      params[:pagina][:caja_ids] = nil
+    end
   end
 end
