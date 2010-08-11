@@ -29,5 +29,11 @@ class PaginaTest < ActiveSupport::TestCase
       @pagina.save
       assert !Sidebar.where(:pagina_id => @pagina.id).first
     end
+
+    should 'pasar de las IDs vacías' do
+      @pagina.build_sidebar(["", "", @cajas[2].id, "", ""])
+      @pagina.save
+      assert_equal 1, Sidebar.where(:pagina_id => @pagina.id).count
+    end
   end
 end
