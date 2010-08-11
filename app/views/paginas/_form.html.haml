@@ -7,6 +7,7 @@
   = form.input :titulo, :label => 'Titulo'
   = form.input :cuerpo, :label => 'Cuerpo'
 
+  = hidden_field_tag "pagina[caja_ids][]"
   = form.association :cajas
 
   .actions
