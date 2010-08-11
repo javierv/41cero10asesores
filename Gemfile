@@ -34,9 +34,9 @@ gem "acts-as-taggable-on"
 gem "validation_reflection"
 gem "RedCloth"
 gem "validates_date_time"
-gem "simple_form", :git => "git://github.com/javierv/simple_form.git"
 gem "meta_where"
 gem "meta_search"
+gem "simple_form", :git => "git://github.com/javierv/simple_form.git"
 gem "tabletastic", ">= 0.2.0pre4"
 gem "rails3-generators", :group => :development
 gem "shoulda", :group => :test
