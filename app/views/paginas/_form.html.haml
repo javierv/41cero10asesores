@@ -1,4 +1,4 @@
-- render 'shared/js_form'
+- js_form
 
 = simple_form_for @pagina do |form|
 
@@ -8,7 +8,7 @@
   = form.input :cuerpo, :label => 'Cuerpo'
 
   = hidden_field_tag "pagina[caja_ids][]"
-  = form.association :cajas
+  = form.association :cajas, :input_html => {:class => 'cajas'}
 
   .actions
     = form.button :submit
