@@ -1,4 +1,4 @@
 $(document).ready(function()
 {
-  $('select.cajas').bsmSelect();
+  $('select.cajas').bsmSelect({sortable: true});
 });

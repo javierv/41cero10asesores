@@ -13,7 +13,9 @@ module CssJsHelper
 
   def bsmselect
     css 'jquery.bsmselect'
-    javascript 'jquery.bsmselect'
+    javascript 'jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse',
+      'jquery.ui.draggable', 'jquery.ui.droppable', 'jquery.ui.sortable',
+      'jquery.bsmselect'
   end
 
   def bsmselect_con_cajas
