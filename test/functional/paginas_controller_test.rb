@@ -30,7 +30,7 @@ class PaginasControllerTest < ActionController::TestCase
         errors.add_on_blank(:id)
         Pagina.any_instance.stubs(:errors).returns(errors)
         Pagina.any_instance.stubs(:valid?).returns(false)
-        post :create
+        post :create, :pagina => @pagina.attributes
       end
 
       should render_template :new
@@ -40,7 +40,7 @@ class PaginasControllerTest < ActionController::TestCase
       setup do
         Pagina.any_instance.stubs(:errors).returns({})
         Pagina.any_instance.stubs(:valid?).returns(true)
-        post :create
+        post :create, :pagina => @pagina.attributes
       end
       should redirect_to('') {pagina_path(assigns(:pagina))}
     end
