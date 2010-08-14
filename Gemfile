@@ -35,7 +35,7 @@ gem "validation_reflection"
 gem "RedCloth"
 gem "validates_date_time"
 gem "meta_where"
-gem "meta_search"
+gem "meta_search", :git => 'http://github.com/ernie/meta_search.git'
 gem "simple_form", :git => "git://github.com/javierv/simple_form.git"
 gem "tabletastic", ">= 0.2.0pre4"
 gem "rails3-generators", :group => :development
