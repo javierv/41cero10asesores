@@ -1,11 +1,6 @@
 - title @pagina
 
-%p
-  %b Titulo:
-  = @pagina.titulo
-%p
-  %b Cuerpo:
-  = @pagina.cuerpo
+= strict_textilize @pagina.cuerpo
 
 = link_to 'Edit', edit_pagina_path(@pagina)
 \|
