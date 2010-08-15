@@ -13,10 +13,10 @@
     %header#cabecera
       = render 'general/cabecera'
 
-    - flash.each do |name, msg|
-      = content_tag :div, msg, :id => "flash_#{name}"
-
     #content
+      - flash.each do |name, msg|
+        .flash{:id => "flash_#{name}"}
+          %p= msg
       %aside#sidebar
         = yield(:sidebar)
       %section#main
