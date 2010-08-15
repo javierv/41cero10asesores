@@ -1,7 +1,6 @@
 GIT
-  remote: /home/javi/programas/work/rails
-  revision: 565fa28
-  branch: branch
+  remote: git://github.com/javierv/rails.git
+  revision: 41f3ccd
   specs:
     actionmailer (3.0.0.rc)
       actionpack (= 3.0.0.rc)
@@ -35,7 +34,7 @@ GIT
       activerecord (= 3.0.0.rc)
       activeresource (= 3.0.0.rc)
       activesupport (= 3.0.0.rc)
-      bundler (>= 1.0.0.rc.1)
+      bundler (>= 1.0.0.rc.2)
       railties (= 3.0.0.rc)
     railties (3.0.0.rc)
       actionpack (= 3.0.0.rc)
@@ -48,6 +47,16 @@ GIT
   revision: db9c1b8
   specs:
     simple_form (1.2.2)
+
+GIT
+  remote: http://github.com/ernie/meta_search.git
+  revision: 61a9d5e
+  specs:
+    meta_search (0.6.0)
+      actionpack (>= 3.0.0.rc)
+      activerecord (>= 3.0.0.rc)
+      activesupport (>= 3.0.0.rc)
+      arel (>= 0.4.0)
 
 GEM
   remote: http://rubygems.org/
@@ -88,11 +97,6 @@ GEM
       activesupport (>= 2.3.6)
       mime-types
       treetop (>= 1.4.5)
-    meta_search (0.5.4)
-      actionpack (>= 3.0.0.beta4)
-      activerecord (>= 3.0.0.beta4)
-      activesupport (>= 3.0.0.beta4)
-      arel (>= 0.4.0)
     meta_where (0.5.2)
       activerecord (>= 3.0.0.beta4)
       activesupport (>= 3.0.0.beta4)
@@ -143,7 +147,7 @@ DEPENDENCIES
   display_name
   factory_girl_rails
   haml
-  meta_search
+  meta_search!
   meta_where
   mocha
   paperclip
