@@ -3,6 +3,11 @@
 %article
   = strict_textilize @pagina.cuerpo
 
+- if !@pagina.cajas.empty?
+  - content_for(:sidebar) do
+    - @pagina.cajas.each do |caja|
+      = render 'cajas/caja', :caja => caja
+
 = link_to 'Edit', edit_pagina_path(@pagina)
 \|
 = link_to 'Back', paginas_path
