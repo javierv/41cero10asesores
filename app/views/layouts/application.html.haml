@@ -16,14 +16,15 @@
     - flash.each do |name, msg|
       = content_tag :div, msg, :id => "flash_#{name}"
 
-    %aside#sidebar
-      = yield(:sidebar)
-    %section#main
-      - if show_title?
-        %header
-          %h1= yield(:title)
+    #content
+      %aside#sidebar
+        = yield(:sidebar)
+      %section#main
+        - if show_title?
+          %header
+            %h1= yield(:title)
 
-      = yield
+        = yield
 
     %footer#pie
       = render 'general/pie'
