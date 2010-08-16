@@ -10,9 +10,8 @@
     = yield(:head)
 
   %body
-    #intro
-      %header#cabecera= render 'general/cabecera'
-      %nav#navegacion= render 'general/navegacion'
+    %header#cabecera= render 'general/cabecera'
+    %nav#navegacion= render 'general/navegacion'
 
     #content
       - flash.each do |name, msg|
