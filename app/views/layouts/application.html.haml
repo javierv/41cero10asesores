@@ -11,7 +11,9 @@
 
   %body
     %header#cabecera= render 'general/cabecera'
-    %nav#navegacion= render 'general/navegacion'
+    #navegacion
+      %nav= render 'general/navegacion'
+      #buscador= render 'general/buscador'
 
     #content
       - flash.each do |name, msg|

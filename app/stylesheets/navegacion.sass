@@ -1,3 +1,5 @@
+$padding = 0.3em 0
+
 #navegacion
   +linear-gradient(color-stops(#127402, #074400))
   background-color: #0e4400
@@ -9,7 +11,7 @@
 
     li
       float: left
-      padding: 0.3em 0
+      padding: $padding
 
       a
         float: left
@@ -21,3 +23,24 @@
           color: #105400
           background-color: #fdfdfd
           +border-radius(0.5em)
+
+  #buscador
+    text-align: right
+    padding: $padding
+    margin-right: 0.5em
+
+    div
+      display: inline
+
+    input[type=search]
+      width: 15em
+      border: 1px solid #ccc
+      +border-radius(0.5em)
+
+    input[type=submit]
+      +border-radius(0.2em)
+      padding: 0.1em 0.4em 0.1em 1.3em
+      color: #111
+      background: #ebebeb url(/images/lupa.png) no-repeat 0.1em center
+      +background-size(auto 90%)
+      cursor: pointer
