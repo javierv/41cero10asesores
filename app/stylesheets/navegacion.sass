@@ -1,17 +1,16 @@
-$padding = 0.3em 0
-
 #navegacion
   +linear-gradient(color-stops(#127402, #074400))
   background-color: #0e4400
   overflow: hidden
-  padding-left: 1em
+  width: 100%
+  display: table
 
   ul
     list-style: none
 
     li
       float: left
-      padding: $padding
+      padding: 0.3em 0
 
       a
         float: left
@@ -26,8 +25,9 @@ $padding = 0.3em 0
 
   #buscador
     text-align: right
-    padding: $padding
-    margin-right: 0.5em
+    padding-right: 0.5em
+    display: table-cell
+    vertical-align: middle
 
     div
       display: inline
