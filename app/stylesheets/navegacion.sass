@@ -28,22 +28,27 @@
     padding-right: 0.5em
     display: table-cell
     vertical-align: middle
+    font-size: 0.9em
 
     div
       display: inline
 
+    input
+      padding: 0.1em 0.3em
+      color: #111
+
     input[type=search]
       width: 15em
-      border: 1px solid #ccc
-      +border-radius(0.5em)
-      padding: 0 0.3em
+      +border-radius(0.4em)
+      border: 1px solid #999
+      background-color: #fdfdfd
 
     input[type=submit]
       +border-radius(0.2em)
-      border: 2px outset #ccc
-      padding: 0.1em 0.4em 0.1em 1.3em
-      color: #fefefe
-      background: #074400 url(/images/lupa.png) no-repeat 0.1em center
+      border: 1px outset #999
+      padding-right: 0.4em
+      padding-left: 1.3em
+      background: #ebebeb url(/images/lupa.png) no-repeat 0.2em center
       +background-size(auto 90%)
       cursor: pointer
 
