@@ -16,6 +16,36 @@ canvas, details, figcaption, figure, hgroup, menu, summary
 strong
   font-weight:      bold
 
+ul
+  list-style:       disc
+
+ol
+  list-style:       decimal
+
+blockquote, q
+  quotes:           none
+
+  &:before, &:after
+    content:          ''
+    content:          none
+
+ins
+  text-decoration:  none
+
+del
+  text-decoration:  line-through
+
+table
+  border-collapse:  collapse
+  border-spacing:   0
+
+input, select
+  vertical-align:   middle
+
+abbr[title], dfn[title]
+  border-bottom:    1px dotted #000
+  cursor:           help
+
 button::-moz-focus-inner,
 input[type="reset"]::-moz-focus-inner,
 input[type="button"]::-moz-focus-inner,
