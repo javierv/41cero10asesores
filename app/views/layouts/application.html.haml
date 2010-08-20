@@ -22,10 +22,6 @@
       %aside#sidebar
         = yield(:sidebar)
       %section#main
-        - if show_title?
-          %header
-            %h1= yield(:title)
-
         = yield
 
     %footer#pie

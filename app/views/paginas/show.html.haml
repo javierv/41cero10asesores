@@ -2,6 +2,9 @@
 - css 'sidebar'
 
 %article[@pagina]
+
+  %header
+    %h1= @pagina
   = strict_textilize @pagina.cuerpo
 
 - if !@pagina.cajas.empty?
