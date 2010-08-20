@@ -19,10 +19,8 @@
       - flash.each do |name, msg|
         .flash{:id => "flash_#{name}"}
           %p= msg
-      %aside#sidebar
-        = yield(:sidebar)
-      %section#main
-        = yield
 
-    %footer#pie
-      = render 'general/pie'
+      %aside#sidebar= yield(:sidebar)
+      %section#main= yield
+
+    %footer#pie= render 'general/pie'
