@@ -1,10 +1,30 @@
+@import "compass/css3"
+
 form
-  div.input
+  .input
     margin-top: 1em
 
     input, textarea
       width: 40em
+      padding: 0.1em 0.3em
+
+    input, textarea, select
       max-width: 95%
+      background-color: white
+      border: 1px solid #ccc
+      font-size: 0.9em
+      font-family: "Bitstream Vera sans", sans-serif
+      +border-radius(0.2em)
+
+      &:focus
+        border: 2px solid #d95
+
+    select
+      min-width: 10em
+
+    &.boolean, &.radio
+      label
+        display: inline
 
     .markItUp
       width: 40em
@@ -16,6 +36,19 @@ form
 
   div.actions
     margin-top: 0.5em
+
+  button, input[type=submit], input[type=reset]
+    padding: 0.1em 0.3em
+    +border-radius(0.2em)
+    border: 2px outset #999
+    background-color: #ebebeb
+
+    &:focus
+      background-color: #ffd
+      border: 2px solid #d95
+
+    &:active
+      border-style: inset
 
   label
     display: block

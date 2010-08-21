@@ -43,9 +43,7 @@
       background-color: #fdfdfd
 
       &:focus
-        border-color: #333
-        border-width: 2px
-        background-color: #ffd
+        border: 2px solid #d95
 
     input[type=submit]
       +border-radius(0.2em)
@@ -56,7 +54,9 @@
       +background-size(auto 90%)
       cursor: pointer
 
-      &:active
-        border-style: inset
       &:focus
         background-color: #ffd
+        border: 2px solid #d95
+
+      &:active
+        border-style: inset
