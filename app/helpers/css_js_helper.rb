@@ -6,8 +6,7 @@ module CssJsHelper
   end
 
   def markitup
-    css '/javascripts/markitup/skins/simple/style.css',
-      '/javascripts/markitup/sets/textile/style.css'
+    css 'markitup', '/javascripts/markitup/sets/textile/style.css'
     javascript 'markitup/jquery.markitup', 'markitup/sets/textile/set'
   end
 
