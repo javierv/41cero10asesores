@@ -51,10 +51,12 @@ form
     +border-radius(0.2em)
     border: 2px outset #999
     background-color: #ebebeb
+    +linear-gradient(color-stops(#f0f0f0, #d0d0d0))
 
     &:focus, &:active
       background-color: #ffd
       border: $borde_foco
+      +linear-gradient(color-stops(#ffe, #fea))
 
     &:active
       border-style: inset
