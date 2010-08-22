@@ -6,7 +6,6 @@ class PaginasController < ApplicationController
   before_filter :find_pagina, :only => [:show, :edit, :update, :destroy]
   before_filter :new_pagina, :only => [:new, :create]
   before_filter :build_sidebar, :only => [:create, :update]
-  before_filter :update_pagina, :only => :update
 
   def index
     @search = Pagina.search params[:search]
@@ -33,7 +32,7 @@ class PaginasController < ApplicationController
   end
 
   def update
-    flash[:notice] = 'Pagina se actualizó correctamente.' if @pagina.save
+    flash[:notice] = 'Pagina se actualizó correctamente.' if @pagina.update_attributes(params[:pagina])
     respond_with @pagina
   end
 
@@ -49,10 +48,6 @@ private
 
   def new_pagina
     @pagina = Pagina.new(params[:pagina])
-  end
-
-  def update_pagina
-    @pagina.attributes = params[:pagina]
   end
 
   def build_sidebar
