@@ -21,6 +21,10 @@
           %p= msg
 
       %aside#sidebar= yield(:sidebar)
-      %section#main= yield
+      %section#main
+        - if show_title?
+          %header
+            %h1= yield(:title)
+        = yield
 
     %footer#pie= render 'general/pie'
