@@ -8,6 +8,11 @@ class Pagina < ActiveRecord::Base
   has_many :cajas, :through => :sidebars
   before_save :build_sidebar
 
+  def ids_cajas=(caja_ids)
+    @caja_ids = caja_ids
+  end
+
+private
   def build_sidebar
     if @caja_ids
       sidebars.destroy_all
@@ -15,9 +20,5 @@ class Pagina < ActiveRecord::Base
         sidebars.build(:caja_id => caja_id, :orden => index + 1)
       end
     end
-  end
-
-  def ids_cajas=(caja_ids)
-    @caja_ids = caja_ids
   end
 end
