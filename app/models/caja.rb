@@ -3,4 +3,6 @@ class Caja < ActiveRecord::Base
   validates :titulo, :presence => true
   validates :cuerpo, :presence => true
   display_name :titulo
+
+  has_many :sidebars
 end

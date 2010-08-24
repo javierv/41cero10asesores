@@ -24,6 +24,10 @@ class PaginaTest < ActiveSupport::TestCase
       assert Sidebar.where(:pagina_id => @pagina.id, :caja_id => @cajas[2].id, :orden => 3).first
     end
 
+    should 'devolver las cajas en orden' do
+      assert_equal [@cajas[1].id, @cajas[0].id, @cajas[2].id], @pagina.cajas_con_orden.map(&:id)
+    end
+
     should 'borrar las cajas si ya tenía' do
       @pagina.ids_cajas = []
       @pagina.save

@@ -7,9 +7,9 @@
     %h1= @pagina
   = strict_textilize @pagina.cuerpo
 
-- if !@pagina.cajas.empty?
+- if !@pagina.cajas_con_orden.empty?
   - content_for(:sidebar) do
-    - @pagina.cajas.each do |caja|
+    - @pagina.cajas_con_orden.each do |caja|
       = render 'cajas/caja', :caja => caja
 
 = link_to 'Edit', edit_pagina_path(@pagina)
