@@ -14,26 +14,49 @@ class PaginaTest < ActiveSupport::TestCase
     setup do
       @pagina = Factory(:pagina)
       @cajas = [Factory(:caja), Factory(:caja), Factory(:caja)]
-      @pagina.build_sidebar([@cajas[1].id, @cajas[0].id, @cajas[2].id])
+      @pagina.ids_cajas = [@cajas[1].id, @cajas[0].id, @cajas[2].id]
       @pagina.save
     end
 
-    should 'ordenar las cajas' do      
+    should 'ordenar las cajas' do
       assert Sidebar.where(:pagina_id => @pagina.id, :caja_id => @cajas[1].id, :orden => 1).first
       assert Sidebar.where(:pagina_id => @pagina.id, :caja_id => @cajas[0].id, :orden => 2).first
       assert Sidebar.where(:pagina_id => @pagina.id, :caja_id => @cajas[2].id, :orden => 3).first
     end
 
     should 'borrar las cajas si ya tenía' do
-      @pagina.build_sidebar([])
+      @pagina.ids_cajas = []
       @pagina.save
       assert !Sidebar.where(:pagina_id => @pagina.id).first
     end
 
     should 'pasar de las IDs vacías' do
-      @pagina.build_sidebar(["", "", @cajas[2].id, "", ""])
+      @pagina.ids_cajas = ["", "", @cajas[2].id, "", ""]
       @pagina.save
       assert_equal 1, Sidebar.where(:pagina_id => @pagina.id).count
+    end
+
+    should 'no borrar las cajas si no se graba' do
+      @pagina.stubs(:valid?).returns(false)
+      @pagina.ids_cajas = [@cajas[1].id]
+      @pagina.save
+      assert_equal 3, Sidebar.where(:pagina_id => @pagina.id).count
+    end
+
+    context 'al editar' do
+      setup do
+        @pagina.ids_cajas = [@cajas[2].id, @cajas[1].id]
+        @pagina.save
+      end
+      
+      should 'sustituir el orden al editar' do      
+        assert Sidebar.where(:pagina_id => @pagina.id, :caja_id => @cajas[2].id, :orden => 1).first
+        assert Sidebar.where(:pagina_id => @pagina.id, :caja_id => @cajas[1].id, :orden => 2).first
+      end
+      
+      should 'borrar el orden anterior' do
+        assert_equal 1, Sidebar.where(:pagina_id => @pagina.id, :caja_id => @cajas[2].id).count
+      end
     end
   end
 end

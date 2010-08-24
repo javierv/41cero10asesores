@@ -5,7 +5,7 @@ class PaginasController < ApplicationController
 
   before_filter :find_pagina, :only => [:show, :edit, :update, :destroy]
   before_filter :new_pagina, :only => [:new, :create]
-  before_filter :build_sidebar, :only => [:create, :update]
+  before_filter :asignar_cajas, :only => [:create, :update]
 
   def index
     @search = Pagina.search params[:search]
@@ -50,10 +50,9 @@ private
     @pagina = Pagina.new(params[:pagina])
   end
 
-  def build_sidebar
+  def asignar_cajas
     if params[:pagina][:caja_ids]
-      @pagina.build_sidebar(params[:pagina][:caja_ids])
-      params[:pagina][:caja_ids] = nil
+      @pagina.ids_cajas = params[:pagina][:caja_ids]
     end
   end
 end
