@@ -11,8 +11,8 @@ class Pagina < ActiveRecord::Base
   def build_sidebar
     if @caja_ids
       sidebars.destroy_all
-      @caja_ids.each_with_index do |caja_id, index|
-        sidebars.build(:caja_id => caja_id, :orden => index + 1) unless caja_id.to_i.zero?
+      @caja_ids.reject {|caja_id| caja_id.to_i.zero?}.each_with_index do |caja_id, index|
+        sidebars.build(:caja_id => caja_id, :orden => index + 1)
       end
     end
   end

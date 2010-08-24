@@ -34,6 +34,7 @@ class PaginaTest < ActiveSupport::TestCase
       @pagina.ids_cajas = ["", "", @cajas[2].id, "", ""]
       @pagina.save
       assert_equal 1, Sidebar.where(:pagina_id => @pagina.id).count
+      assert Sidebar.where(:pagina_id => @pagina.id, :caja_id => @cajas[2].id, :orden => 1).first
     end
 
     should 'no borrar las cajas si no se graba' do
