@@ -9,6 +9,7 @@ class PaginaTest < ActiveSupport::TestCase
   should allow_mass_assignment_of(:cuerpo)
 
   should have_many(:cajas).through(:sidebars)
+  should allow_mass_assignment_of(:caja_ids)
 
   context 'ordenar las cajas' do
     setup do
