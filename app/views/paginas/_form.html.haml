@@ -9,7 +9,8 @@
   = form.input :cuerpo, :label => 'Cuerpo'
 
   = hidden_field_tag "pagina[caja_ids][]"
-  = form.association :cajas, :input_html => {:class => 'cajas'}
+  = form.association :cajas, :collection => Caja.al_final_las_de_pagina(@pagina),
+    :input_html => {:class => 'cajas'}
 
   .actions
     = form.button :submit
