@@ -10,7 +10,7 @@ class Pagina < ActiveRecord::Base
   before_save :build_sidebar
 
   def cajas_con_orden
-    cajas.joins(:sidebars).order("sidebars.orden ASC")
+    cajas.order("sidebars.orden ASC")
   end
 
 private
