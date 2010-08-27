@@ -1,3 +1,3 @@
-= form_for :busqueda, :html => {:id => 'buscador', :method => :get} do |form|
-  = form.text_field :texto, :label => false, :type => 'search', :placeholder => 'Teclea tu búsqueda...'
+= form_for :busqueda, :html => {:id => 'buscador', :role => 'search', :method => :get} do |form|
+  = form.text_field :texto, :label => nil, :type => 'search', :placeholder => 'Teclea tu búsqueda...'
   = form.submit 'Buscar'

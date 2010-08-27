@@ -10,7 +10,7 @@
     = yield(:head)
 
   %body
-    %header#cabecera= render 'general/cabecera'
+    %header#cabecera{:role => 'banner'}= render 'general/cabecera'
     #navegacion
       %nav= render 'general/navegacion'
       = render 'general/buscador'
@@ -20,11 +20,11 @@
         .flash{:id => "flash_#{name}"}
           %p= msg
 
-      %aside#sidebar= yield(:sidebar)
+      %aside#sidebar{:role => 'complementary'}= yield(:sidebar)
       %section#main{:role => 'main'}
         - if show_title?
           %header
             %h1= yield(:title)
         = yield
 
-    %footer#pie= render 'general/pie'
+    %footer#pie{:role => 'contentinfo'}= render 'general/pie'
