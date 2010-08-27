@@ -20,7 +20,9 @@
         .flash{:id => "flash_#{name}"}
           %p= msg
 
-      %aside#sidebar{:role => 'complementary'}= yield(:sidebar)
+      - if content_for?(:sidebar)
+        %aside#sidebar{:role => 'complementary'}= yield(:sidebar)
+
       %section#main{:role => 'main'}
         - if show_title?
           %header
