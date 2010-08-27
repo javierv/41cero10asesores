@@ -10,7 +10,6 @@
     = yield(:head)
 
   %body
-    #saltar= link_to 'Saltar al contenido principal', '#main'
     %header#cabecera= render 'general/cabecera'
     #navegacion
       %nav= render 'general/navegacion'
@@ -22,7 +21,7 @@
           %p= msg
 
       %aside#sidebar= yield(:sidebar)
-      %section#main
+      %section#main{:role => 'main'}
         - if show_title?
           %header
             %h1= yield(:title)
