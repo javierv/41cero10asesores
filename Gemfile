@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', :git => 'git://github.com/javierv/rails.git'
+gem 'rails', '3.0.0.rc2'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
@@ -35,8 +35,8 @@ gem "validation_reflection"
 gem "RedCloth"
 gem "validates_date_time"
 gem "meta_where"
-gem "meta_search", :git => 'http://github.com/ernie/meta_search.git'
-gem "simple_form", :git => "git://github.com/javierv/simple_form.git"
+gem "meta_search"
+gem "simple_form", :git => "git://github.com/plataformatec/simple_form.git"
 gem "tabletastic", ">= 0.2.0pre4"
 gem "rails3-generators", :group => :development
 gem "shoulda", :group => :test
