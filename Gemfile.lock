@@ -1,71 +1,43 @@
 GIT
-  remote: git://github.com/javierv/rails.git
-  revision: 41f3ccd
-  specs:
-    actionmailer (3.0.0.rc)
-      actionpack (= 3.0.0.rc)
-      mail (~> 2.2.5)
-    actionpack (3.0.0.rc)
-      activemodel (= 3.0.0.rc)
-      activesupport (= 3.0.0.rc)
-      builder (~> 2.1.2)
-      erubis (~> 2.6.6)
-      i18n (~> 0.4.1)
-      rack (~> 1.2.1)
-      rack-mount (~> 0.6.9)
-      rack-test (~> 0.5.4)
-      tzinfo (~> 0.3.22)
-    activemodel (3.0.0.rc)
-      activesupport (= 3.0.0.rc)
-      builder (~> 2.1.2)
-      i18n (~> 0.4.1)
-    activerecord (3.0.0.rc)
-      activemodel (= 3.0.0.rc)
-      activesupport (= 3.0.0.rc)
-      arel (~> 0.4.0)
-      tzinfo (~> 0.3.22)
-    activeresource (3.0.0.rc)
-      activemodel (= 3.0.0.rc)
-      activesupport (= 3.0.0.rc)
-    activesupport (3.0.0.rc)
-    rails (3.0.0.rc)
-      actionmailer (= 3.0.0.rc)
-      actionpack (= 3.0.0.rc)
-      activerecord (= 3.0.0.rc)
-      activeresource (= 3.0.0.rc)
-      activesupport (= 3.0.0.rc)
-      bundler (>= 1.0.0.rc.2)
-      railties (= 3.0.0.rc)
-    railties (3.0.0.rc)
-      actionpack (= 3.0.0.rc)
-      activesupport (= 3.0.0.rc)
-      rake (>= 0.8.3)
-      thor (~> 0.14.0)
-
-GIT
-  remote: git://github.com/javierv/simple_form.git
-  revision: db9c1b8
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: 014f388
   specs:
     simple_form (1.2.2)
-
-GIT
-  remote: http://github.com/ernie/meta_search.git
-  revision: 61a9d5e
-  specs:
-    meta_search (0.6.0)
-      actionpack (>= 3.0.0.rc)
-      activerecord (>= 3.0.0.rc)
-      activesupport (>= 3.0.0.rc)
-      arel (>= 0.4.0)
 
 GEM
   remote: http://rubygems.org/
   specs:
     RedCloth (4.2.3)
     abstract (1.0.0)
+    actionmailer (3.0.0)
+      actionpack (= 3.0.0)
+      mail (~> 2.2.5)
+    actionpack (3.0.0)
+      activemodel (= 3.0.0)
+      activesupport (= 3.0.0)
+      builder (~> 2.1.2)
+      erubis (~> 2.6.6)
+      i18n (~> 0.4.1)
+      rack (~> 1.2.1)
+      rack-mount (~> 0.6.12)
+      rack-test (~> 0.5.4)
+      tzinfo (~> 0.3.23)
+    activemodel (3.0.0)
+      activesupport (= 3.0.0)
+      builder (~> 2.1.2)
+      i18n (~> 0.4.1)
+    activerecord (3.0.0)
+      activemodel (= 3.0.0)
+      activesupport (= 3.0.0)
+      arel (~> 1.0.0)
+      tzinfo (~> 0.3.23)
+    activeresource (3.0.0)
+      activemodel (= 3.0.0)
+      activesupport (= 3.0.0)
+    activesupport (3.0.0)
     acts-as-taggable-on (2.0.6)
-    arel (0.4.0)
-      activesupport (>= 3.0.0.beta)
+    arel (1.0.1)
+      activesupport (~> 3.0.0)
     bcrypt-ruby (2.1.2)
     builder (2.1.2)
     capybara (0.3.9)
@@ -75,10 +47,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       selenium-webdriver (>= 0.0.3)
-    compass (0.10.4)
+    compass (0.10.5)
       haml (>= 3.0.4)
-    culerity (0.2.10)
-    devise (1.1.1)
+    culerity (0.2.12)
+    devise (1.1.2)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 0.10.7)
     display_name (0.1.1)
@@ -90,17 +62,22 @@ GEM
       rails (>= 3.0.0.beta4)
     ffi (0.6.3)
       rake (>= 0.8.7)
-    haml (3.0.16)
+    haml (3.0.18)
     i18n (0.4.1)
     json_pure (1.4.6)
     mail (2.2.5)
       activesupport (>= 2.3.6)
       mime-types
       treetop (>= 1.4.5)
-    meta_where (0.5.2)
-      activerecord (>= 3.0.0.beta4)
-      activesupport (>= 3.0.0.beta4)
-      arel (>= 0.4.0)
+    meta_search (0.9.2)
+      actionpack (~> 3.0.0.rc2)
+      activerecord (~> 3.0.0.rc2)
+      activesupport (~> 3.0.0.rc2)
+      arel (~> 1.0.0.rc1)
+    meta_where (0.9.2)
+      activerecord (~> 3.0.0.rc2)
+      activesupport (~> 3.0.0.rc2)
+      arel (~> 1.0.0.rc1)
     mime-types (1.16)
     mocha (0.9.8)
       rake
@@ -110,14 +87,27 @@ GEM
       activesupport
     polyglot (0.3.1)
     rack (1.2.1)
-    rack-mount (0.6.9)
+    rack-mount (0.6.13)
       rack (>= 1.0.0)
     rack-test (0.5.4)
       rack (>= 1.0)
-    rails3-generators (0.12.1)
+    rails (3.0.0)
+      actionmailer (= 3.0.0)
+      actionpack (= 3.0.0)
+      activerecord (= 3.0.0)
+      activeresource (= 3.0.0)
+      activesupport (= 3.0.0)
+      bundler (~> 1.0.0)
+      railties (= 3.0.0)
+    rails3-generators (0.13.0)
+    railties (3.0.0)
+      actionpack (= 3.0.0)
+      activesupport (= 3.0.0)
+      rake (>= 0.8.4)
+      thor (~> 0.14.0)
     rake (0.8.7)
     rubyzip (0.9.4)
-    selenium-webdriver (0.0.27)
+    selenium-webdriver (0.0.28)
       ffi (>= 0.6.1)
       json_pure
       rubyzip
@@ -128,7 +118,7 @@ GEM
     thor (0.14.0)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
-    tzinfo (0.3.22)
+    tzinfo (0.3.23)
     validates_date_time (1.0.0)
     validation_reflection (0.3.8)
     warden (0.10.7)
@@ -147,11 +137,11 @@ DEPENDENCIES
   display_name
   factory_girl_rails
   haml
-  meta_search!
+  meta_search
   meta_where
   mocha
   paperclip
-  rails!
+  rails (= 3.0.0)
   rails3-generators
   shoulda
   simple_form!
