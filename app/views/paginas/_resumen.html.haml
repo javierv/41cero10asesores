@@ -1,2 +1,3 @@
-= pagina.titulo
-= pagina.cuerpo
+%article[pagina]
+  %h2= link_to pagina, pagina
+  = strict_textilize pagina.cuerpo # TODO: cortar en ciertos caracteres
