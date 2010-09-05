@@ -41,6 +41,10 @@ class PaginasController < ApplicationController
     respond_with @pagina
   end
 
+  def search
+    @paginas = Pagina.search params[:busqueda][:q], :per_page => Pagina.per_page, :page => params[:page]
+  end
+
 private
   def find_pagina
     @pagina = Pagina.find(params[:id])

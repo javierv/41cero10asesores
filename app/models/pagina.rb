@@ -13,6 +13,10 @@ class Pagina < ActiveRecord::Base
     cajas.order("sidebars.orden ASC")
   end
 
+  xapit :include => :cajas do |index|
+    index.text :titulo, :cuerpo
+  end
+
 private
   def build_sidebar
     if @ids_cajas

@@ -44,3 +44,5 @@ gem "factory_girl_rails", :group => :test
 gem "mocha", :group => :test
 gem "capybara", :group => :test
 gem "display_name"
+gem "xapian-full"
+gem "xapit"

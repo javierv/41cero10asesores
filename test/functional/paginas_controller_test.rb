@@ -94,4 +94,13 @@ class PaginasControllerTest < ActionController::TestCase
       assert !Pagina.exists?(@pagina.id)
     end
   end
+
+  context "search action" do
+    setup do
+      get :search, :search => "buscando"
+    end
+
+    should respond_with(:success)
+    should assign_to(:paginas)
+  end
 end

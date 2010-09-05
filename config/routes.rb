@@ -1,7 +1,9 @@
 Calesur::Application.routes.draw do
   resources :cajas, :except => :show
 
-  resources :paginas
+  resources :paginas do
+    get :search, :on => :collection
+  end
 
   root :to => "paginas#index"
 
