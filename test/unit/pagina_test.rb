@@ -11,6 +11,20 @@ class PaginaTest < ActiveSupport::TestCase
   should have_many(:cajas).through(:sidebars)
   should allow_mass_assignment_of(:caja_ids)
 
+  context "actualizar con mass_assignment de cajas" do
+    setup do
+      @pagina = Factory(:pagina)
+      @cajas = [Factory(:caja), Factory(:caja), Factory(:caja)]
+      @pagina.ids_cajas = [@cajas[0].id]
+    end
+
+    should 'no dar errores' do
+      assert_nothing_raised do
+        @pagina.update_attributes :caja_ids => [@cajas[0].id]
+      end
+    end
+  end
+
   context 'ordenar las cajas' do
     setup do
       @pagina = Factory(:pagina)
