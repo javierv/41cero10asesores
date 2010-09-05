@@ -14,7 +14,18 @@ class Pagina < ActiveRecord::Base
   end
 
   xapit :include => :cajas do |index|
-    index.text :titulo, :cuerpo
+    index.text :titulo
+    index.text :cuerpo
+    index.text :titulo_cajas
+    index.text :cuerpo_cajas
+  end
+
+  def titulo_cajas
+    cajas.map(&:titulo).join(' ')
+  end
+
+  def cuerpo_cajas
+    cajas.map(&:cuerpo).join(' ')
   end
 
 private
