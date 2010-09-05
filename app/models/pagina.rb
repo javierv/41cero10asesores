@@ -14,10 +14,10 @@ class Pagina < ActiveRecord::Base
   end
 
   xapit :include => :cajas do |index|
-    index.text :titulo
-    index.text :cuerpo
-    index.text :titulo_cajas
-    index.text :cuerpo_cajas
+    index.text :titulo, :weight => 10
+    index.text :cuerpo, :weight => 4
+    index.text :titulo_cajas, :weight => 3
+    index.text :cuerpo_cajas, :weight => 1
   end
 
   def titulo_cajas
