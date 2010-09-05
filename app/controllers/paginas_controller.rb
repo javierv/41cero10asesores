@@ -8,7 +8,7 @@ class PaginasController < ApplicationController
   before_filter :asignar_cajas, :only => [:create, :update]
 
   def index
-    @search = Pagina.search params[:search]
+    @search = Pagina.metasearch params[:search]
     @paginas = @search.paginate :page => params[:page],
       :per_page => Pagina.per_page
     respond_with @paginas
