@@ -97,7 +97,7 @@ class PaginasControllerTest < ActionController::TestCase
 
   context "search action" do
     setup do
-      get :search, :search => "buscando"
+      get :search, :q => "buscando"
     end
 
     should respond_with(:success)

@@ -42,7 +42,7 @@ class PaginasController < ApplicationController
   end
 
   def search
-    @paginas = Pagina.search params[:busqueda][:q], :per_page => Pagina.per_page, :page => params[:page]
+    @paginas = Pagina.search params[:q], :per_page => Pagina.per_page, :page => params[:page]
   end
 
 private

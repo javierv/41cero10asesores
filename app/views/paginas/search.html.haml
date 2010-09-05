@@ -1,6 +1,6 @@
 - if @paginas.spelling_suggestion
   ¿Quiso decir 
-  = link_to(@paginas.spelling_suggestion, search_paginas_path(:busqueda => {:q => @paginas.spelling_suggestion})) + "?"
+  = link_to(@paginas.spelling_suggestion, search_paginas_path(:q => @paginas.spelling_suggestion)) + "?"
 
 - @paginas.each do |pagina|
   = render 'resumen', :pagina => pagina
