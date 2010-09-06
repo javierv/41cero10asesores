@@ -39,7 +39,7 @@ gem "meta_search"
 gem "simple_form", :git => "git://github.com/plataformatec/simple_form.git"
 gem "tabletastic", ">= 0.2.0pre4"
 gem "rails3-generators", :group => :development
-gem 'forgery', :group => :development
+gem 'faker', :group => :development
 gem "shoulda", :group => :test
 gem "factory_girl_rails", :group => :test
 gem "mocha", :group => :test
