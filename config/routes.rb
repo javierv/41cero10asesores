@@ -3,6 +3,7 @@ Calesur::Application.routes.draw do
 
   resources :paginas do
     get :search, :on => :collection
+    put :preview, :on => :member
   end
 
   root :to => "paginas#index"

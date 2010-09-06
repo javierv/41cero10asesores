@@ -103,4 +103,15 @@ class PaginasControllerTest < ActionController::TestCase
     should respond_with(:success)
     should assign_to(:paginas)
   end
+
+  context "preview action" do
+    setup do
+      put :preview, :id => @pagina.to_param, :pagina => @pagina.attributes
+    end
+
+    should respond_with(:success)
+    should assign_to(:pagina)
+    should render_template(:preview)
+    should render_with_layout(:simple)
+  end
 end

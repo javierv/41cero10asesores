@@ -7,6 +7,8 @@ class PaginasController < ApplicationController
   before_filter :new_pagina, :only => [:new, :create]
   before_filter :asignar_cajas, :only => [:create, :update]
 
+  layout 'simple', :only => :preview
+
   def index
     @search = Pagina.metasearch params[:search]
     @paginas = @search.paginate :page => params[:page],
@@ -43,6 +45,10 @@ class PaginasController < ApplicationController
 
   def search
     @paginas = Pagina.search params[:q], :per_page => Pagina.per_page, :page => params[:page]
+  end
+
+  def preview
+    @pagina = Pagina.new(params[:pagina])
   end
 
 private
