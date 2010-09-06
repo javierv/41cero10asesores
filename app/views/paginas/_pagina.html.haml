@@ -1,0 +1,9 @@
+%article[pagina]
+  %header
+    %h1= pagina
+  = strict_textilize pagina.cuerpo
+
+- if !pagina.cajas_con_orden.empty?
+  - content_for(:sidebar) do
+    - pagina.cajas_con_orden.each do |caja|
+      = render 'cajas/caja', :caja => caja
