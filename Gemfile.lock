@@ -62,6 +62,7 @@ GEM
       rails (>= 3.0.0.beta4)
     ffi (0.6.3)
       rake (>= 0.8.7)
+    forgery (0.3.4)
     haml (3.0.18)
     i18n (0.4.1)
     json_pure (1.4.6)
@@ -138,6 +139,7 @@ DEPENDENCIES
   devise
   display_name
   factory_girl_rails
+  forgery
   haml
   meta_search
   meta_where
