@@ -20,7 +20,7 @@ class PaginasControllerTest < ActionController::TestCase
     setup do
       get :new
     end
-    should render_template :new
+    should render_template(:new)
   end
 
   context "create action" do
@@ -33,7 +33,7 @@ class PaginasControllerTest < ActionController::TestCase
         post :create, :pagina => @pagina.attributes
       end
 
-      should render_template :new
+      should render_template(:new)
     end
 
     context "when model is valid" do
@@ -57,7 +57,7 @@ class PaginasControllerTest < ActionController::TestCase
     setup do
       get :edit, :id => @pagina.to_param
     end
-    should render_template 'edit'
+    should render_template(:edit)
   end
 
   context "update action" do
@@ -70,7 +70,7 @@ class PaginasControllerTest < ActionController::TestCase
         put :update, :id => @pagina.to_param, :pagina => @pagina.attributes
       end
 
-      should render_template :edit
+      should render_template(:edit)
     end
 
     context "when model is valid" do
