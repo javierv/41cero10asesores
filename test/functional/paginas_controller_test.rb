@@ -14,6 +14,7 @@ class PaginasControllerTest < ActionController::TestCase
 
     should respond_with(:success)
     should assign_to(:paginas)
+    should render_with_layout(:application)
   end
 
   context "new action" do

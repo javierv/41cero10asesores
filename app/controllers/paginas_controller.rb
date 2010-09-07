@@ -7,7 +7,7 @@ class PaginasController < ApplicationController
   before_filter :new_pagina, :only => [:new, :create]
   before_filter :asignar_cajas, :only => [:create, :update]
 
-  layout 'simple', :only => :preview
+  layout :simple_for_preview
 
   def index
     @search = Pagina.metasearch params[:search]
@@ -63,6 +63,14 @@ private
   def asignar_cajas
     if params[:pagina][:caja_ids]
       @pagina.ids_cajas = params[:pagina][:caja_ids]
+    end
+  end
+
+  def simple_for_preview
+    if action_name.to_sym == :preview
+      'simple'
+    else
+      'application'
     end
   end
 end
