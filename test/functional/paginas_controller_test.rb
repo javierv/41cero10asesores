@@ -46,12 +46,24 @@ class PaginasControllerTest < ActionController::TestCase
     end
 
     context "when using preview button" do
-      setup do
-        post :create, :pagina => @pagina.attributes, :preview => true
+      context "with a normal request" do
+        setup do
+          post :create, :pagina => @pagina.attributes, :preview => true
+        end
+
+        should render_template(:preview)
+        should assign_to(:pagina)
       end
 
-      should render_template(:preview)
-      should assign_to(:pagina)
+      context "with an AJAX request" do
+        setup do
+          xhr :post, :create, :pagina => @pagina.attributes, :preview => true
+        end
+
+        should render_template(:preview)
+        should respond_with_content_type(:js)
+        should_not render_with_layout
+      end
     end
   end
 
@@ -92,12 +104,24 @@ class PaginasControllerTest < ActionController::TestCase
     end
 
     context "when using preview button" do
-      setup do
-        put :update, :id => @pagina.to_param, :pagina => @pagina.attributes, :preview => true
+      context "with a normal request" do
+        setup do
+          put :update, :id => @pagina.to_param, :pagina => @pagina.attributes, :preview => true
+        end
+
+        should render_template(:preview)
+        should assign_to(:pagina)
       end
 
-      should render_template(:preview)
-      should assign_to(:pagina)
+      context "with an AJAX request" do
+        setup do
+          xhr :put, :update, :id => @pagina.to_param, :pagina => @pagina.attributes, :preview => true
+        end
+
+        should render_template(:preview)
+        should respond_with_content_type(:js)
+        should_not render_with_layout
+      end
     end
   end
 

@@ -68,7 +68,14 @@ private
       attributes = params[:pagina].clone
       attributes.delete(:caja_ids)
       @pagina.attributes = attributes
-      render 'preview'
+
+      # TODO: ¿Por qué no reconoce el formato JS en las peticiones AJAX que mando?
+      # (Probé a incluir :js en el respond_to y daba igual)
+      if request.xhr?
+        render 'preview.js'
+      else
+        render 'preview'
+      end
     end
   end
 end
