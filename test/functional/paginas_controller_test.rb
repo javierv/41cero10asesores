@@ -14,7 +14,6 @@ class PaginasControllerTest < ActionController::TestCase
 
     should respond_with(:success)
     should assign_to(:paginas)
-    should render_with_layout(:application)
   end
 
   context "new action" do
@@ -44,6 +43,15 @@ class PaginasControllerTest < ActionController::TestCase
         post :create, :pagina => @pagina.attributes
       end
       should redirect_to('') {pagina_path(assigns(:pagina))}
+    end
+
+    context "when using preview button" do
+      setup do
+        post :create, :pagina => @pagina.attributes, :preview => true
+      end
+
+      should render_template(:preview)
+      should assign_to(:pagina)
     end
   end
 
@@ -82,6 +90,15 @@ class PaginasControllerTest < ActionController::TestCase
       end
       should redirect_to('') {pagina_path(@pagina)}
     end
+
+    context "when using preview button" do
+      setup do
+        put :update, :id => @pagina.to_param, :pagina => @pagina.attributes, :preview => true
+      end
+
+      should render_template(:preview)
+      should assign_to(:pagina)
+    end
   end
 
   context "destroy action" do
@@ -103,16 +120,5 @@ class PaginasControllerTest < ActionController::TestCase
 
     should respond_with(:success)
     should assign_to(:paginas)
-  end
-
-  context "preview action" do
-    setup do
-      put :preview, :id => @pagina.to_param, :pagina => @pagina.attributes
-    end
-
-    should respond_with(:success)
-    should assign_to(:pagina)
-    should render_template(:preview)
-    should render_with_layout(:simple)
   end
 end

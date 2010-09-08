@@ -6,8 +6,7 @@ class PaginasController < ApplicationController
   before_filter :find_pagina, :only => [:show, :edit, :update, :destroy]
   before_filter :new_pagina, :only => [:new, :create]
   before_filter :asignar_cajas, :only => [:create, :update]
-
-  layout :simple_for_preview
+  before_filter :preview, :only => [:create, :update]
 
   def index
     @search = Pagina.metasearch params[:search]
@@ -47,10 +46,6 @@ class PaginasController < ApplicationController
     @paginas = Pagina.search params[:q], :per_page => Pagina.per_page, :page => params[:page]
   end
 
-  def preview
-    @pagina = Pagina.new(params[:pagina])
-  end
-
 private
   def find_pagina
     @pagina = Pagina.find(params[:id])
@@ -66,11 +61,14 @@ private
     end
   end
 
-  def simple_for_preview
-    if action_name.to_sym == :preview
-      'simple'
-    else
-      'application'
+  def preview
+    if params[:preview]
+      # HACK: asignar caja_ids guarda la relación en la BD. Ver:
+      # https://rails.lighthouseapp.com/projects/8994/tickets/4521
+      attributes = params[:pagina].clone
+      attributes.delete(:caja_ids)
+      @pagina.attributes = attributes
+      render 'preview'
     end
   end
 end
