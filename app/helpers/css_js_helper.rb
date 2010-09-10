@@ -1,4 +1,10 @@
 module CssJsHelper
+  def live_preview_form
+    javascript 'jquery.form'
+    javascript 'typewatch'
+    js_form
+  end
+
   def js_form
     markitup
     css 'form'
