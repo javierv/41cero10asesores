@@ -2,7 +2,7 @@ $(document).ready(function()
 {
   $('textarea').markItUp(markitup_settings);
 
-  $('<div id="preview"></div>').insertAfter('form.simple_form')
+  $('#main').prepend('<div id="preview"></div>');
 
   $('input[name=preview]').click(function()
   {
