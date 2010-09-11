@@ -3,6 +3,7 @@ module CssJsHelper
     javascript 'jquery.form'
     javascript 'typewatch'
     js_form
+    javascript 'live_form'
   end
 
   def js_form
