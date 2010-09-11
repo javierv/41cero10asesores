@@ -11,7 +11,7 @@
 = table_for @paginas do |table|
   = table.data :actions => :all do
     = table.cell :titulo, :heading => sort_link(@search, :titulo)
-    = table.cell :cuerpo, :heading => sort_link(@search, :cuerpo)
+    = table.cell(:cuerpo, :heading => sort_link(@search, :cuerpo)) {|pagina| truncate(pagina.cuerpo, :length => 50)}
 
 = will_paginate
 
