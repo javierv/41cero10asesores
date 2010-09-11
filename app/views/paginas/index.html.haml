@@ -13,4 +13,6 @@
     = table.cell :titulo, :heading => sort_link(@search, :titulo)
     = table.cell :cuerpo, :heading => sort_link(@search, :cuerpo)
 
+= will_paginate
+
 = link_to 'New pagina', new_pagina_path
