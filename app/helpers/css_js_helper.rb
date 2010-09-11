@@ -9,7 +9,7 @@ module CssJsHelper
   end
 
   def tabla
-
+    css 'tabla'
   end
 
   def live_preview_form
