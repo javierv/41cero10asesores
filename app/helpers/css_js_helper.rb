@@ -1,4 +1,17 @@
 module CssJsHelper
+  def listado
+    filtrador
+    tabla
+  end
+
+  def filtrador
+
+  end
+
+  def tabla
+
+  end
+
   def live_preview_form
     javascript 'jquery.form'
     javascript 'typewatch'
