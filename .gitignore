@@ -4,5 +4,5 @@ db/xapiandb/*
 log/*.log
 tmp/**/*
 nbproject/*
-public/stylesheets/*.css
+public/stylesheets/*
 prototipo/*
