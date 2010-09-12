@@ -6,7 +6,7 @@
     :required => false
   = form.input :cuerpo_contains, :label => 'Cuerpo',
     :required => false
-  = form.submit 'Buscar'
+  = form.submit 'Filtrar'
 
 = table_for @paginas do |table|
   = table.data :actions => :all do

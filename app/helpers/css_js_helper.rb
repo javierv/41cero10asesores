@@ -5,7 +5,7 @@ module CssJsHelper
   end
 
   def filtrador
-
+    css 'filtrador'
   end
 
   def tabla
