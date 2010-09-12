@@ -1,3 +1,4 @@
+@import partials/button.sass
 $borde_foco = 2px solid #d95
 
 #navegacion
@@ -49,17 +50,12 @@ $borde_foco = 2px solid #d95
         border: $borde_foco
 
     input[type=submit]
-      +border-radius(0.2em)
-      border: 2px outset #999
+      @extend .button
       padding-right: 0.7em
-      padding-left: 1.7em
-      background: #ebebeb url(/images/lupa.png) no-repeat 0.2em center
+      padding-left: 1.7em      
       +background-size(auto 90%)
-      cursor: pointer
 
-      &:focus, &:active
-        background-color: #ffd
-        border: $borde_foco
-
-      &:active
-        border-style: inset
+      &, &:focus, &:active
+        background-image: url(/images/lupa.png)
+        background-repeat: no-repeat
+        background-position: 0.2em center

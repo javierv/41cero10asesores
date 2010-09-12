@@ -1,5 +1,6 @@
 @import "compass/css3"
 @import errores.sass
+@import partials/button.sass
 
 $borde_foco = 2px solid #d95
 
@@ -49,20 +50,8 @@ form
     margin-top: 0.5em
 
   button, input[type=submit], input[type=reset]
-    padding: 0.1em 0.3em
-    +border-radius(0.2em)
-    border: 2px outset #999
-    background-color: #ebebeb
-    +linear-gradient(color-stops(#f0f0f0, #d0d0d0))
-
-    &:focus, &:active
-      background-color: #ffd
-      border: $borde_foco
-      +linear-gradient(color-stops(#ffe, #fea))
-
-    &:active
-      border-style: inset
-
+    @extend .button
+    
   label
     display: block
 

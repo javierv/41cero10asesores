@@ -1,0 +1,17 @@
+@import compass/css3
+
+.button
+  padding: 0.1em 0.3em
+  +border-radius(0.2em)
+  border: 2px outset #999
+  background-color: #ebebeb
+  +linear-gradient(color-stops(#f0f0f0, #d0d0d0))
+  cursor: pointer
+
+  &:focus, &:active
+    background-color: #ffd
+    border: 2px solid #d95
+    +linear-gradient(color-stops(#ffe, #fea))
+
+  &:active
+    border-style: inset
