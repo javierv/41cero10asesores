@@ -1,4 +1,5 @@
 @import partials/button.sass
+@import partials/input.sass
 
 form.search
   overflow: hidden
@@ -8,13 +9,14 @@ form.search
     float: left
     margin-right: 0.5em
 
-  label
-    display: block
+    label
+      display: block
 
-  input
-    width: 10em
+    input
+      @extend .control
+      width: 10em
 
-    &[type=submit]
-      @extend .button
-      width: auto
-      margin-top: 0.7em
+  input[type=submit]
+    @extend .button
+    width: auto
+    margin-top: 0.7em

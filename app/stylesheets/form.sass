@@ -1,30 +1,19 @@
 @import "compass/css3"
 @import errores.sass
 @import partials/button.sass
-
-$borde_foco = 2px solid #d95
+@import partials/input.sass
 
 form
   .input
     margin-top: 1em
 
-    input, textarea
-      width: 40em
-      padding: 0.1em 0.3em
-
     input, textarea, select
-      max-width: 95%
-      background-color: white
-      border: 1px solid #ccc
-      font-size: 0.9em
-      font-family: "Bitstream Vera sans", sans-serif
-      +border-radius(0.2em)
-
-      &:focus
-        border: $borde_foco
+      @extend .control
 
     select
       min-width: 10em
+      width: auto
+      padding: 0
 
     &.boolean, &.radio
       label
@@ -32,11 +21,6 @@ form
 
       input
         width: auto
-
-        //TODO: ¿hover de estos controles? Poner el mismo es confuso porque puede
-        //que el foco lo tenga otro elemento distinto.
-        &:focus
-          outline: $borde_foco
 
     .markItUp
       width: 40em
