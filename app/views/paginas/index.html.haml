@@ -1,22 +1,24 @@
 - title "Listado de paginas"
 - listado
 
-= simple_form_for @search do |form|
-  = form.input :titulo_contains, :label => 'Titulo',
-    :required => false
-  = form.input :cuerpo_contains, :label => 'Cuerpo',
-    :required => false
-  = form.submit 'Filtrar'
+%section#filtrador
+  = simple_form_for @search do |form|
+    = form.input :titulo_contains, :label => 'Titulo',
+      :required => false
+    = form.input :cuerpo_contains, :label => 'Cuerpo',
+      :required => false
+    = form.submit 'Filtrar'
 
-= simple_form_for @search, :html => {:id => 'reset_search', :class => 'reset'} do |form|
-  = hidden_field_tag :reset, true
-  = form.submit 'Ver todos'
+  = simple_form_for @search, :html => {:id => 'reset_search', :class => 'reset'} do |form|
+    = hidden_field_tag :reset, true
+    = form.submit 'Ver todos'
 
-= table_for @paginas do |table|
-  = table.data :actions => :all do
-    = table.cell :titulo, :heading => sort_link(@search, :titulo)
-    = table.cell(:cuerpo, :heading => sort_link(@search, :cuerpo)) {|pagina| truncate(pagina.cuerpo, :length => 50)}
+%section#listado
+  = table_for @paginas do |table|
+    = table.data :actions => :all do
+      = table.cell :titulo, :heading => sort_link(@search, :titulo)
+      = table.cell(:cuerpo, :heading => sort_link(@search, :cuerpo)) {|pagina| truncate(pagina.cuerpo, :length => 50)}
 
-= will_paginate
+  = will_paginate
 
 = link_to 'New pagina', new_pagina_path
