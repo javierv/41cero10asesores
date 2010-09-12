@@ -11,7 +11,7 @@
 
   = simple_form_for @search, :html => {:id => 'reset_search', :class => 'reset'} do |form|
     = hidden_field_tag :reset, true
-    = form.submit 'Ver todos'
+    = form.submit 'Ver todos', :id => 'reset_button'
 
 %section#listado
   = table_for @paginas do |table|
