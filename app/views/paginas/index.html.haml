@@ -1,12 +1,16 @@
 - title "Listado de paginas"
 - listado
 
-= simple_form_for @search, :class => 'search' do |form|
+= simple_form_for @search do |form|
   = form.input :titulo_contains, :label => 'Titulo',
     :required => false
   = form.input :cuerpo_contains, :label => 'Cuerpo',
     :required => false
   = form.submit 'Filtrar'
+
+= simple_form_for @search, :html => {:id => 'reset_search', :class => 'reset'} do |form|
+  = hidden_field_tag :reset, true
+  = form.submit 'Ver todos'
 
 = table_for @paginas do |table|
   = table.data :actions => :all do
