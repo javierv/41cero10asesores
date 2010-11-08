@@ -1,5 +1,5 @@
 application = "calesur"
 repository = '/home/elretir/git/calesur'
-hosts = ['66.84.0.147']
+hosts = ['elretirao.net']
 path = '/home/elretir/apps'
 user = 'elretir'
