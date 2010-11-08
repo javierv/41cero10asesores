@@ -1,4 +1,5 @@
 - title "Listado de cajas"
+- listado
 
 = filter_form_for @search do |form|
   = form.input :titulo_contains, :label => 'Titulo',
@@ -6,9 +7,10 @@
   = form.input :cuerpo_contains, :label => 'Cuerpo',
     :required => false
 
-= table_for @cajas do |table|
-  = table.data :actions => :all do
-    = table.cell :titulo, :heading => sort_link(@search, :titulo)
-    = table.cell :cuerpo, :heading => sort_link(@search, :cuerpo)
+%section#listado
+  = table_for @cajas do |table|
+    = table.data :actions => :all do
+      = table.cell :titulo, :heading => sort_link(@search, :titulo)
+      = table.cell :cuerpo, :heading => sort_link(@search, :cuerpo)
 
 = link_to 'New caja', new_caja_path
