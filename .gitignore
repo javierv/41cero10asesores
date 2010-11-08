@@ -6,3 +6,4 @@ tmp/**/*
 nbproject/*
 public/stylesheets/*
 prototipo/*
+config/database.yml
