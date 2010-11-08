@@ -36,8 +36,8 @@ gem "RedCloth"
 gem "validates_date_time"
 gem "meta_where"
 gem "meta_search"
-gem "simple_form", :git => "git://github.com/plataformatec/simple_form.git"
-gem "tabletastic", ">= 0.2.0pre4"
+gem "simple_form"
+gem "tabletastic"
 gem "rails3-generators", :group => :development
 gem 'faker', :group => :development
 gem "shoulda", :group => :test
