@@ -1,5 +1,10 @@
 module FiltradorHelper
   def filter_form_for(search, &block)
+    search.instance_eval do
+      def errors
+        ActiveModel::Errors.new(self.base)
+      end
+    end
     content_tag :section, :id => 'filtrador' do
       filter_form(search, &block) + reset_button(search)
     end
