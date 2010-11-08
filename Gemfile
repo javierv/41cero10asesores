@@ -29,3 +29,4 @@ gem "capybara", :group => :test
 gem "display_name"
 gem "xapian-full"
 gem "xapit"
+gem "inploy"

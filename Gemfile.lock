@@ -64,6 +64,7 @@ GEM
       rake (>= 0.8.7)
     haml (3.0.23)
     i18n (0.4.2)
+    inploy (1.6.5)
     json_pure (1.4.6)
     mail (2.2.9)
       activesupport (>= 2.3.6)
@@ -145,6 +146,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   haml
+  inploy
   meta_search
   meta_where
   mocha
