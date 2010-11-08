@@ -1,6 +1,10 @@
 - title "Listado de cajas"
 
-= render 'shared/filtrador', :search => @search, :campos => [:titulo, :cuerpo]
+= filter_form_for @search do |form|
+  = form.input :titulo_contains, :label => 'Titulo',
+    :required => false
+  = form.input :cuerpo_contains, :label => 'Cuerpo',
+    :required => false
 
 = table_for @cajas do |table|
   = table.data :actions => :all do
