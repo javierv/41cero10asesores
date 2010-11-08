@@ -1,17 +1,7 @@
 - title "Listado de paginas"
 - listado
 
-%section#filtrador
-  = simple_form_for @search do |form|
-    = form.input :titulo_contains, :label => 'Titulo',
-      :required => false
-    = form.input :cuerpo_contains, :label => 'Cuerpo',
-      :required => false
-    = form.submit 'Filtrar'
-
-  = simple_form_for @search, :html => {:id => 'reset_search', :class => 'reset'} do |form|
-    = hidden_field_tag :reset, true
-    = form.submit 'Ver todos', :id => 'reset_button'
+= render 'shared/filtrador', :search => @search, :campos => [:titulo, :cuerpo]
 
 %section#listado
   = table_for @paginas do |table|
