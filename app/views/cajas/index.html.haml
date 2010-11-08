@@ -9,7 +9,7 @@
 
 %section#listado
   = table_for @cajas do |table|
-    = table.data :actions => :all do
+    = table.data :actions => [:edit, :destroy] do
       = table.cell :titulo, :heading => sort_link(@search, :titulo)
       = table.cell :cuerpo, :heading => sort_link(@search, :cuerpo)
 
