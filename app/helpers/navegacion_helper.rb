@@ -3,7 +3,7 @@ module NavegacionHelper
     return '' if enlaces.empty?
     content_tag :ul, opciones do
       enlaces.inject('') do |contenido, enlace|
-        contenido + elemento_lista_enlace(enlace)
+        (contenido + elemento_lista_enlace(enlace)).html_safe
       end
     end
   end
