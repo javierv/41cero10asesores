@@ -145,4 +145,14 @@ class PaginasControllerTest < ActionController::TestCase
     should respond_with(:success)
     should assign_to(:paginas)
   end
+
+  context 'ver el historial' do
+    setup do
+      get :historial, :id => @pagina.to_param
+    end
+
+    should respond_with(:success)
+    should assign_to(:pagina)
+    should assign_to(:versiones)
+  end
 end

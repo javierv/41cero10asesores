@@ -9,7 +9,7 @@
 
 %section#listado
   = table_for @paginas do |table|
-    = table.data :actions => :all do
+    = table.data :actions => [:show, :edit, :destroy, :historial] do
       = table.cell :titulo, :heading => sort_link(@search, :titulo)
       = table.cell(:cuerpo, :heading => sort_link(@search, :cuerpo)) {|pagina| truncate(pagina.cuerpo, :length => 50)}
 

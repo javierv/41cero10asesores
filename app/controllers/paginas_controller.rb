@@ -3,7 +3,7 @@
 class PaginasController < ApplicationController
   respond_to :html
 
-  before_filter :find_pagina, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_pagina, :only => [:show, :edit, :update, :destroy, :historial]
   before_filter :new_pagina, :only => [:new, :create]
   before_filter :asignar_cajas, :only => [:create, :update]
   before_filter :preview, :only => [:create, :update]
@@ -40,6 +40,10 @@ class PaginasController < ApplicationController
   def destroy
     flash[:notice] = 'Pagina se borró correctamente.' if @pagina.destroy
     respond_with @pagina
+  end
+
+  def historial
+    @versiones = @pagina.versions
   end
 
   def search

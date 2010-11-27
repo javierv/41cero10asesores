@@ -1,0 +1,8 @@
+- title "Historial de #{@pagina}"
+- listado
+
+%section#listado
+  = table_for @versiones do |table|
+    = table.data do
+      = table.cell :created_at, :heading => 'Modificado el'
+      = table.cell :whodunnit, :heading => 'Modificado por'
