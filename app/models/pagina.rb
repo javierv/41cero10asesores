@@ -9,6 +9,8 @@ class Pagina < ActiveRecord::Base
   has_many :cajas, :through => :sidebars
   before_save :build_sidebar
 
+  has_paper_trail
+
   def cajas_con_orden
     cajas.order("sidebars.orden ASC")
   end

@@ -88,6 +88,9 @@ GEM
       rake
     mysql2 (0.2.3)
     nokogiri (1.4.4)
+    paper_trail (1.6.4)
+      actionpack (>= 2.3)
+      activerecord (>= 2.3)
     paperclip (2.3.5)
       activerecord
       activesupport
@@ -155,6 +158,7 @@ DEPENDENCIES
   meta_where
   mocha
   mysql2
+  paper_trail
   paperclip
   rails (= 3.0.3)
   rails3-generators
