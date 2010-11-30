@@ -57,7 +57,9 @@ class Pagina < ActiveRecord::Base
 
     pagina.attributes = attributes
 
-    destroy
+    if pagina.save
+      destroy
+    end
   end
 
 private

@@ -125,6 +125,23 @@ class PaginaTest < ActiveSupport::TestCase
             assert !@pagina.has_draft?
           end
         end
+
+        context 'al publicar un borrador no válido' do
+          setup do
+            @draft = @pagina.draft
+            @draft.titulo = ''
+            @draft.publish
+          end
+
+          should 'no guardar cambios en la base de datos' do
+            pagina_bd = Pagina.find(@pagina.id)
+            assert_equal 'Título original', pagina_bd.titulo
+          end
+
+          should 'no borrar el borrador' do
+            assert @pagina.has_draft?
+          end
+        end
       end
     end
 
