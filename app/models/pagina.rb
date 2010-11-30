@@ -46,6 +46,20 @@ class Pagina < ActiveRecord::Base
     Pagina.where(:published_id => id).first
   end
 
+  def publish
+    return save unless borrador?
+
+    begin
+      pagina = Pagina.find published_id
+    rescue ActiveRecord::RecordNotFound
+      pagina = Pagina.new
+    end
+
+    pagina.attributes = attributes
+
+    destroy
+  end
+
 private
   def build_sidebar
     if @ids_cajas

@@ -92,7 +92,7 @@ class PaginaTest < ActiveSupport::TestCase
 
       context 'Al crear un borrador nuevo' do
         setup do
-          @pagina.titulo = 'Cambiamos el título'
+          @pagina.titulo = 'Título cambiado'
           @pagina.save_draft
         end
 
@@ -102,13 +102,28 @@ class PaginaTest < ActiveSupport::TestCase
 
         should 'tener un borrador con las mismas características' do
           borrador = @pagina.draft
-          assert_equal 'Cambiamos el título', borrador.titulo
+          assert_equal 'Título cambiado', borrador.titulo
           assert_equal @pagina.id, borrador.published_id
         end
 
         should 'no sobreescribir los atributos de la página en la base de datos' do
           pagina_bd = Pagina.find(@pagina.id)
           assert_equal 'Título original', pagina_bd.titulo
+        end
+
+        context 'al publicar el borrador' do
+          setup do
+            @pagina.draft.publish
+          end
+
+          should 'tener los títulos cambiados en la base de datos' do
+            pagina_bd = Pagina.find(@pagina.id)
+            assert_equal 'Título cambiado', pagina_bd.titulo
+          end
+
+          should 'borrar el borrador' do
+            assert !@pagina.has_draft?
+          end
         end
       end
     end
