@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101126192357) do
+ActiveRecord::Schema.define(:version => 20101129180440) do
 
   create_table "cajas", :force => true do |t|
     t.string   "titulo"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20101126192357) do
     t.text     "cuerpo"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "borrador"
   end
 
   create_table "sidebars", :force => true do |t|
