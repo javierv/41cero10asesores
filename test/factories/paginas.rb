@@ -3,4 +3,6 @@
 Factory.define :pagina do |f|
   f.titulo "MyString"
   f.cuerpo "MyText"
+  f.borrador false
+  f.published_id nil
 end

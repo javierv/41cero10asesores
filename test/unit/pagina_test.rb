@@ -79,4 +79,50 @@ class PaginaTest < ActiveSupport::TestCase
       end
     end
   end
+
+  context 'Creando borradores' do
+    setup do
+      @pagina = Factory(:pagina)
+    end
+
+    context 'sin borrador creado' do
+      should 'no tener borradores' do
+        assert !@pagina.has_draft?
+      end
+
+      context 'Al crear un borrador nuevo' do
+        setup do
+          @pagina.save_draft
+        end
+
+        should 'tener un borrador' do
+          assert @pagina.has_draft?
+        end
+
+        should 'tener un borrador con las mismas características' do
+          borrador = @pagina.draft
+          assert_equal @pagina.titulo, borrador.titulo
+          assert_equal @pagina.id, borrador.published_id
+        end
+      end
+    end
+
+    context 'con borrador creado' do
+      setup do
+        @pagina.save_draft
+      end
+
+      context 'Al grabar otro borrador' do
+        setup do
+          @titulo = 'Borrador sobreescribe'
+          @pagina.titulo = @titulo
+          @pagina.save_draft
+        end
+
+        should 'Sobreescribir el borrador antiguo' do
+          assert_equal @titulo, @pagina.draft.titulo
+        end
+      end
+    end
+  end
 end

@@ -30,6 +30,22 @@ class Pagina < ActiveRecord::Base
     cajas.map(&:cuerpo).join(' ')
   end
 
+  def has_draft?
+    draft != nil
+  end
+
+  def save_draft
+    borrador = Pagina.find_or_create_by_published_id(id)
+    borrador.attributes = attributes
+    borrador.borrador = true
+    borrador.published_id = id
+    borrador.save
+  end
+
+  def draft
+    Pagina.where(:published_id => id).first
+  end
+
 private
   def build_sidebar
     if @ids_cajas
