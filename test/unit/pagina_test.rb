@@ -82,7 +82,7 @@ class PaginaTest < ActiveSupport::TestCase
 
   context 'Creando borradores' do
     setup do
-      @pagina = Factory(:pagina)
+      @pagina = Factory(:pagina, :titulo => 'Título original')
     end
 
     context 'sin borrador creado' do
@@ -92,6 +92,7 @@ class PaginaTest < ActiveSupport::TestCase
 
       context 'Al crear un borrador nuevo' do
         setup do
+          @pagina.titulo = 'Cambiamos el título'
           @pagina.save_draft
         end
 
@@ -101,8 +102,13 @@ class PaginaTest < ActiveSupport::TestCase
 
         should 'tener un borrador con las mismas características' do
           borrador = @pagina.draft
-          assert_equal @pagina.titulo, borrador.titulo
+          assert_equal 'Cambiamos el título', borrador.titulo
           assert_equal @pagina.id, borrador.published_id
+        end
+
+        should 'no sobreescribir los atributos de la página en la base de datos' do
+          pagina_bd = Pagina.find(@pagina.id)
+          assert_equal 'Título original', pagina_bd.titulo
         end
       end
     end
