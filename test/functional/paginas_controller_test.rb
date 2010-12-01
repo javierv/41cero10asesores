@@ -143,7 +143,6 @@ class PaginasControllerTest < ActionController::TestCase
       
       context "when model is valid" do
         setup do
-          Pagina.any_instance.stubs(:errors).returns({})
           Pagina.any_instance.stubs(:valid?).returns(true)
           @action.call
         end
@@ -152,9 +151,6 @@ class PaginasControllerTest < ActionController::TestCase
 
       context 'when model is invalid' do
         setup do
-          errors = ActiveModel::Errors.new(Pagina.new)
-          errors.add_on_blank(:id)
-          Pagina.any_instance.stubs(:errors).returns(errors)
           Pagina.any_instance.stubs(:valid?).returns(false)
           @action.call
         end
