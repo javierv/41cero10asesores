@@ -5,7 +5,11 @@ $(document).ready(function()
     $('form.simple_form').ajaxSubmit(
     {
       target: '#actualizado',
-      data: {draft: true}
+      data: {draft: true},
+      success: function()
+      {
+        $('#actualizado time').effect("highlight", {}, 3000);
+      }
     })
   }, 120000);
 });

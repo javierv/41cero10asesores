@@ -20,6 +20,8 @@ module CssJsHelper
   end
 
   def autosave_form
+    javascript 'jquery.effects.core'
+    javascript 'jquery.effects.highlight'
     javascript 'jquery.form'
     javascript 'autosave_form'
   end
