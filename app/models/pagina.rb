@@ -51,18 +51,13 @@ class Pagina < ActiveRecord::Base
   end
 
   def published
-    Pagina.where(:id => published_id).first
+    Pagina.where(:id => published_id).first || Pagina.new
   end
 
   def publish(attrs = {})
     return save unless borrador?
 
-    if published_id
-      pagina = published
-    else
-      pagina = Pagina.new
-    end
-
+    pagina = published
     pagina.attributes = attributes.merge(attrs)
     pagina.borrador = false
 
