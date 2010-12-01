@@ -12,7 +12,7 @@ class PaginasController < ApplicationController
 
   def index
     @search = Pagina.metasearch params[:search]
-    @paginas = @search.paginate :page => params[:page],
+    @paginas = @search.where(:published_id => nil).paginate :page => params[:page],
       :per_page => Pagina.per_page
     respond_with @paginas
   end
