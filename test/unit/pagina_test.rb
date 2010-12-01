@@ -149,6 +149,10 @@ class PaginaTest < ActiveSupport::TestCase
           should 'devolver falso' do
             assert_equal false, @result
           end
+
+          should 'añadir los errores al borrador' do
+            assert !@draft.errors[:titulo].blank?
+          end
         end
 
         context 'al publicar un borrador pasándole parámetros' do
