@@ -7,6 +7,7 @@ class PaginasController < ApplicationController
   before_filter :new_pagina, :only => [:new, :create]
   before_filter :asignar_cajas, :only => [:create, :update]
   before_filter :preview, :only => [:create, :update]
+  before_filter :save_draft, :only => [:create, :update]
 
   def index
     @search = Pagina.metasearch params[:search]
@@ -46,6 +47,10 @@ class PaginasController < ApplicationController
     @versiones = @pagina.versions
   end
 
+  def borrador
+    
+  end
+
   def search
     @paginas = Pagina.search params[:q], :per_page => Pagina.per_page, :page => params[:page]
   end
@@ -80,6 +85,13 @@ private
       else
         render 'preview'
       end
+    end
+  end
+
+  def save_draft
+    if params[:draft]
+      flash[:notice] = 'Borrador guardado.' if @pagina.save_draft(params[:pagina])
+      redirect_to borrador_pagina_path(@pagina)
     end
   end
 end

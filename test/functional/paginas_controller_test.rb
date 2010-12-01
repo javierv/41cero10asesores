@@ -123,6 +123,16 @@ class PaginasControllerTest < ActionController::TestCase
         should_not render_with_layout
       end
     end
+
+    context "when saving as draft" do
+      context "with a normal request" do
+        setup do
+          put :update, :id => @pagina.to_param, :pagina => @pagina.attributes, :draft => true
+        end
+
+        should redirect_to('') {borrador_pagina_path(@pagina)}
+      end
+    end
   end
 
   context "destroy action" do
