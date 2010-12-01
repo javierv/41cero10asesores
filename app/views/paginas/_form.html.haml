@@ -14,4 +14,9 @@
 
   .actions
     = form.button :submit
+    - if pagina.borrador?
+      = form.submit 'Publicar', :name => 'publish'
+    - else
+      = form.submit 'Guardar borrador', :name => 'draft'
+
     = form.submit 'Vista previa', :name => 'preview'    

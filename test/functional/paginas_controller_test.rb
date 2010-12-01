@@ -133,6 +133,35 @@ class PaginasControllerTest < ActionController::TestCase
         should redirect_to('') {borrador_pagina_path(@pagina)}
       end
     end
+
+    context "when publishing a draft" do
+      setup do
+        @pagina.save_draft
+        @borrador = @pagina.draft
+        @action = lambda {put :update, :id => @borrador.to_param, :pagina => @pagina.attributes, :publish => true}
+      end
+      
+      context "when model is valid" do
+        setup do
+          Pagina.any_instance.stubs(:errors).returns({})
+          Pagina.any_instance.stubs(:valid?).returns(true)
+          @action.call
+        end
+        should redirect_to('') {pagina_path(@pagina)}
+      end
+
+      context 'when model is invalid' do
+        setup do
+          errors = ActiveModel::Errors.new(Pagina.new)
+          errors.add_on_blank(:id)
+          Pagina.any_instance.stubs(:errors).returns(errors)
+          Pagina.any_instance.stubs(:valid?).returns(false)
+          @action.call
+        end
+
+        should render_template(:edit)
+      end
+    end
   end
 
   context "destroy action" do
