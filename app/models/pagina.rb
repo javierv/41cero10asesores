@@ -61,9 +61,7 @@ class Pagina < ActiveRecord::Base
     pagina.attributes = attributes.merge(attrs)
     pagina.borrador = false
 
-    if pagina.save
-      destroy
-    end
+    pagina.save && destroy
   end
 
 private

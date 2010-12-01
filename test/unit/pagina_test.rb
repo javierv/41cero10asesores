@@ -134,7 +134,7 @@ class PaginaTest < ActiveSupport::TestCase
           setup do
             @draft = @pagina.draft
             @draft.titulo = ''
-            @draft.publish
+            @result = @draft.publish
           end
 
           should 'no guardar cambios en la base de datos' do
@@ -144,6 +144,10 @@ class PaginaTest < ActiveSupport::TestCase
 
           should 'no borrar el borrador' do
             assert @pagina.has_draft?
+          end
+
+          should 'devolver falso' do
+            assert_equal false, @result
           end
         end
 
