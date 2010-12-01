@@ -211,11 +211,16 @@ class PaginaTest < ActiveSupport::TestCase
 
   context 'un nuevo borrador' do
     setup do
-      Pagina.new.save_draft
+      @nueva = Pagina.new
+      @nueva.save_draft
     end
 
     should 'guardar un borrador' do
       assert Pagina.where(:titulo => '', :borrador => true)
+    end
+
+    should 'devolver la página nueva como borrador' do
+      assert_equal @nueva, @nueva.draft
     end
 
     context 'al crear otro nuevo borrador' do
