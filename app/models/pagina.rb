@@ -65,6 +65,7 @@ class Pagina < ActiveRecord::Base
     pagina.borrador = false
 
     if pagina.save
+      self.published_id = pagina.id
       destroy
     else
       pagina.errors.each do |field, message|

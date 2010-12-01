@@ -232,14 +232,19 @@ class PaginaTest < ActiveSupport::TestCase
     context 'al publicar' do
       setup do
         @draft.publish
+        @published = Pagina.where(:titulo => @titulo, :borrador => false).first
       end
 
       should 'publicar una página nueva' do
-        assert Pagina.where(:titulo => @titulo, :borrador => false).first
+        assert @published
       end
 
       should 'borrar el borrador' do
         assert !Pagina.where(:titulo => @titulo, :borrador => true).first
+      end
+
+      should 'corresponder la página publicada con la creada' do
+        assert_equal @published, @draft.published
       end
     end
 
