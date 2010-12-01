@@ -3,10 +3,7 @@ Calesur::Application.routes.draw do
 
   resources :paginas do
     get :search, :on => :collection
-    member do
-      get :historial
-      get :borrador
-    end
+    get :historial, :on => :member
   end
 
   root :to => "paginas#index"

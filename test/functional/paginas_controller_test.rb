@@ -130,7 +130,7 @@ class PaginasControllerTest < ActionController::TestCase
           put :update, :id => @pagina.to_param, :pagina => @pagina.attributes, :draft => true
         end
 
-        should redirect_to('') {borrador_pagina_path(@pagina)}
+        should redirect_to('') {edit_pagina_path(@pagina.draft)}
       end
     end
 
@@ -193,15 +193,5 @@ class PaginasControllerTest < ActionController::TestCase
     should respond_with(:success)
     should assign_to(:pagina)
     should assign_to(:versiones)
-  end
-
-  context 'editar el borrador' do
-    setup do
-      @pagina.save_draft
-      get :borrador, :id => @pagina.to_param
-    end
-
-    should respond_with(:success)
-    should assign_to(:borrador)
   end
 end

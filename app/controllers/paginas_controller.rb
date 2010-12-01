@@ -3,7 +3,7 @@
 class PaginasController < ApplicationController
   respond_to :html
 
-  before_filter :find_pagina, :only => [:show, :edit, :update, :destroy, :historial, :borrador]
+  before_filter :find_pagina, :only => [:show, :edit, :update, :destroy, :historial]
   before_filter :new_pagina, :only => [:new, :create]
   before_filter :asignar_cajas, :only => [:create, :update]
   before_filter :preview, :only => [:create, :update]
@@ -48,10 +48,6 @@ class PaginasController < ApplicationController
     @versiones = @pagina.versions
   end
 
-  def borrador
-    @borrador = @pagina.draft
-  end
-
   def search
     @paginas = Pagina.search params[:q], :per_page => Pagina.per_page, :page => params[:page]
   end
@@ -92,7 +88,7 @@ private
   def save_draft
     if params[:draft]
       flash[:notice] = 'Borrador guardado.' if @pagina.save_draft(params[:pagina])
-      redirect_to borrador_pagina_path(@pagina)
+      redirect_to edit_pagina_path(@pagina.draft)      
     end
   end
 
