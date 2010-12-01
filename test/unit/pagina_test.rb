@@ -217,6 +217,16 @@ class PaginaTest < ActiveSupport::TestCase
     should 'guardar un borrador' do
       assert Pagina.where(:titulo => '', :borrador => true)
     end
+
+    context 'al crear otro nuevo borrador' do
+      setup do
+        Pagina.new.save_draft
+      end
+
+      should 'no sobreescribir el borrador existente' do
+        assert_equal 2, Pagina.where(:borrador => true).count
+      end
+    end
   end
 
   context 'un borrador sin página asociada' do

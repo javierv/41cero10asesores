@@ -41,7 +41,12 @@ class Pagina < ActiveRecord::Base
   def save_draft(attrs = {})
     return update_attributes(attrs) if borrador?
     
-    borrador = Pagina.find_or_create_by_published_id(id)
+    borrador = if id
+      Pagina.find_or_create_by_published_id(id)
+    else
+      Pagina.new
+    end
+
     borrador.attributes = attributes.merge(attrs)
     borrador.borrador = true
     borrador.published_id = id
