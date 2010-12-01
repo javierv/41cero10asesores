@@ -57,17 +57,17 @@ class Pagina < ActiveRecord::Base
   def publish(attrs = {})
     return save unless borrador?
 
-    begin
-      pagina = Pagina.find published_id
-    rescue ActiveRecord::RecordNotFound
+    if published_id
+      pagina = published
+    else
       pagina = Pagina.new
-    ensure
-      pagina.attributes = attributes.merge(attrs)
-      pagina.borrador = false
+    end
 
-      if pagina.save
-        destroy
-      end
+    pagina.attributes = attributes.merge(attrs)
+    pagina.borrador = false
+
+    if pagina.save
+      destroy
     end
   end
 
