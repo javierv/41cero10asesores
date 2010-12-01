@@ -240,7 +240,11 @@ class PaginaTest < ActiveSupport::TestCase
       @draft = Factory(:pagina, :borrador => true, :titulo => @titulo)
     end
 
-    should 'tenerse a sí mismo como borrador' do
+    should 'decir que no tiene borrador' do
+      assert !@draft.has_draft?
+    end
+
+    should 'devolverse a sí mismo como borrador' do
       assert_equal @draft, @draft.draft
     end
 

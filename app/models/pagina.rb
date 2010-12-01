@@ -35,7 +35,7 @@ class Pagina < ActiveRecord::Base
   end
 
   def has_draft?
-    draft != nil
+    !borrador? && draft != nil
   end
 
   def save_draft(attrs = {})
