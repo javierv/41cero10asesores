@@ -221,6 +221,10 @@ class PaginaTest < ActiveSupport::TestCase
       @draft = Factory(:pagina, :borrador => true, :titulo => @titulo)
     end
 
+    should 'tenerse a sí mismo como borrador' do
+      assert_equal @draft, @draft.draft
+    end
+
     context 'al publicar' do
       setup do
         @draft.publish
@@ -232,6 +236,16 @@ class PaginaTest < ActiveSupport::TestCase
 
       should 'borrar el borrador' do
         assert !Pagina.where(:titulo => @titulo, :borrador => true).first
+      end
+    end
+
+    context 'al guardar un borrador' do
+      setup do
+        @draft.save_draft(:titulo => 'Título cambiado')
+      end
+
+      should 'sobrescribirse a sí mismo' do
+        assert_equal 'Título cambiado', @draft.titulo
       end
     end
   end
