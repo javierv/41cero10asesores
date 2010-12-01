@@ -165,4 +165,14 @@ class PaginasControllerTest < ActionController::TestCase
     should assign_to(:pagina)
     should assign_to(:versiones)
   end
+
+  context 'editar el borrador' do
+    setup do
+      @pagina.save_draft
+      get :borrador, :id => @pagina.to_param
+    end
+
+    should respond_with(:success)
+    should assign_to(:borrador)
+  end
 end

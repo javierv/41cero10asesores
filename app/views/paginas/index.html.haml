@@ -13,6 +13,7 @@
       = table.cell :titulo, :heading => sort_link(@search, :titulo)
       = table.cell(:cuerpo, :heading => sort_link(@search, :cuerpo)) {|pagina| truncate(pagina.cuerpo, :length => 50)}
       = table.cell :borrador, :heading => sort_link(@search, :borrador)
+      = table.cell(:accion, :heading => '') {|pagina| link_to('Editar borrador', borrador_pagina_path(pagina)) if pagina.has_draft?}
 
   = will_paginate
 
