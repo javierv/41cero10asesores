@@ -1,13 +1,11 @@
 $(document).ready(function()
 {
-  $('input[name=draft]').click(function()
+  setInterval(function()
   {
     $('form.simple_form').ajaxSubmit(
     {
       target: '#actualizado',
       data: {draft: true}
     })
-
-    return false;
-  });
+  }, 120000);
 });
