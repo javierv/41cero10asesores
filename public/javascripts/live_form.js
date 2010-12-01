@@ -2,11 +2,7 @@ $(document).ready(function()
 {
   $('#main').prepend('<div id="preview"></div>');
 
-  $('input[name=preview]').click(function()
-  {
-    preview();
-    return false;
-  })
+  $('input[name=preview]').remove();
 
   $('input[type=text], textarea', $('form.simple_form')).typeWatch({
     callback: function() {preview()},
