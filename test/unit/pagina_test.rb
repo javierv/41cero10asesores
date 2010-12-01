@@ -144,6 +144,16 @@ class PaginaTest < ActiveSupport::TestCase
         end
       end
 
+      context 'Al crear un borrador con parámetros' do
+        setup do
+          @pagina.save_draft(:titulo => 'Título en parámetro')
+        end
+
+        should 'guardar el borrador con los parámetros' do
+          assert_equal 'Título en parámetro', @pagina.draft.titulo
+        end
+      end
+
       context 'Al crear un borrador no válido' do
         setup do
           @pagina.titulo = ''
