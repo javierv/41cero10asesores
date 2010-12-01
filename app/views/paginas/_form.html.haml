@@ -1,18 +1,17 @@
 - live_preview_form
 - bsmselect_con_cajas
 
-= simple_form_for @pagina do |form|
+= simple_form_for pagina do |form|
 
-  = render 'shared/errors', :record => @pagina
+  = render 'shared/errors', :record => pagina
 
   = form.input :titulo, :label => 'Titulo'
   = form.input :cuerpo, :label => 'Cuerpo'
 
   = hidden_field_tag "pagina[caja_ids][]"
-  = form.association :cajas, :collection => Caja.al_final_las_de_pagina(@pagina),
+  = form.association :cajas, :collection => Caja.al_final_las_de_pagina(pagina),
     :input_html => {:class => 'cajas'}
 
   .actions
     = form.button :submit
-    = form.submit 'Guardar borrador', :name => 'draft'
     = form.submit 'Vista previa', :name => 'preview'    
