@@ -87,8 +87,13 @@ private
 
   def save_draft
     if params[:draft]
-      flash[:notice] = 'Borrador guardado.' if @pagina.save_draft(params[:pagina])
-      redirect_to edit_pagina_path(@pagina.draft)      
+      if request.xhr?
+        @pagina.save_draft(params[:pagina])
+        render 'borrador.js'
+      else
+        flash[:notice] = 'Borrador guardado.' if @pagina.save_draft(params[:pagina])
+        redirect_to edit_pagina_path(@pagina.draft)
+      end
     end
   end
 

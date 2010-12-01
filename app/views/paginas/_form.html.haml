@@ -1,5 +1,10 @@
 - live_preview_form
+- autosave_form
 - bsmselect_con_cajas
+
+#actualizado
+  - unless pagina.new_record?
+    Página guardada el #{pagina.updated_at}
 
 = simple_form_for pagina do |form|
 

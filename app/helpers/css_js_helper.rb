@@ -19,6 +19,11 @@ module CssJsHelper
     javascript 'live_form'
   end
 
+  def autosave_form
+    javascript 'jquery.form'
+    javascript 'autosave_form'
+  end
+
   def js_form
     markitup
     css 'form'

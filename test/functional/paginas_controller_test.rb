@@ -132,6 +132,16 @@ class PaginasControllerTest < ActionController::TestCase
 
         should redirect_to('') {edit_pagina_path(@pagina.draft)}
       end
+
+      context "with an AJAX request" do
+        setup do
+          xhr :put, :update, :id => @pagina.to_param, :pagina => @pagina.attributes, :draft => true
+        end
+
+        should render_template(:borrador)
+        should respond_with_content_type(:js)
+        should_not render_with_layout
+      end
     end
 
     context "when publishing a draft" do
