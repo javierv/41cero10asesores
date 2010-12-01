@@ -106,6 +106,10 @@ class PaginaTest < ActiveSupport::TestCase
           assert_equal @pagina.id, borrador.published_id
         end
 
+        should 'poder acceder a la página original a través del borrador' do
+          assert_equal @pagina, @pagina.draft.published
+        end
+
         should 'no sobreescribir los atributos de la página en la base de datos' do
           pagina_bd = Pagina.find(@pagina.id)
           assert_equal 'Título original', pagina_bd.titulo
@@ -140,6 +144,17 @@ class PaginaTest < ActiveSupport::TestCase
 
           should 'no borrar el borrador' do
             assert @pagina.has_draft?
+          end
+        end
+
+        context 'al publicar un borrador pasándole parámetros' do
+          setup do
+            @pagina.draft.publish(:titulo => 'Título en parámetro')
+          end
+
+          should 'guardar el título del parámetro en la página original' do
+            pagina_bd = Pagina.find(@pagina.id)
+            assert_equal 'Título en parámetro', pagina_bd.titulo
           end
         end
       end

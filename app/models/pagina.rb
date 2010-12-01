@@ -50,7 +50,11 @@ class Pagina < ActiveRecord::Base
     Pagina.where(:published_id => id).first
   end
 
-  def publish
+  def published
+    Pagina.where(:id => published_id).first
+  end
+
+  def publish(attrs = {})
     return save unless borrador?
 
     begin
@@ -58,7 +62,7 @@ class Pagina < ActiveRecord::Base
     rescue ActiveRecord::RecordNotFound
       pagina = Pagina.new
     ensure
-      pagina.attributes = attributes
+      pagina.attributes = attributes.merge(attrs)
       pagina.borrador = false
 
       if pagina.save
