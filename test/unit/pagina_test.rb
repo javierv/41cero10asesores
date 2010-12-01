@@ -143,6 +143,18 @@ class PaginaTest < ActiveSupport::TestCase
           end
         end
       end
+
+      context 'Al crear un borrador no válido' do
+        setup do
+          @pagina.titulo = ''
+          @pagina.save_draft
+        end
+
+        should 'grabar el borrador' do
+          assert @pagina.has_draft?
+          assert_equal '', @pagina.draft.titulo
+        end
+      end
     end
 
     context 'con borrador creado' do

@@ -1,8 +1,12 @@
 class Pagina < ActiveRecord::Base
   attr_accessible :titulo, :cuerpo, :caja_ids
   attr_writer :ids_cajas
-  validates :titulo, :presence => true
-  validates :cuerpo, :presence => true
+
+  with_options :unless => :borrador? do |pagina|
+    pagina.validates :titulo, :presence => true
+    pagina.validates :cuerpo, :presence => true
+  end
+
   display_name :titulo
 
   has_many :sidebars
