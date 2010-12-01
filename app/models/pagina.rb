@@ -57,12 +57,13 @@ class Pagina < ActiveRecord::Base
       pagina = Pagina.find published_id
     rescue ActiveRecord::RecordNotFound
       pagina = Pagina.new
-    end
+    ensure
+      pagina.attributes = attributes
+      pagina.borrador = false
 
-    pagina.attributes = attributes
-
-    if pagina.save
-      destroy
+      if pagina.save
+        destroy
+      end
     end
   end
 

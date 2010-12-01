@@ -175,4 +175,35 @@ class PaginaTest < ActiveSupport::TestCase
       end
     end
   end
+
+  context 'un nuevo borrador' do
+    setup do
+      Pagina.new.save_draft
+    end
+
+    should 'guardar un borrador' do
+      assert Pagina.where(:titulo => '', :borrador => true)
+    end
+  end
+
+  context 'un borrador sin página asociada' do
+    setup do
+      @titulo = 'Borrador inicial'
+      @draft = Factory(:pagina, :borrador => true, :titulo => @titulo)
+    end
+
+    context 'al publicar' do
+      setup do
+        @draft.publish
+      end
+
+      should 'publicar una página nueva' do
+        assert Pagina.where(:titulo => @titulo, :borrador => false).first
+      end
+
+      should 'borrar el borrador' do
+        assert !Pagina.where(:titulo => @titulo, :borrador => true).first
+      end
+    end
+  end
 end
