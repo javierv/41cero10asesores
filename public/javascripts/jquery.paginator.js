@@ -20,7 +20,7 @@ jQuery.fn.ajaxPaginator = function( options )
     {
       $('#flashMessage').remove();
     },
-    image: '/images/loading.gif',
+    cargando: 'Cargando...',
     history: true
   };
 
@@ -61,7 +61,6 @@ jQuery.fn.ajaxPaginator = function( options )
 function load_page(element, url, options)
 {
   options['url'] = url;
-  element.empty().html('<p class="cargando"><img src="' + options.image +
-                '" alt="">Cargando...</p>');
+  element.empty().html('<p class="cargando">' + options.cargando + '</p>');
   $.ajax(options);
 }
