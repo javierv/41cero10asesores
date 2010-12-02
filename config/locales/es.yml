@@ -189,6 +189,9 @@
         titulo: "Título"
       caja:
         titulo: "Título"
+      usuario:
+        password: "Contraseña"
+        remember_me: "Recordarme"
 
   # Active Model
   errors:
