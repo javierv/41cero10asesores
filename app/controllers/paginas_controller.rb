@@ -2,6 +2,7 @@
 
 class PaginasController < ApplicationController
   respond_to :html
+  respond_to :js, :only => [:index]
 
   before_filter :find_pagina, :only => [:show, :edit, :update, :destroy, :historial]
   before_filter :new_pagina, :only => [:new, :create]

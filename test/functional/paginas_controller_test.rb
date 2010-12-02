@@ -14,6 +14,18 @@ class PaginasControllerTest < ActionController::TestCase
 
     should respond_with(:success)
     should assign_to(:paginas)
+    should render_with_layout(:application)
+  end
+
+  context "Índice con AJAX" do
+    setup do
+      xhr :get, :index
+    end
+
+    should respond_with_content_type(:js)
+    should render_template(:index)
+    should respond_with(:success)
+    should_not render_with_layout
   end
 
   context "new action" do
