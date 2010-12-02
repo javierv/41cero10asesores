@@ -2,7 +2,6 @@
 
 class PaginasController < ApplicationController
   respond_to :html
-  respond_to :js, :only => [:index]
 
   before_filter :find_pagina, :only => [:show, :edit, :update, :destroy, :historial]
   before_filter :new_pagina, :only => [:new, :create]
@@ -15,7 +14,13 @@ class PaginasController < ApplicationController
     @search = Pagina.metasearch params[:search]
     @paginas = @search.where(:published_id => nil).paginate :page => params[:page],
       :per_page => Pagina.per_page
-    respond_with @paginas
+
+    # Me pasa lo mismo que con preview. Sigo sin saber por qué.
+    if request.xhr?
+      render 'index.js'
+    else
+      respond_with @paginas
+    end
   end
 
   def show
