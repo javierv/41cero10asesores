@@ -20,7 +20,8 @@ jQuery.fn.ajaxPaginator = function( options )
     {
       $('#flashMessage').remove();
     },
-    image: '/images/loading.gif'
+    image: '/images/loading.gif',
+    history: true
   };
 
   jQuery.extend( defaults, options );
@@ -30,13 +31,37 @@ jQuery.fn.ajaxPaginator = function( options )
     var $element = jQuery(this);
     defaults['success'] = function(data) { $element.html(data); }
 
+    if(defaults.history)
+    {
+      $.history.init(function(hash)
+      {
+        if(hash != '')
+        {
+          load_page($element, hash, defaults)
+        }
+      })
+    }
+
     jQuery(defaults.paginator + ' a,' + defaults.table + ' th a', $element).live('click', function()
     {
-      defaults['url'] = jQuery(this).attr("href");
-      $element.empty().html('<p class="cargando"><img src="' + defaults.image +
-                '" alt="">Cargando...</p>');
-      $.ajax(defaults);
+      var url = jQuery(this).attr("href");
+      if(defaults.history)
+      {
+        $.history.load(url);
+      }
+      else
+      {
+        load_page($element, url, defaults);
+      }
       return false;
     });
   });
+}
+
+function load_page(element, url, options)
+{
+  options['url'] = url;
+  element.empty().html('<p class="cargando"><img src="' + options.image +
+                '" alt="">Cargando...</p>');
+  $.ajax(options);
 }

@@ -9,7 +9,7 @@ module CssJsHelper
   end
 
   def tabla
-    javascript 'jquery.paginator', 'listado_ajax'
+    javascript 'jquery.history', 'jquery.paginator', 'listado_ajax'
     css 'tabla'
   end
 
