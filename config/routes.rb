@@ -1,4 +1,6 @@
 Calesur::Application.routes.draw do
+  devise_for :usuarios
+
   resources :cajas, :except => :show
 
   resources :paginas do
