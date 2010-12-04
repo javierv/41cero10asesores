@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module ApplicationHelper
   def edit_pagina_title(pagina)
     if pagina.borrador?
