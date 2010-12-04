@@ -1,15 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
-
-
-group :development, :test do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
-end
-
-group :production do
-  gem 'mysql2'
-end
+gem 'mysql2'
 
 # Use unicorn as the web server
 # gem 'unicorn'
