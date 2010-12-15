@@ -17,7 +17,7 @@ gem "RedCloth"
 gem "validates_date_time"
 gem "meta_where"
 gem "meta_search"
-gem "simple_form"
+gem "simple_form", ">= 1.3"
 gem "tabletastic"
 gem "rails3-generators", :group => :development
 gem 'faker', :group => :development
