@@ -6,18 +6,15 @@ module FiltradorHelper
   end
 
 private
-  # FIXME: ¡ya no sale el botón de buscar! ¡Ni el parámetro de reset! Hacer un test que lo verifique...
   def filter_form(search, &block)
     simple_form_for search do |form|
-      block.call(form)
-      form.submit 'Filtrar'
+      capture(form, &block) + form.submit('Filtrar')
     end
   end
 
   def reset_button(search)
     simple_form_for search, :html => {:id => 'reset_search', :class => 'reset'} do |form|
-      hidden_field_tag :reset, true
-      form.submit 'Ver todos', :id => 'reset_button'
+      hidden_field_tag(:reset, true) + form.submit('Ver todos', :id => 'reset_button')
     end
   end
 end
