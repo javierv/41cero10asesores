@@ -11,3 +11,13 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+class ActionController::TestCase
+  include Devise::TestHelpers
+  setup :authenticate_usuario
+
+  def authenticate_usuario
+    @usuario = Factory :usuario
+    sign_in @usuario
+  end
+end
