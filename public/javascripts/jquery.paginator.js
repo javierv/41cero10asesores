@@ -33,13 +33,23 @@ jQuery.fn.ajaxPaginator = function( options )
 
     if(defaults.history)
     {
-      $.history.init(function(hash)
+      if(history && history.pushState)
       {
-        if(hash != '')
+        $(window).bind("popstate", function()
         {
-          load_page($element, hash, defaults)
-        }
-      })
+          load_page($element, location.href, defaults);
+        });
+      }
+      else
+      {
+        $.history.init(function(hash)
+        {
+          if(hash != '')
+          {
+            load_page($element, hash, defaults)
+          }
+        });
+      }
     }
 
     jQuery(defaults.paginator + ' a,' + defaults.table + ' th a', $element).live('click', function()
@@ -47,7 +57,15 @@ jQuery.fn.ajaxPaginator = function( options )
       var url = jQuery(this).attr("href");
       if(defaults.history)
       {
-        $.history.load(url);
+        if(history && history.pushState)
+        {
+          history.pushState(null, document.title, this.href);
+          load_page($element, url, defaults);          
+        }
+        else
+        {
+          $.history.load(url);
+        }
       }
       else
       {
