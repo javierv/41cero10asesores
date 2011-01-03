@@ -10,7 +10,7 @@ $borde_foco = 2px solid #d95
 
   ul
     list-style: none
-    padding-left: 0.1em
+    padding-left: 0.5em
 
     li
       float: left
@@ -21,11 +21,14 @@ $borde_foco = 2px solid #d95
         color: #fdfdfd
         padding: 0.3em 1em
         text-decoration: none
+        +transition(all, 0.3s)
 
         &:hover, &:focus
           color: #105400
-          background-color: #fdfdfd
+          background-color: #fdfdfd          
+          +linear-gradient(color-stops(#fafafa, #fefefe))
           +border-radius(0.5em)
+          +scale(1.1)
 
   #buscador
     text-align: right
