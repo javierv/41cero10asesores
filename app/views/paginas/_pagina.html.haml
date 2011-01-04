@@ -1,7 +1,7 @@
 %article[pagina]
   %header
     %h1= pagina
-  = strict_textilize pagina.cuerpo
+  %section.cuerpo= strict_textilize pagina.cuerpo
 
 - if !pagina.cajas_con_orden.empty?
   - content_for(:sidebar) do
