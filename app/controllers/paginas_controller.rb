@@ -60,7 +60,7 @@ class PaginasController < ApplicationController
 
 private
   def public_actions
-    [:show]
+    [:show, :search]
   end
 
   def find_pagina
