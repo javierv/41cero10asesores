@@ -12,6 +12,7 @@ class NavegacionTest < ActiveSupport::TestCase
 
   setup do
     @paginas = [Factory(:pagina), Factory(:pagina), Factory(:pagina)]
+    otras = [Factory(:pagina), Factory(:pagina), Factory(:pagina)]
     @ids = @paginas.map(&:id)
     Navegacion.establecer(@ids.reverse)
   end
