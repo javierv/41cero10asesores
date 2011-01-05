@@ -5,6 +5,9 @@ class Navegacion < ActiveRecord::Base
   belongs_to :pagina
   display_name :pagina
 
+  scope :por_orden, order(:orden)
+  scope :con_paginas, includes(:pagina).por_orden
+
   def self.establecer(ids)
     delete_all
 
@@ -14,10 +17,10 @@ class Navegacion < ActiveRecord::Base
   end
 
   def self.paginas
-    includes(:pagina).order(:orden).map(&:pagina)
+    con_paginas.map(&:pagina)
   end
 
   def self.pagina_ids
-    order(:orden).map(&:pagina_id)
+    por_orden.map(&:pagina_id)
   end
 end
