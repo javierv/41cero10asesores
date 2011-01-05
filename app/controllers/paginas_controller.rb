@@ -59,6 +59,10 @@ class PaginasController < ApplicationController
   end
 
 private
+  def public_actions
+    [:show]
+  end
+
   def find_pagina
     @pagina = Pagina.find(params[:id])
   end

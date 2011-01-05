@@ -3,6 +3,7 @@
 
 = render 'pagina', :pagina => @pagina
 
-= link_to 'Edit', edit_pagina_path(@pagina)
-\|
-= link_to 'Back', paginas_path
+- if usuario_signed_in?
+  = link_to 'Edit', edit_pagina_path(@pagina)
+  \|
+  = link_to 'Back', paginas_path
