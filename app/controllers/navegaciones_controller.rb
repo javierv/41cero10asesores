@@ -4,7 +4,7 @@ class NavegacionesController < ApplicationController
   end
 
   def create
-    Navegacion.establecer params[:pagina_ids]
+    Navegacion.establecer params[:navegacion][:pagina_id]
     redirect_to new_navegacion_path, :notice => 'Navegación guardada'
   end
 end

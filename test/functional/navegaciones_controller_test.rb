@@ -11,7 +11,7 @@ class NavegacionesControllerTest < ActionController::TestCase
     
   context "update action" do
     setup do
-      post :create, :pagina_ids => [1, 2, 3]
+      post :create, :navegacion => {:pagina_id => [1, 2, 3]}
     end
 
     should redirect_to('Editar navegación') {new_navegacion_path}
