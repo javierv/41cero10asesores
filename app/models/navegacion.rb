@@ -12,4 +12,12 @@ class Navegacion < ActiveRecord::Base
       create(:pagina_id => id, :orden => orden + 1)
     end
   end
+
+  def self.paginas
+    includes(:pagina).order(:orden).map(&:pagina)
+  end
+
+  def self.pagina_ids
+    order(:orden).map(&:pagina_id)
+  end
 end

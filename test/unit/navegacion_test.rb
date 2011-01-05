@@ -11,8 +11,8 @@ class NavegacionTest < ActiveSupport::TestCase
   should belong_to(:pagina)
 
   setup do
-    paginas = [Factory(:pagina), Factory(:pagina), Factory(:pagina)]
-    @ids = paginas.map(&:id)
+    @paginas = [Factory(:pagina), Factory(:pagina), Factory(:pagina)]
+    @ids = @paginas.map(&:id)
     Navegacion.establecer(@ids.reverse)
   end
 
@@ -25,5 +25,13 @@ class NavegacionTest < ActiveSupport::TestCase
     Navegacion.establecer(@ids)
     assert Navegacion.where(:pagina_id => @ids[0], :orden => 1).first
     assert !Navegacion.where(:pagina_id => @ids.last, :orden => 1).first
+  end
+
+  should 'poder recuperar las páginas' do
+    assert_equal @paginas.reverse, Navegacion.paginas
+  end
+
+  should 'poder recuperar las IDs de páginas en orden' do
+    assert_equal @ids.reverse, Navegacion.pagina_ids
   end
 end
