@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :conservar_parametros, :only => [:index]
   before_filter :authenticate_usuario!, :if => :requiere_usuario?
+  before_filter :navegacion
 
 private
   def public_actions
@@ -30,5 +31,9 @@ private
 
   def estan_accediendo_al_indice_principal?
     params.reject{|key, value| [:controller, :action].include?(key.to_sym)}.empty?
+  end
+
+  def navegacion
+    @navegacion = Navegacion.paginas
   end
 end
