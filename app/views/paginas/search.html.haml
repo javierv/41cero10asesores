@@ -1,8 +1,10 @@
 - title "Resultados para la búsqueda #{params[:q]}" # TODO: ¿@paginas.search_term o similar?
+- css 'resultados'
 
 - if @paginas.spelling_suggestion
-  ¿Quiso decir 
-  = link_to(@paginas.spelling_suggestion, search_paginas_path(:q => @paginas.spelling_suggestion)) + "?"
+  %p
+    ¿Quiso decir
+    = link_to(@paginas.spelling_suggestion, search_paginas_path(:q => @paginas.spelling_suggestion)) + "?"
 
 - @paginas.each do |pagina|
   = render 'resumen', :pagina => pagina
