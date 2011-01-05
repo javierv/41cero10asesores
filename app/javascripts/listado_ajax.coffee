@@ -1,0 +1,1 @@
+$(document).ready -> $('#listado').ajaxPaginator()
