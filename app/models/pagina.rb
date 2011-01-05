@@ -20,7 +20,8 @@ class Pagina < ActiveRecord::Base
     cajas.order("sidebars.orden ASC")
   end
 
-  scope :al_final_las_de_navegacion, includes(:navegacion).order("navegaciones.orden, paginas.titulo")
+  scope :al_final_las_de_navegacion, 
+    includes(:navegacion).where("borrador = false OR borrador IS NULL").order("navegaciones.orden, paginas.titulo")
 
   xapit :include => :cajas do |index|
     index.text :titulo, :weight => 10
