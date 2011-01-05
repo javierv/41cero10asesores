@@ -22,6 +22,8 @@
 
       - if content_for?(:sidebar)
         %aside#sidebar{:role => 'complementary'}= yield(:sidebar)
+      - elsif usuario_signed_in?
+        %section#admin= navegacion_admin
 
       %section#main{:role => 'main'}
         - if show_title?
