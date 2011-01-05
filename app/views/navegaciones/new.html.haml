@@ -1,2 +1,8 @@
 - title 'Editar navegación'
-- bsmselect
+- css 'form'
+- bsmselect_con_cajas
+
+= simple_form_for Navegacion.new do |form|
+  = form.input :pagina_id, :collection => @paginas, :selected => @ids,
+    :input_html => {:class => 'cajas', :multiple => true}
+  = form.submit
