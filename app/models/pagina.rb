@@ -11,6 +11,7 @@ class Pagina < ActiveRecord::Base
 
   has_many :sidebars
   has_many :cajas, :through => :sidebars
+  has_one :navegacion
   before_save :build_sidebar
 
   has_paper_trail
@@ -18,6 +19,8 @@ class Pagina < ActiveRecord::Base
   def cajas_con_orden
     cajas.order("sidebars.orden ASC")
   end
+
+  scope :al_final_las_de_navegacion, includes(:navegacion).order("navegaciones.orden, paginas.titulo")
 
   xapit :include => :cajas do |index|
     index.text :titulo, :weight => 10

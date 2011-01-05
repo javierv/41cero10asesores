@@ -8,6 +8,7 @@ class PaginaTest < ActiveSupport::TestCase
   should validate_presence_of(:cuerpo)
   should allow_mass_assignment_of(:cuerpo)
 
+  should have_one(:navegacion)
   should have_many(:cajas).through(:sidebars)
   should allow_mass_assignment_of(:caja_ids)
 
@@ -275,6 +276,23 @@ class PaginaTest < ActiveSupport::TestCase
       should 'sobrescribirse a sí mismo' do
         assert_equal 'Título cambiado', @draft.titulo
       end
+    end
+  end
+
+  context 'Al final las páginas de la navegación' do
+    setup do
+      @navegables = [Factory(:pagina), Factory(:pagina), Factory(:pagina)]
+      @otras = [Factory(:pagina), Factory(:pagina), Factory(:pagina)]
+
+      @navegables.reverse.each_with_index do |pagina, index|
+        Factory(:navegacion, :pagina_id => pagina.id, :orden => index + 1)
+      end
+    end
+
+    should 'encontrar al final las navegables, y en orden' do
+      paginas = Pagina.al_final_las_de_navegacion
+      assert_equal @navegables[0], paginas[-1]
+      assert_equal @navegables[2], paginas[-3]
     end
   end
 end
