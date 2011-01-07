@@ -7,3 +7,4 @@ nbproject/*
 public/stylesheets/*
 prototipo/*
 config/database.yml
+tmp/restart.txt
