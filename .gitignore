@@ -4,7 +4,8 @@ db/xapiandb/*
 log/*.log
 tmp/**/*
 nbproject/*
-public/stylesheets/*
+public/stylesheets/*.css
+public/stylesheets/**/*.css
 prototipo/*
 config/database.yml
 tmp/restart.txt
