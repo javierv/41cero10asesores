@@ -23,7 +23,7 @@ module NavegacionHelper
         [link_title(action), action_url(action, resource)].flatten
       end
     end
-    lista_con_enlaces(enlaces)
+    lista_con_enlaces(enlaces, :class => 'actions')
   end
 
   def acciones_para_pagina(pagina)
@@ -60,6 +60,8 @@ private
     case action
       when :show
         resource
+      when :index
+        resource.class
       when :destroy
         [resource, {:method => :delete, :confirm => confirmation_message}]
       else

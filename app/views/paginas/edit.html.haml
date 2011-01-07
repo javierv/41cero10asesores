@@ -2,6 +2,4 @@
 
 = render 'form', :pagina => @pagina
 
-= link_to 'Show', @pagina
-\|
-= link_to 'Back', paginas_path
+= actions_list [:show, :index], @pagina

@@ -4,6 +4,4 @@
 = render 'pagina', :pagina => @pagina
 
 - if usuario_signed_in?
-  = link_to 'Edit', edit_pagina_path(@pagina)
-  \|
-  = link_to 'Back', paginas_path
+  = actions_list([:edit, :index], @pagina)
