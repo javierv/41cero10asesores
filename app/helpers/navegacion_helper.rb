@@ -17,9 +17,21 @@ module NavegacionHelper
 
   def actions_list(actions, resource)
     enlaces = actions.map do |action|
-      [link_title(action), action_url(action, resource)].flatten
+      if action.respond_to?(:each)
+        action
+      else
+        [link_title(action), action_url(action, resource)].flatten
+      end
     end
     lista_con_enlaces(enlaces)
+  end
+
+  def acciones_para_pagina(pagina)
+    acciones = [:show, :edit, :destroy, :historial]
+    if pagina.has_draft?
+      acciones.push(['Editar borrador', edit_pagina_path(pagina.draft)])
+    end
+    actions_list(acciones, pagina)
   end
  
 private
