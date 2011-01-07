@@ -17,10 +17,15 @@ module NavegacionHelper
 
   def actions_list(actions, resource)
     enlaces = actions.map do |action|
-      if action.respond_to?(:each)
+      if action.is_a?(Array)
         action
       else
-        [link_title(action), action_url(action, resource)].flatten
+        opciones = {:class => action}
+        url = action_url(action, resource)
+        if url.is_a?(Array)
+          opciones.merge!(url.extract_options!)
+        end
+        [link_title(action), url, opciones].flatten
       end
     end
     lista_con_enlaces(enlaces, :class => 'actions')
