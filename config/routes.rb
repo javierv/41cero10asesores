@@ -10,6 +10,7 @@ Calesur::Application.routes.draw do
   end
 
   root :to => "paginas#index"
+  match '/autocomplete' => "ajax_form#autocomplete"
 
 
   # The priority is based upon order of creation:
