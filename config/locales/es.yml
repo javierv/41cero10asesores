@@ -263,3 +263,11 @@
       words_connector: ", "
       two_words_connector: " y "
       last_word_connector: ", y "
+
+  tabletastic:
+    actions:
+      confirmation: "¿Estás seguro?"
+      show: "Mostrar"
+      edit: "Editar"
+      destroy: "Borrar"
+      index: "Ir al listado"
