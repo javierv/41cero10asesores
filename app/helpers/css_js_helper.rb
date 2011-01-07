@@ -35,7 +35,7 @@ module CssJsHelper
 
   def markitup
     css 'markitup', '/javascripts/markitup/sets/textile/style.css'
-    javascript 'markitup/jquery.markitup', 'markitup/sets/textile/set'
+    javascript 'markitup/jquery.markitup', 'markitup/sets/textile/set', 'ayuda_textile'
   end
 
   def bsmselect

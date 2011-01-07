@@ -1,0 +1,56 @@
+- title 'Ayuda para la sintaxis del editor'
+
+%h2 Texto
+
+%dd
+  %dt _Énfasis_ (cursiva)
+  %dd
+    %em Énfasis
+  %dt *Énfasis fuerte* (negrita)
+  %dd
+    %strong Énfasis fuerte
+  %dt ??cita breve??
+  %dd
+    %cite cita breve
+  %dt -Texto tachado-
+  %dd
+    %del Texto tachado
+
+%h2 Párrafos
+%dd
+  %dt bq. Cita larga: un párrafo o frase larga dicha por alguien.
+  %dd
+    %blockquote Cita larga: un párrafo o frase larga dicha por alguien.
+  %dt
+    \# Lista numerada 1
+    %br
+    \# Lista numerada 2
+  %dd
+    %ol
+      %li Lista numerada 1
+      %li Lista numerada 2
+  %dt
+    * Lista de viñetas 1
+    %br
+    * Lista de viñetas 2
+  %dd
+    %ul
+      %li Lista de viñetas 1
+      %li Lista de viñetas 2
+
+%h2 Enlaces
+%dd
+  %dt "Texto del enlace":http://urldelenlace
+  %dd= link_to 'http://urldelenlace', "Texto del enlace"
+
+
+%h2 Imágenes
+%dd
+  %dt !http://urldelaimagen!
+  %dt !http://urldelaimagen(Texto alternativo)!
+  %dt !http://urldelaimagen!:http://urldelenlace
+
+%h2 Acrónimos
+%dd
+  %dt INICIALES(Significado del acrónimo)
+  %dd Bla

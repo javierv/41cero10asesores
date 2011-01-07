@@ -11,7 +11,7 @@ Calesur::Application.routes.draw do
 
   root :to => "paginas#index"
   match '/autocomplete' => "ajax_form#autocomplete"
-
+  match '/ayuda-textile' => "static#ayuda_textile"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
