@@ -1,8 +1,10 @@
 = table_for @paginas do |table|
-  = table.data :actions => [:show, :edit, :destroy, :historial] do
+  = table.data do
     = table.cell :titulo, :heading => sort_link(@search, :titulo)
     = table.cell(:cuerpo, :heading => sort_link(@search, :cuerpo)) {|pagina| truncate(pagina.cuerpo, :length => 50)}
     = table.cell :borrador, :heading => sort_link(@search, :borrador)
     = table.cell(:accion, :heading => '') {|pagina| link_to('Editar borrador', edit_pagina_path(pagina.draft)) if pagina.has_draft?}
+    = table.cell(:acciones, :heading => 'Acciones') do |pagina|
+      - actions_list([:show, :edit, :destroy, :historial], pagina)
 
 #paginador= will_paginate

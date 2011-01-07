@@ -14,7 +14,14 @@ module NavegacionHelper
      ['Editar navegación', new_navegacion_path, {:controller => 'navegaciones'}],
      ['Desconectar', destroy_usuario_session_path]]
   end
-  
+
+  def actions_list(actions, resource)
+    enlaces = actions.map do |action|
+      [link_title(action), action_url(action, resource)].flatten
+    end
+    lista_con_enlaces(enlaces)
+  end
+ 
 private
   def elemento_lista_enlace(enlace)
     opciones = enlace.extract_options!
@@ -27,5 +34,24 @@ private
     content_tag :li do
       link_to enlace[0], enlace[1], opciones
     end
+  end
+
+  def link_title(action)
+    I18n.translate(action, :scope => "tabletastic.actions", :default => action.to_s.titleize)
+  end
+
+  def confirmation_message
+    I18n.t("tabletastic.actions.confirmation", :default => "Are you sure?")
+  end
+
+  def action_url(action, resource)
+    case action
+      when :show
+        resource
+      when :destroy
+        [resource, {:method => :delete, :confirm => confirmation_message}]
+      else
+        polymorphic_path(resource, :action => action)
+      end
   end
 end
