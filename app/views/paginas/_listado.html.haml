@@ -4,6 +4,7 @@
     = table.cell(:cuerpo, :heading => sort_link(@search, :cuerpo)) do |pagina|
       - truncate(pagina.cuerpo, :length => 50)
     = table.cell :borrador, :heading => sort_link(@search, :borrador)
-    = table.cell(:acciones, :heading => 'Acciones') {|pagina| acciones_para_pagina(pagina)}
+    = table.cell(:acciones, :heading => 'Acciones', :cell_html => {:class => 'actions'}) do |pagina|
+      - acciones_para_pagina(pagina)
 
 #paginador= will_paginate
