@@ -1,12 +1,13 @@
 - title 'Ayuda para la sintaxis del editor'
+- css 'static'
 
 %h2 Texto
 
-%dd
-  %dt _Énfasis_ (cursiva)
+%dl
+  %dt _Énfasis_
   %dd
     %em Énfasis
-  %dt *Énfasis fuerte* (negrita)
+  %dt *Énfasis fuerte*
   %dd
     %strong Énfasis fuerte
   %dt ??cita breve??
@@ -17,7 +18,7 @@
     %del Texto tachado
 
 %h2 Párrafos
-%dd
+%dl
   %dt bq. Cita larga: un párrafo o frase larga dicha por alguien.
   %dd
     %blockquote Cita larga: un párrafo o frase larga dicha por alguien.
@@ -39,18 +40,27 @@
       %li Lista de viñetas 2
 
 %h2 Enlaces
-%dd
+%dl
   %dt "Texto del enlace":http://urldelenlace
-  %dd= link_to 'http://urldelenlace', "Texto del enlace"
-
+  %dd= link_to "Texto del enlace", 'http://urldelenlace'
 
 %h2 Imágenes
-%dd
-  %dt !http://urldelaimagen!
-  %dt !http://urldelaimagen(Texto alternativo)!
-  %dt !http://urldelaimagen!:http://urldelenlace
+%dl
+  %dt !http://rubyonrails.org/images/rails.png!
+  %dd= image_tag 'http://rubyonrails.org/images/rails.png'
+  %dt !http://rubyonrails.org/images/rails.png(Rails)!
+  %dd= image_tag 'http://rubyonrails.org/images/rails.png', :alt => 'Rails'
+  %dt !http://rubyonrails.org/images/rails.png!:http://rubyonrails.org/
+  %dd= link_to image_tag('http://rubyonrails.org/images/rails.png'), 'http://rubyonrails.org/'
 
 %h2 Acrónimos
-%dd
-  %dt INICIALES(Significado del acrónimo)
-  %dd Bla
+%dl
+  %dt ONU(Organización Naciones Unidas)
+  %dd
+    %abbr{:title => 'Organización Naciones Unidas'} ONU
+
+%h2 Más información
+%p
+  Para más detalles sobre la sintaxis del editor, en la
+  #{link_to 'Wikipedia', 'http://en.wikipedia.org/wiki/Textile_(markup_language)'} o en la
+  #{link_to 'página oficial de Textile', 'http://textile.thresholdstate.com/'}
