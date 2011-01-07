@@ -7,7 +7,7 @@ module FiltradorHelper
 
 private
   def filter_form(search, &block)
-    simple_form_for search do |form|
+    simple_form_for search, :html => {:class => 'filtrador'} do |form|
       capture(form, &block) + form.submit('Filtrar')
     end
   end

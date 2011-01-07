@@ -49,4 +49,10 @@ module CssJsHelper
     bsmselect
     javascript 'cajas'
   end
+
+  def autocomplete
+    css 'jquery.ui.core', 'jquery.ui.theme', 'jquery.ui.autocomplete'
+    javascript 'jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.position',
+      'jquery.ui.autocomplete', 'jquery.autocomplete_form'
+  end
 end
