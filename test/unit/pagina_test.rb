@@ -81,6 +81,24 @@ class PaginaTest < ActiveSupport::TestCase
     end
   end
 
+  context 'Creando nuevas páginas' do
+    setup do
+      @pagina = Factory(:pagina)
+    end
+
+    should 'guardar como borrador falso si no se define borrador' do
+      @pagina.borrador = nil
+      @pagina.save
+      assert_equal false, @pagina.borrador
+    end
+
+    should 'guardar como lo que venga si se define borrador' do
+      @pagina.borrador = true
+      @pagina.save
+      assert_equal true, @pagina.borrador
+    end
+  end
+
   context 'Creando borradores' do
     setup do
       @pagina = Factory(:pagina, :titulo => 'Título original')

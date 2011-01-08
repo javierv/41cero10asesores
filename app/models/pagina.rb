@@ -13,6 +13,7 @@ class Pagina < ActiveRecord::Base
   has_many :cajas, :through => :sidebars
   has_one :navegacion
   before_save :build_sidebar
+  before_save :set_borrador
 
   has_paper_trail
 
@@ -93,5 +94,10 @@ private
         sidebars.build(:caja_id => caja_id, :orden => index + 1)
       end
     end
+  end
+
+  def set_borrador
+    self.borrador = false if borrador.nil?
+    true
   end
 end
