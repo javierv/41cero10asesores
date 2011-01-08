@@ -12,7 +12,7 @@ module NavegacionHelper
     lista_con_enlaces [['Editar páginas', paginas_path, {:controller => 'paginas'}],
      ['Editar cajas', cajas_path, {:controller => 'cajas'}],
      ['Editar navegación', new_navegacion_path, {:controller => 'navegaciones'}],
-     ['Desconectar', destroy_usuario_session_path]]
+     ['Desconectar', destroy_usuario_session_path, {:class => 'desconectar'}]]
   end
 
   def actions_list(actions, resource)
@@ -34,7 +34,7 @@ module NavegacionHelper
   def acciones_para_pagina(pagina)
     acciones = [:show, :edit, :destroy, :historial]
     if pagina.has_draft?
-      acciones.push(['Editar borrador', edit_pagina_path(pagina.draft)])
+      acciones.push(['Editar borrador', edit_pagina_path(pagina.draft), {:class => 'draft'}])
     end
     actions_list(acciones, pagina)
   end
@@ -44,10 +44,14 @@ private
     opciones = enlace.extract_options!
 
     if opciones[:controller] == params[:controller]
-      opciones[:class] = 'current'
-      opciones.delete :controller
+      opciones[:class] = "#{opciones[:class]} current"      
     end
 
+    if opciones[:controller]
+      opciones[:class] = "#{opciones[:class]} #{opciones[:controller]}"
+      opciones.delete :controller
+    end
+    
     content_tag :li do
       link_to enlace[0], enlace[1], opciones
     end
