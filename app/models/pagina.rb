@@ -86,6 +86,14 @@ class Pagina < ActiveRecord::Base
     end
   end
 
+  def tipo
+    if borrador?
+      'Borrador'
+    else
+      'Publicada'
+    end
+  end
+
 private
   def build_sidebar
     if @ids_cajas
