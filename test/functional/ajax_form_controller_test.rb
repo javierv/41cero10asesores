@@ -15,7 +15,7 @@ class AjaxFormControllerTest < ActionController::TestCase
       end
 
       should 'devolver lista de resultados' do
-        assert_equal ['mulo', 'pulómetro', 'título'], assigns(:resultados)
+        assert_equal ['mulo', 'pulómetro', 'título'], assigns(:resultados).map(&:titulo)
       end
     end
 
@@ -26,7 +26,7 @@ class AjaxFormControllerTest < ActionController::TestCase
       end
 
       should 'devolver lista de resultados' do
-        assert_equal ['mulo', 'pulómetro', 'título'], assigns(:resultados)
+        assert_equal ['mulo', 'pulómetro', 'título'], assigns(:resultados).map(&:titulo)
       end
     end
 
@@ -37,7 +37,7 @@ class AjaxFormControllerTest < ActionController::TestCase
       end
 
       should 'devolver los que contienen todos los términos' do
-        assert_equal ['pulómetro', 'título'], assigns(:resultados)
+        assert_equal ['pulómetro', 'título'], assigns(:resultados).map(&:titulo)
       end
     end
   end    
