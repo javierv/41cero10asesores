@@ -18,10 +18,23 @@ ul.actions
       &:after
         content: ''
   a
+    padding-left: 1.1em
+    background: no-repeat center left
+    +background-size(auto 80%)
+
     &.show
-
+      background-image: url(/images/lupa.svg)
     &.edit
-
+      background-image: url(/images/edit.svg)
     &.destroy
-
+      background-image: url(/images/destroy.svg)
+    &.new
+      background-image: url(/images/new.svg)
+    &.draft
+      background-image: url(/images/draft.svg)
     &.historial
+      background-image: url(/images/historial.svg)
+    &.index.paginas
+      background-image: url(/images/paginas.svg)
+    &.index.cajas
+      background-image: url(/images/cajas.svg)

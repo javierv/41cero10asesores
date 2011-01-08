@@ -70,7 +70,7 @@ private
       when :show
         resource
       when :index
-        resource.class
+        [resource.class, {:class => "index #{resource.class.to_s.tableize}"}]
       when :destroy
         [resource, {:method => :delete, :confirm => confirmation_message}]
       else
