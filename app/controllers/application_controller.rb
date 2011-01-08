@@ -34,6 +34,6 @@ private
   end
 
   def navegacion
-    @navegacion = Navegacion.paginas
+    @navegacion = Navegacion.paginas unless request.xhr?
   end
 end
