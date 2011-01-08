@@ -22,7 +22,7 @@ class Pagina < ActiveRecord::Base
   end
 
   scope :al_final_las_de_navegacion, 
-    includes(:navegacion).where("borrador = false OR borrador IS NULL").order("navegaciones.orden, paginas.titulo")
+    includes(:navegacion).where("borrador = ? OR borrador IS NULL", false).order("navegaciones.orden, paginas.titulo")
 
   xapit :include => :cajas do |index|
     index.text :titulo, :weight => 10
