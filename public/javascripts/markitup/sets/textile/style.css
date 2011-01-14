@@ -1,27 +1,27 @@
-.markItUp .negrita span {
+.markItUp .negrita a {
 	background-image:url(images/bold.png);
 }
-.markItUp .cursiva span {
+.markItUp .cursiva a {
 	background-image:url(images/italic.png);
 }
-.markItUp .tachado span {
+.markItUp .tachado a {
 	background-image:url(images/stroke.png);
 }
 
-.markItUp .lista span {
+.markItUp .lista a {
 	background-image:url(images/list-bullet.png);
 }
-.markItUp .numerada span {
+.markItUp .numerada a {
 	background-image:url(images/list-numeric.png);
 }
 
-.markItUp .imagen span {
+.markItUp .imagen a {
 	background-image:url(images/picture.png); 
 }
-.markItUp .enlace span {
+.markItUp .enlace a {
 	background-image:url(images/link.png);
 }
 
-.markItUp .cita span	{
+.markItUp .cita a	{
 	background-image:url(images/quotes.png);
 }
