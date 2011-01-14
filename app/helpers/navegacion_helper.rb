@@ -38,6 +38,10 @@ module NavegacionHelper
     end
     actions_list(acciones, pagina)
   end
+
+  def acciones_para_caja(caja)
+    actions_list [:edit, :destroy], caja
+  end
  
 private
   def elemento_lista_enlace(enlace)

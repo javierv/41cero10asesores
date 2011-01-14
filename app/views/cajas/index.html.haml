@@ -1,14 +1,13 @@
 - title "Listado de cajas"
 - listado
+- autocomplete
+- javascript 'filtrador'
 
 = filter_form_for @search do |form|
   = form.input :titulo_contains, :label => 'Titulo', :required => false
   = form.input :cuerpo_contains, :label => 'Cuerpo', :required => false
 
 %section#listado
-  = table_for @cajas do |table|
-    = table.data :actions => [:edit, :destroy] do
-      = table.cell :titulo, :heading => sort_link(@search, :titulo)
-      = table.cell :cuerpo, :heading => sort_link(@search, :cuerpo)
+  = render :partial => 'listado'
 
-= link_to 'New caja', new_caja_path
+= actions_list [:new], Caja

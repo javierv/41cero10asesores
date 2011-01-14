@@ -11,7 +11,13 @@ class CajasController < ApplicationController
     @search = Caja.search params[:search]
     @cajas = @search.paginate :page => params[:page],
       :per_page => Caja.per_page
-    respond_with @cajas
+
+     # Me pasa lo mismo que con preview de páginas. Sigo sin saber por qué.
+    if request.xhr?
+      render 'index.js'
+    else
+      respond_with @cajas
+    end
   end
 
   def new
