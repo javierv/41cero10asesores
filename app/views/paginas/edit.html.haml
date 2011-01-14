@@ -2,4 +2,7 @@
 
 = render 'form', :pagina => @pagina
 
-= actions_list [:show, :index], @pagina
+- if @pagina.borrador?
+  = actions_list [:index], @pagina
+- else
+  = actions_list [:show, :index], @pagina
