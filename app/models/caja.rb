@@ -4,7 +4,7 @@ class Caja < ActiveRecord::Base
   validates :cuerpo, :presence => true
   display_name :titulo
 
-  has_many :sidebars
+  has_many :sidebars, :dependent => :destroy
   scope :por_titulo, order("cajas.titulo")
 
   scope :al_final_las_de_pagina, lambda {|pagina|

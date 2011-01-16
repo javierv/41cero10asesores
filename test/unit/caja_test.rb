@@ -7,6 +7,7 @@ class CajaTest < ActiveSupport::TestCase
   should allow_mass_assignment_of(:titulo)
   should validate_presence_of(:cuerpo)
   should allow_mass_assignment_of(:cuerpo)
+  should have_many(:sidebars).dependent(:destroy)
 
   should 'ordenar las cajas teniendo en cuenta las de una página' do
     pagina = Factory(:pagina)
