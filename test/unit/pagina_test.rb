@@ -313,4 +313,18 @@ class PaginaTest < ActiveSupport::TestCase
       assert_equal @navegables[2], paginas[-3]
     end
   end
+
+  should 'borrar sus navegaciones al borrar la página' do
+    pagina = Factory(:pagina)
+    id = pagina.id
+    navegacion = Factory(:navegacion, :pagina_id => id)
+    otra = Factory(:navegacion, :pagina_id => id + 1)
+
+    assert_equal 2, Navegacion.count
+    assert_equal 1, Navegacion.where(:pagina_id => id).count
+
+    pagina.destroy
+    assert_equal 1, Navegacion.count
+    assert_equal 0, Navegacion.where(:pagina_id => id).count
+  end
 end

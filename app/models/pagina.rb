@@ -11,7 +11,7 @@ class Pagina < ActiveRecord::Base
 
   has_many :sidebars
   has_many :cajas, :through => :sidebars
-  has_one :navegacion
+  has_one :navegacion, :dependent => :destroy
   before_save :build_sidebar
   before_save :set_borrador
 
