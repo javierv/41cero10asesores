@@ -8,7 +8,7 @@ class PaginaTest < ActiveSupport::TestCase
   should validate_presence_of(:cuerpo)
   should allow_mass_assignment_of(:cuerpo)
 
-  should have_one(:navegacion)
+  should have_one(:navegacion).dependent(:destroy)
   should have_many(:cajas).through(:sidebars)
   should allow_mass_assignment_of(:caja_ids)
 
@@ -312,19 +312,5 @@ class PaginaTest < ActiveSupport::TestCase
       assert_equal @navegables[0], paginas[-1]
       assert_equal @navegables[2], paginas[-3]
     end
-  end
-
-  should 'borrar sus navegaciones al borrar la página' do
-    pagina = Factory(:pagina)
-    id = pagina.id
-    navegacion = Factory(:navegacion, :pagina_id => id)
-    otra = Factory(:navegacion, :pagina_id => id + 1)
-
-    assert_equal 2, Navegacion.count
-    assert_equal 1, Navegacion.where(:pagina_id => id).count
-
-    pagina.destroy
-    assert_equal 1, Navegacion.count
-    assert_equal 0, Navegacion.where(:pagina_id => id).count
   end
 end
