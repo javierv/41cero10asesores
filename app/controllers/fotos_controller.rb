@@ -15,7 +15,7 @@ class FotosController < ApplicationController
     end
 
     if request.xhr?
-      render :json => {:name => @foto.imagen.name}
+      render 'create.json'
     else
       respond_with @foto, opciones
     end

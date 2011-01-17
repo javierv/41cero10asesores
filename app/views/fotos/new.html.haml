@@ -3,8 +3,8 @@
 - css 'form'
 - javascript 'adjuntos'
 
-
-- Foto.all.each do |foto|
-  = image_tag foto.imagen.url
+%section#galeria
+  - Foto.all.each do |foto|
+    = thumbnail foto
 
 = render 'form', :foto => @foto

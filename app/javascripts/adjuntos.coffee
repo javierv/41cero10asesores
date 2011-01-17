@@ -1,7 +1,6 @@
 $(document).ready ->
   $('form.simple_form').fileUploadUI(
-    uploadTable: $('<table class="upload_files"></table>').appendTo('#main'),
-    downloadTable: $('<table class="download_files"></table>').appendTo('#main'),
+    uploadTable: $('<table class="upload_files"></table>').appendTo('#main'),    
     buildUploadRow: (files, index) ->
       file = files[index]
       $(
@@ -14,7 +13,8 @@ $(document).ready ->
         '<\/div>' +
         '<\/td>' +
         '<\/tr>'
-      )
-    buildDownloadRow: (file) ->  $('<tr><td>' + file.name + '<\/td><\/tr>')
+      )    
+    onLoad: (event, files, index, xhr, handler) ->
+      $('#galeria').append(this.parseResponse(xhr).imagen)
   )
   $('form.simple_form .actions').hide()
