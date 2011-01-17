@@ -15,6 +15,7 @@ $(document).ready ->
         '<\/tr>'
       )    
     onLoad: (event, files, index, xhr, handler) ->
+      $('.upload_files').fadeOut('slow', -> $(this).empty().fadeIn())
       $('#galeria').append(this.parseResponse(xhr).imagen)
   )
   $('form.simple_form .actions').hide()
