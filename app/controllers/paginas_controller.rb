@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class PaginasController < ApplicationController
+  # Tengo que declarar antes el JS para que las peticiones AJAX respondan así.
+  respond_to :js, :only => [:index]
   respond_to :html
 
   before_filter :find_pagina, :only => [:show, :edit, :update, :destroy, :historial]
@@ -14,13 +16,7 @@ class PaginasController < ApplicationController
     @search = Pagina.metasearch params[:search]
     @paginas = @search.where(:published_id => nil).paginate :page => params[:page],
       :per_page => Pagina.per_page
-
-    # Me pasa lo mismo que con preview. Sigo sin saber por qué.
-    if request.xhr?
-      render 'index.js'
-    else
-      respond_with @paginas
-    end
+    respond_with @paginas    
   end
 
   def show
