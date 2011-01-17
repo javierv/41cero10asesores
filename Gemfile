@@ -17,7 +17,8 @@ end
 
 gem "devise"
 gem "will_paginate", ">= 3.0.pre"
-gem "paperclip"
+gem 'rack-cache', :require => 'rack/cache'
+gem 'dragonfly'
 gem "haml"
 gem "compass"
 gem "acts-as-taggable-on"
