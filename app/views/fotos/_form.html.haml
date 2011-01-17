@@ -1,0 +1,3 @@
+= simple_form_for foto, :html => {:multipart => true} do |form|
+  = form.input :imagen, :as => :file
+  .actions= form.submit 'Subir'
