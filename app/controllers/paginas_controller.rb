@@ -73,6 +73,7 @@ private
     end
   end
 
+  # TODO: pasar a acción independiente en cuanto funcione "formaction".
   def preview
     if params[:preview]
       # HACK: asignar caja_ids guarda la relación en la BD. Ver:
@@ -80,9 +81,6 @@ private
       attributes = params[:pagina].clone
       attributes.delete(:caja_ids)
       @pagina.attributes = attributes
-
-      # TODO: ¿Por qué no reconoce el formato JS en las peticiones AJAX que mando?
-      # (Probé a incluir :js en el respond_to y daba igual)
       if request.xhr?
         render 'preview.js'
       else
