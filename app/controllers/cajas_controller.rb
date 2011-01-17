@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class CajasController < ApplicationController
+  respond_to :js, :only => [:index]
   respond_to :html
 
   before_filter :find_caja, :only => [:edit, :update, :destroy]
@@ -12,12 +13,7 @@ class CajasController < ApplicationController
     @cajas = @search.paginate :page => params[:page],
       :per_page => Caja.per_page
 
-     # Me pasa lo mismo que con preview de páginas. Sigo sin saber por qué.
-    if request.xhr?
-      render 'index.js'
-    else
-      respond_with @cajas
-    end
+    respond_with @cajas    
   end
 
   def new
