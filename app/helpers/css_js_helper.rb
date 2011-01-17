@@ -55,4 +55,8 @@ module CssJsHelper
     javascript 'jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.position',
       'jquery.ui.autocomplete', 'jquery.autocomplete_form'
   end
+
+  def adjuntos_ajax
+    javascript 'jquery.ui.core', 'jquery.fileupload', 'jquery.fileupload-ui'
+  end
 end

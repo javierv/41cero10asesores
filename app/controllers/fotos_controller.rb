@@ -13,7 +13,12 @@ class FotosController < ApplicationController
     else
       opciones = {}
     end
-    respond_with @foto, opciones
+
+    if request.xhr?
+      render :json => {:name => @foto.imagen.name}
+    else
+      respond_with @foto, opciones
+    end
   end
 
 private

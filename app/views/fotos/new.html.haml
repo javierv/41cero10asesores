@@ -1,6 +1,11 @@
 - title 'Prueba fotos'
+- adjuntos_ajax
+- javascript 'adjuntos'
 
 - Foto.all.each do |foto|
   = image_tag foto.imagen.url
 
 = render 'form', :foto => @foto
+
+%table.upload_files
+%table.download_files
