@@ -1,6 +1,6 @@
 $(document).ready -> $('form.simple_form').fileUploadUI(
-  uploadTable: $('.upload_files'),
-  downloadTable: $('.download_files'),
+  uploadTable: $('<table class="upload_files"></table>').appendTo('#main'),
+  downloadTable: $('<table class="download_files"></table>').appendTo('#main'),
   buildUploadRow: (files, index) ->
     file = files[index]
     $(
