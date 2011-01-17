@@ -1,1 +1,1 @@
-= lista_con_enlaces @navegacion.map {|pagina| [pagina.display_name, pagina_path(pagina)]}
+= lista_con_enlaces Navegacion.paginas.map {|pagina| [pagina.display_name, pagina_path(pagina)]}
