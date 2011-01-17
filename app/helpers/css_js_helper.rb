@@ -57,6 +57,7 @@ module CssJsHelper
   end
 
   def adjuntos_ajax
+    css 'jquery.ui.core', 'jquery.ui.theme', 'jquery.fileupload-ui'
     javascript 'jquery.ui.core', 'jquery.fileupload', 'jquery.fileupload-ui'
   end
 end
