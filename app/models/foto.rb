@@ -1,7 +1,7 @@
 class Foto < ActiveRecord::Base
   image_accessor :imagen
 
-  #  validates_presence_of :cover_image
+  validates :imagen, :presence => true
   # validates_size_of :cover_image, :maximum => 500.kilobytes
 
   # validates_property :format, :of => :cover_image, :in => [:jpeg, :png, :gif]
