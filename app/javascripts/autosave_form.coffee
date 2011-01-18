@@ -1,7 +1,7 @@
 $(document).ready ->
   setInterval(
     ->
-      $('form.simple_form').ajaxSubmit(
+      $('form.pagina').ajaxSubmit(
         target: '#actualizado',
         data: {draft: true},
         success: -> $('#actualizado time').effect "highlight", {}, 3000

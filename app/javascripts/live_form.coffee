@@ -3,9 +3,9 @@ $(document).ready ->
 
   $('input[name=preview]').remove();
 
-  $('input[type=text], textarea', $('form.simple_form')).typeWatch(
+  $('input[type=text], textarea', $('form.pagina')).typeWatch(
     callback: ->
-      $('form.simple_form').ajaxSubmit(
+      $('form.pagina').ajaxSubmit(
         target: '#preview',
         data: { preview: true }
       )
