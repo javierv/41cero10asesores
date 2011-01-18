@@ -1,6 +1,7 @@
 - live_preview_form
 - autosave_form
 - bsmselect_con_cajas
+- javascript 'galeria_markitup'
 
 #actualizado
   - unless pagina.new_record?
@@ -25,3 +26,9 @@
     
     = form.submit 'Guardar borrador', :name => 'draft', :id => 'draft_submit'
     = form.submit 'Vista previa', :name => 'preview', :id => 'preview_submit'
+
+%section#fotos
+  %header
+    %h2 Escoge fotos de la galería
+  = render 'fotos/form', :foto => Foto.new
+  = render 'fotos/galeria'
