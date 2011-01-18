@@ -3,7 +3,7 @@ $(document).ready ->
   if window.FileReader
     formulario.addClass('droppable')
   formulario.fileUploadUI(
-    uploadTable: $('<table class="upload_files"></table>').appendTo('#main'),    
+    uploadTable: $('<table class="upload_files"></table>').insertAfter(formulario),
     buildUploadRow: (files, index) ->
       file = files[index]
       $(
