@@ -3,18 +3,18 @@
 @mixin fondo_drop($opacity)
   background-color: rgba(50, 255, 150, $opacity)
 
-.file_upload
+.droppable.file_upload
   cursor: pointer
   +border-radius(0.5em)
   +fondo_drop(0.3)
   padding: 0.5em
 
-.file_upload_large  
+.droppable.file_upload_large
   line-height: 5em
   font-size: 1.2em
   +fondo_drop(0.5)
 
-.file_upload_highlight
+.droppable.file_upload_highlight
   +fondo_drop(0.8)
 
 .file_upload iframe, .file_upload button
