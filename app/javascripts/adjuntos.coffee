@@ -1,4 +1,6 @@
 $(document).ready ->
+  if window.FileReader
+    $('form.simple_form').addClass('droppable')
   $('form.simple_form').fileUploadUI(
     uploadTable: $('<table class="upload_files"></table>').appendTo('#main'),    
     buildUploadRow: (files, index) ->

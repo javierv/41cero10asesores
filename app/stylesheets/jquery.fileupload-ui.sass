@@ -7,7 +7,7 @@
   cursor: pointer
   +border-radius(0.5em)
   +fondo_drop(0.3)
-  padding: 0.2em
+  padding: 0.5em
 
 .file_upload_large  
   line-height: 5em
@@ -29,3 +29,11 @@
 
 .file_upload_cancel div
   cursor: pointer
+
+.file_upload div.input
+  margin: 0
+
+.droppable:before
+  content: 'También puedes arrastrar aquí la imagen para subirla'
+  float: right
+  font-style: italic
