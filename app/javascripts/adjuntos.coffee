@@ -1,7 +1,8 @@
 $(document).ready ->
+  formulario = $('#nueva_imagen')
   if window.FileReader
-    $('form.simple_form').addClass('droppable')
-  $('form.simple_form').fileUploadUI(
+    formulario.addClass('droppable')
+  formulario.fileUploadUI(
     uploadTable: $('<table class="upload_files"></table>').appendTo('#main'),    
     buildUploadRow: (files, index) ->
       file = files[index]
@@ -20,4 +21,4 @@ $(document).ready ->
       $('.upload_files').fadeOut('slow', -> $(this).empty().fadeIn())
       $('#galeria').append(this.parseResponse(xhr).imagen)
   )
-  $('form.simple_form .actions').hide()
+  $('.actions', formulario).hide()
