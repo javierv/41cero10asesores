@@ -1,10 +1,5 @@
 - title 'Prueba fotos'
-- adjuntos_ajax
 - css 'form'
-- javascript 'adjuntos'
 
-%section#galeria
-  - Foto.all.each do |foto|
-    = thumbnail foto
-
+= render 'galeria'
 = render 'form', :foto => @foto
