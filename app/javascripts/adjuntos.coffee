@@ -19,6 +19,6 @@ $(document).ready ->
       )    
     onLoad: (event, files, index, xhr, handler) ->
       $('.upload_files').fadeOut('slow', -> $(this).empty().fadeIn())
-      $('#galeria').append(this.parseResponse(xhr).imagen)
+      $('#galeria').append(xhr.responseText)
   )
   $('.actions', formulario).hide()

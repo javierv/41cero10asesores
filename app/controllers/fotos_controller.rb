@@ -15,7 +15,7 @@ class FotosController < ApplicationController
     end
 
     if request.xhr?
-      render 'create.json'
+      render 'create.js'
     else
       respond_with @foto, opciones
     end
