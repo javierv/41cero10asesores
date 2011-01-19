@@ -24,6 +24,7 @@ markitup_settings = {
 		{name:'Imagen', className: 'imagen', replaceWith:'![![Ruta:!:http://]!]([![Texto alternativo]!])!'},
 		{name:'Enlace', className:'enlace', openWith:'"', closeWith:'":[![Ruta:!:http://]!]', placeHolder:'Texto del enlace aquí...' },
 		{separator:'---------------' },
-		{name:'Cita', className:'cita', openWith:'bq(!(([![Class]!]))!). '}
+		{name:'Cita', className:'cita', openWith:'bq(!(([![Class]!]))!). '},
+    {name:'Titular de sección', className:'seccion', openWith: 'h2.'}
 	]
 }
