@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110116230936) do
+ActiveRecord::Schema.define(:version => 20110118225909) do
 
   create_table "cajas", :force => true do |t|
     t.string   "titulo"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20110116230936) do
     t.string   "imagen_uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "imagen_width"
   end
 
   create_table "navegaciones", :force => true do |t|

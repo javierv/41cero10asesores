@@ -1,6 +1,8 @@
 Calesur::Application.routes.draw do
   resources :navegaciones, :only => [:new, :create]
-  resources :fotos, :only => [:new, :create]
+  resources :fotos, :only => [:new, :create] do
+    put :thumbnail, :on => :member
+  end
   devise_for :usuarios
 
   resources :cajas, :except => :show

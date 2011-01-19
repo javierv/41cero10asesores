@@ -1,0 +1,5 @@
+.foto
+  = thumbnail foto
+  = simple_form_for foto, :url => thumbnail_foto_path(foto) do |form|
+    = form.input :imagen_width, :label => 'Tamaño', :input_html => {:value => 300}
+    .actions= form.submit 'Insertar'

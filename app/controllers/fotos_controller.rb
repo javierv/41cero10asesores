@@ -21,6 +21,15 @@ class FotosController < ApplicationController
     end
   end
 
+  def thumbnail
+    @foto = Foto.find params[:id]
+    @size = params[:foto][:imagen_width]
+
+    if request.xhr?
+      render 'thumbnail.js'
+    end
+  end
+
 private
   def new_foto
     @foto = Foto.new(params[:foto])
