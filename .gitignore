@@ -6,6 +6,9 @@ tmp/**/*
 nbproject/*
 public/stylesheets/*.css
 public/stylesheets/**/*.css
+public/javascripts/*.js
+public/system/*
+*.swp
 prototipo/*
 config/database.yml
 tmp/restart.txt
