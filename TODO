@@ -1,4 +1,35 @@
+* Puesta en producción con mongrel.
 * Historial de páginas.
-* Autenticación.
-* Enlace a ayuda sintaxis en los textareas.
-* Autocompletado en filtrador.
+* URLs bonitas.
+* https://github.com/rubiety/validates_lengths_from_database
+* Actualizar índice Xapian una vez al día
+* Quitar el asterisco de obligatorio y añadirlo por CSS para los input[required], que los lectores de pantalla deberían usar este atributo y el asterisco sobraría.
+* Área de texto monoespaciada.
+* La sesión caduca aunque pinches en recordar.
+* Usar el atributo formaction en cuanto salgan las próximas versiones de Firefox y Chrome. Para la administración vale con eso.
+
+* Mirar si se puede meter Google Maps.
+* PDFs con el boletín.
+* Enlace al CRM.
+
+* Mixin para los colores de los enlaces (se repiten mucho).
+* "Ordenar por..." como título de enlaces de cabecera de la tabla.
+* Que los errores sean enlaces a corregir el error.
+* "Editar borrador" no se ve entero :S. Confirmado, cuando la ventana no es grande respecto al tamaño del texto. Por alguna razón, la tabla no se comprime en la celda de acciones.
+* Vista previa al editar cajas.
+* Formulario de login: ¿autofocus en el email?
+* Pasar el método del formulario AJAX del controlador al modelo. Podemos poner también que si el atributo está "a pelo", añadir "_contains" (¡NO! No podemos por la petición HTML no AJAX, que depende de eso).
+* Cambiar content_for(:head) para poner CSS al principio y JS al final.
+* En Chromium el editor de texto ocupa menos de la mitad de lo que debería.
+* Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
+
+Sección de imágenes:
+* ¿Paginador en la galería?
+* ¿Borrar imagen? No se puede saber si está en otras páginas...
+* Texto alternativo.
+
+Problemas del editor canvas:
+* No van los acentos.
+* No van los atajos ni los botones del markitup.
+* No funcionan bien las teclas de inicio, av.pág, ...
+* El tamaño de la letra parece que ha de darse en pixeles.
