@@ -1,0 +1,7 @@
+@mixin color_enlaces($visited = false)
+  color: #206090
+  @if $visited
+    &:visited
+      color: $visited
+  &:focus, &:hover
+    color: #ee2100

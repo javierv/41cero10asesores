@@ -1,4 +1,6 @@
 @import "compass/css3"
+@import partials/enlace.sass
+
 ul.actions
   margin-top: 1em
   display: table
@@ -29,8 +31,7 @@ ul.actions
       background-image: url(/images/edit.png)
     &.destroy
       background-image: url(/images/destroy.png)
-      &:visited
-        color: #206090 
+      @include color_enlaces()
     &.new
       background-image: url(/images/new.png)
     &.draft

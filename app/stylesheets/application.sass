@@ -1,4 +1,5 @@
 @import "compass/css3"
+@import partials/enlace.sass
 @import reset.sass
 @import cabecera.sass
 @import navegacion.sass
@@ -25,13 +26,7 @@ body
   background-color: rgba(255, 255, 255, 0.7)
 
 a
-  color:            #206090
-
-  &:visited
-    color:          #754570
-
-  &:focus, &:hover
-    color:          #ee2100
+  @include color_enlaces(#754570)
 
 a img
   border:           none
