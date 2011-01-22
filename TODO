@@ -4,7 +4,6 @@
 * https://github.com/rubiety/validates_lengths_from_database
 * Actualizar índice Xapian una vez al día
 * Quitar el asterisco de obligatorio y añadirlo por CSS para los input[required], que los lectores de pantalla deberían usar este atributo y el asterisco sobraría.
-* Área de texto monoespaciada.
 * La sesión caduca aunque pinches en recordar.
 * Usar el atributo formaction en cuanto salgan las próximas versiones de Firefox y Chrome. Para la administración vale con eso.
 
