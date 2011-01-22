@@ -53,10 +53,10 @@ GEM
     compass (0.10.6)
       haml (>= 3.0.4)
     culerity (0.2.12)
+    daemons (1.0.10)
     devise (1.1.5)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 1.0.2)
-    dispatcher (0.0.1)
     display_name (0.1.1)
     dragonfly (0.8.2)
       rack
@@ -69,6 +69,7 @@ GEM
     faker (0.3.1)
     ffi (0.6.3)
       rake (>= 0.8.7)
+    gem_plugin (0.2.3)
     haml (3.0.24)
     i18n (0.5.0)
     inploy (1.7.2)
@@ -90,6 +91,9 @@ GEM
     mime-types (1.16)
     mocha (0.9.10)
       rake
+    mongrel (1.2.0.pre2)
+      daemons (~> 1.0.10)
+      gem_plugin (~> 0.2.3)
     mysql2 (0.2.6)
     nokogiri (1.4.4)
     paper_trail (1.6.4)
@@ -155,7 +159,6 @@ DEPENDENCIES
   capybara
   compass
   devise
-  dispatcher
   display_name
   dragonfly
   factory_girl_rails
@@ -165,6 +168,7 @@ DEPENDENCIES
   meta_search
   meta_where
   mocha
+  mongrel (>= 1.2.0.pre2)
   mysql2
   paper_trail
   rack-cache

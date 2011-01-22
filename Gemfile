@@ -12,7 +12,7 @@ group :production, :development do
 end
 
 group :production do
-  gem 'dispatcher'
+  gem 'mongrel', '>= 1.2.0.pre2'
 end
 
 
