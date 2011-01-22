@@ -4,8 +4,8 @@
 - javascript 'filtrador'
 
 = filter_form_for @search do |form|
-  = form.input :titulo_contains, :label => 'Título', :required => false # No funciona traducir etiqueta de estos atributos
-  = form.input :cuerpo_contains, :label => 'Cuerpo', :required => false
+  = form.input :titulo_contains, :label => 'Título' # No funciona traducir etiqueta de estos atributos
+  = form.input :cuerpo_contains, :label => 'Cuerpo'
 
 %section#listado
   = render :partial => 'listado'
