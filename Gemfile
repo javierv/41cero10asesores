@@ -11,6 +11,10 @@ group :production, :development do
   gem 'mysql2'
 end
 
+group :production do
+  gem 'dispatcher'
+end
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

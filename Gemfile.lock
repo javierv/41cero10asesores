@@ -56,6 +56,7 @@ GEM
     devise (1.1.5)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 1.0.2)
+    dispatcher (0.0.1)
     display_name (0.1.1)
     dragonfly (0.8.2)
       rack
@@ -154,6 +155,7 @@ DEPENDENCIES
   capybara
   compass
   devise
+  dispatcher
   display_name
   dragonfly
   factory_girl_rails
