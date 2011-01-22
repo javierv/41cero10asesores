@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Pagina < ActiveRecord::Base
   attr_accessible :titulo, :cuerpo, :caja_ids
   attr_writer :ids_cajas

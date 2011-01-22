@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class NavegacionesController < ApplicationController
   def new
     @ids = Navegacion.pagina_ids

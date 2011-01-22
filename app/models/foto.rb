@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Foto < ActiveRecord::Base
   image_accessor :imagen
 

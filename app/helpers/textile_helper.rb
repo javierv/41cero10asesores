@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module TextileHelper
   def strict_textilize(texto)
    sanitize textilize(texto),

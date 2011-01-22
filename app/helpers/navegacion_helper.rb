@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module NavegacionHelper
   def lista_con_enlaces(enlaces, opciones = {})
     return '' if enlaces.empty?

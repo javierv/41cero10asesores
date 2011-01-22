@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class FotosController < ApplicationController
   respond_to :html
   before_filter :new_foto, :only => [:new, :create]

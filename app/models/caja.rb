@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Caja < ActiveRecord::Base
   attr_accessible :titulo, :cuerpo
   validates :titulo, :presence => true
