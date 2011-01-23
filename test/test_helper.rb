@@ -16,6 +16,16 @@ class ActionController::TestCase
   include Devise::TestHelpers
   setup :authenticate_usuario
 
+  def with_versioning
+    was_enabled = PaperTrail.enabled?
+    PaperTrail.enabled = true
+    begin
+      yield
+    ensure
+      PaperTrail.enabled = was_enabled
+    end
+  end
+
   def authenticate_usuario
     @usuario = Factory :usuario
     sign_in @usuario

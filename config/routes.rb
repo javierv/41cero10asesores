@@ -12,6 +12,8 @@ Calesur::Application.routes.draw do
     get :historial, :on => :member
   end
 
+  resources :versions, :only => [:show]
+
   root :to => "paginas#index"
   match '/autocomplete' => "ajax_form#autocomplete"
   match '/ayuda-textile' => "static#ayuda_textile"
