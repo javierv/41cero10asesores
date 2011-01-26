@@ -1,5 +1,6 @@
 @import "compass/css3"
 @import partials/enlace.sass
+@import partials/button.sass
 
 ul.actions
   margin-top: 1em
@@ -42,3 +43,5 @@ ul.actions
       background-image: url(/images/paginas.png)
     &.index.cajas
       background-image: url(/images/cajas.png)
+  input
+    @extend .button 
