@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/adamcooper/vestal_versions
+  revision: 6273df533f85014062e346cb1807b0531a809ee2
+  specs:
+    vestal_versions (1.2.2)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -97,9 +105,6 @@ GEM
       gem_plugin (~> 0.2.3)
     mysql2 (0.2.6)
     nokogiri (1.4.4)
-    paper_trail (1.6.4)
-      actionpack (>= 2.3)
-      activerecord (>= 2.3)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-cache (1.0)
@@ -172,7 +177,6 @@ DEPENDENCIES
   mocha
   mongrel (>= 1.2.0.pre2)
   mysql2
-  paper_trail
   rack-cache
   rails (= 3.0.3)
   rails3-generators
@@ -183,6 +187,7 @@ DEPENDENCIES
   therubyracer
   validates_date_time
   validation_reflection
+  vestal_versions!
   will_paginate (>= 3.0.pre)
   xapian-full
   xapit

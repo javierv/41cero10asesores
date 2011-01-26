@@ -43,7 +43,7 @@ gem "display_name"
 gem "xapian-full"
 gem "xapit"
 gem "inploy"
-gem "paper_trail"
 gem "barista"
+gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
 gem "therubyracer"
 gem "differ"

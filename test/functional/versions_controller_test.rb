@@ -2,11 +2,9 @@ require 'test_helper'
 
 class VersionsControllerTest < ActionController::TestCase
   def pagina_con_versiones
-    with_versioning do
-      pagina = Factory(:pagina, :titulo => 'Título previo')
-      pagina.update_attribute(:titulo, 'Título final')
-      pagina
-    end
+    pagina = Factory(:pagina, :titulo => 'Título previo')
+    pagina.update_attribute(:titulo, 'Título final')
+    pagina
   end
 
   context 'show action' do
