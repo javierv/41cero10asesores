@@ -14,6 +14,7 @@ Calesur::Application.routes.draw do
 
   resources :versions, :only => [:show] do
     put :recover, :on => :member
+    get :compare, :on => :member
   end
 
   root :to => "paginas#index"

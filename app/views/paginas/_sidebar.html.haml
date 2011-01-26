@@ -1,0 +1,3 @@
+- if !pagina.cajas_con_orden.empty?
+  - pagina.cajas_con_orden.each do |caja|
+    = render 'cajas/caja', :caja => caja

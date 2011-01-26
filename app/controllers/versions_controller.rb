@@ -10,6 +10,10 @@ class VersionsController < ApplicationController
     redirect_to @pagina, :notice => 'Versión recuperada'
   end
 
+  def compare
+    @previa = @version.previous.reify
+  end
+
 private
   def find_version
     @version = Version.find params[:id]

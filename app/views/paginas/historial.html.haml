@@ -9,4 +9,4 @@
       = table.cell :whodunnit, :heading => 'Modificado por' do |version|
         - version.previous.whodunnit
       = table.cell(:acciones, :heading => 'Acciones', :cell_html => {:class => 'actions'}) do |version|
-        - actions_list [:show], version
+        - actions_list [:show, :compare], version
