@@ -12,7 +12,9 @@ Calesur::Application.routes.draw do
     get :historial, :on => :member
   end
 
-  resources :versions, :only => [:show]
+  resources :versions, :only => [:show] do
+    put :recover, :on => :member
+  end
 
   root :to => "paginas#index"
   match '/autocomplete' => "ajax_form#autocomplete"
