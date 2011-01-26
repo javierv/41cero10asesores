@@ -4,4 +4,4 @@
 = render 'pagina', :pagina => @pagina
 
 - if usuario_signed_in?
-  = actions_list([:edit, :index], @pagina)
+  = actions_list([:edit, :index, :historial], @pagina)
