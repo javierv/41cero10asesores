@@ -7,3 +7,14 @@ VestalVersions.configure do |config|
   # Any options passed to the "versioned" method in the model itself will override this global
   # configuration.
 end
+
+module VestalVersions
+  class Version < ActiveRecord::Base
+    def reify(version_number = nil)
+      version_number ||= number
+      restored = versioned
+      restored.revert_to(version_number)
+      restored
+    end
+  end
+end

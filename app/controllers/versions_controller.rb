@@ -11,8 +11,7 @@ class VersionsController < ApplicationController
   end
 
   def compare
-    @previa = @version.versioned
-    @previa.revert_to(@version.number - 1)
+    @previa = @version.reify(@version.number - 1)
   end
 
 private
@@ -21,7 +20,6 @@ private
   end
 
   def reify_pagina
-    @pagina = @version.versioned
-    @pagina.revert_to(@version.number)
+    @pagina = @version.reify
   end
 end
