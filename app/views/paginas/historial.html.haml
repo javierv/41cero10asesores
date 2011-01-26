@@ -2,11 +2,9 @@
 - listado
 
 %section#listado
-  = table_for @versiones.reject {|version| !version.previous} do |table|
+  = table_for @versiones do |table|
     = table.data do
-      = table.cell :created_at, :heading => 'Modificado el' do |version|
-        - version.previous.created_at
-      = table.cell :whodunnit, :heading => 'Modificado por' do |version|
-        - version.previous.whodunnit
+      = table.cell :created_at, :heading => 'Modificado el'
+      = table.cell :user, :heading => 'Modificado por'
       = table.cell(:acciones, :heading => 'Acciones', :cell_html => {:class => 'actions'}) do |version|
         - actions_list [:show, :compare], version

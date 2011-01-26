@@ -11,15 +11,17 @@ class VersionsController < ApplicationController
   end
 
   def compare
-    @previa = @version.previous.reify
+    @previa = @version.versioned
+    @previa.revert_to(@version.number - 1)
   end
 
 private
   def find_version
-    @version = Version.find params[:id]
+    @version = VestalVersions::Version.find params[:id]
   end
 
   def reify_pagina
-    @pagina = @version.reify
+    @pagina = @version.versioned
+    @pagina.revert_to(@version.number)
   end
 end
