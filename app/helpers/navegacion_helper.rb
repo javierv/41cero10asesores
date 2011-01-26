@@ -59,7 +59,11 @@ private
     end
     
     content_tag :li do
-      link_to enlace[0], enlace[1], opciones
+      if opciones[:method]
+        form_tag(enlace[1], :method => opciones[:method]) + submit_tag(enlace[0])
+      else
+        link_to enlace[0], enlace[1], opciones
+      end
     end
   end
 
