@@ -35,6 +35,6 @@ private
   end
 
   def user_for_paper_trail
-    current_usuario.display_name
+    current_usuario.display_name if current_usuario
   end
 end
