@@ -12,7 +12,7 @@ module VestalVersions
   class Version < ActiveRecord::Base
     def reify(version_number = nil)
       version_number ||= number
-      restored = versioned
+      restored = versioned.class.find(versioned.id)
       restored.revert_to(version_number)
       restored
     end
