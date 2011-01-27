@@ -11,7 +11,12 @@ class VersionsController < ApplicationController
   end
 
   def compare
-    @referencia = @version.versioned
+    @referencia =
+      if params[:ref_id]
+        VestalVersions::Version.find(params[:ref_id]).reify
+      else
+        @version.versioned
+      end
   end
 
 private
