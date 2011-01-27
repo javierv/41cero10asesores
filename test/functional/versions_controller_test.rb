@@ -7,6 +7,9 @@ class VersionsControllerTest < ActionController::TestCase
     pagina
   end
 
+  should route(:get, "/versions/1/compare/2").
+          to(:action => :compare, :id => 1, :ref_id => 2)
+
   context 'show action' do
     setup do
       @pagina = pagina_con_versiones

@@ -15,7 +15,7 @@ Calesur::Application.routes.draw do
   resources :vestal_versions_versions, :path => 'versions', :controller => 'versions',
     :only => [:show] do
     put :recover, :on => :member
-    get :compare, :on => :member
+    get 'compare(/:ref_id)', :action => 'compare', :as => :compare, :on => :member
   end
 
   root :to => "paginas#index"
