@@ -7,6 +7,6 @@
       = table.cell :created_at, :heading => 'Modificado el'
       = table.cell :user, :heading => 'Modificado por'
       = table.cell(:acciones, :heading => 'Acciones', :cell_html => {:class => 'actions'}) do |version|
-        - actions_list [:show, :compare], version
+        - acciones_para_version version
 
 = actions_list [:show, :edit, :index], @pagina

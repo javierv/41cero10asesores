@@ -44,6 +44,19 @@ module NavegacionHelper
   def acciones_para_caja(caja)
     actions_list [:edit, :destroy], caja
   end
+
+  def acciones_para_version(version)
+    actions = [:show]
+    if version.previous
+      actions << ['Anterior', 
+                compare_vestal_versions_version_path(version, version.previous)]
+    end
+    
+    unless version.current?
+      actions << ['Actual', compare_vestal_versions_version_path(version)]
+    end
+    actions_list actions, version
+  end
  
 private
   def elemento_lista_enlace(enlace)
