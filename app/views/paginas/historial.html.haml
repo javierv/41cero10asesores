@@ -16,5 +16,5 @@
       = table.cell(:acciones, :heading => 'Acciones', :cell_html => {:class => 'actions'}) do |version|
         - acciones_para_version version
 
-= submit_tag 'Comparar' 
+.actions= submit_tag 'Comparar seleccionadas' 
 = actions_list [:show, :edit, :index], @pagina
