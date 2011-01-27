@@ -8,3 +8,5 @@
       = table.cell :user, :heading => 'Modificado por'
       = table.cell(:acciones, :heading => 'Acciones', :cell_html => {:class => 'actions'}) do |version|
         - actions_list [:show, :compare], version
+
+= actions_list [:show, :edit, :index], @pagina
