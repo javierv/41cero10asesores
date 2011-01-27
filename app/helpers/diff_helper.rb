@@ -20,10 +20,12 @@ private
   end
 
   def boton_id(version)
-    radio_button_tag(:version_id, version.id) 
+    radio_button_tag :version_id, version.id, false,
+                     :title => 'Selecciona como versión posterior en la comparación'
   end
 
   def boton_referencia(version)
-    radio_button_tag(:ref_id, version.id)
+    radio_button_tag :ref_id, version.id, false,
+                     :title => 'Selecciona como versión de referencia en la comparación'
   end
 end
