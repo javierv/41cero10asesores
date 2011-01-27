@@ -21,5 +21,5 @@ $('document').ready ->
             $(this).show()
           else
             $(this).hide()
-  $('input:radio[name="ref_id"]:last').attr('checked', 'checked').change()
+  $('input:radio[name="ref_id"]:gt(0):first').attr('checked', 'checked').change()
   $('input:radio[name="version_id"]:first').attr('checked', 'checked').change()
