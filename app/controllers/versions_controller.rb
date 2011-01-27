@@ -21,7 +21,7 @@ class VersionsController < ApplicationController
 
 private
   def find_version
-    @version = VestalVersions::Version.find params[:id]
+    @version = VestalVersions::Version.find(params[:version_id] || params[:id])
   end
 
   def reify_pagina
