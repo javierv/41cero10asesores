@@ -11,7 +11,7 @@ class VersionsController < ApplicationController
   end
 
   def compare
-    @previa = @version.reify(@version.number - 1)
+    @referencia = @version.versioned
   end
 
 private

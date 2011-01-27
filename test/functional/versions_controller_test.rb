@@ -30,11 +30,25 @@ class VersionsControllerTest < ActionController::TestCase
   context 'compare action' do
     setup do
       @pagina = pagina_con_versiones
-      get :compare, :id => @pagina.versions.last.to_param
     end
 
-    should respond_with(:success)
-    should assign_to(:pagina)
-    should assign_to(:previa)
+    context 'sin versión de referencia' do
+      setup do
+        get :compare, :id => @pagina.versions.last.to_param
+      end
+
+      should respond_with(:success)
+      should assign_to(:pagina)
+      should assign_to(:referencia)
+    end
+
+    context 'con versión de referencia' do
+      setup do
+        get :compare, :id => @pagina.versions.last.to_param,
+            :ref_id => @pagina.versions.first.to_param
+      end
+
+      should respond_with(:success)
+    end
   end
 end
