@@ -16,5 +16,17 @@ module VestalVersions
       restored.revert_to(version_number)
       restored
     end
+
+    def current?
+      number == versioned.version
+    end
+
+    def next
+      versioned.versions.order("number DESC").where("number > ?", number).first
+    end
+
+    def previous
+      versioned.versions.order("number DESC").where("number < ?", number).first
+    end
   end
 end
