@@ -12,7 +12,8 @@ Calesur::Application.routes.draw do
     get :historial, :on => :member
   end
 
-  resources :versions, :only => [:show] do
+  resources :vestal_versions_versions, :path => 'versions', :controller => 'versions',
+    :only => [:show] do
     put :recover, :on => :member
     get :compare, :on => :member
   end

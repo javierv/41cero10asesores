@@ -2,5 +2,5 @@
 - css 'sidebar'
 = render 'paginas/pagina', :pagina => @pagina
 = actions_list [:historial, 
-  ['Recuperar', recover_version_path(@version), {:form => true, :method => :put}]],
-  @pagina
+  ['Recuperar', recover_vestal_versions_version_path(@version),
+  {:form => true, :method => :put}]], @pagina
