@@ -7,7 +7,7 @@ module DiffHelper
   end
 
   def botones_seleccion_diferencias(version)
-    boton_id(version) + boton_referencia(version)
+    boton_referencia(version) + boton_id(version)
   end
 private
   def render_pagina(pagina)

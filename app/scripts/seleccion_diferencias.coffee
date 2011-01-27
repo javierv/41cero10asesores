@@ -8,7 +8,7 @@ $('document').ready ->
   $('input:radio').change ->
     if this.checked
       cambiado = $(this)
-      if this.name == 'version_id'
+      if this.name == 'ref_id'
         cambio = 'mostrar'
       else
         cambio = 'ocultar'
@@ -21,5 +21,5 @@ $('document').ready ->
             $(this).show()
           else
             $(this).hide()
-  $('input:radio[name="ref_id"]:first').attr('checked', 'checked').change()
-  $('input:radio[name="version_id"]:last').attr('checked', 'checked').change()
+  $('input:radio[name="ref_id"]:last').attr('checked', 'checked').change()
+  $('input:radio[name="version_id"]:first').attr('checked', 'checked').change()
