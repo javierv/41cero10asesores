@@ -28,5 +28,9 @@ module VestalVersions
     def previous
       versioned.versions.order("number DESC").where("number < ?", number).first
     end
+
+    def current
+      versioned.versions.where("number =", number).first
+    end
   end
 end

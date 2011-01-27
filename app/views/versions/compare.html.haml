@@ -1,6 +1,11 @@
 - css 'diff'
 - css 'sidebar'
 
-= diferencias(@pagina, @referencia)
+%p#introduccion
+  Diferencias entre las versiones:
+  %del.differ= texto_version_modificada(@referencia)
+  %ins.differ= texto_version_modificada(@version) 
+
+= diferencias(@pagina, @referencia.reify)
 
 = actions_list [:historial], @pagina

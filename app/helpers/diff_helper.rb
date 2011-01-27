@@ -9,6 +9,15 @@ module DiffHelper
   def botones_seleccion_diferencias(version)
     boton_referencia(version) + boton_id(version)
   end
+
+  def texto_version_modificada(version)
+    html = "Modificada el #{content_tag :span, l(version.updated_at, :format => :long)}"
+    if version.user
+      html += " por #{content_tag :span, version.user}" 
+    end
+
+    html.html_safe
+  end
 private
   def render_pagina(pagina)
     {:content => render('paginas/texto_pagina', :pagina => pagina),
