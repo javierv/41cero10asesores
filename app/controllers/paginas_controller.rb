@@ -48,7 +48,7 @@ class PaginasController < ApplicationController
   end
 
   def historial
-    @versiones = @pagina.versions
+    @versiones = @pagina.versions.order("created_at DESC")
   end
 
   def search
