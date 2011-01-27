@@ -33,8 +33,4 @@ private
   def estan_accediendo_al_indice_principal?
     params.reject{|key, value| [:controller, :action].include?(key.to_sym)}.empty?
   end
-
-  def user_for_paper_trail
-    current_usuario.display_name if current_usuario
-  end
 end
