@@ -49,11 +49,13 @@ module NavegacionHelper
     actions = [:show]
     if version.previous
       actions << ['Anterior', 
-                compare_vestal_versions_version_path(version, version.previous)]
+                compare_vestal_versions_version_path(version, version.previous),
+                {:title => 'Comparar con la versión anterior a esta'}]
     end
     
     unless version.current?
-      actions << ['Actual', compare_vestal_versions_version_path(version)]
+      actions << ['Actual', compare_vestal_versions_version_path(version),
+                  {:title => 'Comparar con la versión actual'}]
     end
     actions_list actions, version
   end
