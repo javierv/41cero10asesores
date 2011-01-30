@@ -14,3 +14,4 @@ config/database.yml
 tmp/restart.txt
 tags
 tmp/tags
+posix
