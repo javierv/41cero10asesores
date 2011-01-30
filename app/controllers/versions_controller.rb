@@ -15,7 +15,7 @@ class VersionsController < ApplicationController
       if params[:ref_id]
         VestalVersions::Version.find(params[:ref_id])
       else
-        @version.actual
+        @version.current
       end
   end
 
