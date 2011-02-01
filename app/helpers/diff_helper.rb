@@ -1,3 +1,4 @@
+# encoding: utf-8
 module DiffHelper
   def diferencias(pagina_actual, pagina_anterior)
     actual = render_pagina(pagina_actual)
