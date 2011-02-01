@@ -1,17 +1,21 @@
-* Puesta en producción con mongrel.
-* Historial de páginas.
+* Historial de páginas. Diferencias entre versiones.
+* Deshacer borrados.
+* Es posible que un al grabar borrador desde "Nueva página" se esté creando un nuevo borrador cada vez.
+* Añadir instrucciones en la navegación de que sólo se pueden escoger las páginas publicadas.
+* Tests de Javascript con Jasmine.
 * URLs bonitas.
 * https://github.com/rubiety/validates_lengths_from_database
 * Actualizar índice Xapian una vez al día
-* Quitar el asterisco de obligatorio y añadirlo por CSS para los input[required], que los lectores de pantalla deberían usar este atributo y el asterisco sobraría.
 * La sesión caduca aunque pinches en recordar.
 * Usar el atributo formaction en cuanto salgan las próximas versiones de Firefox y Chrome. Para la administración vale con eso.
+* Podríamos poner un icono de borrar en la imagen desde la previsualización.
 
 * Mirar si se puede meter Google Maps.
 * PDFs con el boletín.
 * Enlace al CRM.
 
-* Mixin para los colores de los enlaces (se repiten mucho).
+* Pasar a jQuery 1.5
+
 * "Ordenar por..." como título de enlaces de cabecera de la tabla.
 * Que los errores sean enlaces a corregir el error.
 * "Editar borrador" no se ve entero :S. Confirmado, cuando la ventana no es grande respecto al tamaño del texto. Por alguna razón, la tabla no se comprime en la celda de acciones.
@@ -21,6 +25,8 @@
 * Cambiar content_for(:head) para poner CSS al principio y JS al final.
 * En Chromium el editor de texto ocupa menos de la mitad de lo que debería.
 * Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
+* Borrar el historial de versiones de los borradores cuando se borra el borrador. No sé si se podrá poner una relación con versiones que las borre si la página es borrador. 
+* Buscar usos de almacenamiento local. Uno erróneo: conservar lo que se estaba escribiendo al editar una página, porque puede que el usuario quiera descartar los cambios.
 
 Sección de imágenes:
 * ¿Paginador en la galería?
