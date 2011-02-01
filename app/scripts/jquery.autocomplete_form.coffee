@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 jQuery.fn.autocompleteForm = (options) ->
   defaults = inputs: "input[type='text']", url: '/autocomplete'
 

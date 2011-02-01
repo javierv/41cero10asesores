@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 ###
  ajaxPaginator es un plugin que permite hacer paginación vía Ajax.
  Copyright Javi <elretirao@elretirao.net>
