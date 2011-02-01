@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 $(document).ready ->
   form = $('#galeria .foto form')
   form.ajaxForm(

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 $(document).ready ->
   $('<a href="/ayuda-textile">Ayuda del editor</a>')
     .click(->
