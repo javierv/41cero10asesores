@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class VersionsController < ApplicationController
   before_filter :find_version
   before_filter :reify_pagina
