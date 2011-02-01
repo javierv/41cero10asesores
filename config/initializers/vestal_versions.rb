@@ -30,7 +30,7 @@ module VestalVersions
     end
 
     def current
-      versioned.versions.where("number =", number).first
+      versioned.versions.order("number DESC").first
     end
   end
 end
