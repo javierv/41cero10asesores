@@ -18,13 +18,12 @@
     #content
       - flash.each do |name, msg|
         .flash{:id => "flash_#{name}"}
-          %p 
-            = msg
-            - if session[:deshacer]
-              = form_tag session[:deshacer][:url], 
-                :method => session[:deshacer][:method] do
-                = submit_tag 'Deshacer'
-              - session.delete(:deshacer)
+          %p= msg
+          - if session[:deshacer]
+            = form_tag session[:deshacer][:url], 
+              :method => session[:deshacer][:method] do
+              = submit_tag 'Deshacer'
+            - session.delete(:deshacer)
 
       - if content_for?(:sidebar)
         %aside#sidebar{:role => 'complementary'}= yield(:sidebar)
