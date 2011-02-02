@@ -43,7 +43,15 @@ class PaginasController < ApplicationController
   end
 
   def destroy
-    flash[:notice] = 'Pagina se borró correctamente.' if @pagina.destroy
+    if @pagina.destroy
+      flash[:notice] = 'Pagina se borró correctamente.'
+      if @pagina.versions.last
+        session[:deshacer] = { 
+          :method => :put,
+          :url    => restore_vestal_versions_version_path(@pagina.versions.last)
+        }
+      end
+    end
     respond_with @pagina
   end
 
