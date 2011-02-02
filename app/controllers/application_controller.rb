@@ -32,7 +32,7 @@ private
     params.reject{|key, value| [:controller, :action].include?(key.to_sym)}.empty?
   end
 
-  def session_key
-    @session_key ||= :"#{params[:controller]}.#{params[:action]}"
+  def session_key(action = nil)
+    @session_key ||= :"#{params[:controller]}.#{action || params[:action]}"
   end
 end
