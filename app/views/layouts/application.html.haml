@@ -20,9 +20,7 @@
         .flash{:id => "flash_#{name}"}
           %p= msg
           - if session[:deshacer]
-            = form_tag session[:deshacer][:url], 
-              :method => session[:deshacer][:method] do
-              = submit_tag 'Deshacer'
+            = render 'shared/deshacer', :deshacer => session[:deshacer]
             - session.delete(:deshacer)
 
       - if content_for?(:sidebar)
