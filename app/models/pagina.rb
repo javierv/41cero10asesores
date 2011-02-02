@@ -17,7 +17,7 @@ class Pagina < ActiveRecord::Base
   before_save :build_sidebar
   before_save :set_borrador
 
-  versioned :initial_version => true
+  versioned :dependent => :tracking, :initial_version => true
 
   def cajas_con_orden
     cajas.order("sidebars.orden ASC")
