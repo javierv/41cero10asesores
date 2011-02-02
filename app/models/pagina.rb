@@ -96,6 +96,14 @@ class Pagina < ActiveRecord::Base
       'Publicada'
     end
   end
+  
+  def self.search_paginate(params)
+    search = metasearch params[:search]
+    paginas = search.where(:published_id => nil).paginate :page => params[:page],
+      :per_page => per_page
+
+    [search, paginas]
+  end
 
 private
   def build_sidebar

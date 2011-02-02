@@ -14,9 +14,7 @@ class PaginasController < ApplicationController
   before_filter :publish_draft, :only => [:create, :update]
 
   def index
-    @search = Pagina.metasearch params[:search]
-    @paginas = @search.where(:published_id => nil).paginate :page => params[:page],
-      :per_page => Pagina.per_page
+    @search, @paginas = Pagina.search_paginate(params)
     respond_with @paginas    
   end
 
