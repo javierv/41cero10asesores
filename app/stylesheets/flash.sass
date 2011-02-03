@@ -1,26 +1,31 @@
 @import "compass/css3"
 @import partials/button.sass
 
-.flash
+#flash
   margin-bottom:    0.5em
   text-align:       center
+
+  & > div
+    text-align: center
   p
     padding:        0.3em 0.5em 0.3em 2em
     display:        inline
     background:     no-repeat 0.2em center
     +background-size(auto 90%)
 
+    &.cargando
+      background-image: url(/images/loading.gif)
   form
     display: inline
     input[type=submit]
       @extend .button 
 
-#flash_notice p
-  background-color: #cfc
-  background-image: url(/images/exito.png)
-  border:           1px solid #6c6
+  #flash_notice p
+    background-color: #cfc
+    background-image: url(/images/exito.png)
+    border:           1px solid #6c6
 
-#flash_alert p
-  background-color: #fcc
-  background-image: url(/images/error.png)
-  border:           solid 1px #c66
+  #flash_alert p
+    background-color: #fcc
+    background-image: url(/images/error.png)
+    border:           solid 1px #c66
