@@ -16,7 +16,7 @@
       = render 'general/buscador'
 
     #content
-      = render 'shared/flash'
+      = render 'shared/flash', :flash => flash
 
       - if content_for?(:sidebar)
         %aside#sidebar{:role => 'complementary'}= yield(:sidebar)
