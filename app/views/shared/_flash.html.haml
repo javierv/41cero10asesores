@@ -6,3 +6,4 @@
         - if session[:deshacer]
           = render 'shared/deshacer', :deshacer => session[:deshacer]
           - session.delete(:deshacer)
+  - flash.discard
