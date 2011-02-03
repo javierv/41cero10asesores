@@ -8,7 +8,7 @@ namespace :db do
     end
 
 
-    [Pagina, Caja, Sidebar].each(&:delete_all)
+    [Pagina, Caja, Sidebar, Navegacion].each(&:delete_all)
 
     20.times do
       caja = Caja.new
@@ -36,6 +36,15 @@ namespace :db do
         sidebar.save
         orden += 1
       end
+    end
+
+    ['Nuestros valores', 'Ámbitos de actuación', 'Participamos', 'Ubicación', 'Contacto'].each_with_index do |titulo, index|
+      pagina = Pagina.new(:titulo => titulo)
+      pagina.cuerpo = Faker::Lorem.paragraphs((4..10).random).join("\n\n")
+      pagina.save(false)
+
+      navegacion = Navegacion.new(:pagina_id => pagina.id, :orden => index + 1)
+      navegacion.save(false)
     end
   end
 end
