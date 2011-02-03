@@ -293,7 +293,8 @@ describe Pagina do
       end
     end
   end
-  context 'Al final las páginas de la navegación' do
+
+  describe 'Al final las de la navegación' do
     before(:each) do
       @navegables = [Factory(:pagina), Factory(:pagina), Factory(:pagina)]
       @otras = [Factory(:pagina), Factory(:pagina), Factory(:pagina)]
