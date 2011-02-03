@@ -51,7 +51,7 @@ class PaginasController < ApplicationController
       end
     end
     if request.xhr?
-      @paginas = siguiente
+      @siguiente = Pagina.siguiente(session_params(:index) || {})
     else
       respond_with @pagina
     end
@@ -125,10 +125,5 @@ private
         render 'edit'
       end
     end
-  end
-
-  def siguiente
-    search, paginas = Pagina.search_paginate(session_params(:index) || {})
-    paginas
   end
 end

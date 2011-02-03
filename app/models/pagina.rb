@@ -3,6 +3,10 @@
 class Pagina < ActiveRecord::Base
   attr_accessible :titulo, :cuerpo, :caja_ids, :updated_by
   attr_writer :ids_cajas
+  
+  def self.per_page
+    2
+  end
 
   with_options :unless => :borrador? do |pagina|
     pagina.validates :titulo, :presence => true
@@ -105,6 +109,10 @@ class Pagina < ActiveRecord::Base
     [search, paginas]
   end
 
+  def self.siguiente(params)
+    search, paginas = search_paginate(params)
+    paginas.last unless paginas.count != per_page
+  end
 private
   def build_sidebar
     if @ids_cajas
