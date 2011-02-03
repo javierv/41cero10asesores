@@ -310,4 +310,20 @@ describe Pagina do
       paginas[-3].should == @navegables[2] 
     end
   end
+
+  describe 'siguiente página' do
+    before(:each) do
+      @paginas = []
+      11.times { @paginas << Factory(:pagina)}
+      Pagina.stubs(:per_page).returns(3)
+    end
+
+    it 'devuelve la primera que no está en la página actual' do
+      Pagina.siguiente(:page => 1).should == @paginas[2]
+    end
+
+    it 'no devuelve nada si no hay siguiente página' do
+      Pagina.siguiente(:page => 4).should be_nil
+    end
+  end
 end
