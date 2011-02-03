@@ -2,7 +2,7 @@
 
 class VersionsController < ApplicationController
   before_filter :find_version
-  before_filter :reify_pagina
+  before_filter :reify_pagina, :except => :restore
 
   def show
   end
@@ -10,6 +10,11 @@ class VersionsController < ApplicationController
   def recover
     @pagina.save
     redirect_to @pagina, :notice => 'Versión recuperada'
+  end
+
+  def restore
+    @version.restore!
+    redirect_to paginas_path, :notice => 'Página recuperada'
   end
 
   def compare

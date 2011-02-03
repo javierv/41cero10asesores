@@ -14,9 +14,7 @@ class PaginasController < ApplicationController
   before_filter :publish_draft, :only => [:create, :update]
 
   def index
-    @search = Pagina.metasearch params[:search]
-    @paginas = @search.where(:published_id => nil).paginate :page => params[:page],
-      :per_page => Pagina.per_page
+    @search, @paginas = Pagina.search_paginate(params)
     respond_with @paginas    
   end
 
@@ -43,8 +41,20 @@ class PaginasController < ApplicationController
   end
 
   def destroy
-    flash[:notice] = 'Pagina se borró correctamente.' if @pagina.destroy
-    respond_with @pagina
+    if @pagina.destroy
+      flash[:notice] = 'Pagina se borró correctamente.'
+      if @pagina.versions.last
+        session[:deshacer] = { 
+          :method => :put,
+          :url    => restore_vestal_versions_version_path(@pagina.versions.last)
+        }
+      end
+    end
+    if request.xhr?
+      @siguiente = Pagina.siguiente(session_params(:index) || {})
+    else
+      respond_with @pagina
+    end
   end
 
   def historial

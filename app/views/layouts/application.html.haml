@@ -16,9 +16,7 @@
       = render 'general/buscador'
 
     #content
-      - flash.each do |name, msg|
-        .flash{:id => "flash_#{name}"}
-          %p= msg
+      = render 'shared/flash', :flash => flash
 
       - if content_for?(:sidebar)
         %aside#sidebar{:role => 'complementary'}= yield(:sidebar)

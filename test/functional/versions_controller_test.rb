@@ -32,6 +32,16 @@ class VersionsControllerTest < ActionController::TestCase
     should redirect_to("la página recuperada") {@pagina}
   end
 
+  context 'restore action' do
+    setup do
+      @pagina = pagina_con_versiones
+      @pagina.destroy
+      put :restore, :id => @pagina.versions.last.to_param
+    end
+    should set_the_flash
+    should redirect_to("listado de páginas") {paginas_path}
+  end
+
   context 'compare action' do
     setup do
       @pagina = pagina_con_versiones
