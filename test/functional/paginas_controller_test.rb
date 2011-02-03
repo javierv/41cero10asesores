@@ -185,14 +185,25 @@ class PaginasControllerTest < ActionController::TestCase
   end
 
   context "destroy action" do
-    setup do
-      delete :destroy, :id => @pagina.to_param
+    context "with a normal request" do 
+      setup do
+        delete :destroy, :id => @pagina.to_param
+      end
+
+      should redirect_to('index') { paginas_path }
+      should set_the_flash
+      should "destroy model" do
+        assert !Pagina.exists?(@pagina.id)
+      end
     end
 
-    should redirect_to('index') { paginas_path }
-    should set_the_flash
-    should "destroy model" do
-      assert !Pagina.exists?(@pagina.id)
+    context "with an AJAX request" do
+      setup do
+        xhr :delete, :destroy, :id => @pagina.to_param
+      end
+
+      should_not render_with_layout
+      should respond_with(:success)
     end
   end
 

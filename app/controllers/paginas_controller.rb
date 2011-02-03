@@ -50,7 +50,11 @@ class PaginasController < ApplicationController
         }
       end
     end
-    respond_with @pagina
+    if request.xhr?
+      @paginas = siguiente
+    else
+      respond_with @pagina
+    end
   end
 
   def historial
@@ -121,5 +125,10 @@ private
         render 'edit'
       end
     end
+  end
+
+  def siguiente
+    search, paginas = Pagina.search_paginate(session_params(:index) || {})
+    paginas
   end
 end
