@@ -5,6 +5,10 @@ gem 'mysql2'
 
 group :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem "shoulda"
+  gem "factory_girl_rails"
+  gem "mocha"
+  gem "capybara"
 end
 
 group :production, :development do
@@ -35,10 +39,6 @@ gem "simple_form", ">= 1.3"
 gem "tabletastic"
 gem "rails3-generators", :group => :development
 gem 'faker', :group => :development
-gem "shoulda", :group => :test
-gem "factory_girl_rails", :group => :test
-gem "mocha", :group => :test
-gem "capybara", :group => :test
 gem "display_name"
 gem "xapian-full"
 gem "xapit"
