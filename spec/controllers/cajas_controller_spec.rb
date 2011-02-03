@@ -1,33 +1,32 @@
 # encoding: utf-8
 
-require 'test_helper'
+require 'spec_helper'
 
-class CajasControllerTest < ActionController::TestCase
-  tests CajasController
-
-  setup do
+describe CajasController do
+  before(:each) do
     @caja = Factory(:caja)
+    authenticate_usuario
   end
 
   context "index action" do
-    setup do
+    before(:each) do
       get :index
     end
 
-    should respond_with(:success)
-    should assign_to(:cajas)
+    it { should respond_with(:success) }
+    it { should assign_to(:cajas) }
   end
 
   context "new action" do
-    setup do
+    before(:each) do
       get :new
     end
-    should render_template :new
+    it { should render_template :new }
   end
 
   context "create action" do
     context "when model is invalid" do
-      setup do
+      before(:each) do
         errors = ActiveModel::Errors.new(Caja.new)
         errors.add_on_blank(:id)
         Caja.any_instance.stubs(:errors).returns(errors)
@@ -35,29 +34,29 @@ class CajasControllerTest < ActionController::TestCase
         post :create
       end
 
-      should render_template :new
+      it { should render_template :new }
     end
 
     context "when model is valid" do
-      setup do
+      before(:each) do
         Caja.any_instance.stubs(:errors).returns({})
         Caja.any_instance.stubs(:valid?).returns(true)
         post :create
       end
-      should redirect_to('') {edit_caja_path(assigns(:caja))}
+      it { should redirect_to(edit_caja_path(assigns(:caja))) }
     end
   end
 
   context "edit action" do
-    setup do
+    before(:each) do
       get :edit, :id => @caja.to_param
     end
-    should render_template 'edit'
+    it { should render_template 'edit' }
   end
 
   context "update action" do
     context "when model is invalid" do
-      setup do
+      before(:each) do
         errors = ActiveModel::Errors.new(Caja.new)
         errors.add_on_blank(:id)
         Caja.any_instance.stubs(:errors).returns(errors)
@@ -65,28 +64,28 @@ class CajasControllerTest < ActionController::TestCase
         put :update, :id => @caja.to_param, :caja => @caja.attributes
       end
 
-      should render_template :edit
+      it { should render_template :edit }
     end
 
     context "when model is valid" do
-      setup do
+      before(:each) do
         Caja.any_instance.stubs(:errors).returns({})
         Caja.any_instance.stubs(:valid?).returns(true)
         put :update, :id => @caja.to_param, :caja => @caja.attributes
       end
-      should redirect_to('') {edit_caja_path(@caja)}
+      it { should redirect_to(edit_caja_path(@caja)) }
     end
   end
 
   context "destroy action" do
-    setup do
+    before(:each) do
       delete :destroy, :id => @caja.to_param
     end
 
-    should redirect_to('index') { cajas_path }
-    should set_the_flash
-    should "destroy model" do
-      assert !Caja.exists?(@caja.id)
+    it { should redirect_to(cajas_path) }
+    it { should set_the_flash }
+    it 'destroy model' do
+      Caja.exists?(@caja.id).should be_false
     end
   end
 end

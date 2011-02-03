@@ -12,10 +12,10 @@ module Calesur
       g.stylesheets false
       g.helper false
       g.template_engine :haml
-      g.test_framework :shoulda
+      g.test_framework :rspec
       g.fixture_replacement :factory_girl
       g.form_builder :simple_form
-      g.fallbacks[:shoulda] = :test_unit
+      g.fallbacks[:rspec] = :test_unit
     end
     config.i18n.default_locale = :es
     config.time_zone  = 'Madrid'
