@@ -1,1 +1,2 @@
-= render('tabla', :paginas => @paginas, :search => Pagina.metasearch)
+= render 'tabla', :paginas => @paginas, :search => Pagina.metasearch
+= render 'shared/flash', :flash => flash 
