@@ -21,10 +21,12 @@ namespace :db do
 
     75.times do
       pagina = Pagina.new
-      pagina.titulo = Faker::Lorem.words((1..4).random).join(' ').titleize
-      pagina.cuerpo = Faker::Lorem.paragraphs((4..10).random).join("\n\n")
-      pagina.save(false)
 
+      (1..7).random.times do
+        pagina.titulo = Faker::Lorem.words((1..4).random).join(' ').titleize
+        pagina.cuerpo = Faker::Lorem.paragraphs((4..10).random).join("\n\n")
+        pagina.save(false)
+      end
       posibles_ids = caja_ids.clone
       orden = 1
 
@@ -39,10 +41,16 @@ namespace :db do
     end
 
     ['Nuestros valores', 'Ámbitos de actuación', 'Participamos', 'Ubicación', 'Contacto'].each_with_index do |titulo, index|
-      pagina = Pagina.new(:titulo => titulo)
-      pagina.cuerpo = Faker::Lorem.paragraphs((4..10).random).join("\n\n")
-      pagina.save(false)
+      pagina = Pagina.new
 
+      (1..7).random.times do
+        pagina.titulo = Faker::Lorem.words((1..4).random).join(' ').titleize
+        pagina.cuerpo = Faker::Lorem.paragraphs((4..10).random).join("\n\n")
+        pagina.save(false)
+      end
+
+      pagina.titulo = titulo
+      pagina.save(false)
       navegacion = Navegacion.new(:pagina_id => pagina.id, :orden => index + 1)
       navegacion.save(false)
     end
