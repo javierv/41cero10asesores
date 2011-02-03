@@ -8,7 +8,11 @@ namespace :db do
     end
 
 
-    [Pagina, Caja, Sidebar, Navegacion].each(&:delete_all)
+    [Pagina, Caja, Sidebar, Navegacion, Usuario].each(&:delete_all)
+
+    ['pruebas', 'davidz', 'javier', 'administrador', 'rafael'].each do |nombre|
+      Usuario.create(:email => "#{nombre}@calesur.es", :password => nombre)
+    end
 
     40.times do
       caja = Caja.new
@@ -25,6 +29,7 @@ namespace :db do
       (1..7).random.times do
         pagina.titulo = Faker::Lorem.words((1..4).random).join(' ').titleize
         pagina.cuerpo = Faker::Lorem.paragraphs((4..10).random).join("\n\n")
+        pagina.updated_by = Usuario.all.rand
         pagina.save(false)
       end
       posibles_ids = caja_ids.clone
@@ -46,6 +51,7 @@ namespace :db do
       (1..7).random.times do
         pagina.titulo = Faker::Lorem.words((1..4).random).join(' ').titleize
         pagina.cuerpo = Faker::Lorem.paragraphs((4..10).random).join("\n\n")
+        pagina.updated_by = Usuario.all.rand
         pagina.save(false)
       end
 
