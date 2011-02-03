@@ -10,7 +10,7 @@ namespace :db do
 
     [Pagina, Caja, Sidebar, Navegacion].each(&:delete_all)
 
-    20.times do
+    40.times do
       caja = Caja.new
       caja.titulo = Faker::Lorem.words((1..3).random).join(' ').titleize
       caja.cuerpo = Faker::Lorem.paragraphs((1..3).random).join("\n\n")
@@ -19,7 +19,7 @@ namespace :db do
 
     caja_ids = Caja.all.map(&:id)
 
-    15.times do
+    75.times do
       pagina = Pagina.new
       pagina.titulo = Faker::Lorem.words((1..4).random).join(' ').titleize
       pagina.cuerpo = Faker::Lorem.paragraphs((4..10).random).join("\n\n")
