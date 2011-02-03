@@ -3,10 +3,6 @@
 class Pagina < ActiveRecord::Base
   attr_accessible :titulo, :cuerpo, :caja_ids, :updated_by
   attr_writer :ids_cajas
-  
-  def self.per_page
-    2
-  end
 
   with_options :unless => :borrador? do |pagina|
     pagina.validates :titulo, :presence => true
