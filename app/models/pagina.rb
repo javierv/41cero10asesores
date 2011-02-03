@@ -19,6 +19,10 @@ class Pagina < ActiveRecord::Base
 
   versioned :dependent => :tracking, :initial_version => true
 
+  def self.per_page
+    15
+  end
+
   def cajas_con_orden
     cajas.order("sidebars.orden ASC")
   end
