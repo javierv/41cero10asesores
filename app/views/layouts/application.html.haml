@@ -16,12 +16,7 @@
       = render 'general/buscador'
 
     #content
-      - flash.each do |name, msg|
-        .flash{:id => "flash_#{name}"}
-          %p= msg
-          - if session[:deshacer]
-            = render 'shared/deshacer', :deshacer => session[:deshacer]
-            - session.delete(:deshacer)
+      = render 'shared/flash'
 
       - if content_for?(:sidebar)
         %aside#sidebar{:role => 'complementary'}= yield(:sidebar)
