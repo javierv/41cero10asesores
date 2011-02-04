@@ -17,20 +17,22 @@ describe PaginasController do
   end
 
   describe "index" do
-    before(:each) { get :index }
+    context "sin AJAX" do
+      before(:each) { get :index }
 
-    it { should respond_with(:success) }
-    it { should assign_to(:paginas) }
-    it { should render_with_layout(:application) }
-  end
+      it { should respond_with(:success) }
+      it { should assign_to(:paginas) }
+      it { should render_with_layout(:application) }
+    end
 
-  describe "Índice con AJAX" do
-    before(:each) { xhr :get, :index }
+    context "con AJAX" do
+      before(:each) { xhr :get, :index }
 
-    it { should respond_with_content_type(:js) }
-    it { should render_template(:index) }
-    it { should respond_with(:success) }
-    it { should_not render_with_layout }
+      it { should respond_with_content_type(:js) }
+      it { should render_template(:index) }
+      it { should respond_with(:success) }
+      it { should_not render_with_layout }
+    end
   end
 
   describe "new action" do
