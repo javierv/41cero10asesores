@@ -247,6 +247,19 @@ describe Pagina do
           Pagina.where(:borrador => true).count.should == 2
         end
       end
+
+      context 'al crear un nuevo borrador indicando que ya existía' do
+        let(:draft) { Pagina.new }
+        before(:each) do
+          draft.titulo = 'Cambiado'
+          draft.save_draft(:borrador_id => @nueva.draft.id)
+        end
+
+        it 'reemplaza el borrador existente' do
+          Pagina.where(:borrador => true).should have(1).item
+          @nueva.draft.should == draft.draft
+        end
+      end
     end
 
     context 'un borrador sin página asociada' do
