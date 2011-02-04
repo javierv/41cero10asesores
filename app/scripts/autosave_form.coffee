@@ -12,5 +12,5 @@ $(document).ready ->
             $('#actualizado .borrador').attr('id').match(/\d+$/)[0]
           )
       )
-    , 14000
+    , 120000
   )
