@@ -23,7 +23,7 @@ describe Pagina do
       pagina = Factory(:pagina)
       cajas = [Factory(:caja), Factory(:caja), Factory(:caja)]
       pagina.ids_cajas = [cajas[0].id]
-      lambda { pagina.update_attributes :caja_ids => [cajas[0].id] }.should_not raise_error
+      expect { pagina.update_attributes :caja_ids => [cajas[0].id] }.to_not raise_error
     end
   end
 
@@ -53,7 +53,7 @@ describe Pagina do
     it 'pasa de las IDs vacías' do
       pagina.ids_cajas = ["", "", cajas[2].id, "", ""]
       pagina.save
-      Sidebar.where(:pagina_id => pagina.id).count.should == 1
+      Sidebar.where(:pagina_id => pagina.id).should have(1).item
       Sidebar.where(:pagina_id => pagina.id, :caja_id => cajas[2].id, :orden => 1).first.should be_true
     end
 
@@ -61,7 +61,7 @@ describe Pagina do
       pagina.stubs(:valid?).returns(false)
       pagina.ids_cajas = [cajas[1].id]
       pagina.save
-      Sidebar.where(:pagina_id => pagina.id).count.should == 3
+      Sidebar.where(:pagina_id => pagina.id).should have(3).items
     end
 
     context 'al editar' do
@@ -76,7 +76,7 @@ describe Pagina do
       end
       
       it 'borra el orden anterior' do
-        Sidebar.where(:pagina_id => pagina.id, :caja_id => cajas[2].id).count.should == 1
+        Sidebar.where(:pagina_id => pagina.id, :caja_id => cajas[2].id).should have(1).item
       end
     end
   end
@@ -210,7 +210,7 @@ describe Pagina do
         before(:each) { Pagina.new.save_draft }
 
         it 'no sobreescribe el borrador existente' do
-          Pagina.where(:borrador => true).count.should == 2
+          Pagina.where(:borrador => true).should have(2).items
         end
       end
     end
