@@ -67,4 +67,11 @@ describe VersionsController do
       it { should respond_with(:success) }
     end
   end
+
+  describe 'borradas' do
+    before(:each) { get :borradas }
+
+    it { should respond_with(:success) }
+    it { should assign_to(:versiones) }
+  end
 end
