@@ -17,6 +17,7 @@ Calesur::Application.routes.draw do
     put :recover, :on => :member
     put :restore, :on => :member
     get 'compare(/:ref_id)', :action => 'compare', :as => :compare, :on => :member
+    get :borradas, :on => :collection
   end
 
   root :to => "paginas#index"

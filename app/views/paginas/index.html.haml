@@ -11,4 +11,6 @@
 %section#listado
   = render :partial => 'listado'
 
-= actions_list [:new], Pagina
+= actions_list [:new,
+  ['Páginas borradas', borradas_vestal_versions_versions_path, {:class => 'destroy'}]],
+  Pagina

@@ -8,7 +8,7 @@ describe PaginasController do
     authenticate_usuario
   end
 
-  context "index action" do
+  describe "index" do
     before(:each) do
       get :index
     end
@@ -18,7 +18,7 @@ describe PaginasController do
     it { should render_with_layout(:application) }
   end
 
-  context "Índice con AJAX" do
+  describe "Índice con AJAX" do
     before(:each) do
       xhr :get, :index
     end
@@ -29,14 +29,14 @@ describe PaginasController do
     it { should_not render_with_layout }
   end
 
-  context "new action" do
+  describe "new action" do
     before(:each) do
       get :new
     end
     it { should render_template(:new) }
   end
 
-  context "create action" do
+  describe "create action" do
     context "when model is invalid" do
       before(:each) do
         errors = ActiveModel::Errors.new(Pagina.new)
@@ -80,21 +80,21 @@ describe PaginasController do
     end
   end
 
-  context "show action" do
+  describe "show action" do
     before(:each) do
       get :show, :id => @pagina.to_param
     end
     it { should respond_with(:success) }
   end
 
-  context "edit action" do
+  describe "edit action" do
     before(:each) do
       get :edit, :id => @pagina.to_param
     end
     it { should render_template(:edit) }
   end
 
-  context "update action" do
+  describe "update action" do
     context "when model is invalid" do
       before(:each) do
         errors = ActiveModel::Errors.new(Pagina.new)
@@ -183,7 +183,7 @@ describe PaginasController do
     end
   end
 
-  context "destroy action" do
+  describe "destroy action" do
     context "with a normal request" do 
       before(:each) do
         delete :destroy, :id => @pagina.to_param
@@ -206,7 +206,7 @@ describe PaginasController do
     end
   end
 
-  context "search action" do
+  describe "search action" do
     before(:each) do
       get :search, :q => "buscando"
     end
@@ -215,7 +215,7 @@ describe PaginasController do
     it { should assign_to(:paginas) }
   end
 
-  context 'ver el historial' do
+  describe 'ver el historial' do
     before(:each) do
       get :historial, :id => @pagina.to_param
     end

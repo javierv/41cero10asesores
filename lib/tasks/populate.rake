@@ -8,7 +8,7 @@ namespace :db do
     end
 
 
-    [Pagina, Caja, Sidebar, Navegacion, Usuario].each(&:delete_all)
+    [Pagina, Caja, Sidebar, Navegacion, Usuario, VestalVersions::Version].each(&:delete_all)
 
     ['pruebas', 'davidz', 'javier', 'administrador', 'rafael'].each do |nombre|
       Usuario.create(:email => "#{nombre}@calesur.es", :password => nombre)
