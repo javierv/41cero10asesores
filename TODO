@@ -1,4 +1,4 @@
-* Es posible que un al grabar borrador desde "Nueva página" se esté creando un nuevo borrador cada vez.
+* Borrar por javascript, borrando e insertando el registro siguiente al final de la tabla. 
 * Añadir error si la sesión caducó y la petición es AJAX.
 * El filtrador no se almacena en los parámetros de sesión.
 * Añadir instrucciones en la navegación de que sólo se pueden escoger las páginas publicadas.

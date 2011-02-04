@@ -54,7 +54,7 @@ class Pagina < ActiveRecord::Base
     return update_attributes(attrs) if borrador?
     
     borrador = if new_record?
-      self
+      Pagina.find_by_id(attrs[:borrador_id]) || self
     else
       Pagina.find_or_create_by_published_id(id)
     end
