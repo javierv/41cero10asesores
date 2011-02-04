@@ -13,7 +13,7 @@ describe VersionsController do
     pagina
   end
 
-  context 'show action' do
+  describe 'show' do
     before(:each) do
       @pagina = pagina_con_versiones
       get :show, :id => @pagina.versions.last.to_param
@@ -23,7 +23,7 @@ describe VersionsController do
     it { should respond_with(:success) }
   end    
 
-  context 'recover action' do
+  describe 'recover' do
     before(:each) do
       @pagina = pagina_con_versiones
       put :recover, :id => @pagina.versions.last.to_param
@@ -33,7 +33,7 @@ describe VersionsController do
     it { should redirect_to(@pagina) }
   end
 
-  context 'restore action' do
+  describe 'restore' do
     before(:each) do
       @pagina = pagina_con_versiones
       @pagina.destroy
@@ -43,7 +43,7 @@ describe VersionsController do
     it { should redirect_to(paginas_path) }
   end
 
-  context 'compare action' do
+  describe 'compare' do
     before(:each) do
       @pagina = pagina_con_versiones
     end
