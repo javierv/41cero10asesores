@@ -2,6 +2,12 @@
 
 require 'spec_helper'
 
+RSpec::Matchers.define :have_draft do
+  match do |actual|
+    actual.has_draft?
+  end
+end
+
 describe Pagina do
   it { should validate_presence_of(:titulo) }
   it { should allow_mass_assignment_of(:titulo) }
@@ -96,7 +102,7 @@ describe Pagina do
       let(:pagina) { Factory(:pagina, :titulo => 'Título original') }
 
       context 'sin borrador creado' do
-        it { pagina.has_draft?.should be_false }
+        it { pagina.should_not have_draft }
 
         context 'Al crear un borrador nuevo' do
           before(:each) do
@@ -104,7 +110,7 @@ describe Pagina do
             pagina.save_draft
           end
 
-          it { pagina.has_draft?.should be_true }
+          it { pagina.should have_draft }
 
           it 'tiene un borrador con las mismas características' do
             borrador = pagina.draft
@@ -127,7 +133,7 @@ describe Pagina do
               pagina_bd.titulo.should == 'Título cambiado'
             end
 
-            it { pagina.has_draft?.should be_false }
+            it { pagina.should_not have_draft }
           end
 
           context 'al publicar un borrador no válido' do
@@ -142,7 +148,7 @@ describe Pagina do
               pagina_bd.titulo.should == 'Título original'
             end
 
-            it { pagina.has_draft?.should be_true }
+            it { pagina.should have_draft }
             it { @result.should == false }
             it { draft.errors[:titulo].blank?.should be_false }
           end
@@ -169,8 +175,8 @@ describe Pagina do
           end
 
           it 'graba el borrador' do
-            pagina.has_draft?.should be_true
-            pagina.draft.titulo.should == ''
+            pagina.should have_draft
+            pagina.draft.titulo.should be_empty
           end
         end
       end
