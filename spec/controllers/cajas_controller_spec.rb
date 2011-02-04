@@ -4,15 +4,11 @@ require 'spec_helper'
 
 describe CajasController do
   def caja_falla_validacion
-    errors = ActiveModel::Errors.new(Caja.new)
-    errors.add_on_blank(:id)
-    Caja.any_instance.stubs(:errors).returns(errors)
-    Caja.any_instance.stubs(:valid?).returns(false)
+    falla_validacion(Caja)
   end
 
   def caja_valida_siempre
-    Caja.any_instance.stubs(:errors).returns({})
-    Caja.any_instance.stubs(:valid?).returns(true)
+    valida_siempre(Caja)
   end
 
   before(:each) do

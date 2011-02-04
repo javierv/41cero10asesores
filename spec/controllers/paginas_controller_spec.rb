@@ -4,15 +4,11 @@ require 'spec_helper'
 
 describe PaginasController do
   def pagina_falla_validacion
-    errors = ActiveModel::Errors.new(Pagina.new)
-    errors.add_on_blank(:id)
-    Pagina.any_instance.stubs(:errors).returns(errors)
-    Pagina.any_instance.stubs(:valid?).returns(false)
+    falla_validacion(Pagina)
   end
 
   def pagina_valida_siempre
-    Pagina.any_instance.stubs(:errors).returns({})
-    Pagina.any_instance.stubs(:valid?).returns(true)
+    valida_siempre(Pagina)
   end
 
   before(:each) do

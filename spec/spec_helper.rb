@@ -32,3 +32,15 @@ def authenticate_usuario
   @usuario = Factory :usuario
   sign_in @usuario
 end
+
+def falla_validacion(modelo)
+  errors = ActiveModel::Errors.new(modelo.new)
+  errors.add_on_blank(:id)
+  modelo.any_instance.stubs(:errors).returns(errors)
+  modelo.any_instance.stubs(:valid?).returns(false)
+end
+
+def valida_siempre(modelo)
+  modelo.any_instance.stubs(:errors).returns({})
+  modelo.any_instance.stubs(:valid?).returns(true)
+end
