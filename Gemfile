@@ -7,6 +7,12 @@ group :development, :test do
   gem "rspec-rails"
 end
 
+group :development do
+  gem 'hirb'
+  gem 'faker'
+  gem "rails3-generators"
+end
+
 group :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem "shoulda-matchers"
@@ -40,8 +46,6 @@ gem "meta_where"
 gem "meta_search"
 gem "simple_form", ">= 1.3"
 gem "tabletastic"
-gem "rails3-generators", :group => :development
-gem 'faker', :group => :development
 gem "display_name"
 gem "xapian-full"
 gem "xapit"

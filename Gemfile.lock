@@ -81,6 +81,7 @@ GEM
       rake (>= 0.8.7)
     gem_plugin (0.2.3)
     haml (3.0.24)
+    hirb (0.3.6)
     i18n (0.5.0)
     inploy (1.7.2)
     json_pure (1.4.6)
@@ -185,6 +186,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   haml
+  hirb
   inploy
   meta_search
   meta_where
