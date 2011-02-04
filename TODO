@@ -1,5 +1,6 @@
 * Es posible que un al grabar borrador desde "Nueva página" se esté creando un nuevo borrador cada vez.
 * Añadir error si la sesión caducó y la petición es AJAX.
+* El filtrador no se almacena en los parámetros de sesión.
 * Añadir instrucciones en la navegación de que sólo se pueden escoger las páginas publicadas.
 * Tests de Javascript con Jasmine.
 * URLs bonitas.
