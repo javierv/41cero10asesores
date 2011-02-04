@@ -1,6 +1,6 @@
-* Borrar por javascript, borrando e insertando el registro siguiente al final de la tabla. 
 * Es posible que un al grabar borrador desde "Nueva página" se esté creando un nuevo borrador cada vez.
 * Añadir error si la sesión caducó y la petición es AJAX.
+* El filtrador no se almacena en los parámetros de sesión.
 * Añadir instrucciones en la navegación de que sólo se pueden escoger las páginas publicadas.
 * Tests de Javascript con Jasmine.
 * URLs bonitas.
@@ -15,8 +15,10 @@
 * Enlace al CRM.
 
 * Pasar a jQuery 1.5
-* RSpec.
 
+* Al recuperar una página, no se recupera qué cajas tenía asociadas.
+* No mostrar borradores en las páginas borradas.
+* El enlace a "comparar con la actual" se comporta de forma un tanto extraña.
 * "Ordenar por..." como título de enlaces de cabecera de la tabla.
 * Que los errores sean enlaces a corregir el error.
 * "Editar borrador" no se ve entero :S. Confirmado, cuando la ventana no es grande respecto al tamaño del texto. Por alguna razón, la tabla no se comprime en la celda de acciones.
