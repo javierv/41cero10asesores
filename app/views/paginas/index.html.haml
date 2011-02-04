@@ -1,6 +1,7 @@
 - title "Listado de paginas"
 - listado
 - autocomplete
+- javascript 'borrar_ajax'
 - javascript 'filtrador'
 
 = filter_form_for @search do |form|
@@ -10,4 +11,6 @@
 %section#listado
   = render :partial => 'listado'
 
-= actions_list [:new], Pagina
+= actions_list [:new,
+  ['Páginas borradas', borradas_vestal_versions_versions_path, {:class => 'destroy'}]],
+  Pagina

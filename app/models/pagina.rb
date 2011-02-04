@@ -17,7 +17,11 @@ class Pagina < ActiveRecord::Base
   before_save :build_sidebar
   before_save :set_borrador
 
-  versioned :initial_version => true
+  versioned :dependent => :tracking, :initial_version => true
+
+  def self.per_page
+    15
+  end
 
   def cajas_con_orden
     cajas.order("sidebars.orden ASC")
@@ -96,7 +100,19 @@ class Pagina < ActiveRecord::Base
       'Publicada'
     end
   end
+  
+  def self.search_paginate(params)
+    search = metasearch params[:search]
+    paginas = search.where(:published_id => nil).paginate :page => params[:page],
+      :per_page => per_page
 
+    [search, paginas]
+  end
+
+  def self.siguiente(params)
+    search, paginas = search_paginate(params)
+    paginas.last unless paginas.count != per_page
+  end
 private
   def build_sidebar
     if @ids_cajas

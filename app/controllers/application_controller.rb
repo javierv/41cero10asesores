@@ -21,16 +21,25 @@ private
   end
 
   def conservar_parametros
-    session_key = :"#{params[:controller]}.#{params[:action]}"
-
     if estan_accediendo_al_indice_principal?
-      self.params = session[session_key] if session[session_key]
+      self.params = session_params if session_params
     else
-      session[session_key] = params
+      self.session_params = params
     end
   end
 
   def estan_accediendo_al_indice_principal?
     params.reject{|key, value| [:controller, :action].include?(key.to_sym)}.empty?
+  end
+
+  def session_params(action = nil)
+    session[session_key(action)]
+  end
+
+  def session_params=(params, action = nil)
+    session[session_key(action)] = params
+  end
+  def session_key(action = nil)
+    @session_key ||= :"#{params[:controller]}.#{action || params[:action]}"
   end
 end

@@ -1,8 +1,8 @@
 # encoding: utf-8
 
 class VersionsController < ApplicationController
-  before_filter :find_version
-  before_filter :reify_pagina
+  before_filter :find_version, :except => :borradas
+  before_filter :reify_pagina, :only => [:show, :recover, :compare]
 
   def show
   end
@@ -12,6 +12,11 @@ class VersionsController < ApplicationController
     redirect_to @pagina, :notice => 'Versión recuperada'
   end
 
+  def restore
+    @version.restore!
+    redirect_to paginas_path, :notice => 'Página recuperada'
+  end
+
   def compare
     @referencia =
       if params[:ref_id]
@@ -19,6 +24,10 @@ class VersionsController < ApplicationController
       else
         @version.current
       end
+  end
+
+  def borradas
+    @versiones = VestalVersions::Version.where(:tag => 'deleted')
   end
 
 private

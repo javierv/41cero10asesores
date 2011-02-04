@@ -8,9 +8,13 @@ namespace :db do
     end
 
 
-    [Pagina, Caja, Sidebar].each(&:delete_all)
+    [Pagina, Caja, Sidebar, Navegacion, Usuario, VestalVersions::Version].each(&:delete_all)
 
-    20.times do
+    ['pruebas', 'davidz', 'javier', 'administrador', 'rafael'].each do |nombre|
+      Usuario.create(:email => "#{nombre}@calesur.es", :password => nombre)
+    end
+
+    40.times do
       caja = Caja.new
       caja.titulo = Faker::Lorem.words((1..3).random).join(' ').titleize
       caja.cuerpo = Faker::Lorem.paragraphs((1..3).random).join("\n\n")
@@ -19,12 +23,15 @@ namespace :db do
 
     caja_ids = Caja.all.map(&:id)
 
-    15.times do
+    75.times do
       pagina = Pagina.new
-      pagina.titulo = Faker::Lorem.words((1..4).random).join(' ').titleize
-      pagina.cuerpo = Faker::Lorem.paragraphs((4..10).random).join("\n\n")
-      pagina.save(false)
 
+      (1..7).random.times do
+        pagina.titulo = Faker::Lorem.words((1..4).random).join(' ').titleize
+        pagina.cuerpo = Faker::Lorem.paragraphs((4..10).random).join("\n\n")
+        pagina.updated_by = Usuario.all.rand
+        pagina.save(false)
+      end
       posibles_ids = caja_ids.clone
       orden = 1
 
@@ -36,6 +43,22 @@ namespace :db do
         sidebar.save
         orden += 1
       end
+    end
+
+    ['Nuestros valores', 'Ámbitos de actuación', 'Participamos', 'Ubicación', 'Contacto'].each_with_index do |titulo, index|
+      pagina = Pagina.new
+
+      (1..7).random.times do
+        pagina.titulo = Faker::Lorem.words((1..4).random).join(' ').titleize
+        pagina.cuerpo = Faker::Lorem.paragraphs((4..10).random).join("\n\n")
+        pagina.updated_by = Usuario.all.rand
+        pagina.save(false)
+      end
+
+      pagina.titulo = titulo
+      pagina.save(false)
+      navegacion = Navegacion.new(:pagina_id => pagina.id, :orden => index + 1)
+      navegacion.save(false)
     end
   end
 end

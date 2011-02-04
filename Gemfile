@@ -3,8 +3,16 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.3'
 gem 'mysql2'
 
+group :development, :test do
+  gem "rspec-rails"
+end
+
 group :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem "shoulda-matchers"
+  gem "factory_girl_rails"
+  gem "mocha"
+  gem "capybara"
 end
 
 group :production, :development do
@@ -14,7 +22,6 @@ end
 group :production do
   gem 'mongrel', '>= 1.2.0.pre2'
 end
-
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -35,10 +42,6 @@ gem "simple_form", ">= 1.3"
 gem "tabletastic"
 gem "rails3-generators", :group => :development
 gem 'faker', :group => :development
-gem "shoulda", :group => :test
-gem "factory_girl_rails", :group => :test
-gem "mocha", :group => :test
-gem "capybara", :group => :test
 gem "display_name"
 gem "xapian-full"
 gem "xapit"
