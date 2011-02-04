@@ -3,19 +3,15 @@
 require 'spec_helper'
 
 describe NavegacionesController do
-  before(:each) do
-    authenticate_usuario
-  end
+  before(:each) { authenticate_usuario }
 
-  context "new action" do
-    before(:each) do
-      get :new
-    end
+  describe "new" do
+    before(:each) { get :new }
 
     it { should render_template(:new) }
   end
     
-  context "update action" do
+  describe "update" do
     before(:each) do
       post :create, :navegacion => {:pagina_id => [1, 2, 3]}
     end

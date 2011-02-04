@@ -16,9 +16,7 @@ describe AjaxFormController do
         :name => 'search[titulo_contains]', :term => 'ul', :url => '/paginas'
     end
 
-    it 'devolver lista de resultados' do
-      assigns(:resultados).map(&:titulo).should == ['mulo', 'pulómetro', 'título']
-    end
+    it { assigns(:resultados).map(&:titulo).should == ['mulo', 'pulómetro', 'título'] }
   end
 
   context 'pidiendo con la URL con la acción' do
@@ -27,9 +25,7 @@ describe AjaxFormController do
         :name => 'search[titulo_contains]', :term => 'ul', :url => '/paginas/index'
     end
 
-    it 'devolver lista de resultados' do
-      assigns(:resultados).map(&:titulo).should == ['mulo', 'pulómetro', 'título']
-    end
+    it { assigns(:resultados).map(&:titulo).should == ['mulo', 'pulómetro', 'título'] }
   end
 
   context 'con varias palabras' do
