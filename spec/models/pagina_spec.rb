@@ -218,12 +218,12 @@ describe Pagina do
         let(:draft) { Pagina.new }
         before(:each) do
           draft.titulo = 'Cambiado'
-          draft.save_draft(:borrador_id => @nueva.draft.id)
+          draft.save_draft(:borrador_id => nueva.draft.id)
         end
 
         it 'reemplaza el borrador existente' do
           Pagina.where(:borrador => true).should have(1).item
-          @nueva.draft.should == draft.draft
+          nueva.draft.should == draft.draft
         end
       end
     end
