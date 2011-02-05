@@ -5,5 +5,6 @@
   = form.input :email
   = form.input :password
   - if devise_mapping.rememberable?
-    = form.input :remember_me, :as => :boolean
+    = form.input :remember_me, :as => :boolean,
+      :hint => "durante #{distance_of_time_in_words(Devise.remember_for)}"
   .actions= form.submit "Entrar"

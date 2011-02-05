@@ -31,7 +31,7 @@ class Pagina < ActiveRecord::Base
     includes(:navegacion).where("borrador = ? OR borrador IS NULL", false).
       order("navegaciones.orden, paginas.titulo")
 
-  xapit :include => :cajas do |index|
+  xapit :include => :cajas, :conditions => {:borrador => false} do |index|
     index.text :titulo, :weight => 10
     index.text :cuerpo, :weight => 4
     index.text :titulo_cajas, :weight => 3

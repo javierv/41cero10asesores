@@ -5,7 +5,7 @@
     %title= h(yield(:title) || "Untitled")
     %meta{:charset => "utf-8"}
     = stylesheet_link_tag 'application'
-    = javascript_include_tag 'jquery', 'rails'
+    = javascript_include_tag 'jquery', 'rails', 'application'
     = csrf_meta_tag
     = yield(:head)
 

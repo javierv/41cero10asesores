@@ -1,11 +1,6 @@
-* Borrar por javascript, borrando e insertando el registro siguiente al final de la tabla. 
-* Añadir error si la sesión caducó y la petición es AJAX.
-* Añadir instrucciones en la navegación de que sólo se pueden escoger las páginas publicadas.
 * Tests de Javascript con Jasmine.
 * URLs bonitas.
 * https://github.com/rubiety/validates_lengths_from_database
-* Actualizar índice Xapian una vez al día
-* La sesión caduca aunque pinches en recordar.
 * Usar el atributo formaction en cuanto salgan las próximas versiones de Firefox y Chrome. Para la administración vale con eso.
 * Podríamos poner un icono de borrar en la imagen desde la previsualización.
 
@@ -14,8 +9,11 @@
 * Enlace al CRM.
 
 * Pasar a jQuery 1.5
-* RSpec.
 
+* Al recuperar una página, no se recupera qué cajas tenía asociadas.
+* No mostrar borradores en las páginas borradas.
+* Investigar si se borran los borradores de página nueva cuando se crea la página.
+* El enlace a "comparar con la actual" se comporta de forma un tanto extraña.
 * "Ordenar por..." como título de enlaces de cabecera de la tabla.
 * Que los errores sean enlaces a corregir el error.
 * "Editar borrador" no se ve entero :S. Confirmado, cuando la ventana no es grande respecto al tamaño del texto. Por alguna razón, la tabla no se comprime en la celda de acciones.
