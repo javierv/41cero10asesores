@@ -6,7 +6,7 @@ class PaginasController < ApplicationController
   respond_to :html
 
   before_filter :params_updated_by, :only => [:create, :update]
-  before_filter :find_pagina, :only => [:show, :edit, :update, :destroy, :historial]
+  before_filter :find_pagina, :only => [:edit, :update, :destroy, :historial]
   before_filter :new_pagina, :only => [:new, :create]
   before_filter :asignar_cajas, :only => [:create, :update]
   before_filter :preview, :only => [:create, :update]
@@ -19,6 +19,7 @@ class PaginasController < ApplicationController
   end
 
   def show
+    @pagina = Pagina.where(:borrador => false).find(params[:id])
     respond_with @pagina
   end
 
