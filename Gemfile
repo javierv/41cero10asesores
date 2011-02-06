@@ -6,7 +6,6 @@ gem 'mysql2'
 group :development, :test do
   gem "rspec-rails"
   gem 'jasmine'
-  gem 'evergreen', :require => 'evergreen/rails'
 end
 
 group :development do
