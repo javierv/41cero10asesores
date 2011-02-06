@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AJAX Paginator</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <section id='listado'>
+      <table id="paginas">
+        <thead><tr><th><a href="/paginas?search[meta_sort]=titulo.desc" class="sort_link asc">Título &#9650;</a></th></thead>
+        <tbody>
+          <tr class="pagina odd" id="pagina_667"><td>Ámbitos de actuación</td></tr>
+          <tr class="pagina even" id="pagina_604"><td>Amet Ut</td></tr>
+        </tbody>
+      </table>
+      <div id='paginador'>
+        <div class="pagination">
+          <span class="previous_page">Previous</span>
+          <em>1</em>
+          <a rel="next" href="/paginas?page=2">2</a>
+          <a href="/paginas?page=3">3</a>
+          <a class="next_page" rel="next" href="/paginas?page=2">Next</a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
