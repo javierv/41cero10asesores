@@ -14,8 +14,8 @@ src_files:
   - public/javascripts/jquery.js
   - public/javascripts/rails.js
   - public/javascripts/application.js
-  - spec/javascripts/compiled/lib/mock-ajax.js
-  - spec/javascripts/compiled/lib/jasmine-jquery.js
+  - spec/javascripts/lib/mock-ajax.js
+  - spec/javascripts/lib/jasmine-jquery.js
   - public/javascripts/**/*.js
 
 # stylesheets
