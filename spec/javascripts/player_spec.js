@@ -1,3 +1,6 @@
+require('/Player.js');
+require('/Song.js');
+
 describe("Player", function() {
   var player;
   var song;
