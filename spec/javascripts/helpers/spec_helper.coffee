@@ -1,5 +1,3 @@
-jQuery.noConflict()
-
 beforeEach ->
   this.addMatchers({
     toBePlaying: (expectedSong) -> 
