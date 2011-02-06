@@ -44,7 +44,7 @@ clearAjaxRequests = ->
 
 
 # Fake XHR for mocking Ajax Requests & Responses
-FakeXMLHttpRequest ->
+FakeXMLHttpRequest = ->
   xhr = {
     requestHeaders: {},
 
