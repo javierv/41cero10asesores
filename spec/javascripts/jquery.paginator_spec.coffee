@@ -17,6 +17,9 @@ describe "Paginator", ->
       expect(ajaxRequests).toHaveLength 1
       expect(ajaxRequests[0].url).toEqual link[0].href
 
+    it "shows it's loading while the request is proccessed", ->
+      expect($('#list')).toContain 'p.loading'
+
     it "fills the element with the response", ->
       request = mostRecentAjaxRequest()
       request.response status: 200, responseText: '<p>Success!</p>'
