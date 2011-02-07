@@ -8,6 +8,9 @@ require = (file) ->
       document.getElementsByTagName("head")[0].appendChild(script)
     cached_files[file] = script 
 
+unrequire = (file) ->
+  delete cached_files[file]
+
 beforeEach ->
   this.addMatchers({
     toHaveLength: (length) -> 
