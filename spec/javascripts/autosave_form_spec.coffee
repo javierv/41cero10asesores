@@ -13,7 +13,7 @@ describe 'Formulario de guardado', ->
     # Se ve que es el tiempo que tarda en manipular el DOM
     # metiendo los elementos nuevos.
     # No debería ser así, pero bueno.
-    waits(100)
+    waits(30)
     require 'autosave_form'
 
   it 'hace una petición AJAX', ->
