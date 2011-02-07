@@ -29,8 +29,7 @@ describe 'Formulario de guardado', ->
       request.response
         status: 200
         responseText:
-          '<div class="borrador" id="post_35">Actualizado' +
-          '<time>1998-07-01</time></div>'
+          '<div class="borrador" id="post_35">Actualizado</div>'
       
     it 'actualiza con la respuesta', ->
       expect($('#actualizado')).toHaveHtml request.responseText
