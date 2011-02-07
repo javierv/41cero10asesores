@@ -1,5 +1,8 @@
+cached_files = {}
 require = (file) -> 
-  document.write('<script type="text/javascript" src="/public/javascripts/' + file + '.js"></script>')
+  if !cached_files[file]
+    document.write('<script type="text/javascript" src="/public/javascripts/' + file + '.js"></script>')
+    cached_files[file] = file
 
 beforeEach ->
   this.addMatchers({
