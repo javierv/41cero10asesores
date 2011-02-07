@@ -25,6 +25,12 @@ describe "Paginator", ->
       request.response status: 200, responseText: '<p>Success!</p>'
       expect($('#list')).toHaveHtml request.responseText
 
+    it "updates the browser's address bar", ->
+      if browser_supports_history()
+        expect(location.href).toEqual link[0].href
+      else
+        expect(location.hash).toEqual link[0].href
+
     afterEach ->
       if browser_supports_history()
         history.replaceState(null, null, '/')
