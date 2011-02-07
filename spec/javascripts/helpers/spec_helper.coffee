@@ -6,7 +6,7 @@ require = (file) ->
     script.setAttribute("src", '/public/javascripts/' + file + '.js')
     if (typeof script!="undefined")
       document.getElementsByTagName("head")[0].appendChild(script)
-    cached_files[file] = file
+    cached_files[file] = script 
 
 beforeEach ->
   this.addMatchers({
