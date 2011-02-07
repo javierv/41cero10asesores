@@ -1,6 +1,3 @@
-require = (file) -> 
-  document.write('<script type="text/javascript" src="/public/javascripts/' + file + '"></script>')
-
 require 'jquery.history.js'
 require 'jquery.paginator.js'
 
