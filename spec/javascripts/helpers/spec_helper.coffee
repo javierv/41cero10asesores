@@ -1,8 +1,7 @@
 beforeEach ->
   this.addMatchers({
-    toBePlaying: (expectedSong) -> 
-      player = this.actual
-      player.currentlyPlayingSong == expectedSong && player.isPlaying
+    toHaveLength: (length) -> 
+      this.actual.length == length
   })
 
   spyOn(jQuery.ajaxSettings, 'xhr').andCallFake ->

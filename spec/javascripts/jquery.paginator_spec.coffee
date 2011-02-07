@@ -17,13 +17,13 @@ describe "Paginator", ->
       link.click()
 
     it "calls the link via AJAX", ->
-      expect(ajaxRequests.length).toEqual 1
+      expect(ajaxRequests).toHaveLength 1
       expect(ajaxRequests[0].url).toEqual link[0].href
 
     it "fills the element with the response", ->
       request = mostRecentAjaxRequest()
       request.response status: 200, responseText: '<p>Success!</p>'
-      expect($('#list').html()).toEqual request.responseText
+      expect($('#list')).toHaveHtml request.responseText
 
     afterEach ->
       if history && history.pushState
