@@ -12,7 +12,7 @@ describe "Paginator", ->
     link = null
 
     beforeEach ->
-      $('#listado').ajaxPaginator({paginator: '.pagination'})
+      $('#list').ajaxPaginator({paginator: '.pagination'})
       link = $('.pagination a:first')
       link.click()
 
