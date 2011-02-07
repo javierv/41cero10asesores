@@ -28,6 +28,38 @@ jasmine.Fixtures = function() {
   this.fixturesPath = 'spec/javascripts/fixtures';
 };
 
+jasmine.Fixtures.XHR= window.XMLHttpRequest || (function(){
+  var progIdCandidates= ['Msxml2.XMLHTTP.4.0', 'Microsoft.XMLHTTP', 'Msxml2.XMLHTTP'];
+  var len= progIdCandidates.length;
+
+  var progId;
+  var xhr;
+  
+  function ConstructXhr()
+  {
+    return new window.ActiveXObject(ConstructXhr.progId);
+  }
+  
+  while (len--)
+  {
+    try
+    {
+      progId= progIdCandidates[len];
+      xhr= new window.ActiveXObject(progId);
+      //  ActiveXObject constructor throws an exception
+      //  if the component isn't available.
+      xhr= null;
+      ConstructXhr.progId= progId;
+      return ConstructXhr;
+    }
+    catch (e)
+    {
+      //  Ignore the error
+    }
+  }
+  throw new Error('No XMLHttpRequest implementation found');
+})();
+
 jasmine.Fixtures.prototype.set = function(html) {
   this.cleanUp();
   this.createContainer_(html);
@@ -78,15 +110,16 @@ jasmine.Fixtures.prototype.getFixtureHtml_ = function(url) {
 jasmine.Fixtures.prototype.loadFixtureIntoCache_ = function(relativeUrl) {
   var self = this;
   var url = this.fixturesPath.match('/$') ? this.fixturesPath + relativeUrl : this.fixturesPath + '/' + relativeUrl;
-  $.ajax({
-    async: false, // must be synchronous to guarantee that no tests are run before fixture is loaded
-    cache: false,
-    dataType: 'html',
-    url: url,
-    success: function(data) {
-      self.fixturesCache_[relativeUrl] = data;
-    }
-  });
+
+  var xhr= new jasmine.Fixtures.XHR();
+  xhr.open('GET', url, false);
+  xhr.send(null);
+  var status= xhr.status;
+  var succeeded= 0===status || (status>=200 && status<300) || 304==status;
+    
+  if (!succeeded)
+    throw new Error('Failed to load resource: status=' + status + ' url=' + url);
+  this.fixturesCache_[relativeUrl]= xhr.responseText;
 };
 
 jasmine.Fixtures.prototype.proxyCallTo_ = function(methodName, passedArguments) {
