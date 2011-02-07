@@ -7,7 +7,7 @@ require 'jquery.paginator.js'
 describe "Paginator", ->
   beforeEach ->
     loadFixtures('paginator.html')
-    $('#list').ajaxPaginator({paginator: '.pagination'})
+    $('#list').ajaxPaginator()
 
   describe 'clicking a link', ->
     link = null
