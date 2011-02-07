@@ -1,5 +1,5 @@
 require = (file) -> 
-  document.write('<script type="text/javascript" src="/public/javascripts/' + file + '"></script>')
+  document.write('<script type="text/javascript" src="/public/javascripts/' + file + '.js"></script>')
 
 beforeEach ->
   this.addMatchers({
