@@ -13,10 +13,10 @@
 
 jQuery.fn.ajaxPaginator = (options) ->
   defaults =
-    paginator: '#paginador',
-    table: 'table',
-    beforeSend: -> $('#flashMessage').remove(),
-    cargando: 'Cargando...',
+    paginator: '#paginador'
+    table: 'table'
+    beforeSend: -> $('#flashMessage').remove()
+    cargando: 'Cargando...'
     history: true
 
   jQuery.extend(defaults, options)
