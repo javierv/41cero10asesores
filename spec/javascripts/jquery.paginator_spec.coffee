@@ -26,7 +26,7 @@ describe "Paginator", ->
       expect($('#list')).toHaveHtml request.responseText
 
     afterEach ->
-      if history && history.pushState
+      if browser_supports_history()
         history.replaceState(null, null, '/')
       else
         location.hash = null 

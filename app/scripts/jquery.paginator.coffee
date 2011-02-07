@@ -11,6 +11,9 @@
  image: la imagen a mostrar mientras se ejecuta la operación.
 ###
 
+browser_supports_history = ->
+  history && history.pushState
+
 jQuery.fn.ajaxPaginator = (options) ->
   defaults =
     paginator: '.pagination'
@@ -26,14 +29,14 @@ jQuery.fn.ajaxPaginator = (options) ->
     defaults['success'] = (data) -> $element.html(data)
 
     if defaults.history
-      if history && history.pushState
+      if browser_supports_history()
         $(window).bind("popstate", -> load_page($element, location.href, defaults))
       else
         $.history.init (hash) -> if hash != '' then load_page($element, hash, defaults)
 
     jQuery(defaults.paginator + ' a,' + defaults.table + ' th a', $element).live('click', ->
       if defaults.history
-        if history && history.pushState
+        if browser_supports_history()
           history.pushState(null, document.title, @href)
           load_page($element, @href, defaults)
         else
