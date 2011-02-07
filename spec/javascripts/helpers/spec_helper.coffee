@@ -1,7 +1,11 @@
 cached_files = {}
 require = (file) -> 
   if !cached_files[file]
-    document.write('<script type="text/javascript" src="/public/javascripts/' + file + '.js"></script>')
+    script = document.createElement('script')
+    script.setAttribute("type","text/javascript")
+    script.setAttribute("src", '/public/javascripts/' + file + '.js')
+    if (typeof script!="undefined")
+      document.getElementsByTagName("head")[0].appendChild(script)
     cached_files[file] = file
 
 beforeEach ->
