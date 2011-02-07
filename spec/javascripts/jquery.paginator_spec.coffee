@@ -3,7 +3,7 @@ require 'jquery.paginator'
 
 describe "Paginator", ->
   beforeEach ->
-    loadFixtures('paginator.html')
+    loadFixtures 'paginator.html'
     $('#list').ajaxPaginator()
 
   describe 'clicking a link', ->
@@ -33,6 +33,6 @@ describe "Paginator", ->
 
     afterEach ->
       if browser_supports_history()
-        history.replaceState(null, null, '/')
+        history.replaceState null, null, '/'
       else
         location.hash = null 
