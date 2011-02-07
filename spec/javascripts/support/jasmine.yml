@@ -16,7 +16,6 @@ src_files:
   - public/javascripts/application.js
   - spec/javascripts/lib/mock-ajax.js
   - spec/javascripts/lib/jasmine-jquery.js
-  - public/javascripts/**/*.js
 
 # stylesheets
 #
