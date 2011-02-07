@@ -8,5 +8,20 @@ describe "Paginator", ->
   beforeEach ->
     loadFixtures('paginator.html')
 
-  it "has a paginator", ->
-    expect($('body')).toBeVisible()
+  describe 'clicking a link', ->
+    link = null
+
+    beforeEach ->
+      $('#listado').ajaxPaginator({paginator: '.pagination'})
+      link = $('.pagination a:first')
+      link.click()
+
+    it "calls the link via AJAX", ->
+      expect(ajaxRequests.length).toEqual 1
+      expect(ajaxRequests[0].url).toEqual link[0].href
+
+    afterEach ->
+      if history && history.pushState
+        history.replaceState(null, null, '/')
+      else
+        location.hash = null 
