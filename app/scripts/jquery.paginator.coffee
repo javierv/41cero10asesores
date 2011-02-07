@@ -35,10 +35,10 @@ jQuery.fn.ajaxPaginator = (options) ->
       if defaults.history
         if history && history.pushState
           history.pushState(null, document.title, @href)
-          load_page($element, @href, defaults)        
-        else        
-          $.history.load(@href)      
-      else      
+          load_page($element, @href, defaults)
+        else
+          $.history.load(@href)
+      else
         load_page($element, @href, defaults)
       
       return false
