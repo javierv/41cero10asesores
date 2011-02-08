@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.4'
 gem 'mysql2'
 
 group :development, :test do
@@ -20,6 +20,7 @@ group :test do
   gem "factory_girl_rails"
   gem "mocha"
   gem "capybara"
+  gem 'spork'
 end
 
 group :production, :development do
