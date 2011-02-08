@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 $(document).ready ->
   form = $('#galeria .foto form')
   form.ajaxForm(
@@ -9,5 +7,5 @@ $(document).ready ->
       val(textarea.val() + '!' + responseText.replace("\n", '') + '!').keydown()
   )
   $('.actions', form).hide()
-  $('#galeria img').attr('title', 'Inserta la imagen en la página').
+  $('#galeria img').attr('title', 'Inserta la imagen en el contenido').
   click -> $('form', $(this).parent()).submit()
