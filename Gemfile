@@ -19,6 +19,7 @@ group :test do
   gem "factory_girl_rails"
   gem "mocha"
   gem "capybara"
+  gem 'spork'
 end
 
 group :production, :development do
