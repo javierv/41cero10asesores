@@ -3,6 +3,9 @@
 * https://github.com/rubiety/validates_lengths_from_database
 * Usar el atributo formaction en cuanto salgan las próximas versiones de Firefox y Chrome. Para la administración vale con eso.
 * Podríamos poner un icono de borrar en la imagen desde la previsualización.
+* El buscador general no se lleva bien con acentos.
+* Xapit necesita que se reinicie el servidor, tanto con mongrel como con passenger, tra actualizar el índice.
+* Xapit no busca bien acentos, al menos en Ruby 1.9. Mirar xapian_db como posible sustituto.
 
 * Mirar si se puede meter Google Maps.
 * PDFs con el boletín.
@@ -18,6 +21,7 @@
 * Que los errores sean enlaces a corregir el error.
 * "Editar borrador" no se ve entero :S. Confirmado, cuando la ventana no es grande respecto al tamaño del texto. Por alguna razón, la tabla no se comprime en la celda de acciones.
 * Vista previa al editar cajas.
+* Al editar cajas, poder asignarlas a las páginas.
 * Formulario de login: ¿autofocus en el email?
 * Pasar el método del formulario AJAX del controlador al modelo. Podemos poner también que si el atributo está "a pelo", añadir "_contains" (¡NO! No podemos por la petición HTML no AJAX, que depende de eso).
 * Cambiar content_for(:head) para poner CSS al principio y JS al final.
