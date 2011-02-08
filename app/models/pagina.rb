@@ -31,11 +31,11 @@ class Pagina < ActiveRecord::Base
     includes(:navegacion).where("borrador = ? OR borrador IS NULL", false).
       order("navegaciones.orden, paginas.titulo")
 
-  xapit :include => :cajas, :conditions => {:borrador => false} do |index|
-    index.text :titulo, :weight => 10
-    index.text :cuerpo, :weight => 4
-    index.text :titulo_cajas, :weight => 3
-    index.text :cuerpo_cajas, :weight => 1
+  XapianDb::DocumentBlueprint.setup(Pagina) do |blueprint|
+    blueprint.attribute :titulo, :weight => 10
+    blueprint.attribute :cuerpo, :weight => 4
+    blueprint.index :titulo_cajas, :weight => 3
+    blueprint.index :cuerpo_cajas, :weight => 1
   end
 
   def titulo_cajas
