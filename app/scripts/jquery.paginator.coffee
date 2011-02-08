@@ -11,12 +11,15 @@
  image: la imagen a mostrar mientras se ejecuta la operación.
 ###
 
+browser_supports_history = ->
+  history && history.pushState
+
 jQuery.fn.ajaxPaginator = (options) ->
   defaults =
-    paginator: '#paginador',
-    table: 'table',
-    beforeSend: -> $('#flashMessage').remove(),
-    cargando: 'Cargando...',
+    paginator: '.pagination'
+    table: 'table'
+    beforeSend: -> $('#flashMessage').remove()
+    loading: 'Cargando...'
     history: true
 
   jQuery.extend(defaults, options)
@@ -26,19 +29,19 @@ jQuery.fn.ajaxPaginator = (options) ->
     defaults['success'] = (data) -> $element.html(data)
 
     if defaults.history
-      if history && history.pushState
+      if browser_supports_history()
         $(window).bind("popstate", -> load_page($element, location.href, defaults))
       else
         $.history.init (hash) -> if hash != '' then load_page($element, hash, defaults)
 
     jQuery(defaults.paginator + ' a,' + defaults.table + ' th a', $element).live('click', ->
       if defaults.history
-        if history && history.pushState
+        if browser_supports_history()
           history.pushState(null, document.title, @href)
-          load_page($element, @href, defaults)        
-        else        
-          $.history.load(@href)      
-      else      
+          load_page($element, @href, defaults)
+        else
+          $.history.load(@href)
+      else
         load_page($element, @href, defaults)
       
       return false
@@ -46,5 +49,5 @@ jQuery.fn.ajaxPaginator = (options) ->
 
 load_page = (element, url, options) ->
   options['url'] = url
-  element.empty().html('<p class="cargando">' + options.cargando + '</p>')
+  element.empty().html('<p class="loading">' + options.loading + '</p>')
   $.ajax(options)
