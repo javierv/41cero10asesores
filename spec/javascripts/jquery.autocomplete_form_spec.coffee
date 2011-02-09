@@ -11,7 +11,7 @@ describe 'Autocomplete form', ->
     # objeto en los tests que al ejecutarse.
     # En jQuery:
     # jQuery(jQuery(this)[0]) != jQuery(this)
-    loadFixtures 'autocomplete_form.html'
+    loadFixtures 'jquery.autocomplete_form.html'
     $('form.filter').autocompleteForm()
 
   it 'calls autocomplete on the input', ->
