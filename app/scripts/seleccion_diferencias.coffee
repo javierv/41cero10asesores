@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 cambiar_ocultos = (cambio) ->
   if cambio == 'mostrar'
     'ocultar'

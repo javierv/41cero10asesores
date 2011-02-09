@@ -3,9 +3,6 @@
 * https://github.com/rubiety/validates_lengths_from_database
 * Usar el atributo formaction en cuanto salgan las próximas versiones de Firefox y Chrome. Para la administración vale con eso.
 * Podríamos poner un icono de borrar en la imagen desde la previsualización.
-* El buscador general no se lleva bien con acentos.
-* Xapit necesita que se reinicie el servidor, tanto con mongrel como con passenger, tra actualizar el índice.
-* Xapit no busca bien acentos, al menos en Ruby 1.9. Mirar xapian_db como posible sustituto.
 
 * Mirar si se puede meter Google Maps.
 * PDFs con el boletín.
