@@ -1,0 +1,17 @@
+development:
+  database: db/xapian_db/development
+  adapter:  active_record
+  language: es
+  writer:   direct
+
+test:
+  database: ":memory:"
+  adapter:  active_record
+  language: es
+  writer:   direct
+
+production:
+  database: db/xapian_db/production
+  adapter:  active_record
+  language: es
+  writer:   direct
