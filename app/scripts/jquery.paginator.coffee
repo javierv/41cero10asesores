@@ -1,12 +1,12 @@
 ###
- ajaxPaginator es un plugin que permite hacer paginación vía Ajax.
+ ajaxPaginator es un plugin que permite usar un paginador con AJAX.
  Copyright Javi <elretirao@elretirao.net>
  Ver http://docs.jquery.com/License para la licencia.
  
  Opciones:
- paginador: string con el elemento que tiene los enlaces de paginación. Por defecto, '#paginador'.
+ paginador: string con el elemento que tiene los enlaces para paginar. Por defecto, '#paginador'.
  table:	string con el elemento que tiene los datos. Por defecto, 'table'.
- image: la imagen a mostrar mientras se ejecuta la operación.
+ loading: texto a mostrar mientras carga el resultado.
 ###
 
 browser_supports_history = ->
