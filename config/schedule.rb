@@ -6,7 +6,7 @@
 every :hour do
   # TODO: al menos con Passenger parece que hay que reiniciar
   # el servidor, o al menos si la búsqueda está en caché.
-  rake "xapit:reindex"
+  rake "xapian_db:reindex"
 end
 
 # Example:
