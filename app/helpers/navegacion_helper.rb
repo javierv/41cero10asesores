@@ -4,9 +4,7 @@ module NavegacionHelper
   def lista_con_enlaces(enlaces, opciones = {})
     return '' if enlaces.empty?
     content_tag :ul, opciones do
-      enlaces.inject('') do |contenido, enlace|
-        (contenido + elemento_lista_enlace(enlace)).html_safe
-      end
+      elementos_lista_enlace(enlaces)
     end
   end
 
@@ -18,19 +16,7 @@ module NavegacionHelper
   end
 
   def actions_list(actions, resource)
-    enlaces = actions.map do |action|
-      if action.is_a?(Array)
-        action
-      else
-        opciones = {:class => action}
-        url = action_url(action, resource)
-        if url.is_a?(Array)
-          opciones.merge!(url.extract_options!)
-        end
-        [link_title(action), url, opciones].flatten
-      end
-    end
-    lista_con_enlaces(enlaces, :class => 'actions')
+    lista_con_enlaces enlaces(actions, resource), :class => 'actions'
   end
 
   def acciones_para_pagina(pagina)
@@ -73,17 +59,14 @@ module NavegacionHelper
   end
  
 private
+  def elementos_lista_enlace(enlaces)
+    enlaces.inject('') do |contenido, enlace|
+      (contenido + elemento_lista_enlace(enlace)).html_safe
+    end
+  end
+
   def elemento_lista_enlace(enlace)
-    opciones = enlace.extract_options!
-
-    if opciones[:controller] == params[:controller]
-      opciones[:class] = "#{opciones[:class]} current"      
-    end
-
-    if opciones[:controller]
-      opciones[:class] = "#{opciones[:class]} #{opciones[:controller]}"
-      opciones.delete :controller
-    end
+    opciones = opciones_para_enlace(enlace)
     
     content_tag :li do
       if opciones[:form]
@@ -94,12 +77,46 @@ private
     end
   end
 
+  def opciones_para_enlace(enlace)
+    opciones = enlace.extract_options!
+
+    if opciones[:controller]
+      opciones[:class] = "#{opciones[:class]} #{clase opciones[:controller]}"
+      opciones.delete :controller
+    end
+
+    opciones
+  end
+
+  def clase(controller)
+    if controller == params[:controller]
+      "#{controller} current"
+    else
+      controller
+    end
+  end
+
   def link_title(action)
     I18n.translate(action, :scope => "tabletastic.actions", :default => action.to_s.titleize)
   end
 
   def confirmation_message
     I18n.t("tabletastic.actions.confirmation", :default => "Are you sure?")
+  end
+
+  def enlaces(actions, resource)
+    actions.map do |action|
+      if action.is_a?(Array)
+        action
+      else
+        opciones = {:class => action}
+        url = action_url(action, resource)
+        if url.is_a?(Array)
+          opciones.merge!(url.extract_options!)
+        end
+        [link_title(action), url, opciones].flatten
+      end
+    end
   end
 
   def action_url(action, resource)
