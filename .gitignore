@@ -16,3 +16,5 @@ tmp/restart.txt
 tags
 tmp/tags
 posix
+coverage/**/*
+coverage/*
