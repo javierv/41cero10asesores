@@ -3,6 +3,7 @@ db/*.sqlite3
 db/xapian*/*
 log/*.log
 tmp/**/*
+tmp/*
 nbproject/*
 public/stylesheets/*.css
 public/stylesheets/**/*.css
@@ -14,7 +15,7 @@ prototipo/*
 config/database.yml
 tmp/restart.txt
 tags
-tmp/tags
 posix
 coverage/**/*
 coverage/*
+.metrics
