@@ -16,9 +16,7 @@ module LayoutHelper
     end
   end
 
-  def css(*args)
-    stylesheet *args
-  end
+  alias_method :css, :stylesheet
 
   def javascript(*args)
     asset :javascript, *args do |javascript|
