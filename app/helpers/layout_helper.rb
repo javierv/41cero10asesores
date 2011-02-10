@@ -12,11 +12,9 @@ module LayoutHelper
 
   def stylesheet(*args)
     @stylesheets ||= []
-    args.each do |stylesheet|
-      unless @stylesheets.include?(stylesheet)
-        content_for(:head) { stylesheet_link_tag(stylesheet) }
-        @stylesheets << stylesheet
-      end
+    args.reject {|stylesheet| @stylesheets.include?(stylesheet) }.each do |stylesheet|
+      content_for(:head) { stylesheet_link_tag(stylesheet) }
+      @stylesheets << stylesheet
     end
   end
 
@@ -26,11 +24,9 @@ module LayoutHelper
 
   def javascript(*args)
     @javascripts ||= []
-    args.each do |javascript|
-      unless @javascripts.include?(javascript)
-        content_for(:head) { javascript_include_tag(javascript) }
-        @javascripts << javascript
-      end
+    args.reject {|javascript| @javascripts.include?(javascript) }.each do |javascript|
+      content_for(:head) { javascript_include_tag(javascript) }
+      @javascripts << javascript
     end
   end
 end
