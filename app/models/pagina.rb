@@ -78,10 +78,7 @@ class Pagina < ActiveRecord::Base
       self.published_id = pagina.id
       destroy
     else
-      pagina.errors.each do |field, message|
-        errors.add(field, message)
-      end
-
+      copy_errors(pagina)
       false
     end
   end
@@ -119,5 +116,11 @@ private
   def set_borrador
     self.borrador = false if borrador.nil?
     true
+  end
+
+  def copy_errors(pagina)
+    pagina.errors.each do |field, message|
+      errors.add(field, message)
+    end
   end
 end
