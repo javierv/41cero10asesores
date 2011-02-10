@@ -46,12 +46,7 @@ class Pagina < ActiveRecord::Base
   def save_draft(attrs = {})
     return update_attributes(attrs) if borrador?
     
-    borrador = if new_record?
-      Pagina.find_by_id(attrs[:borrador_id]) || self
-    else
-      Pagina.find_or_create_by_published_id(id)
-    end
-    
+    borrador = find_borrador attrs
     borrador.attributes = attributes.merge(attrs)
     borrador.borrador = true
     borrador.published_id = id
@@ -110,6 +105,14 @@ private
       @ids_cajas.reject {|caja_id| caja_id.to_i.zero?}.each_with_index do |caja_id, index|
         sidebars.build(:caja_id => caja_id, :orden => index + 1)
       end
+    end
+  end
+
+  def find_borrador(attrs)
+    if new_record?
+      Pagina.find_by_id(attrs[:borrador_id]) || self
+    else
+      Pagina.find_or_create_by_published_id(id)
     end
   end
 
