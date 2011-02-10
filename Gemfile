@@ -21,6 +21,7 @@ group :test do
   gem "mocha"
   gem "capybara"
   gem 'spork'
+  gem 'simplecov', :require => false
 end
 
 group :production, :development do
