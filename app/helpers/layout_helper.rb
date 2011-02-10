@@ -11,10 +11,8 @@ module LayoutHelper
   end
 
   def stylesheet(*args)
-    @stylesheets ||= []
-    args.reject {|stylesheet| @stylesheets.include?(stylesheet) }.each do |stylesheet|
+    asset :stylesheet, *args do |stylesheet|
       content_for(:head) { stylesheet_link_tag(stylesheet) }
-      @stylesheets << stylesheet
     end
   end
 
@@ -23,10 +21,18 @@ module LayoutHelper
   end
 
   def javascript(*args)
-    @javascripts ||= []
-    args.reject {|javascript| @javascripts.include?(javascript) }.each do |javascript|
+    asset :javascript, *args do |javascript|
       content_for(:head) { javascript_include_tag(javascript) }
-      @javascripts << javascript
+    end
+  end
+
+private
+  def asset(type, *args, &block)
+    @assets ||= {}
+    @assets[type] ||= []
+    args.reject {|asset| @assets[type].include?(asset) }.each do |asset|
+      block.call asset
+      @assets[type] << asset
     end
   end
 end
