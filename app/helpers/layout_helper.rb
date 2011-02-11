@@ -29,15 +29,15 @@ module LayoutHelper
   end
 
   def include_stylesheets
-    stylesheets.map do |stylesheet|
+    include_assets :stylesheet do |stylesheet|
       stylesheet_link_tag(stylesheet)
-    end.join.html_safe
+    end
   end
 
   def include_javascripts
-    javascripts.map do |javascript|
+    include_assets :javascript do |javascript|
       javascript_include_tag(javascript)
-    end.join.html_safe
+    end
   end
 
 private
@@ -49,5 +49,11 @@ private
 
   def assets
     @assets ||= Hash.new {[]} 
+  end
+
+  def include_assets(type, &block)
+    assets[type].map do |asset|
+      block.call asset
+    end.join.html_safe
   end
 end
