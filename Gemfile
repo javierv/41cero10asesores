@@ -20,7 +20,7 @@ group :test do
   gem "factory_girl_rails"
   gem "mocha"
   gem "capybara"
-  gem 'spork'
+  gem 'spork', '>= 0.9.0RC'
   gem 'simplecov', :require => false
 end
 
