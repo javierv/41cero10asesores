@@ -24,13 +24,23 @@ module LayoutHelper
     end
   end
 
+  def stylesheets
+    assets[:stylesheet]
+  end
+
+  def javascripts
+    assets[:javascript]
+  end
+
 private
   def asset(type, *args, &block)
-    @assets ||= {}
-    @assets[type] ||= []
-    args.reject {|asset| @assets[type].include?(asset) }.each do |asset|
+    args.reject {|asset| assets[type].include?(asset) }.each do |asset|
       block.call asset
-      @assets[type] << asset
+      assets[type] = assets[type] << asset
     end
+  end
+
+  def assets
+    @assets ||= Hash.new {[]} 
   end
 end
