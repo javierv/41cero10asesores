@@ -66,4 +66,24 @@ describe LayoutHelper do
       end
     end
   end
+
+  describe "including assets" do
+    context "stylesheets" do
+      before(:each) { helper.stylesheet 'main', 'search' }
+
+      it "includes stylesheet tags" do
+        helper.include_stylesheets.should have_selector('link[href*=main]')
+        helper.include_stylesheets.should have_selector('link[href*=search]')
+      end
+    end
+
+    context "javascripts" do
+      before(:each) { helper.javascript 'form', 'diff' }
+
+      it "includes javascript tags" do
+        helper.include_javascripts.should have_selector('script[src*=form]')
+        helper.include_javascripts.should have_selector('script[src*=diff]')
+      end
+    end
+  end
 end 

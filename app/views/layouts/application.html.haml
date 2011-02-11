@@ -5,9 +5,8 @@
     %title= h(yield(:title) || "Untitled")
     %meta{:charset => "utf-8"}
     = stylesheet_link_tag 'application'
-    = javascript_include_tag 'jquery', 'rails', 'application'
+    = include_stylesheets
     = csrf_meta_tag
-    = yield(:head)
 
   %body
     %header#cabecera{:role => 'banner'}= render 'general/cabecera'
@@ -30,3 +29,5 @@
         = yield
 
     %footer#pie{:role => 'contentinfo'}= render 'general/pie'
+    = javascript_include_tag 'jquery', 'rails', 'application'
+    = include_javascripts
