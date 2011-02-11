@@ -28,5 +28,42 @@ describe LayoutHelper do
       end
     end
 
+    context "adding several stylesheets" do
+      let(:stylesheets) { ['reset', 'layout', 'colors'] }
+      before(:each) { helper.stylesheet *stylesheets }
+
+      it 'adds all the stylesheets' do
+        helper.stylesheets.should == stylesheets
+      end
+
+      it 'allows to add another stylesheet' do
+        helper.stylesheet 'general'
+        helper.stylesheets.should == stylesheets + ['general']
+      end
+
+      it "doesn't add the same stylesheet twice" do
+        helper.stylesheet 'layout'
+        helper.stylesheets.should_not == stylesheets + ['layout']
+      end
+    end
+
+    context "adding several javascripts" do
+      let(:javascripts) { ['jquery', 'rails', 'application'] }
+      before(:each) { helper.javascript *javascripts }
+
+      it 'adds all the javascripts' do
+        helper.javascripts.should == javascripts
+      end
+
+      it 'allows to add another javascript' do
+        helper.javascript 'jquery.ui'
+        helper.javascripts.should == javascripts + ['jquery.ui']
+      end
+
+      it "doesn't add the same javascripts twice" do
+        helper.javascript 'jquery'
+        helper.javascripts.should_not == javascripts + ['jquery']
+      end
+    end
   end
 end 
