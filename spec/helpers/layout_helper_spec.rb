@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe LayoutHelper do
-  describe "#stylesheet" do
+  describe "assets" do
     context "adding a stylesheets" do
       before(:each) { helper.stylesheet 'application' }
         
