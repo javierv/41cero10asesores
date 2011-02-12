@@ -5,19 +5,19 @@ class Pagina < ActiveRecord::Base
   attr_writer :ids_cajas
 
   with_options :unless => :borrador? do |pagina|
-    pagina.validates :titulo, :presence => true
-    pagina.validates :cuerpo, :presence => true
+    pagina.validates :titulo, presence: true
+    pagina.validates :cuerpo, presence: true
   end
 
   display_name :titulo
 
   has_many :sidebars
-  has_many :cajas, :through => :sidebars
-  has_one :navegacion, :dependent => :destroy
+  has_many :cajas, through: :sidebars
+  has_one :navegacion, dependent: :destroy
   before_save :build_sidebar
   before_save :set_borrador
 
-  versioned :dependent => :tracking, :initial_version => true
+  versioned dependent: :tracking, initial_version: true
 
   def self.per_page
     15
@@ -55,11 +55,11 @@ class Pagina < ActiveRecord::Base
 
   def draft
     return self if borrador?
-    Pagina.where(:published_id => id).first
+    Pagina.where(published_id: id).first
   end
 
   def published
-    Pagina.where(:id => published_id).first || Pagina.new
+    Pagina.where(id: published_id).first || Pagina.new
   end
 
   def publish(attrs = {})
@@ -88,8 +88,8 @@ class Pagina < ActiveRecord::Base
   
   def self.search_paginate(params)
     search = metasearch params[:search]
-    paginas = search.where(:published_id => nil).paginate :page => params[:page],
-      :per_page => per_page
+    paginas = search.where(published_id: nil).paginate page: params[:page],
+      per_page: per_page
 
     [search, paginas]
   end
@@ -103,7 +103,7 @@ private
     if @ids_cajas
       sidebars.destroy_all
       @ids_cajas.reject {|caja_id| caja_id.to_i.zero?}.each_with_index do |caja_id, index|
-        sidebars.build(:caja_id => caja_id, :orden => index + 1)
+        sidebars.build(caja_id: caja_id, orden: index + 1)
       end
     end
   end
