@@ -6,9 +6,6 @@ Spork.prefork do
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.
   
-  require 'simplecov'
-  SimpleCov.start 'rails'
-
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
@@ -43,6 +40,8 @@ Spork.prefork do
 end
 
 Spork.each_run do
+  require 'simplecov'
+  SimpleCov.start 'rails'
   # This code will be run each time you run your specs.
   def authenticate_usuario
     @usuario = Factory :usuario
