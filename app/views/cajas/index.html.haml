@@ -8,6 +8,6 @@
   = form.input :cuerpo_contains, :label => 'Cuerpo'
 
 %section#listado
-  = render :partial => 'listado'
+  = render 'listado', :cajas => @cajas, :search => @search
 
 = actions_list [:new], Caja
