@@ -47,4 +47,54 @@ describe NavegacionHelper do
       end
     end
   end
+
+  describe "#actions_lists" do
+    class Post
+      extend ActiveModel::Naming
+    end
+
+    def new_post_path
+      '/posts/my_new'
+    end
+
+    def post_path(post)
+      '/posts/35'
+    end
+
+    def posts_path
+      '/posts'
+    end
+
+    let(:post) { Post.new }
+
+    def lista_una_accion(accion)
+      actions_list [accion], post
+    end
+
+    it "genera una lista con la clase de acciones" do
+      lista_una_accion(:show).should have_selector "ul.actions"
+    end
+
+    it "la acción mostrar genera un enlace a mostrar" do
+      lista_una_accion(:show).should have_selector "a[href='#{post_path(post)}']"
+    end
+
+    it "la acción destroy genera un enlace a borrar" do
+      lista_una_accion(:destroy).should have_selector "a[href='#{post_path(post)}']"
+      lista_una_accion(:destroy).should have_selector "a[data-method='delete']"
+    end
+
+    it "la acción índice genera un enlace al índice" do
+      lista_una_accion(:index).should have_selector "a[href='#{posts_path}']"
+    end
+
+    it "la acción nueva genera un enlace a nuevo" do
+      lista_una_accion(:new).should have_selector "a[href='#{new_post_path}']"
+    end
+
+    it "genera como un enlace normal si se pasa un array" do
+      actions_list([['Posts', '/posts']], post).should have_selector(
+        "a[href='/posts']", text: 'Posts')
+    end
+  end
 end
