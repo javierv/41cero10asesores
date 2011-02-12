@@ -21,7 +21,6 @@
 * Al editar cajas, poder asignarlas a las páginas.
 * Formulario de login: ¿autofocus en el email?
 * Pasar el método del formulario AJAX del controlador al modelo. Podemos poner también que si el atributo está "a pelo", añadir "_contains" (¡NO! No podemos por la petición HTML no AJAX, que depende de eso).
-* Cambiar content_for(:head) para poner CSS al principio y JS al final.
 * En Chromium el editor de texto ocupa menos de la mitad de lo que debería.
 * Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
 * Borrar el historial de versiones de los borradores cuando se borra el borrador. No sé si se podrá poner una relación con versiones que las borre si la página es borrador. 
