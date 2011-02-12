@@ -29,7 +29,28 @@ describe NavegacionHelper do
       end
 
       it "genera un enlace con las opciones indicadas" do
-        lista.should have_selector 'a[class=mejor]'
+        lista.should have_selector 'a.mejor'
+      end
+    end
+
+    context "incluyendo opciones de controlador" do
+      let(:accion) do
+        lambda {
+          helper.lista_con_enlaces [['Posts', '/posts', controller: :posts]]
+        }
+      end
+
+      it "el enlace tiene la clase del controlador" do
+        lista = accion.call
+        lista.should have_selector "a.posts"
+        lista.should_not have_selector "a.current"
+      end
+
+      it "el enlace se marca como actual si es el controlador actual" do
+        helper.params[:controller] = :posts
+        lista = accion.call
+        lista.should have_selector "a.posts"
+        lista.should have_selector "a.current"
       end
     end
 
