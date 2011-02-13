@@ -157,7 +157,7 @@ describe PaginasController do
       before(:each) do
         @pagina.save_draft
         @borrador = @pagina.draft
-        @action = lambda {put :update, id: @borrador.to_param, pagina: @pagina.attributes, publish: true}
+        @action = -> {put :update, id: @borrador.to_param, pagina: @pagina.attributes, publish: true}
       end
       
       context "when model is valid" do

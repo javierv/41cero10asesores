@@ -9,7 +9,7 @@ class Caja < ActiveRecord::Base
   has_many :sidebars, dependent: :destroy
   scope :por_titulo, order("cajas.titulo")
 
-  scope :al_final_las_de_pagina, lambda {|pagina|
+  scope :al_final_las_de_pagina, -> pagina {
     if pagina.new_record?
       por_titulo
     else

@@ -35,9 +35,7 @@ describe NavegacionHelper do
 
     context "incluyendo opciones de controlador" do
       let(:accion) do
-        lambda {
-          helper.lista_con_enlaces [['Posts', '/posts', controller: :posts]]
-        }
+        -> { helper.lista_con_enlaces [['Posts', '/posts', controller: :posts]] }
       end
 
       it "el enlace tiene la clase del controlador" do
