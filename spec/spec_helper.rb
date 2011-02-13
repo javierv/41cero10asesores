@@ -36,8 +36,8 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = true
 
-    config.include Devise::TestHelpers, :type => :controller
-    config.include Capybara::RSpecMatchers, :type => :helper
+    config.include Devise::TestHelpers, type: :controller
+    config.include Capybara::RSpecMatchers, type: :helper
   end
 end
 

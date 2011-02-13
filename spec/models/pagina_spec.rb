@@ -23,7 +23,7 @@ describe Pagina do
       pagina = Factory(:pagina)
       cajas = [Factory(:caja), Factory(:caja), Factory(:caja)]
       pagina.ids_cajas = [cajas[0].id]
-      expect { pagina.update_attributes :caja_ids => [cajas[0].id] }.to_not raise_error
+      expect { pagina.update_attributes caja_ids: [cajas[0].id] }.to_not raise_error
     end
   end
 
@@ -38,7 +38,7 @@ describe Pagina do
 
     it 'ordena las cajas' do
       {1 => 1, 0 => 2, 2 => 3}.each do |caja, orden|
-        Sidebar.where(:pagina_id => pagina.id, :caja_id => cajas[caja].id, :orden => orden).first.should be_true
+        Sidebar.where(pagina_id: pagina.id, caja_id: cajas[caja].id, orden: orden).first.should be_true
       end
     end
 
@@ -47,21 +47,21 @@ describe Pagina do
     it 'borra las cajas si ya tenía' do
       pagina.ids_cajas = []
       pagina.save
-      Sidebar.where(:pagina_id => pagina.id).first.should be_false
+      Sidebar.where(pagina_id: pagina.id).first.should be_false
     end
 
     it 'pasa de las IDs vacías' do
       pagina.ids_cajas = ["", "", cajas[2].id, "", ""]
       pagina.save
-      Sidebar.where(:pagina_id => pagina.id).should have(1).item
-      Sidebar.where(:pagina_id => pagina.id, :caja_id => cajas[2].id, :orden => 1).first.should be_true
+      Sidebar.where(pagina_id: pagina.id).should have(1).item
+      Sidebar.where(pagina_id: pagina.id, caja_id: cajas[2].id, orden: 1).first.should be_true
     end
 
     it 'no borra las cajas si no se graba' do
       pagina.stubs(:valid?).returns(false)
       pagina.ids_cajas = [cajas[1].id]
       pagina.save
-      Sidebar.where(:pagina_id => pagina.id).should have(3).items
+      Sidebar.where(pagina_id: pagina.id).should have(3).items
     end
 
     context 'al editar' do
@@ -71,12 +71,12 @@ describe Pagina do
       end
       
       it 'sustituye el orden al editar' do      
-        Sidebar.where(:pagina_id => pagina.id, :caja_id => cajas[2].id, :orden => 1).first.should be_true
-        Sidebar.where(:pagina_id => pagina.id, :caja_id => cajas[1].id, :orden => 2).first.should be_true
+        Sidebar.where(pagina_id: pagina.id, caja_id: cajas[2].id, orden: 1).first.should be_true
+        Sidebar.where(pagina_id: pagina.id, caja_id: cajas[1].id, orden: 2).first.should be_true
       end
       
       it 'borra el orden anterior' do
-        Sidebar.where(:pagina_id => pagina.id, :caja_id => cajas[2].id).should have(1).item
+        Sidebar.where(pagina_id: pagina.id, caja_id: cajas[2].id).should have(1).item
       end
     end
   end
@@ -99,7 +99,7 @@ describe Pagina do
     end
 
     context 'Creando borradores' do
-      let(:pagina) { Factory(:pagina, :titulo => 'Título original') }
+      let(:pagina) { Factory(:pagina, titulo: 'Título original') }
 
       context 'sin borrador creado' do
         it { pagina.should_not have_draft }
@@ -154,7 +154,7 @@ describe Pagina do
           end
 
           context 'al publicar un borrador pasándole parámetros' do
-            before(:each) { pagina.draft.publish(:titulo => 'Título en parámetro') }
+            before(:each) { pagina.draft.publish(titulo: 'Título en parámetro') }
 
             it 'guarda el título del parámetro en la página original' do
               pagina_bd = Pagina.find(pagina.id)
@@ -164,7 +164,7 @@ describe Pagina do
         end
 
         context 'Al crear un borrador con parámetros' do
-          before(:each) { pagina.save_draft(:titulo => 'Título en parámetro') }
+          before(:each) { pagina.save_draft(titulo: 'Título en parámetro') }
           it { pagina.draft.titulo.should == 'Título en parámetro' }
         end
 
@@ -201,7 +201,7 @@ describe Pagina do
       before(:each) { nueva.save_draft }
 
       it 'guarda un borrador' do
-        Pagina.where(:titulo => '', :borrador => true).should be_true
+        Pagina.where(titulo: '', borrador: true).should be_true
       end
 
       it { nueva.draft.should == nueva }
@@ -210,7 +210,7 @@ describe Pagina do
         before(:each) { Pagina.new.save_draft }
 
         it 'no sobreescribe el borrador existente' do
-          Pagina.where(:borrador => true).should have(2).items
+          Pagina.where(borrador: true).should have(2).items
         end
       end
 
@@ -218,11 +218,11 @@ describe Pagina do
         let(:draft) { Pagina.new }
         before(:each) do
           draft.titulo = 'Cambiado'
-          draft.save_draft(:borrador_id => nueva.draft.id)
+          draft.save_draft(borrador_id: nueva.draft.id)
         end
 
         it 'reemplaza el borrador existente' do
-          Pagina.where(:borrador => true).should have(1).item
+          Pagina.where(borrador: true).should have(1).item
           nueva.draft.should == draft.draft
         end
       end
@@ -230,26 +230,26 @@ describe Pagina do
 
     context 'un borrador sin página asociada' do
       let(:titulo) {'Borrador inicial'}
-      let(:draft) { Factory(:pagina, :borrador => true, :titulo => titulo) }
+      let(:draft) { Factory(:pagina, borrador: true, titulo: titulo) }
 
       it { draft.has_draft?.should be_false }
       it { draft.draft.should == draft }
 
       context 'al publicar' do
         before(:each) { draft.publish }
-        let(:published) { Pagina.where(:titulo => titulo, :borrador => false).first }
+        let(:published) { Pagina.where(titulo: titulo, borrador: false).first }
 
         it { published.should be_true }
 
         it 'borra el borrador' do
-          Pagina.where(:titulo => titulo, :borrador => true).first.should be_false
+          Pagina.where(titulo: titulo, borrador: true).first.should be_false
         end
 
         it { draft.published.should == published }
       end
 
       context 'al guardar un borrador' do
-        before(:each) { draft.save_draft(:titulo => 'Título cambiado') }
+        before(:each) { draft.save_draft(titulo: 'Título cambiado') }
 
         it 'se sobrescribe a sí mismo' do
           draft.titulo.should == 'Título cambiado'
@@ -262,8 +262,8 @@ describe Pagina do
     let(:navegables) { [Factory(:pagina), Factory(:pagina), Factory(:pagina)] }
     let(:otras) { [Factory(:pagina), Factory(:pagina), Factory(:pagina)] } 
     before(:each) do
-      navegables.reverse.each_with_index do |pagina, index|
-        Factory(:navegacion, :pagina_id => pagina.id, :orden => index + 1)
+      navegables.reverse.each.with_index do |pagina, index|
+        Factory(:navegacion, pagina_id: pagina.id, orden: index + 1)
       end
     end
 
@@ -281,7 +281,7 @@ describe Pagina do
       Pagina.stubs(:per_page).returns(3)
     end
 
-    it { Pagina.siguiente(:page => 1).should == paginas[2] }
-    it { Pagina.siguiente(:page => 4).should be_nil }
+    it { Pagina.siguiente(page: 1).should == paginas[2] }
+    it { Pagina.siguiente(page: 4).should be_nil }
   end
 end

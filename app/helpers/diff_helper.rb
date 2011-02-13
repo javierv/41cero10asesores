@@ -12,7 +12,7 @@ module DiffHelper
   end
 
   def texto_version_modificada(version)
-    html = "Modificada el #{content_tag :span, l(version.updated_at, :format => :long)}"
+    html = "Modificada el #{content_tag :span, l(version.updated_at, format: :long)}"
     if version.user
       html += " por #{content_tag :span, version.user}" 
     end
@@ -21,8 +21,8 @@ module DiffHelper
   end
 private
   def render_pagina(pagina)
-    {:content => render('paginas/texto_pagina', :pagina => pagina),
-    :sidebar => render('paginas/sidebar', :pagina => pagina)}
+    {content: render('paginas/texto_pagina', pagina: pagina),
+    sidebar: render('paginas/sidebar', pagina: pagina)}
   end
 
   def differ(actual, anterior)
@@ -31,11 +31,11 @@ private
 
   def boton_id(version)
     radio_button_tag :version_id, version.id, false,
-                     :title => 'Selecciona como versión posterior en la comparación'
+                     title: 'Selecciona como versión posterior en la comparación'
   end
 
   def boton_referencia(version)
     radio_button_tag :ref_id, version.id, false,
-                     :title => 'Selecciona como versión de referencia en la comparación'
+                     title: 'Selecciona como versión de referencia en la comparación'
   end
 end

@@ -9,7 +9,7 @@ class AjaxFormController < ApplicationController
     json = @resultados.map do |resultado|
       {"id" => resultado.id, "label" => resultado.send(campo).truncate(50), "value" => resultado.send(campo)}
     end
-    render :json => json
+    render json: json
   end
 
 private

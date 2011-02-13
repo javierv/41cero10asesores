@@ -2,14 +2,14 @@
 
 class Caja < ActiveRecord::Base
   attr_accessible :titulo, :cuerpo
-  validates :titulo, :presence => true
-  validates :cuerpo, :presence => true
+  validates :titulo, presence: true
+  validates :cuerpo, presence: true
   display_name :titulo
 
-  has_many :sidebars, :dependent => :destroy
+  has_many :sidebars, dependent: :destroy
   scope :por_titulo, order("cajas.titulo")
 
-  scope :al_final_las_de_pagina, lambda {|pagina|
+  scope :al_final_las_de_pagina, -> pagina {
     if pagina.new_record?
       por_titulo
     else

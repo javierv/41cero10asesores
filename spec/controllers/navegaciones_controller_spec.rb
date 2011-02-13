@@ -13,7 +13,7 @@ describe NavegacionesController do
     
   describe "update" do
     before(:each) do
-      post :create, :navegacion => {:pagina_id => [1, 2, 3]}
+      post :create, navegacion: {pagina_id: [1, 2, 3]}
     end
 
     it { should redirect_to(new_navegacion_path) }

@@ -48,7 +48,7 @@ describe CajasController do
   end
 
   describe "edit" do
-    before(:each) { get :edit, :id => @caja.to_param }
+    before(:each) { get :edit, id: @caja.to_param }
     it { should render_template 'edit' }
   end
 
@@ -56,7 +56,7 @@ describe CajasController do
     context "when model is invalid" do
       before(:each) do
         caja_falla_validacion
-        put :update, :id => @caja.to_param, :caja => @caja.attributes
+        put :update, id: @caja.to_param, caja: @caja.attributes
       end
 
       it { should render_template :edit }
@@ -65,14 +65,14 @@ describe CajasController do
     context "when model is valid" do
       before(:each) do
         caja_valida_siempre
-        put :update, :id => @caja.to_param, :caja => @caja.attributes
+        put :update, id: @caja.to_param, caja: @caja.attributes
       end
       it { should redirect_to(edit_caja_path(@caja)) }
     end
   end
 
   describe "destroy" do
-    before(:each) { delete :destroy, :id => @caja.to_param }
+    before(:each) { delete :destroy, id: @caja.to_param }
 
     it { should redirect_to(cajas_path) }
     it { should set_the_flash }

@@ -1,26 +1,26 @@
 Calesur::Application.routes.draw do
-  resources :navegaciones, :only => [:new, :create]
-  resources :fotos, :only => [:new, :create] do
-    put :thumbnail, :on => :member
+  resources :navegaciones, only: [:new, :create]
+  resources :fotos, only: [:new, :create] do
+    put :thumbnail, on: :member
   end
   devise_for :usuarios
 
-  resources :cajas, :except => :show
+  resources :cajas, except: :show
 
   resources :paginas do
-    get :search, :on => :collection
-    get :historial, :on => :member
+    get :search, on: :collection
+    get :historial, on: :member
   end
 
-  resources :vestal_versions_versions, :path => 'versions', :controller => 'versions',
-    :only => [:show] do
-    put :recover, :on => :member
-    put :restore, :on => :member
-    get 'compare(/:ref_id)', :action => 'compare', :as => :compare, :on => :member
-    get :borradas, :on => :collection
+  resources :vestal_versions_versions, path: 'versions', controller: 'versions',
+    only: [:show] do
+    put :recover, on: :member
+    put :restore, on: :member
+    get 'compare(/:ref_id)', action: 'compare', as: :compare, on: :member
+    get :borradas, on: :collection
   end
 
-  root :to => "paginas#index"
+  root to: "paginas#index"
   match '/autocomplete' => "ajax_form#autocomplete"
   match '/ayuda-textile' => "static#ayuda_textile"
 
