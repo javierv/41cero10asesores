@@ -13,7 +13,7 @@ class Navegacion < ActiveRecord::Base
   def self.establecer(ids)
     delete_all
 
-    ids.each_with_index.map do |id, orden|
+    ids.map.with_index do |id, orden|
       create(pagina_id: id, orden: orden + 1)
     end
   end

@@ -102,7 +102,7 @@ private
   def build_sidebar
     if @ids_cajas
       sidebars.destroy_all
-      @ids_cajas.reject {|caja_id| caja_id.to_i.zero?}.each_with_index do |caja_id, index|
+      @ids_cajas.reject {|caja_id| caja_id.to_i.zero?}.each.with_index do |caja_id, index|
         sidebars.build(caja_id: caja_id, orden: index + 1)
       end
     end
@@ -122,8 +122,6 @@ private
   end
 
   def copy_errors(pagina)
-    pagina.errors.each do |field, message|
-      errors.add(field, message)
-    end
+    pagina.errors.each { |field, message| errors.add(field, message) }
   end
 end

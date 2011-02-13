@@ -47,7 +47,7 @@ namespace :db do
       end
     end
 
-    ['Nuestros valores', 'Ámbitos de actuación', 'Participamos', 'Ubicación', 'Contacto'].each_with_index do |titulo, index|
+    ['Nuestros valores', 'Ámbitos de actuación', 'Participamos', 'Ubicación', 'Contacto'].each.with_index do |titulo, index|
       pagina = Pagina.new
 
       (1..7).random.times do

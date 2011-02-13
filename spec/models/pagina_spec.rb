@@ -262,7 +262,7 @@ describe Pagina do
     let(:navegables) { [Factory(:pagina), Factory(:pagina), Factory(:pagina)] }
     let(:otras) { [Factory(:pagina), Factory(:pagina), Factory(:pagina)] } 
     before(:each) do
-      navegables.reverse.each_with_index do |pagina, index|
+      navegables.reverse.each.with_index do |pagina, index|
         Factory(:navegacion, pagina_id: pagina.id, orden: index + 1)
       end
     end
