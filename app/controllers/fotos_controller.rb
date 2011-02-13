@@ -2,11 +2,7 @@
 
 class FotosController < ApplicationController
   respond_to :html
-  before_filter :new_foto, only: [:new, :create]
-
-  def new
-    respond_with @foto
-  end
+  before_filter :new_foto, only: [:create]
 
   def create
     if @foto.save
