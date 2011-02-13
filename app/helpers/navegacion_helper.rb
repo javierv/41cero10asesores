@@ -48,12 +48,12 @@ module NavegacionHelper
     if version.previous
       actions << ['Anterior', 
                 compare_vestal_versions_version_path(version, version.previous),
-                {:title => 'Comparar con la versión anterior a esta'}]
+                {title: 'Comparar con la versión anterior a esta'}]
     end
     
     unless version.current?
       actions << ['Actual', compare_vestal_versions_version_path(version),
-                  {:title => 'Comparar con la versión actual'}]
+                  {title: 'Comparar con la versión actual'}]
     end
     actions_list actions, version
   end
@@ -70,7 +70,7 @@ private
     
     content_tag :li do
       if opciones[:form]
-        form_tag(enlace[1], :method => opciones[:method]) + submit_tag(enlace[0])
+        form_tag(enlace[1], method: opciones[:method]) + submit_tag(enlace[0])
       else
         link_to enlace[0], enlace[1], opciones
       end
@@ -97,11 +97,11 @@ private
   end
 
   def link_title(action)
-    I18n.translate(action, :scope => "tabletastic.actions", :default => action.to_s.titleize)
+    I18n.translate(action, scope: "tabletastic.actions", default: action.to_s.titleize)
   end
 
   def confirmation_message
-    I18n.t("tabletastic.actions.confirmation", :default => "Are you sure?")
+    I18n.t("tabletastic.actions.confirmation", default: "Are you sure?")
   end
 
   def enlaces(actions, resource)
@@ -126,9 +126,9 @@ private
       when :index
         [resource.class, {:class => "index #{resource.class.to_s.tableize}"}]
       when :destroy
-        [resource, {:method => :delete, :confirm => confirmation_message}]
+        [resource, {method: :delete, confirm: confirmation_message}]
       else
-        polymorphic_path(resource, :action => action)
+        polymorphic_path(resource, action: action)
       end
   end
 end
