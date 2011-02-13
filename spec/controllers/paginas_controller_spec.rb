@@ -163,7 +163,7 @@ describe PaginasController do
       context "when model is valid" do
         before(:each) do
           Pagina.any_instance.stubs(:valid?).returns(true)
-          @action.call
+          @action[]
         end
         it { should redirect_to(pagina_path(@pagina)) }
       end
@@ -171,7 +171,7 @@ describe PaginasController do
       context 'when model is invalid' do
         before(:each) do
           Pagina.any_instance.stubs(:valid?).returns(false)
-          @action.call
+          @action[]
         end
 
         it { should render_template(:edit) }

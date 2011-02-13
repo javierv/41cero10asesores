@@ -39,14 +39,14 @@ describe NavegacionHelper do
       end
 
       it "el enlace tiene la clase del controlador" do
-        lista = accion.call
+        lista = accion[]
         lista.should have_selector "a.posts"
         lista.should_not have_selector "a.current"
       end
 
       it "el enlace se marca como actual si es el controlador actual" do
         helper.params[:controller] = :posts
-        lista = accion.call
+        lista = accion[]
         lista.should have_selector "a.posts"
         lista.should have_selector "a.current"
       end
