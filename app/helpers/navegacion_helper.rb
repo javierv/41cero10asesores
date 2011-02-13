@@ -60,9 +60,9 @@ module NavegacionHelper
  
 private
   def elementos_lista_enlace(enlaces)
-    enlaces.inject('') do |contenido, enlace|
-      (contenido + elemento_lista_enlace(enlace)).html_safe
-    end
+    enlaces.map do |enlace|
+      elemento_lista_enlace(enlace)
+    end.join.html_safe
   end
 
   def elemento_lista_enlace(enlace)
