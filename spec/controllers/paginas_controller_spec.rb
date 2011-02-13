@@ -21,7 +21,7 @@ describe PaginasController do
       before(:each) { get :index }
 
       it { should respond_with(:success) }
-      it { should assign_to(:paginas) }
+      it { assigns(:paginas).should be_true }
       it { should render_with_layout(:application) }
     end
 
@@ -65,7 +65,7 @@ describe PaginasController do
         end
 
         it { should render_template(:preview) }
-        it { should assign_to(:pagina) }
+        it { assigns(:pagina).should be_true }
       end
 
       context "with an AJAX request" do
@@ -119,7 +119,7 @@ describe PaginasController do
         end
 
         it { should render_template(:preview) }
-        it { should assign_to(:pagina) }
+        it { assigns(:pagina).should be_true }
       end
 
       context "with an AJAX request" do
@@ -202,14 +202,14 @@ describe PaginasController do
     before(:each) { get :search, q: "buscando" }
 
     it { should respond_with(:success) }
-    it { should assign_to(:paginas) }
+    it { assigns(:paginas).should be_true }
   end
 
   describe 'ver el historial' do
     before(:each) { get :historial, id: @pagina.to_param }
 
     it { should respond_with(:success) }
-    it { should assign_to(:pagina) }
-    it { should assign_to(:versiones) }
+    it { assigns(:pagina).should be_true }
+    it { assigns(:versiones).should be_true }
   end
 end

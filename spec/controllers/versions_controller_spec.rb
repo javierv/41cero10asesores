@@ -20,7 +20,7 @@ describe VersionsController do
       get :show, id: pagina.versions.last.to_param
     end
     
-    it { should assign_to(:pagina) }
+    it { assigns(:pagina).should be_true }
     it { should respond_with(:success) }
   end    
 
@@ -28,7 +28,7 @@ describe VersionsController do
     before(:each) do
       put :recover, id: pagina.versions.last.to_param
     end
-    it { should assign_to(:pagina) }
+    it { assigns(:pagina).should be_true }
     it { should set_the_flash }
     it { should redirect_to(pagina) }
   end
@@ -49,8 +49,8 @@ describe VersionsController do
       end
 
       it { should respond_with(:success) }
-      it { should assign_to(:pagina) }
-      it { should assign_to(:referencia) }
+      it { assigns(:pagina).should be_true }
+      it { assigns(:referencia).should be_true }
     end
 
     context 'con versión de referencia' do
@@ -67,6 +67,6 @@ describe VersionsController do
     before(:each) { get :borradas }
 
     it { should respond_with(:success) }
-    it { should assign_to(:versiones) }
+    it { assigns(:versiones).should be_true }
   end
 end

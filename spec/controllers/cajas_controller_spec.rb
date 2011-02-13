@@ -20,7 +20,7 @@ describe CajasController do
     before(:each) { get :index }
 
     it { should respond_with(:success) }
-    it { should assign_to(:cajas) }
+    it { assigns(:cajas).should be_true }
   end
 
   describe "new" do
