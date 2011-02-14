@@ -9,11 +9,6 @@ describe 'Formulario de guardado', ->
       arguments[0].call() 
     )
     loadFixtures 'autosave_form.html'
-    # Si no lo pongo, se carga el archivo antes que las fixtures.
-    # Se ve que es el tiempo que tarda en manipular el DOM
-    # metiendo los elementos nuevos.
-    # No debería ser así, pero bueno.
-    waits(30)
     load 'autosave_form'
 
   it 'hace una petición AJAX', ->

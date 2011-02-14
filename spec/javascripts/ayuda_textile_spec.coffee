@@ -1,7 +1,6 @@
 describe 'Ayuda Textile', ->
   beforeEach ->
     loadFixtures 'ayuda_textile.html'
-    waits(30)
     load 'ayuda_textile'
 
   it 'pone un enlace antes del textarea', ->

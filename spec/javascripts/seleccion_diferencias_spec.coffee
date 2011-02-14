@@ -1,7 +1,6 @@
 describe 'Selección diferencias', ->
   beforeEach ->
     loadFixtures 'seleccion_diferencias.html'
-    waits(30)
     load 'seleccion_diferencias'
 
   it 'selecciona el primer botón de versión a mirar', ->

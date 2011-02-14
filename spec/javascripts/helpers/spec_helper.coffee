@@ -4,7 +4,13 @@ require = (file) ->
   if !cached_files[file]
     cached_files[file] = create_script(file)
 
-load = (file) -> create_script(file)
+load = (file) ->
+    # Si no lo pongo, se carga el archivo antes que las fixtures.
+    # Se ve que es el tiempo que tarda en manipular el DOM
+    # metiendo los elementos nuevos.
+    # No debería ser así, pero bueno.
+    waits(30)
+    create_script(file)
 
 create_script = (file) ->
   script = document.createElement('script')

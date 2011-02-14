@@ -4,7 +4,6 @@ require 'typewatch'
 describe 'Live form', ->
   beforeEach ->
     loadFixtures 'live_form.html'
-    waits(30)
     load 'live_form'
 
   it 'removes the preview button', ->
