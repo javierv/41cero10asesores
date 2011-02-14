@@ -19,6 +19,17 @@ describe FotosController do
       it { should respond_with(:success) }
       it { should set_the_flash }
     end
+
+    context "with an invalid model" do
+      before(:each) do
+        falla_validacion Foto
+        xhr :post, :create
+      end
+
+      it { assigns(:foto).should be_true }
+      it { should respond_with(:success) }
+      it { should render_template(:error) }
+    end
   end
 
   describe "thumbnail" do

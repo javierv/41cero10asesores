@@ -7,6 +7,9 @@ class FotosController < ApplicationController
     @foto = Foto.new params[:foto]
     if @foto.save
       flash[:notice] = 'Foto se creó correctamente.'
+    else
+      flash[:alert] = 'Error al crear la foto'
+      render 'error'
     end
   end
 
