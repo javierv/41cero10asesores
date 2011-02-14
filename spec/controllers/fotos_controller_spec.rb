@@ -17,7 +17,7 @@ describe FotosController do
 
       it { assigns(:foto).should be_true }
       it { should respond_with(:success) }
-      it { should set_the_flash }
+      it { should_not set_the_flash }
     end
 
     context "with an invalid model" do
