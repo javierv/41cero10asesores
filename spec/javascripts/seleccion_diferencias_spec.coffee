@@ -2,7 +2,7 @@ describe 'Selección diferencias', ->
   beforeEach ->
     loadFixtures 'seleccion_diferencias.html'
     waits(30)
-    require 'seleccion_diferencias'
+    load 'seleccion_diferencias'
 
   it 'selecciona el primer botón de versión a mirar', ->
     expect($('#version_id_36')).toBeChecked()
@@ -29,6 +29,3 @@ describe 'Selección diferencias', ->
 
       it 'hace desaparecer versión de referencia posterior', -> 
         expect($('#ref_id_35')).not.toBeVisible()
-
-  afterEach ->
-    unrequire 'seleccion_diferencias'
