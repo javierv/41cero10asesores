@@ -1,7 +1,7 @@
 Calesur::Application.routes.draw do
   resources :navegaciones, only: [:new, :create]
   resources :fotos, only: [:create] do
-    put :thumbnail, on: :member
+    get :thumbnail, on: :member
   end
   devise_for :usuarios
 
