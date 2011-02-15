@@ -16,7 +16,7 @@ $(document).ready ->
         '<\/div>' +
         '<\/td>' +
         '<\/tr>'
-      )    
+      )
     onLoad: (event, files, index, xhr, handler) ->
       $('.upload_files').fadeOut('slow', -> $(this).empty().fadeIn())
       $('#galeria').append(xhr.responseText)

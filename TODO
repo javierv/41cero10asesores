@@ -1,4 +1,3 @@
-* Tests de Javascript con Jasmine.
 * URLs bonitas.
 * https://github.com/rubiety/validates_lengths_from_database
 * Usar el atributo formaction en cuanto salgan las próximas versiones de Firefox y Chrome. Para la administración vale con eso.
@@ -15,7 +14,6 @@
 * Investigar si se borran los borradores de página nueva cuando se crea la página.
 * El enlace a "comparar con la actual" se comporta de forma un tanto extraña.
 * "Ordenar por..." como título de enlaces de cabecera de la tabla.
-* Que los errores sean enlaces a corregir el error.
 * "Editar borrador" no se ve entero :S. Confirmado, cuando la ventana no es grande respecto al tamaño del texto. Por alguna razón, la tabla no se comprime en la celda de acciones.
 * Vista previa al editar cajas.
 * Al editar cajas, poder asignarlas a las páginas.

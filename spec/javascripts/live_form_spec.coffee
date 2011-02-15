@@ -4,8 +4,7 @@ require 'typewatch'
 describe 'Live form', ->
   beforeEach ->
     loadFixtures 'live_form.html'
-    waits(30)
-    require 'live_form'
+    load 'live_form'
 
   it 'removes the preview button', ->
     expect($('input[name=preview]')).not.toExist()
@@ -22,6 +21,3 @@ describe 'Live form', ->
       request = mostRecentAjaxRequest()
       request.response status: 200, responseText: '<p>My preview text</p>'
       expect($('#preview')).toHaveHtml request.responseText
-
-  afterEach ->
-    unrequire 'live_form'
