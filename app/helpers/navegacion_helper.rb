@@ -9,27 +9,27 @@ module NavegacionHelper
   end
 
   def navegacion_admin    
-    lista_con_enlaces [['Editar páginas', paginas_path, {:controller => 'paginas'}],
-     ['Editar cajas', cajas_path, {:controller => 'cajas'}],
-     ['Editar navegación', new_navegacion_path, {:controller => 'navegaciones'}],
-     ['Desconectar', destroy_usuario_session_path, {:class => 'desconectar'}]]
+    lista_con_enlaces [['Editar páginas', paginas_path, {controller: 'paginas'}],
+     ['Editar cajas', cajas_path, {controller: 'cajas'}],
+     ['Editar navegación', new_navegacion_path, {controller: 'navegaciones'}],
+     ['Desconectar', destroy_usuario_session_path, {class: 'desconectar'}]]
   end
 
   def actions_list(actions, resource)
-    lista_con_enlaces enlaces(actions, resource), :class => 'actions'
+    lista_con_enlaces enlaces(actions, resource), class: 'actions'
   end
 
   def acciones_para_pagina(pagina)
     acciones = [:edit,
       ['Borrar', pagina_path(pagina), {
-        :method  => :delete,
-        :class   => :destroy,
-        :remote  => true
+        method: :delete,
+        class:  :destroy,
+        remote: true
       }],
       :historial]
 
     if pagina.has_draft?
-      acciones.push(['Editar borrador', edit_pagina_path(pagina.draft), {:class => 'draft'}])
+      acciones.push(['Editar borrador', edit_pagina_path(pagina.draft), {class: 'draft'}])
     end
 
     unless pagina.borrador?
@@ -109,7 +109,7 @@ private
       if action.is_a?(Array)
         action
       else
-        opciones = {:class => action}
+        opciones = {class: action}
         url = action_url(action, resource)
         if url.is_a?(Array)
           opciones.merge!(url.extract_options!)
@@ -124,7 +124,7 @@ private
       when :show
         resource
       when :index
-        [resource.class, {:class => "index #{resource.class.to_s.tableize}"}]
+        [resource.class, {class: "index #{resource.class.to_s.tableize}"}]
       when :destroy
         [resource, {method: :delete, confirm: confirmation_message}]
       else

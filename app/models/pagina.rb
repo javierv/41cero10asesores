@@ -4,7 +4,7 @@ class Pagina < ActiveRecord::Base
   attr_accessible :titulo, :cuerpo, :caja_ids, :updated_by
   attr_writer :ids_cajas
 
-  with_options :unless => :borrador? do |pagina|
+  with_options unless: :borrador? do |pagina|
     pagina.validates :titulo, presence: true
     pagina.validates :cuerpo, presence: true
   end
