@@ -11,7 +11,8 @@ jQuery.fn.autosaveForm = (options) ->
   jQuery.extend(defaults, options)
 
   this.each ->
+    form = this
     setInterval(
-      -> jQuery(this).ajaxSubmit(options),
+      -> jQuery(form).ajaxSubmit(defaults),
       defaults.interval
     )
