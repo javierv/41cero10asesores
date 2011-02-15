@@ -1,32 +1,33 @@
 !!!
-%html{:lang => I18n.locale}
+%html{lang: I18n.locale}
 
   %head
-    %title= h(yield(:title) || "Untitled")
-    %meta{:charset => "utf-8"}
+    %title= h(title || "Untitled")
+    %meta{charset: "utf-8"}
     = stylesheet_link_tag 'application'
-    = javascript_include_tag 'jquery', 'rails', 'application'
+    = include_stylesheets
     = csrf_meta_tag
-    = yield(:head)
 
   %body
-    %header#cabecera{:role => 'banner'}= render 'general/cabecera'
+    %header#cabecera{role: 'banner'}= render 'general/cabecera'
     #navegacion
       %nav= render 'general/navegacion'
       = render 'general/buscador'
 
     #content
-      = render 'shared/flash', :flash => flash
+      = render 'shared/flash', flash: flash
 
       - if content_for?(:sidebar)
-        %aside#sidebar{:role => 'complementary'}= yield(:sidebar)
+        %aside#sidebar{role: 'complementary'}= yield(:sidebar)
       - elsif usuario_signed_in?
         %section#admin= navegacion_admin
 
-      %section#main{:role => 'main'}
+      %section#main{role: 'main'}
         - if show_title?
           %header
-            %h1= yield(:title)
+            %h1= title
         = yield
 
-    %footer#pie{:role => 'contentinfo'}= render 'general/pie'
+    %footer#pie{role: 'contentinfo'}= render 'general/pie'
+    = javascript_include_tag 'jquery', 'rails', 'application'
+    = include_javascripts

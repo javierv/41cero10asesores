@@ -4,20 +4,20 @@ class Pagina < ActiveRecord::Base
   attr_accessible :titulo, :cuerpo, :caja_ids, :updated_by
   attr_writer :ids_cajas
 
-  with_options :unless => :borrador? do |pagina|
-    pagina.validates :titulo, :presence => true
-    pagina.validates :cuerpo, :presence => true
+  with_options unless: :borrador? do |pagina|
+    pagina.validates :titulo, presence: true
+    pagina.validates :cuerpo, presence: true
   end
 
   display_name :titulo
 
   has_many :sidebars
-  has_many :cajas, :through => :sidebars
-  has_one :navegacion, :dependent => :destroy
+  has_many :cajas, through: :sidebars
+  has_one :navegacion, dependent: :destroy
   before_save :build_sidebar
   before_save :set_borrador
 
-  versioned :dependent => :tracking, :initial_version => true
+  versioned dependent: :tracking, initial_version: true
 
   def self.per_page
     15
@@ -30,13 +30,6 @@ class Pagina < ActiveRecord::Base
   scope :al_final_las_de_navegacion, 
     includes(:navegacion).where("borrador = ? OR borrador IS NULL", false).
       order("navegaciones.orden, paginas.titulo")
-
-  xapit :include => :cajas, :conditions => {:borrador => false} do |index|
-    index.text :titulo, :weight => 10
-    index.text :cuerpo, :weight => 4
-    index.text :titulo_cajas, :weight => 3
-    index.text :cuerpo_cajas, :weight => 1
-  end
 
   def titulo_cajas
     cajas.map(&:titulo).join(' ')
@@ -53,12 +46,7 @@ class Pagina < ActiveRecord::Base
   def save_draft(attrs = {})
     return update_attributes(attrs) if borrador?
     
-    borrador = if new_record?
-      Pagina.find_by_id(attrs[:borrador_id]) || self
-    else
-      Pagina.find_or_create_by_published_id(id)
-    end
-    
+    borrador = find_borrador attrs
     borrador.attributes = attributes.merge(attrs)
     borrador.borrador = true
     borrador.published_id = id
@@ -67,11 +55,11 @@ class Pagina < ActiveRecord::Base
 
   def draft
     return self if borrador?
-    Pagina.where(:published_id => id).first
+    Pagina.where(published_id: id).first
   end
 
   def published
-    Pagina.where(:id => published_id).first || Pagina.new
+    Pagina.where(id: published_id).first || Pagina.new
   end
 
   def publish(attrs = {})
@@ -85,10 +73,7 @@ class Pagina < ActiveRecord::Base
       self.published_id = pagina.id
       destroy
     else
-      pagina.errors.each do |field, message|
-        errors.add(field, message)
-      end
-
+      copy_errors(pagina)
       false
     end
   end
@@ -103,8 +88,8 @@ class Pagina < ActiveRecord::Base
   
   def self.search_paginate(params)
     search = metasearch params[:search]
-    paginas = search.where(:published_id => nil).paginate :page => params[:page],
-      :per_page => per_page
+    paginas = search.where(published_id: nil).paginate page: params[:page],
+      per_page: per_page
 
     [search, paginas]
   end
@@ -117,14 +102,26 @@ private
   def build_sidebar
     if @ids_cajas
       sidebars.destroy_all
-      @ids_cajas.reject {|caja_id| caja_id.to_i.zero?}.each_with_index do |caja_id, index|
-        sidebars.build(:caja_id => caja_id, :orden => index + 1)
+      @ids_cajas.reject {|caja_id| caja_id.to_i.zero?}.each.with_index do |caja_id, index|
+        sidebars.build(caja_id: caja_id, orden: index + 1)
       end
+    end
+  end
+
+  def find_borrador(attrs)
+    if new_record?
+      Pagina.find_by_id(attrs[:borrador_id]) || self
+    else
+      Pagina.find_or_create_by_published_id(id)
     end
   end
 
   def set_borrador
     self.borrador = false if borrador.nil?
     true
+  end
+
+  def copy_errors(pagina)
+    pagina.errors.each { |field, message| errors.add(field, message) }
   end
 end

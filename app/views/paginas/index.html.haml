@@ -5,12 +5,12 @@
 - javascript 'filtrador'
 
 = filter_form_for @search do |form|
-  = form.input :titulo_contains, :label => 'Título' # No funciona traducir etiqueta de estos atributos
-  = form.input :cuerpo_contains, :label => 'Cuerpo'
+  = form.input :titulo_contains, label: 'Título' # No funciona traducir etiqueta de estos atributos
+  = form.input :cuerpo_contains, label: 'Cuerpo'
 
 %section#listado
-  = render :partial => 'listado'
+  = render 'listado', paginas: @paginas, search: @search
 
 = actions_list [:new,
-  ['Páginas borradas', borradas_vestal_versions_versions_path, {:class => 'destroy'}]],
+  ['Páginas borradas', borradas_vestal_versions_versions_path, {class: 'destroy'}]],
   Pagina

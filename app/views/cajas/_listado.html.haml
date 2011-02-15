@@ -1,9 +1,9 @@
-= table_for @cajas do |table|
+= table_for cajas do |table|
   = table.data do
-    = table.cell :titulo, :heading => sort_link(@search, :titulo)
-    = table.cell :cuerpo, :heading => sort_link(@search, :cuerpo) do |caja|
-      - truncate(caja.cuerpo, :length => 50)
-    = table.cell(:acciones, :heading => 'Acciones', :cell_html => {:class => 'actions'}) do |caja|
+    = table.cell :titulo, heading: sort_link(search, :titulo)
+    = table.cell :cuerpo, heading: sort_link(search, :cuerpo) do |caja|
+      - truncate(caja.cuerpo, length: 50)
+    = table.cell(:acciones, heading: 'Acciones', cell_html: {class: 'actions'}) do |caja|
       - acciones_para_caja(caja)
 
 #paginador= will_paginate

@@ -21,7 +21,7 @@ describe PaginasController do
       before(:each) { get :index }
 
       it { should respond_with(:success) }
-      it { should assign_to(:paginas) }
+      it { assigns(:paginas).should be_true }
       it { should render_with_layout(:application) }
     end
 
@@ -44,7 +44,7 @@ describe PaginasController do
     context "when model is invalid" do
       before(:each) do
         pagina_falla_validacion
-        post :create, :pagina => @pagina.attributes
+        post :create, pagina: @pagina.attributes
       end
 
       it { should render_template(:new) }
@@ -53,7 +53,7 @@ describe PaginasController do
     context "when model is valid" do
       before(:each) do
         pagina_valida_siempre
-        post :create, :pagina => @pagina.attributes
+        post :create, pagina: @pagina.attributes
       end
       it { should redirect_to(pagina_path(assigns(:pagina))) }
     end
@@ -61,16 +61,16 @@ describe PaginasController do
     context "when using preview button" do
       context "with a normal request" do
         before(:each) do
-          post :create, :pagina => @pagina.attributes, :preview => true
+          post :create, pagina: @pagina.attributes, preview: true
         end
 
         it { should render_template(:preview) }
-        it { should assign_to(:pagina) }
+        it { assigns(:pagina).should be_true }
       end
 
       context "with an AJAX request" do
         before(:each) do
-          xhr :post, :create, :pagina => @pagina.attributes, :preview => true
+          xhr :post, :create, pagina: @pagina.attributes, preview: true
         end
 
         it { should render_template(:preview) }
@@ -82,14 +82,14 @@ describe PaginasController do
 
   describe "show action" do
     before(:each) do
-      get :show, :id => @pagina.to_param
+      get :show, id: @pagina.to_param
     end
     it { should respond_with(:success) }
   end
 
   describe "edit action" do
     before(:each) do
-      get :edit, :id => @pagina.to_param
+      get :edit, id: @pagina.to_param
     end
     it { should render_template(:edit) }
   end
@@ -98,7 +98,7 @@ describe PaginasController do
     context "when model is invalid" do
       before(:each) do
         pagina_falla_validacion
-        put :update, :id => @pagina.to_param, :pagina => @pagina.attributes
+        put :update, id: @pagina.to_param, pagina: @pagina.attributes
       end
 
       it { should render_template(:edit) }
@@ -107,7 +107,7 @@ describe PaginasController do
     context "when model is valid" do
       before(:each) do
         pagina_valida_siempre
-        put :update, :id => @pagina.to_param, :pagina => @pagina.attributes
+        put :update, id: @pagina.to_param, pagina: @pagina.attributes
       end
       it { should redirect_to(pagina_path(@pagina)) }
     end
@@ -115,16 +115,16 @@ describe PaginasController do
     context "when using preview button" do
       context "with a normal request" do
         before(:each) do
-          put :update, :id => @pagina.to_param, :pagina => @pagina.attributes, :preview => true
+          put :update, id: @pagina.to_param, pagina: @pagina.attributes, preview: true
         end
 
         it { should render_template(:preview) }
-        it { should assign_to(:pagina) }
+        it { assigns(:pagina).should be_true }
       end
 
       context "with an AJAX request" do
         before(:each) do
-          xhr :put, :update, :id => @pagina.to_param, :pagina => @pagina.attributes, :preview => true
+          xhr :put, :update, id: @pagina.to_param, pagina: @pagina.attributes, preview: true
         end
 
         it { should render_template(:preview) }
@@ -136,7 +136,7 @@ describe PaginasController do
     context "when saving as draft" do
       context "with a normal request" do
         before(:each) do
-          put :update, :id => @pagina.to_param, :pagina => @pagina.attributes, :draft => true
+          put :update, id: @pagina.to_param, pagina: @pagina.attributes, draft: true
         end
 
         it { should redirect_to(edit_pagina_path(@pagina.draft)) }
@@ -144,7 +144,7 @@ describe PaginasController do
 
       context "with an AJAX request" do
         before(:each) do
-          xhr :put, :update, :id => @pagina.to_param, :pagina => @pagina.attributes, :draft => true
+          xhr :put, :update, id: @pagina.to_param, pagina: @pagina.attributes, draft: true
         end
 
         it { should render_template(:borrador) }
@@ -157,13 +157,13 @@ describe PaginasController do
       before(:each) do
         @pagina.save_draft
         @borrador = @pagina.draft
-        @action = lambda {put :update, :id => @borrador.to_param, :pagina => @pagina.attributes, :publish => true}
+        @action = -> {put :update, id: @borrador.to_param, pagina: @pagina.attributes, publish: true}
       end
       
       context "when model is valid" do
         before(:each) do
           Pagina.any_instance.stubs(:valid?).returns(true)
-          @action.call
+          @action[]
         end
         it { should redirect_to(pagina_path(@pagina)) }
       end
@@ -171,7 +171,7 @@ describe PaginasController do
       context 'when model is invalid' do
         before(:each) do
           Pagina.any_instance.stubs(:valid?).returns(false)
-          @action.call
+          @action[]
         end
 
         it { should render_template(:edit) }
@@ -181,7 +181,7 @@ describe PaginasController do
 
   describe "destroy action" do
     context "with a normal request" do 
-      before(:each) { delete :destroy, :id => @pagina.to_param }
+      before(:each) { delete :destroy, id: @pagina.to_param }
 
       it { should redirect_to(paginas_path) }
       it { should set_the_flash }
@@ -191,7 +191,7 @@ describe PaginasController do
     end
 
     context "with an AJAX request" do
-      before(:each) { xhr :delete, :destroy, :id => @pagina.to_param }
+      before(:each) { xhr :delete, :destroy, id: @pagina.to_param }
 
       it { should_not render_with_layout }
       it { should respond_with(:success) }
@@ -199,17 +199,17 @@ describe PaginasController do
   end
 
   describe "search action" do
-    before(:each) { get :search, :q => "buscando" }
+    before(:each) { get :search, q: "buscando" }
 
     it { should respond_with(:success) }
-    it { should assign_to(:paginas) }
+    it { assigns(:paginas).should be_true }
   end
 
   describe 'ver el historial' do
-    before(:each) { get :historial, :id => @pagina.to_param }
+    before(:each) { get :historial, id: @pagina.to_param }
 
     it { should respond_with(:success) }
-    it { should assign_to(:pagina) }
-    it { should assign_to(:versiones) }
+    it { assigns(:pagina).should be_true }
+    it { assigns(:versiones).should be_true }
   end
 end

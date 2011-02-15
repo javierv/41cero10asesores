@@ -4,10 +4,10 @@
 - javascript 'filtrador'
 
 = filter_form_for @search do |form|
-  = form.input :titulo_contains, :label => 'Título'
-  = form.input :cuerpo_contains, :label => 'Cuerpo'
+  = form.input :titulo_contains, label: 'Título'
+  = form.input :cuerpo_contains, label: 'Cuerpo'
 
 %section#listado
-  = render :partial => 'listado'
+  = render 'listado', cajas: @cajas, search: @search
 
 = actions_list [:new], Caja

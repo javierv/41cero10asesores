@@ -1,3 +1,3 @@
-# encoding: utf-8
-
-$(document).ready -> $('textarea').markItUp markitup_settings
+$(document).ready ->
+  $('textarea').markItUp markitup_settings
+  $('#error_messages a').click -> $($(this).attr('href')).focus()

@@ -3,10 +3,8 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
-every :hour do
-  # TODO: al menos con Passenger parece que hay que reiniciar
-  # el servidor, o al menos si la búsqueda está en caché.
-  rake "xapit:reindex"
+every :reboot do
+  rake "xapian_db:reindex"
 end
 
 # Example:
@@ -23,8 +21,6 @@ end
 #   runner "AnotherModel.prune_old_records"
 # end
 #
-# every :friday, :at => '10:30 pm'  
-#
 # every :reboot do
-#
+# every :friday, :at => '3:30 am' do
 # Learn more: http://github.com/javan/whenever

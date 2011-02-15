@@ -13,7 +13,7 @@ namespace :db do
     [Pagina, Caja, Sidebar, Navegacion, Usuario, VestalVersions::Version].each(&:delete_all)
 
     ['pruebas', 'davidz', 'javier', 'administrador', 'rafael'].each do |nombre|
-      Usuario.create(:email => "#{nombre}@calesur.es", :password => nombre)
+      Usuario.create(email: "#{nombre}@calesur.es", password: nombre)
     end
 
     40.times do
@@ -47,7 +47,7 @@ namespace :db do
       end
     end
 
-    ['Nuestros valores', 'Ámbitos de actuación', 'Participamos', 'Ubicación', 'Contacto'].each_with_index do |titulo, index|
+    ['Nuestros valores', 'Ámbitos de actuación', 'Participamos', 'Ubicación', 'Contacto'].each.with_index do |titulo, index|
       pagina = Pagina.new
 
       (1..7).random.times do
@@ -59,7 +59,7 @@ namespace :db do
 
       pagina.titulo = titulo
       pagina.save(false)
-      navegacion = Navegacion.new(:pagina_id => pagina.id, :orden => index + 1)
+      navegacion = Navegacion.new(pagina_id: pagina.id, orden: index + 1)
       navegacion.save(false)
     end
   end

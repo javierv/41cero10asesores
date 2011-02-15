@@ -9,27 +9,27 @@
 
 = simple_form_for pagina do |form|
 
-  = render 'shared/errors', :record => pagina
+  = render 'shared/errors', record: pagina
 
   = hidden_field_tag 'pagina[borrador_id]'
   = form.input :titulo
   = form.input :cuerpo
 
   = hidden_field_tag "pagina[caja_ids][]"
-  = form.association :cajas, :collection => Caja.al_final_las_de_pagina(pagina),
-    :input_html => {:class => 'cajas'}
+  = form.association :cajas, collection: Caja.al_final_las_de_pagina(pagina),
+    input_html: {class: 'cajas'}
 
   .actions
     - if pagina.borrador?
-      = form.submit 'Publicar', :name => 'publish'
+      = form.submit 'Publicar', name: 'publish'
     - else
       = form.button :submit
     
-    = form.submit 'Guardar borrador', :name => 'draft', :id => 'draft_submit'
-    = form.submit 'Vista previa', :name => 'preview', :id => 'preview_submit'
+    = form.submit 'Guardar borrador', name: 'draft', id: 'draft_submit'
+    = form.submit 'Vista previa', name: 'preview', id: 'preview_submit'
 
 %section#fotos
   %header
     %h2 Puedes insertar imágenes de la galería
-  = render 'fotos/form', :foto => Foto.new
+  = render 'fotos/form', foto: Foto.new
   = render 'fotos/galeria'

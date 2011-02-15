@@ -1,7 +1,7 @@
 - title @pagina, false
 - css 'sidebar'
 
-= render 'pagina', :pagina => @pagina
+= render 'pagina', pagina: @pagina
 
 - if usuario_signed_in?
   = actions_list([:edit, :index, :historial], @pagina)

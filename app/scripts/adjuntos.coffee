@@ -1,4 +1,3 @@
-# encoding: utf-8
 $(document).ready ->
   formulario = $('#nueva_imagen')
   if window.FileReader
@@ -17,7 +16,7 @@ $(document).ready ->
         '<\/div>' +
         '<\/td>' +
         '<\/tr>'
-      )    
+      )
     onLoad: (event, files, index, xhr, handler) ->
       $('.upload_files').fadeOut('slow', -> $(this).empty().fadeIn())
       $('#galeria').append(xhr.responseText)

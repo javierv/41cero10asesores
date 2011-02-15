@@ -18,6 +18,9 @@ module Calesur
       g.fallbacks[:rspec] = :test_unit
     end
     config.i18n.default_locale = :es
+    # Para que funcione Faker
+    # Otra opción es config.i18n.locale = :es, y quitar default_locale.
+    config.i18n.fallbacks.defaults = [:en]
     config.time_zone  = 'Madrid'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

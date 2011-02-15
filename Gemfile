@@ -1,10 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.4'
 gem 'mysql2'
 
 group :development, :test do
   gem "rspec-rails"
+  gem 'jasmine'
 end
 
 group :development do
@@ -18,7 +19,9 @@ group :test do
   gem "shoulda-matchers"
   gem "factory_girl_rails"
   gem "mocha"
-  gem "capybara"
+  gem "capybara", :git => "https://github.com/jnicklas/capybara.git"
+  gem 'spork', '>= 0.9.0RC'
+  gem 'simplecov', :require => false
 end
 
 group :production, :development do
@@ -47,8 +50,7 @@ gem "meta_search"
 gem "simple_form", ">= 1.3"
 gem "tabletastic"
 gem "display_name"
-gem "xapian-full"
-gem "xapit"
+gem "xapian_db"
 gem "inploy"
 gem "barista"
 gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'

@@ -8,7 +8,7 @@ describe VersionsController do
   end
 
   def pagina_con_versiones
-    pagina = Factory(:pagina, :titulo => 'Título previo')
+    pagina = Factory(:pagina, titulo: 'Título previo')
     pagina.update_attribute(:titulo, 'Título final')
     pagina
   end
@@ -17,18 +17,18 @@ describe VersionsController do
 
   describe 'show' do
     before(:each) do
-      get :show, :id => pagina.versions.last.to_param
+      get :show, id: pagina.versions.last.to_param
     end
     
-    it { should assign_to(:pagina) }
+    it { assigns(:pagina).should be_true }
     it { should respond_with(:success) }
   end    
 
   describe 'recover' do
     before(:each) do
-      put :recover, :id => pagina.versions.last.to_param
+      put :recover, id: pagina.versions.last.to_param
     end
-    it { should assign_to(:pagina) }
+    it { assigns(:pagina).should be_true }
     it { should set_the_flash }
     it { should redirect_to(pagina) }
   end
@@ -36,7 +36,7 @@ describe VersionsController do
   describe 'restore' do
     before(:each) do
       pagina.destroy
-      put :restore, :id => pagina.versions.last.to_param
+      put :restore, id: pagina.versions.last.to_param
     end
     it { should set_the_flash }
     it { should redirect_to(paginas_path) }
@@ -45,18 +45,18 @@ describe VersionsController do
   describe 'compare' do
     context 'sin versión de referencia' do
       before(:each) do
-        get :compare, :id => pagina.versions.last.to_param
+        get :compare, id: pagina.versions.last.to_param
       end
 
       it { should respond_with(:success) }
-      it { should assign_to(:pagina) }
-      it { should assign_to(:referencia) }
+      it { assigns(:pagina).should be_true }
+      it { assigns(:referencia).should be_true }
     end
 
     context 'con versión de referencia' do
       before(:each) do
-        get :compare, :id => pagina.versions.last.to_param,
-            :ref_id => pagina.versions.first.to_param
+        get :compare, id: pagina.versions.last.to_param,
+            ref_id: pagina.versions.first.to_param
       end
 
       it { should respond_with(:success) }
@@ -67,6 +67,6 @@ describe VersionsController do
     before(:each) { get :borradas }
 
     it { should respond_with(:success) }
-    it { should assign_to(:versiones) }
+    it { assigns(:versiones).should be_true }
   end
 end

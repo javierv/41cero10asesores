@@ -2,16 +2,16 @@
 
 class PaginasController < ApplicationController
   # Tengo que declarar antes el JS para que las peticiones AJAX respondan así.
-  respond_to :js, :only => [:index]
+  respond_to :js, only: [:index]
   respond_to :html
 
-  before_filter :params_updated_by, :only => [:create, :update]
-  before_filter :find_pagina, :only => [:edit, :update, :destroy, :historial]
-  before_filter :new_pagina, :only => [:new, :create]
-  before_filter :asignar_cajas, :only => [:create, :update]
-  before_filter :preview, :only => [:create, :update]
-  before_filter :save_draft, :only => [:create, :update]
-  before_filter :publish_draft, :only => [:create, :update]
+  before_filter :params_updated_by, only: [:create, :update]
+  before_filter :find_pagina, only: [:edit, :update, :destroy, :historial]
+  before_filter :new_pagina, only: [:new, :create]
+  before_filter :asignar_cajas, only: [:create, :update]
+  before_filter :preview, only: [:create, :update]
+  before_filter :save_draft, only: [:create, :update]
+  before_filter :publish_draft, only: [:create, :update]
 
   def index
     @search, @paginas = Pagina.search_paginate(params)
@@ -19,7 +19,7 @@ class PaginasController < ApplicationController
   end
 
   def show
-    @pagina = Pagina.where(:borrador => false).find(params[:id])
+    @pagina = Pagina.where(borrador: false).find(params[:id])
     respond_with @pagina
   end
 
@@ -46,8 +46,8 @@ class PaginasController < ApplicationController
       flash[:notice] = 'Pagina se borró correctamente.'
       if @pagina.versions.last
         session[:deshacer] = { 
-          :method => :put,
-          :url    => restore_vestal_versions_version_path(@pagina.versions.last)
+          method: :put,
+          url:    restore_vestal_versions_version_path(@pagina.versions.last)
         }
       end
     end
@@ -63,7 +63,7 @@ class PaginasController < ApplicationController
   end
 
   def search
-    @paginas = Pagina.search params[:q], :per_page => Pagina.per_page, :page => params[:page]
+    @paginas = Pagina.search params[:q], per_page: Pagina.per_page, page: params[:page]
   end
 
 private

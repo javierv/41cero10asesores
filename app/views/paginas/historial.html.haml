@@ -3,17 +3,17 @@
 - javascript 'seleccion_diferencias'
 - css 'seleccion_diferencias'
 
-= form_tag(compare_vestal_versions_version_path, :method => :get) do
+= form_tag(compare_vestal_versions_version_path, method: :get) do
 
   %section#listado
     = table_for @versiones do |table|
       = table.data do
-        = table.cell :id, :heading => 'Comparar' do |version|
+        = table.cell :id, heading: 'Comparar' do |version|
           - botones_seleccion_diferencias(version)
-        = table.cell :created_at, :heading => 'Modificado el' do |version|
-          - l version.created_at, :format => :short
-        = table.cell :user, :heading => 'Modificado por'
-        = table.cell(:acciones, :heading => 'Acciones', :cell_html => {:class => 'actions'}) do |version|
+        = table.cell :created_at, heading: 'Modificado el' do |version|
+          - l version.created_at, format: :short
+        = table.cell :user, heading: 'Modificado por'
+        = table.cell(:acciones, heading: 'Acciones', cell_html: {class: 'actions'}) do |version|
           - acciones_para_version version
 
   .actions= submit_tag 'Comparar seleccionadas' 

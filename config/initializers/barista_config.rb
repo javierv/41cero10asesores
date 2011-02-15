@@ -10,7 +10,7 @@ Barista.configure do |c|
   # Set the compiler
   
   # Disable wrapping in a closure:
-  # c.no_wrap = true
+  c.bare = true
   # ... or ...
   # c.no_wrap!
   

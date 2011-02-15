@@ -19,14 +19,14 @@ describe Navegacion do
   end
 
   it 'guarda en orden' do
-    Navegacion.where(:pagina_id => ids.last, :orden => 1).first.should be_true
-    Navegacion.where(:pagina_id => ids[0], :orden => ids.length).first.should be_true
+    Navegacion.where(pagina_id: ids.last, orden: 1).first.should be_true
+    Navegacion.where(pagina_id: ids[0], orden: ids.length).first.should be_true
   end
 
   it 'borra lo que había al grabar' do
     Navegacion.establecer(ids)
-    Navegacion.where(:pagina_id => ids[0], :orden => 1).first.should be_true
-    Navegacion.where(:pagina_id => ids.last, :orden => 1).first.should be_false
+    Navegacion.where(pagina_id: ids[0], orden: 1).first.should be_true
+    Navegacion.where(pagina_id: ids.last, orden: 1).first.should be_false
   end
 
   it { Navegacion.paginas.should == paginas.reverse }

@@ -1,4 +1,4 @@
 %article[pagina]
   %header
     %h2= link_to pagina, pagina
-  %section= strict_textilize truncate(pagina.cuerpo, :length => 500, :separator => ' ')
+  %section= strict_textilize truncate(pagina.cuerpo, length: 500, separator: ' ')
