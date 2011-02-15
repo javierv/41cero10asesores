@@ -2,8 +2,8 @@
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :conservar_parametros, :only => [:index]
-  before_filter :authenticate_usuario!, :if => :requiere_usuario?
+  before_filter :conservar_parametros, only: [:index]
+  before_filter :authenticate_usuario!, if: :requiere_usuario?
 
 private
   def public_actions

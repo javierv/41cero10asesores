@@ -1,8 +1,8 @@
 = table_for paginas do |table|
   = table.data do
-    = table.cell :titulo, :heading => sort_link(search, :titulo)
-    = table.cell(:cuerpo, :heading => sort_link(search, :cuerpo)) do |pagina|
-      - truncate(pagina.cuerpo, :length => 50)
-    = table.cell :tipo, :heading => sort_link(search, :borrador)
-    = table.cell(:acciones, :heading => 'Acciones', :cell_html => {:class => 'actions'}) do |pagina|
+    = table.cell :titulo, heading: sort_link(search, :titulo)
+    = table.cell(:cuerpo, heading: sort_link(search, :cuerpo)) do |pagina|
+      - truncate(pagina.cuerpo, length: 50)
+    = table.cell :tipo, heading: sort_link(search, :borrador)
+    = table.cell(:acciones, heading: 'Acciones', cell_html: {class: 'actions'}) do |pagina|
       - acciones_para_pagina(pagina)
