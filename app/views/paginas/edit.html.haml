@@ -1,6 +1,6 @@
 - title edit_pagina_title(@pagina)
 
-= render 'form', :pagina => @pagina
+= render 'form', pagina: @pagina
 
 - if @pagina.borrador?
   = actions_list [:index], @pagina

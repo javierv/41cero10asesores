@@ -3,10 +3,10 @@
 
 = table_for @versiones do |table|
   = table.data do
-    = table.cell :versioned, :heading => 'Título' do |version|
+    = table.cell :versioned, heading: 'Título' do |version|
       - version.restore.titulo
-    = table.cell :created_at, :heading => 'Borrada el' do |version|
-      - l version.created_at, :format => :long
-    = table.cell :acciones, :heading => 'Acciones', :cell_html => {:class => 'actions'} do |version|
+    = table.cell :created_at, heading: 'Borrada el' do |version|
+      - l version.created_at, format: :long
+    = table.cell :acciones, heading: 'Acciones', cell_html: {class: 'actions'} do |version|
       - actions_list [['Recuperar', restore_vestal_versions_version_path(version),
-        {:form => true, :method => :put}]], version
+        {form: true, method: :put}]], version

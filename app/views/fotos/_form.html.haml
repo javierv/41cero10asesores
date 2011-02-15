@@ -1,6 +1,6 @@
 - adjuntos_ajax
 - javascript 'adjuntos'
 
-= simple_form_for foto, :html => {:multipart => true, :id => 'nueva_imagen'} do |form|
-  = form.input :imagen, :as => :file, :label => 'Añade una nueva imagen', :required => false
+= simple_form_for foto, html: {multipart: true, id: 'nueva_imagen'} do |form|
+  = form.input :imagen, as: :file, label: 'Añade una nueva imagen', required: false
   .actions= form.submit 'Subir'

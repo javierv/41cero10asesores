@@ -1,6 +1,6 @@
-- title "Versión de #{@pagina} el #{l @version.created_at, :format => :long}", false
+- title "Versión de #{@pagina} el #{l @version.created_at, format: :long}", false
 - css 'sidebar'
-= render 'paginas/pagina', :pagina => @pagina
+= render 'paginas/pagina', pagina: @pagina
 = actions_list [:historial, 
   ['Recuperar', recover_vestal_versions_version_path(@version),
-  {:form => true, :method => :put}]], @pagina
+  {form: true, method: :put}]], @pagina

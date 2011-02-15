@@ -1,9 +1,9 @@
 - if !flash.empty?
   #flash
     - flash.each do |name, msg|
-      .flash{:id => "flash_#{name}"}
+      .flash{id: "flash_#{name}"}
         %p= msg
         - if session[:deshacer]
-          = render 'shared/deshacer', :deshacer => session[:deshacer]
+          = render 'shared/deshacer', deshacer: session[:deshacer]
           - session.delete(:deshacer)
   - flash.discard
