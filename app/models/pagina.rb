@@ -55,7 +55,6 @@ class Pagina < ActiveRecord::Base
     borrador = find_borrador attrs
     borrador.attributes = attributes.merge(attrs)
     borrador.borrador = true
-    borrador.published_id = id
     borrador.save
   end
 
