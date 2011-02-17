@@ -18,6 +18,11 @@ class Pagina < ActiveRecord::Base
   before_save :set_borrador
 
   versioned dependent: :tracking, initial_version: true
+  has_friendly_id :titulo,
+    use_slug:                     true,
+    approximate_ascii:            true,
+    ascii_approximation_options:  :spanish,
+    reserved_words:               ["search"]
 
   def self.per_page
     15

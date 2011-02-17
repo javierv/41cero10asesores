@@ -7,11 +7,6 @@ Calesur::Application.routes.draw do
 
   resources :cajas, except: :show
 
-  resources :paginas do
-    get :search, on: :collection
-    get :historial, on: :member
-  end
-
   resources :vestal_versions_versions, path: 'versions', controller: 'versions',
     only: [:show] do
     put :recover, on: :member
@@ -23,7 +18,11 @@ Calesur::Application.routes.draw do
   root to: "paginas#index"
   match '/autocomplete' => "ajax_form#autocomplete"
   match '/ayuda-textile' => "static#ayuda_textile"
-  match "/:id" => "paginas#show", id: /[a-z|-]+/
+
+  resources :paginas, path: "" do
+    get :search, on: :collection
+    get :historial, on: :member
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

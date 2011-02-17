@@ -24,10 +24,6 @@ describe "rutas" do
       { get: "/quienes" }.should route_to ruta_pagina(id: "quienes")
     end
 
-    it "no busca rutas con mayúsculas" do
-      { get: "/COSA" }.should_not be_routable
-    end
-
     it "acepta guiones en la ruta" do
       { get: "/acerca-de" }.should route_to ruta_pagina(id: "acerca-de")
     end
@@ -36,18 +32,30 @@ describe "rutas" do
       { get: "/quienes?" }.should route_to ruta_pagina(id: "quienes")
     end
 
-    it "no acepta el resto de interrogantes ni explicacioens" do
-      { get: "/quienes!" }.should_not be_routable
-      { get: "/¡quienes" }.should_not be_routable
-      { get: "/¿quienes" }.should_not be_routable
+    it "se basa en el título de la página como ID" do
+      pagina = Factory :pagina, titulo: "nosotros"
+      { get: pagina_path(pagina) }.should route_to ruta_pagina(id: "nosotros")
+    end
+
+    it "genera la URL a partir de la página" do
+      pagina = Factory :pagina, titulo: "nosotros"
+      pagina_path(pagina).should == "/nosotros"
+    end
+
+    it "permite números" do
+      { get: "noticias-2007" }.should route_to ruta_pagina(id: "noticias-2007")
     end
   end
 
-  it "ruta al índice"
+  describe "rutas de otras acciones de páginas" do
+    it { { get: "/search" }.should route_to ruta("paginas#search") }
+    it { { get: "/new" }.should route_to ruta("paginas#new") }
+  end
+
+  it "ruta a la portada"
 
   describe "rutas varias" do
     it { { get: "/autocomplete" }.should route_to ruta("ajax_form#autocomplete") }
     it { { get: "/ayuda-textile" }.should route_to ruta("static#ayuda_textile") }
   end
-
 end
