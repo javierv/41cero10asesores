@@ -58,3 +58,4 @@ gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
 gem "therubyracer"
 gem "differ"
 gem 'whenever', :require => false
+gem "friendly_id"
