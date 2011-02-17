@@ -14,6 +14,7 @@ class Pagina < ActiveRecord::Base
   has_many :sidebars
   has_many :cajas, through: :sidebars
   has_one :navegacion, dependent: :destroy
+  before_save :titulo_nil_si_blank
   before_save :build_sidebar
   before_save :set_borrador
 
@@ -128,5 +129,11 @@ private
 
   def copy_errors(pagina)
     pagina.errors.each { |field, message| errors.add(field, message) }
+  end
+
+  def titulo_nil_si_blank
+    if titulo.blank?
+      self.titulo = nil
+    end
   end
 end
