@@ -21,6 +21,7 @@ group :test do
   gem "mocha"
   gem "capybara", :git => "https://github.com/jnicklas/capybara.git"
   gem 'spork', '>= 0.9.0RC'
+  gem 'guard-spork'
   gem 'simplecov', :require => false
 end
 
