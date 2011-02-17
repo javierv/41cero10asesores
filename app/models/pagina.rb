@@ -19,6 +19,7 @@ class Pagina < ActiveRecord::Base
 
   versioned dependent: :tracking, initial_version: true
   has_friendly_id :titulo,
+    allow_nil:                    true,
     use_slug:                     true,
     approximate_ascii:            true,
     ascii_approximation_options:  :spanish,
