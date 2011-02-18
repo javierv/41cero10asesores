@@ -14,10 +14,25 @@ class Pagina < ActiveRecord::Base
   has_many :sidebars
   has_many :cajas, through: :sidebars
   has_one :navegacion, dependent: :destroy
+  before_save :titulo_nil_si_blank
   before_save :build_sidebar
   before_save :set_borrador
 
   versioned dependent: :tracking, initial_version: true
+  has_friendly_id :titulo,
+    allow_nil:                    true,
+    use_slug:                     true,
+    approximate_ascii:            true,
+    ascii_approximation_options:  :spanish,
+    reserved_words:               ["search"]
+
+  XapianDb::DocumentBlueprint.setup(Pagina) do |blueprint|
+    blueprint.attribute :titulo, weight: 10
+    blueprint.attribute :cuerpo, weight: 4
+    blueprint.index :titulo_cajas, weight: 3
+    blueprint.index :cuerpo_cajas, weight: 1
+    blueprint.ignore_if { borrador? }
+  end
 
   def self.per_page
     15
@@ -49,7 +64,6 @@ class Pagina < ActiveRecord::Base
     borrador = find_borrador attrs
     borrador.attributes = attributes.merge(attrs)
     borrador.borrador = true
-    borrador.published_id = id
     borrador.save
   end
 
@@ -123,5 +137,11 @@ private
 
   def copy_errors(pagina)
     pagina.errors.each { |field, message| errors.add(field, message) }
+  end
+
+  def titulo_nil_si_blank
+    if titulo.blank?
+      self.titulo = nil
+    end
   end
 end

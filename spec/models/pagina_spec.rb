@@ -176,7 +176,7 @@ describe Pagina do
 
           it 'graba el borrador' do
             pagina.should have_draft
-            pagina.draft.titulo.should be_empty
+            pagina.draft.titulo.should be_nil
           end
         end
       end

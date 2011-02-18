@@ -25,5 +25,6 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'job', 'jobs'
   inflect.irregular 'sidebar', 'sidebars'
   inflect.irregular 'version', 'versions'
+  inflect.irregular "slug", "slugs"
 #   inflect.uncountable %w( fish sheep )
 end

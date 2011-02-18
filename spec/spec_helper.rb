@@ -44,6 +44,7 @@ Spork.prefork do
 end
 
 Spork.each_run do
+  Calesur::Application.reload_routes!
   # This code will be run each time you run your specs.
   def authenticate_usuario
     @usuario = Factory :usuario

@@ -12,6 +12,7 @@ group :development do
   gem 'hirb'
   gem 'faker'
   gem "rails3-generators"
+  gem "jquery-rails"
 end
 
 group :test do
@@ -21,6 +22,7 @@ group :test do
   gem "mocha"
   gem "capybara", :git => "https://github.com/jnicklas/capybara.git"
   gem 'spork', '>= 0.9.0RC'
+  gem 'guard-spork'
   gem 'simplecov', :require => false
 end
 
@@ -57,3 +59,4 @@ gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
 gem "therubyracer"
 gem "differ"
 gem 'whenever', :require => false
+gem "friendly_id"
