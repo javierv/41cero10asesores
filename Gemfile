@@ -51,7 +51,6 @@ gem "meta_search"
 gem "simple_form", ">= 1.3"
 gem "tabletastic"
 gem "display_name"
-gem "xapian_db"
 gem "inploy"
 gem "barista"
 gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'

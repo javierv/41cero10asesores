@@ -1,5 +1,5 @@
 $("a.destroy")
-  .live('ajax:loading', ->
+  .live('ajax:beforeSend', ->
     $('#flash').remove()
     $('<div id="flash"></div>')
       .html('<p class="cargando">Cargando...</p>')
