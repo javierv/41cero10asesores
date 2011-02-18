@@ -12,6 +12,7 @@ group :development do
   gem 'hirb'
   gem 'faker'
   gem "rails3-generators"
+  gem "jquery-rails"
 end
 
 group :test do
@@ -51,6 +52,7 @@ gem "meta_search"
 gem "simple_form", ">= 1.3"
 gem "tabletastic"
 gem "display_name"
+gem "xapian_db"
 gem "inploy"
 gem "barista"
 gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
