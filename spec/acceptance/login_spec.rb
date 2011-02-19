@@ -8,10 +8,10 @@ feature "Login", %q{
   I want to be able to log in
 } do
 
-  let(:usuario) { Factory :usuario, password: 'pruebas' }
+  let(:usuario) { Factory :usuario, password: "pruebas" }
 
   scenario "Con contraseña incorrecta" do
-    login_with(email: usuario.email, password: 'incorrecta')
+    login_with(email: usuario.email, password: "incorrecta")
     page.should have_error
   end
 end
