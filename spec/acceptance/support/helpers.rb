@@ -10,10 +10,8 @@ module HelperMethods
     end
   end
 
-  RSpec::Matchers.define :have_error do
-    match do |actual|
-      actual.has_selector? "#flash_alert"
-    end
+  define_match :have_error do |actual|
+    actual.has_selector? "#flash_alert"
   end
 end
 
