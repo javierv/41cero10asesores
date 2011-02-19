@@ -13,6 +13,10 @@ module HelperMethods
   define_match :have_error do |actual|
     actual.has_selector? "#flash_alert"
   end
+
+  define_match :have_success do |actual|
+    actual.has_selector? "#flash_notice"
+  end
 end
 
 RSpec.configuration.include HelperMethods, :type => :acceptance
