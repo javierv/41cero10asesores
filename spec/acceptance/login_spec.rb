@@ -12,6 +12,6 @@ feature "Login", %q{
 
   scenario "Con contraseña incorrecta" do
     login_with(email: usuario.email, password: 'incorrecta')
-    page.should have_selector "#flash_alert"
+    page.should have_error
   end
 end
