@@ -3,9 +3,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
 
 feature "Login", %q{
-  In order to manage the content
-  As an administrator
-  I want to be able to log in
+  Para gestionar el contenido
+  Como administrador
+  Quiero poder identificarme
 } do
 
   let(:usuario) { Factory :usuario, password: "correcta" }
