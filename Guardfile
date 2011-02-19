@@ -1,7 +1,7 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
-guard 'spork', :wait => 40 do
+guard 'spork', :wait => 60 do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch(%r{^config/environments/.*\.rb$})
