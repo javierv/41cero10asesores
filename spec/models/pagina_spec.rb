@@ -2,10 +2,8 @@
 
 require 'spec_helper'
 
-RSpec::Matchers.define :have_draft do
-  match do |actual|
-    actual.has_draft?
-  end
+define_match :have_draft do |actual|
+  actual.has_draft?
 end
 
 describe Pagina do
