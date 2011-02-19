@@ -10,6 +10,11 @@ module HelperMethods
     end
   end
 
+  def logout
+    visit admin_page
+    click_on "Desconectar"
+  end
+
   define_match :have_error do |actual|
     actual.has_selector? "#flash_alert"
   end
