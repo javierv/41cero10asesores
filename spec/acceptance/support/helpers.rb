@@ -22,6 +22,10 @@ module HelperMethods
   define_match :have_success do |actual|
     actual.has_selector? "#flash_notice"
   end
+
+  define_match :have_admin_navigation do |actual|
+    actual.has_selector? "#admin"
+  end
 end
 
 RSpec.configuration.include HelperMethods, :type => :acceptance
