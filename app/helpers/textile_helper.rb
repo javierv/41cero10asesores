@@ -1,5 +1,4 @@
 # encoding: utf-8
-
 module GoogleMapTag
   def gm(options)
     latitud, longitud = options[:text].split(",")
@@ -11,6 +10,7 @@ module GoogleMapTag
     "</script>"
   end
 end
+RedCloth::Formatters::HTML.send(:include, GoogleMapTag)
 
 module TextileHelper
   def strict_textilize(texto)
