@@ -1,14 +1,16 @@
 $(document).ready ->
-  $("<div id='map'></div>").appendTo("#main")
-  position = new google.maps.LatLng(37.345107,-5.932638)
-  options =
-    zoom:       14
-    center:     position
-    mapTypeId:  google.maps.MapTypeId.ROADMAP
+  $(".google_map").each ->
+    position = new google.maps.LatLng(
+      $(this).attr("data-latitud"), $(this).attr("data-longitud")
+    )
+    options =
+      zoom:       14
+      center:     position
+      mapTypeId:  google.maps.MapTypeId.ROADMAP
 
-  map = new google.maps.Map(document.getElementById("map"), options)
+    map = new google.maps.Map(this, options)
 
-  marker = new google.maps.Marker
-    position:  position
-    map:       map
-    title:     "Calesur"
+    marker = new google.maps.Marker
+      position:  position
+      map:       map
+      title:     $(this).attr("data-titulo")
