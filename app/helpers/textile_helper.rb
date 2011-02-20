@@ -1,5 +1,17 @@
 # encoding: utf-8
 
+module GoogleMapTag
+  def gm(options)
+    latitud, longitud = options[:text].split(",")
+    %Q{<div id="map"></div>} +
+    "<script>" +
+      "$(document).ready(function() { " +
+        %Q{$("#map").google_map(#{latitud}, #{longitud})} +
+      " }" +
+    "</script>"
+  end
+end
+
 module TextileHelper
   def strict_textilize(texto)
    sanitize textilize(texto),
