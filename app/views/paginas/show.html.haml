@@ -2,7 +2,7 @@
 - css 'sidebar'
 - google_maps
 
-= render 'pagina', pagina: @pagina
+= render 'pagina', pagina: @pagina, cajas: @pagina.cajas_con_orden
 
 - if usuario_signed_in?
   = actions_list([:edit, :index, :historial], @pagina)

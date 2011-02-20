@@ -95,7 +95,7 @@ private
       # HACK: asignar caja_ids guarda la relación en la BD. Ver:
       # https://rails.lighthouseapp.com/projects/8994/tickets/4521
       attributes = params[:pagina].clone
-      attributes.delete(:caja_ids)
+      @cajas = Caja.find_all_by_id(attributes.delete(:caja_ids) || [])
       @pagina.attributes = attributes
       if request.xhr?
         render 'preview.js'

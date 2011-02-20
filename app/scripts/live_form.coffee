@@ -6,7 +6,10 @@ $(document).ready ->
   $('input[type=text], textarea', $('form.pagina')).typeWatch(
     callback: ->
       $('form.pagina').ajaxSubmit(
-        target: '#preview'
+        success: (data) ->
+          $('#preview').html($('#preview', data).html())
+          $('#sidebar').remove()
+          $('#sidebar', data).prependTo('#extra')
         data: { preview: true }
       )
     wait: 1000
