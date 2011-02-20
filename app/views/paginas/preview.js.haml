@@ -1,3 +1,5 @@
+- css 'sidebar'
 #response
   #preview= render 'pagina', pagina: @pagina, cajas: @cajas
   = render 'general/sidebar' if content_for?(:sidebar)
+  #css= include_stylesheets

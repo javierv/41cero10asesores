@@ -7,6 +7,7 @@ $(document).ready ->
     callback: ->
       $('form.pagina').ajaxSubmit(
         success: (data) ->
+          $('head').append($('#css', data).html())
           $('#preview').html($('#preview', data).html())
           $('#sidebar').remove()
           $('#sidebar', data).prependTo('#extra')
