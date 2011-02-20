@@ -2,12 +2,8 @@
 module GoogleMapTag
   def gm(options)
     latitud, longitud = options[:text].split(",")
-    %Q{<div id="map"></div>} +
-    "<script>" +
-      "$(document).ready(function() { " +
-        %Q{$("#map").google_map(#{latitud}, #{longitud})} +
-      " }" +
-    "</script>"
+    %Q{<div class="google_map" data-latitud="#{latitud}" } +
+    %Q{data-longitud="#{longitud}"></div>}
   end
 end
 RedCloth::Formatters::HTML.send(:include, GoogleMapTag)
@@ -15,7 +11,7 @@ RedCloth::Formatters::HTML.send(:include, GoogleMapTag)
 module TextileHelper
   def strict_textilize(texto)
    sanitize textilize(texto),
-      tags:       %w(a acronym strong em li ul ol blockquote br cite sub sup ins p img h2 del),
-      attributes: %w(href src alt class style)
+      tags:       %w(a acronym strong em li ul ol blockquote br cite sub sup ins p img h2 del div),
+      attributes: %w(href src alt class style data-latitud data-longitud)
   end
 end
