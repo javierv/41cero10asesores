@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 
 describe TextileHelper do
@@ -19,6 +20,14 @@ describe TextileHelper do
 
     it "genera el mapa en modo estricto" do
       strict_textilize(input).should == html
+    end
+
+    context "indicando el título" do
+      let(:con_titulo) { input + "(Título)" }
+
+      it "pone el título del marcador" do
+        strict_textilize(con_titulo).should have_selector "div[data-titulo='Título']"
+      end
     end
   end
 end
