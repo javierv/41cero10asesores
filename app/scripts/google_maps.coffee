@@ -13,4 +13,7 @@ $(document).ready ->
     marker = new google.maps.Marker
       position:  position
       map:       map
-      title:     $(this).attr("data-titulo")
+
+    infowindow = new google.maps.InfoWindow content: $(this).attr("data-titulo")
+
+    google.maps.event.addListener marker, 'click', -> infowindow.open map, marker
