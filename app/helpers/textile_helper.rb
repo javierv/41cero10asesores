@@ -1,7 +1,7 @@
 # encoding: utf-8
 module GoogleMapTag
   def gm(options)
-    data = options[:text].match /(?<lat>.+),(?<long>[^\(]+)(\((?<titulo>.+)\))?/
+    data = extract_coordinates(options[:text])
 
     html = %Q{<div class="google_map" data-latitud="#{data[:lat]}" } +
            %Q{data-longitud="#{data[:long]}"}
@@ -11,6 +11,10 @@ module GoogleMapTag
     end
 
     html + "></div>"
+  end
+
+  def extract_coordinates(text)
+    text.match /(?<lat>.+),(?<long>[^\(]+)(\((?<titulo>.+)\))?/
   end
 end
 RedCloth::Formatters::HTML.send(:include, GoogleMapTag)
