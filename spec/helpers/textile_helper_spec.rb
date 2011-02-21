@@ -31,6 +31,13 @@ describe TextileHelper do
       data[:long].should == "4.33"
       data[:titulo].should == "Título, creo"
     end
+
+    it "permite título en mayúsculas" do
+      data = block["-5.98,4.33(GUAU)"]
+      data[:lat].should == "-5.98"
+      data[:long].should == "4.33"
+      data[:titulo].should == "GUAU"
+    end
   end
 
   describe "google maps" do
@@ -57,7 +64,16 @@ describe TextileHelper do
       let(:con_titulo) { input + "(Título)" }
 
       it "pone el título del marcador" do
-        strict_textilize(con_titulo).should have_selector "div[data-titulo='Título']"
+        strict_textilize(con_titulo).should have_selector "[data-titulo='Título']"
+      end
+    end
+
+
+    context "con título en mayúsculas" do
+      let(:con_titulo) { input + "(GUAU)" }
+
+      it "pone el título del marcador" do
+        strict_textilize(con_titulo).should have_selector "[data-titulo='GUAU']"
       end
     end
   end

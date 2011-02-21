@@ -7,7 +7,7 @@ module GoogleMapTag
            %Q{data-longitud="#{data[:long]}"}
   
     if data[:titulo]
-      html += %Q{data-titulo="#{data[:titulo]}"}
+      html += %Q{ data-titulo="#{data[:titulo]}"}
     end
 
     html + "></div>"
@@ -21,7 +21,7 @@ RedCloth::Formatters::HTML.send(:include, GoogleMapTag)
 
 module TextileHelper
   def strict_textilize(texto)
-   sanitize textilize(texto),
+   sanitize RedCloth.new(texto, [:no_span_caps]).to_html,
       tags:       %w(a acronym strong em li ul ol blockquote br cite sub sup ins p img h2 del div),
       attributes: %w(href src alt class style data-latitud data-longitud data-titulo)
   end
