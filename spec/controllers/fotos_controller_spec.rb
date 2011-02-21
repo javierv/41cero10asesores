@@ -12,12 +12,13 @@ describe FotosController do
     context "with a valid model" do
       before(:each) do
         valida_siempre Foto
-        xhr :post, :create
+        xhr :post, :create, foto: {imagen: File.new("spec/images/blank.png")}
       end
 
       it { assigns(:foto).should be_true }
       it { should respond_with(:success) }
       it { should_not set_the_flash }
+      it { should render_template(:create) }
     end
 
     context "with an invalid model" do
