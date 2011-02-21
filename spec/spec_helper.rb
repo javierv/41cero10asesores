@@ -59,7 +59,7 @@ Spork.each_run do
   end
 
   def valida_siempre(modelo)
-    modelo.any_instance.stubs(:errors).returns({})
+    modelo.any_instance.stubs(:errors).returns(Hash.new {[]})
     modelo.any_instance.stubs(:valid?).returns(true)
   end
 

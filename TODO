@@ -2,9 +2,7 @@
 * Usar el atributo formaction en cuanto salgan las próximas versiones de Firefox y Chrome. Para la administración vale con eso.
 * Podríamos poner un icono de borrar en la imagen desde la previsualización.
 
-* Mirar si se puede meter Google Maps.
 * PDFs con el boletín.
-* Enlace al CRM.
 
 * Pasar a jQuery 1.5
 
@@ -18,6 +16,7 @@
 * Al editar cajas, poder asignarlas a las páginas.
 * Formulario de login: ¿autofocus en el email?
 * Paginación con kaminari.
+* Permitir al usuario configurar textos como el enlace al CRM o los "lemas".
 * Pasar el método del formulario AJAX del controlador al modelo. Podemos poner también que si el atributo está "a pelo", añadir "_contains" (¡NO! No podemos por la petición HTML no AJAX, que depende de eso).
 * En Chromium el editor de texto ocupa menos de la mitad de lo que debería.
 * Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
