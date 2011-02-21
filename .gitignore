@@ -19,3 +19,4 @@ posix
 coverage/**/*
 coverage/*
 .metrics
+Guardfile
