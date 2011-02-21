@@ -17,6 +17,7 @@
 * Vista previa al editar cajas.
 * Al editar cajas, poder asignarlas a las páginas.
 * Formulario de login: ¿autofocus en el email?
+* Paginación con kaminari.
 * Pasar el método del formulario AJAX del controlador al modelo. Podemos poner también que si el atributo está "a pelo", añadir "_contains" (¡NO! No podemos por la petición HTML no AJAX, que depende de eso).
 * En Chromium el editor de texto ocupa menos de la mitad de lo que debería.
 * Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
