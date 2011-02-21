@@ -14,7 +14,7 @@ module GoogleMapTag
   end
 
   def extract_coordinates(text)
-    text.match /(?<lat>.+),(?<long>[^\(]+)(\((?<titulo>.+)\))?/
+    text.match /(?<lat>[^,]+),(?<long>[^\(]+)(\((?<titulo>.+)\))?/
   end
 end
 RedCloth::Formatters::HTML.send(:include, GoogleMapTag)

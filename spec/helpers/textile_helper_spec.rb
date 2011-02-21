@@ -24,6 +24,13 @@ describe TextileHelper do
       data[:long].should == "4.33"
       data[:titulo].should == "Título"
     end
+
+    it "permite comas en el título" do
+      data = block["-5.98,4.33(Título, creo)"]
+      data[:lat].should == "-5.98"
+      data[:long].should == "4.33"
+      data[:titulo].should == "Título, creo"
+    end
   end
 
   describe "google maps" do
