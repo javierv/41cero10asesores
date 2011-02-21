@@ -22,7 +22,7 @@ module DiffHelper
 private
   def render_pagina(pagina)
     {content: render('paginas/texto_pagina', pagina: pagina),
-    sidebar: render('paginas/sidebar', pagina: pagina)}
+    sidebar: render('paginas/sidebar', pagina: pagina, cajas: pagina.cajas_con_orden)}
   end
 
   def differ(actual, anterior)

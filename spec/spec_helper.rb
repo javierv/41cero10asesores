@@ -62,4 +62,10 @@ Spork.each_run do
     modelo.any_instance.stubs(:errors).returns({})
     modelo.any_instance.stubs(:valid?).returns(true)
   end
+
+  def define_match(nombre, &block)
+    RSpec::Matchers.define nombre do
+      match { |actual| block[actual] }
+    end
+  end
 end

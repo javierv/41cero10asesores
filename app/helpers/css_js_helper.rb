@@ -63,4 +63,9 @@ module CssJsHelper
     css 'jquery.ui.core', 'jquery.ui.theme', 'jquery.fileupload-ui'
     javascript 'jquery.ui.core', 'jquery.fileupload', 'jquery.fileupload-ui'
   end
+
+  def google_maps
+    css "google_maps"
+    javascript "http://maps.google.com/maps/api/js?sensor=false", "google_maps"
+  end
 end

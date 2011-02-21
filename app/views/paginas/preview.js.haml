@@ -1,1 +1,8 @@
-= render 'pagina', pagina: @pagina
+- css 'sidebar'
+- css 'google_maps'
+- javascript 'google_maps'
+#response
+  #preview= render 'pagina', pagina: @pagina, cajas: @cajas
+  = render 'general/sidebar' if content_for?(:sidebar)
+  #css= include_stylesheets
+  #script= include_javascripts
