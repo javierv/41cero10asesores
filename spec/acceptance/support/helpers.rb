@@ -15,6 +15,13 @@ module HelperMethods
     click_on "Desconectar"
   end
 
+  def rellena_filtro_titulo(titulo)
+    visit paginas_path
+    within("#filtrador") do
+      fill_in "Título", with: titulo
+    end
+  end
+
   define_match :have_error do |actual|
     actual.has_selector? "#flash_alert"
   end
