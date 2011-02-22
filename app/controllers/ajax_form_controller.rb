@@ -15,7 +15,7 @@ class AjaxFormController < ApplicationController
 private
   #TODO: mover al modelo
   def modelo
-    params[:url].split('/')[1].singularize.classify.constantize
+    Rails.application.routes.recognize_path(params[:url])[:controller].classify.constantize
   end
 
   def campo_busqueda
