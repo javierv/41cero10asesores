@@ -70,6 +70,7 @@ GEM
     configuration (1.2.0)
     culerity (0.2.15)
     daemons (1.0.10)
+    database_cleaner (0.6.4)
     devise (1.1.7)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 1.0.2)
@@ -224,6 +225,7 @@ DEPENDENCIES
   barista
   capybara!
   compass
+  database_cleaner
   devise
   differ
   display_name
