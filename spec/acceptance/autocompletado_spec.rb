@@ -19,10 +19,6 @@ feature "Autocompletado", %q{
   
   scenario "tecleando título en el filtrado", js: true do
     rellena_filtro_titulo("Mil") 
-    page.should have_selector ".ui-autocomplete"
-    page.should have_selector ".ui-autocomplete li", count: 2
-    page.should have_selector ".ui-autocomplete li", text: "Mil"
-    page.should have_selector ".ui-autocomplete li", text: "Diez mil"
+    page.should have_autocomplete_list ["Diez mil", "Mil"]
   end
-
 end
