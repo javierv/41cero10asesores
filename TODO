@@ -23,6 +23,7 @@
 * Borrar el historial de versiones de los borradores cuando se borra el borrador. No sé si se podrá poner una relación con versiones que las borre si la página es borrador. 
 * Buscar usos de almacenamiento local. Uno erróneo: conservar lo que se estaba escribiendo al editar una página, porque puede que el usuario quiera descartar los cambios.
 * Buscar usos de Cells. Una especie de componentes para las vistas.
+* Páginas de errores: 404, 500, ...
 
 Sección de imágenes:
 * ¿Paginador en la galería?
