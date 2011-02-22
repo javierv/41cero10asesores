@@ -9,7 +9,6 @@ feature "Login", %q{
 } do
 
   let(:usuario) { Factory :usuario, password: "correcta" }
-  background { Capybara.reset_sessions! }
 
   scenario "con contraseña incorrecta" do
     login_with(email: usuario.email, password: "incorrecta")
