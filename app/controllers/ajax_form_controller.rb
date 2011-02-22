@@ -7,11 +7,7 @@ class AjaxFormController < ApplicationController
 
   def autocomplete
     @resultados = modelo.filter params[:name], params[:term]
-
-    json = @resultados.map do |resultado|
-      resultado.to_autocomplete params[:name]
-    end
-    render json: json
+    render json: @resultados.map { |result| result.to_autocomplete params[:name] }
   end
 
 private
