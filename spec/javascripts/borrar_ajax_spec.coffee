@@ -35,6 +35,6 @@ describe 'Destroy with AJAX', ->
         expect($('#listado tbody tr')).toHaveLength 2
 
       it 'updates the flash', ->
-        expect($('#flash').toHaveHtml '<div class="flash">New flash</div></div>'
+        expect($('#flash')).toHaveHtml '<div class="flash">New flash</div>'
 
      
