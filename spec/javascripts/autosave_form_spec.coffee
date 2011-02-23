@@ -11,7 +11,7 @@ describe 'Formulario de guardado', ->
     loadFixtures 'autosave_form.html'
     load 'autosave_form'
 
-  it 'hace una petición AJAX a la página del formulario', ->
+  it "makes an AJAX request to the form action", ->
     expect(ajaxRequests).toHaveLength 1
     expect(ajaxRequests[0].url).toEqual $('form').attr('action')
 

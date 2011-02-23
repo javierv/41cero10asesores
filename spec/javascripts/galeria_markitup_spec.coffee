@@ -1,14 +1,14 @@
 require 'jquery.form'
 
-describe "Galería markitup", ->
+describe "markitup gallery", ->
   beforeEach ->
     loadFixtures 'galeria_markitup.html'
     load 'galeria_markitup'
 
-  it "oculta el botón de insertar", ->
+  it "hides the insert button", ->
     expect($(".actions")).not.toBeVisible()
 
-  it "pone título a la imagen", ->
+  it "adds the title to the image", ->
     expect($("img")).toHaveAttr('title')
 
   describe "al pinchar en la imagen", ->
@@ -17,7 +17,7 @@ describe "Galería markitup", ->
       $('img').click()
       request = mostRecentAjaxRequest()
 
-    it "envía el formulario por AJAX", ->
+    it "sends the form via AJAX", ->
       expect(request.url).toEqual "/fotos/1?width=300"
        
     it "inserta la respuesta en el textarea", ->
@@ -33,6 +33,6 @@ describe "Galería markitup", ->
       nueva_imagen.click()
       nueva_request = mostRecentAjaxRequest()
 
-    it "envía el formulario por AJAX", ->
+    it "sends the form via AJAX", ->
       expect(nueva_request.url).toEqual "/fotos/2?"
     
