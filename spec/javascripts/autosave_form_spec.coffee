@@ -22,10 +22,7 @@ describe 'Formulario de guardado', ->
     request = null
     beforeEach ->
       request = mostRecentAjaxRequest()
-      request.response
-        status: 200
-        responseText:
-          '<div class="borrador" id="post_35">Actualizado</div>'
+      request.response success('<div class="borrador" id="post_35">Actualizado</div>')
       
     it 'actualiza con la respuesta', ->
       expect($('#actualizado')).toHaveHtml request.responseText

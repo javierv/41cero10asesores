@@ -19,15 +19,15 @@ describe 'Live form', ->
 
     it 'fills the preview with the content', ->
       request = mostRecentAjaxRequest()
-      request.response
-        status: 200
-        responseText: '<div id="response"><div id="preview"><p>My preview text</p></div></div>'
+      request.response success(
+        '<div id="response"><div id="preview"><p>My preview text</p></div></div>'
+      )
       expect($('#preview')).toHaveHtml "<p>My preview text</p>"
 
     it 'fills the sidebar', ->
       request = mostRecentAjaxRequest()
-      request.response
-        status: 200
-        responseText: '<div id="response"><div id="sidebar">Hola</div><div id="preview"><p>My preview text</p></div></div>'
+      request.response success(
+        '<div id="response"><div id="sidebar">Hola</div><div id="preview"><p>My preview text</p></div></div>'
+      )
       expect($('#preview')).toHaveHtml "<p>My preview text</p>"
       expect($('#sidebar')).toHaveHtml "Hola"

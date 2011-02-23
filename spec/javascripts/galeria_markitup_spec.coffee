@@ -21,7 +21,7 @@ describe "markitup gallery", ->
       expect(request.url).toEqual "/fotos/1?width=300"
        
     it "inserta la respuesta en el textarea", ->
-      request.response status: 200, responseText: '/images/respuesta.png'
+      request.response success('/images/respuesta.png')
       expect($("textarea").val()).toEqual 'Antes.!/images/respuesta.png!'
 
   describe "al insertar otra imagen distinta y pinchar", ->
