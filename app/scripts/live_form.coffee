@@ -12,11 +12,12 @@ $(document).ready ->
           $('#sidebar').remove()
           $('#sidebar', data).prependTo('#extra')
           sources = data.match(/script src="([^"]+)"/g)
-          for source in sources
-            script = document.createElement('script')
-            script.setAttribute "type","text/javascript"
-            script.setAttribute "src", source.replace("script src=", "").replace(/"/g, "")
-            document.getElementsByTagName("head")[0].appendChild(script)
+          if sources
+            for source in sources
+              script = document.createElement('script')
+              script.setAttribute "type","text/javascript"
+              script.setAttribute "src", source.replace("script src=", "").replace(/"/g, "")
+              document.getElementsByTagName("head")[0].appendChild(script)
 
         data: { preview: true }
       )

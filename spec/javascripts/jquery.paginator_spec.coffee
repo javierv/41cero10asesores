@@ -22,7 +22,7 @@ describe "Paginator", ->
 
     it "fills the element with the response", ->
       request = mostRecentAjaxRequest()
-      request.response status: 200, responseText: '<p>Success!</p>'
+      request.response success('<p>Success!</p>')
       expect($('#list')).toHaveHtml request.responseText
 
     it "updates the browser's address bar", ->
