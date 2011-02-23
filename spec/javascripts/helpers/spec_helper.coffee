@@ -22,7 +22,8 @@ create_script = (file) ->
 
 success = (text) ->
   status: 200,
-  responseText: text
+  responseText: text,
+  responseHeaders: {"Content-type": "text/javascript"}
 
 beforeEach ->
   this.addMatchers({
