@@ -4,8 +4,6 @@
 
 * PDFs con el boletín.
 
-* Pasar a jQuery 1.5
-
 * Al recuperar una página, no se recupera qué cajas tenía asociadas.
 * No mostrar borradores en las páginas borradas.
 * Investigar si se borran los borradores de página nueva cuando se crea la página.
