@@ -22,6 +22,14 @@ module HelperMethods
     end
   end
 
+  def busca(texto)
+    visit homepage
+    within("#buscador") do
+      fill_in "q", with: texto
+      click_on "Buscar"
+    end
+  end
+
   define_match :have_error do |actual|
     actual.has_selector? "#flash_alert"
   end
@@ -37,10 +45,19 @@ module HelperMethods
   define_match :have_autocomplete_list do |page, results|
     list = ".ui-autocomplete"
     page.has_selector?(list) &&
-    page.has_selector?("#{list} li", count: results.count) &&
-    results.inject(true) do |presentes, result|
-      presentes && page.has_selector?("#{list} li", text: result)
-    end
+      page.has_selector?("#{list} li", count: results.count) &&
+      results.inject(true) do |presentes, result|
+        presentes && page.has_selector?("#{list} li", text: result)
+      end
+  end
+
+  define_match :have_search_results do |page, results|
+    resultados = "#resultados"
+    page.has_selector?("#{resultados}") &&
+      page.has_selector?("#{resultados} article", count: results.count) &&
+      results.inject(true) do |presentes, result|
+        presentes && page.has_selector?("#{resultados} article header", text: result)
+      end
   end
 end
 

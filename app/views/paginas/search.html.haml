@@ -6,5 +6,6 @@
     ¿Quiso decir
     = link_to(@paginas.spelling_suggestion, search_paginas_path(q: @paginas.spelling_suggestion)) + "?"
 
-- @paginas.paginate.each do |pagina|
-  = render 'resumen', pagina: pagina.indexed_object
+%section#resultados
+  - @paginas.paginate.each do |pagina|
+    = render 'resumen', pagina: pagina.indexed_object
