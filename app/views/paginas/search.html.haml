@@ -2,9 +2,10 @@
 - css 'resultados'
 
 - if @paginas.spelling_suggestion
+  - suggestion = @paginas.spelling_suggestion.force_encoding("utf-8")
   %p#sugerencia
     ¿Quiso decir
-    = link_to(@paginas.spelling_suggestion, search_paginas_path(q: @paginas.spelling_suggestion)) + "?"
+    = link_to(suggestion, search_paginas_path(q: suggestion)) + "?"
 
 %section#resultados
   - @paginas.each do |pagina|
