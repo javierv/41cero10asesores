@@ -12,6 +12,8 @@ feature "Buscador", %q{
     ["Un título", "Dos títulos", "Una cosa", "Dos cosas"].each do |titulo|
       Factory :pagina, titulo: titulo
     end
+
+    Pagina.rebuild_xapian_index
   end
 
   scenario "búsqueda normal" do
