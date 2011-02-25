@@ -59,6 +59,10 @@ module HelperMethods
         presentes && page.has_selector?("#{resultados} article header", text: result)
       end
   end
+
+  define_match :have_search_suggestion do |page, suggestion|
+    page.has_selector?("#sugerencia", text: suggestion)
+  end
 end
 
 RSpec.configuration.include HelperMethods, type: :acceptance

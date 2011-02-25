@@ -26,4 +26,9 @@ feature "Buscador", %q{
     busca "título"
     page.should have_search_results ["Un título", "Dos títulos"]
   end
+
+  scenario "búsqueda con errata" do
+    busca "títluo"
+    page.should have_search_suggestion "título"
+  end
 end
