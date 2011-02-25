@@ -20,6 +20,7 @@ feature "Buscador", %q{
     busca "cosa"
     current_path.should == search_page
     page.should have_search_results ["Una cosa", "Dos cosas"]
+    page.should have_highlight "cosa"
   end
 
   scenario "búsqueda con acentos" do

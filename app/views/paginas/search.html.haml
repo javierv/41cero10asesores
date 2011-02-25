@@ -9,6 +9,6 @@
 
 %section#resultados
   - @paginas.each do |pagina|
-    = render 'resumen', pagina: pagina.indexed_object
+    = render 'resumen', pagina: pagina.indexed_object, term: params[:q]
 
 #paginador= will_paginate @paginas

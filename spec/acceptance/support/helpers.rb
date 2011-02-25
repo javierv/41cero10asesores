@@ -67,6 +67,10 @@ module HelperMethods
   define_match :have_pagination do |page|
     page.has_selector?(".pagination")
   end
+
+  define_match :have_highlight do |page, text|
+    page.has_selector?("strong.searched_term", text: text)
+  end
 end
 
 RSpec.configuration.include HelperMethods, type: :acceptance
