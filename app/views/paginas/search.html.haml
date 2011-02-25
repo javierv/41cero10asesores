@@ -1,8 +1,8 @@
 - title "Resultados para la búsqueda #{params[:q]}" # TODO: ¿@paginas.search_term o similar?
 - css 'resultados'
+- suggestion = @paginas.spelling_suggestion
 
-- if @paginas.spelling_suggestion
-  - suggestion = @paginas.spelling_suggestion.force_encoding("utf-8")
+- if suggestion
   %p#sugerencia
     ¿Quiso decir
     = link_to(suggestion, search_paginas_path(q: suggestion)) + "?"
