@@ -63,6 +63,10 @@ module HelperMethods
   define_match :have_search_suggestion do |page, suggestion|
     page.has_selector?("#sugerencia", text: suggestion)
   end
+
+  define_match :have_pagination do |page|
+    page.has_selector?(".pagination")
+  end
 end
 
 RSpec.configuration.include HelperMethods, type: :acceptance
