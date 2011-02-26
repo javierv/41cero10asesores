@@ -282,4 +282,25 @@ describe Pagina do
     it { Pagina.siguiente(page: 1).should == paginas[2] }
     it { Pagina.siguiente(page: 4).should be_nil }
   end
+
+  describe "search" do
+    let(:busqueda) { "primero" }
+    let(:nada) { "segundo" }
+    before(:each) do
+      Factory :pagina, titulo: busqueda, cuerpo: nada
+      Factory :pagina, titulo: nada, cuerpo: nada
+      Factory :pagina, titulo: nada, cuerpo: busqueda
+      Factory :pagina, titulo: busqueda, cuerpo: busqueda
+      Pagina.rebuild_xapian_index
+    end
+    let(:paginas) { Pagina.search busqueda }
+
+    it "da prioridad al título" do
+      paginas.should have(3).items
+      paginas[0].titulo.should == busqueda
+      paginas[0].cuerpo.should == busqueda
+      paginas[1].titulo.should == busqueda
+      paginas[2].cuerpo.should == busqueda
+    end
+  end
 end

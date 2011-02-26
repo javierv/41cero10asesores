@@ -1,10 +1,14 @@
 - title "Resultados para la búsqueda #{params[:q]}" # TODO: ¿@paginas.search_term o similar?
 - css 'resultados'
+- suggestion = @paginas.spelling_suggestion
 
-- unless @paginas.spelling_suggestion.blank?
-  %p
+- if suggestion
+  %p#sugerencia
     ¿Quiso decir
-    = link_to(@paginas.spelling_suggestion, search_paginas_path(q: @paginas.spelling_suggestion)) + "?"
+    = link_to(suggestion, search_paginas_path(q: suggestion)) + "?"
 
-- @paginas.paginate.each do |pagina|
-  = render 'resumen', pagina: pagina.indexed_object
+%section#resultados
+  - @paginas.each do |pagina|
+    = render 'resumen', pagina: pagina.indexed_object, term: params[:q]
+
+#paginador= will_paginate @paginas
