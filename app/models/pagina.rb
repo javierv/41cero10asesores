@@ -34,8 +34,6 @@ class Pagina < ActiveRecord::Base
     blueprint.ignore_if { borrador? }
   end
 
-  paginates_per 15
-
   def cajas_con_orden
     cajas.order("sidebars.orden ASC")
   end
