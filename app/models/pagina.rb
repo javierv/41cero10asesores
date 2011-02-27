@@ -34,9 +34,7 @@ class Pagina < ActiveRecord::Base
     blueprint.ignore_if { borrador? }
   end
 
-  def self.per_page
-    15
-  end
+  paginates_per 15
 
   def cajas_con_orden
     cajas.order("sidebars.orden ASC")
@@ -102,15 +100,14 @@ class Pagina < ActiveRecord::Base
   
   def self.search_paginate(params)
     search = metasearch params[:search]
-    paginas = search.where(published_id: nil).paginate page: params[:page],
-      per_page: per_page
+    paginas = search.where(published_id: nil).page(params[:page])
 
     [search, paginas]
   end
 
   def self.siguiente(params)
     search, paginas = search_paginate(params)
-    paginas.last unless paginas.count != per_page
+    paginas.last unless paginas.length != default_per_page
   end
 private
   def build_sidebar

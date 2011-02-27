@@ -40,7 +40,7 @@ end
 # gem 'unicorn'
 
 gem "devise"
-gem "will_paginate", ">= 3.0.pre"
+gem "kaminari"
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly'
 gem "haml"

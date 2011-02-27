@@ -6,6 +6,8 @@ class Caja < ActiveRecord::Base
   validates :cuerpo, presence: true
   display_name :titulo
 
+  paginates_per 15
+
   has_many :sidebars, dependent: :destroy
   scope :por_titulo, order("cajas.titulo")
 

@@ -276,7 +276,7 @@ describe Pagina do
     let(:paginas) { [] }
     before(:each) do
       11.times { paginas << Factory(:pagina)}
-      Pagina.stubs(:per_page).returns(3)
+      Pagina.stubs(:default_per_page).returns(3)
     end
 
     it { Pagina.siguiente(page: 1).should == paginas[2] }
