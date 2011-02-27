@@ -11,4 +11,4 @@
   - @paginas.each do |pagina|
     = render 'resumen', pagina: pagina.indexed_object, term: params[:q]
 
-= will_paginate @paginas
+= paginate @paginas
