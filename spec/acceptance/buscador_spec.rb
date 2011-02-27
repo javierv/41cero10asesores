@@ -34,7 +34,7 @@ feature "Buscador", %q{
   end
 
   scenario "búsqueda con paginación" do
-    Pagina.stubs(:per_page).returns(1)
+    Pagina.stubs(:default_per_page).returns(1)
     busca "cosa"
     page.should have_search_results ["Una cosa"]
     page.should have_pagination
