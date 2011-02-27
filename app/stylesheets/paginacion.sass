@@ -1,0 +1,23 @@
+@import "compass/css3"
+$margen_normal = 0.4em
+$margen_extra = 0.3em
+
+.pagination
+  margin-top: 1em
+
+  a
+    text-decoration:  none
+    padding:          0.2em 0.4em
+    border:           1px solid #ccc
+
+  .current
+    
+
+  a, .current
+    margin-right: $margen_normal
+
+    &.prev
+      margin-right: $margen_normal + $margen_extra
+
+    &.next
+      margin-left: $margen_extra
