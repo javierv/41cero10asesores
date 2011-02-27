@@ -10,8 +10,7 @@ class CajasController < ApplicationController
 
   def index
     @search = Caja.search params[:search]
-    # HACK: kaminari y metasearch no se llevan bien.
-    @cajas = @search.where(true).page(params[:page])
+    @cajas = @search.relation.page(params[:page])
 
     respond_with @cajas
   end
