@@ -14,8 +14,14 @@ $margen_extra = 0.3em
     &.prev
       margin-right: $margen_normal + $margen_extra
 
+      &:before
+        content: "« "
+
     &.next
       margin-left: $margen_extra
+
+      &:after
+        content: " »"
 
     &:hover, &:focus
       background-color: #ff9
