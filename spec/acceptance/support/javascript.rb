@@ -1,4 +1,8 @@
 RSpec.configure do |config|
+  Capybara.register_driver :selenium do |app|
+    Capybara::Driver::Selenium.new(app, :browser => :chrome)
+  end
+
   config.before(:each) do
     Capybara.current_driver = :selenium if example.metadata[:js]
   end
