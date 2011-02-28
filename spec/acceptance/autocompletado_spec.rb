@@ -11,9 +11,7 @@ feature "Autocompletado", %q{
   let(:usuario) { Factory :usuario, password: "password" }
 
   background do
-    ["Cien", "Mil", "Diez mil"].each do |titulo|
-      Factory :pagina, titulo: titulo
-    end
+    crea_paginas_con_titulos ["Cien", "Mil", "Diez mil"]
     login_with(email: usuario.email, password: "password")
   end
   

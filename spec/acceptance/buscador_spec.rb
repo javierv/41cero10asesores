@@ -9,10 +9,7 @@ feature "Buscador", %q{
 } do
 
   background do
-    ["Un título", "Dos títulos", "Una cosa", "Dos cosas"].each do |titulo|
-      Factory :pagina, titulo: titulo
-    end
-
+    crea_paginas_con_titulos ["Un título", "Dos títulos", "Una cosa", "Dos cosas"]
     Pagina.rebuild_xapian_index
   end
 

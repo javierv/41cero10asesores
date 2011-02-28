@@ -65,4 +65,8 @@ Spork.each_run do
       match { |actual| block[actual, expected] }
     end
   end
+
+  def crea_paginas_con_titulos(titulos)
+    titulos.map {|titulo| Factory :pagina, titulo: titulo}
+  end
 end
