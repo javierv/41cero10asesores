@@ -18,12 +18,12 @@ feature "Borrar Páginas", %q{
     page.should have_content "Primera"
     page.should have_content "Segunda"
 
-    click_on "Borrar"
+    borra_primera_pagina
     page.should have_success(text: "se borró")
     page.should have_no_content "Primera"
     page.should have_content "Segunda"
 
-    click_on "Deshacer"
+    deshaz_borrado
     page.should have_success(text: "recuperada")
     page.should have_content "Primera"
     page.should have_content "Segunda"
@@ -31,9 +31,9 @@ feature "Borrar Páginas", %q{
 
   scenario "Recuperar una página borrada", js: true do
     visit paginas_path
-    click_on "Borrar"
+    borra_primera_pagina
     page.should have_no_content "Primera"
-    click_on "Borrar"
+    borra_primera_pagina
     page.should have_no_content "Segunda"
 
     visit deleted_path
@@ -41,7 +41,7 @@ feature "Borrar Páginas", %q{
     page.should have_content "Segunda"
     page.should have_no_content "Tercera"
 
-    click_on "Recuperar"
+    recupera_primera_pagina
     current_path.should == paginas_path
     page.should have_content "Segunda"
     page.should have_no_content "Primera"
