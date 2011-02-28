@@ -7,6 +7,8 @@
     ¿Quiso decir
     = link_to(suggestion, search_paginas_path(q: suggestion)) + "?"
 
+= total_resultados(@paginas)
+
 %section#resultados
   - @paginas.each do |pagina|
     = render 'resumen', pagina: pagina.indexed_object, term: params[:q]
