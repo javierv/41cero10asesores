@@ -50,6 +50,7 @@ describe "rutas" do
   describe "rutas de otras acciones de páginas" do
     it { { get: "/search" }.should route_to ruta("paginas#search") }
     it { { get: "/new" }.should route_to ruta("paginas#new") }
+    it { { post: "/"}.should route_to ruta("paginas#create")}
   end
 
   it "ruta a la portada"

@@ -29,6 +29,15 @@ module HelperMethods
       click_on "Buscar"
     end
   end
+
+  def crea_pagina(pagina)
+    visit new_pagina_path
+    within("#new_pagina") do
+      fill_in "Título", with: pagina[:titulo]
+      fill_in "Cuerpo", with: pagina[:cuerpo]
+      click_on "Guardar Página"
+    end
+  end
 end
 
 RSpec.configuration.include HelperMethods, type: :acceptance
