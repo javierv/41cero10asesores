@@ -22,6 +22,15 @@ module HelperMethods
     end
   end
 
+  def crea_pagina(pagina)
+    visit new_pagina_path
+    within("#new_pagina") do
+      fill_in "Título", with: pagina[:titulo]
+      fill_in "Cuerpo", with: pagina[:cuerpo]
+      click_on "Guardar Página"
+    end
+  end
+
   define_match :have_error do |actual|
     actual.has_selector? "#flash_alert"
   end
