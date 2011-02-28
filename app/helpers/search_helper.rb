@@ -28,6 +28,6 @@ private
   end
 
   def primero(records)
-    records.offset_value + 1
+    (records.current_page - 1) * records.limit_value + 1
   end
 end
