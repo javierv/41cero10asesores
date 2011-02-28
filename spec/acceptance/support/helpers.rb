@@ -10,6 +10,11 @@ module HelperMethods
     end
   end
 
+  def login
+    usuario = Factory :usuario, password: "password"
+    login_with(email: usuario.email, password: "password")
+  end
+
   def logout
     visit admin_page
     click_on "Desconectar"
