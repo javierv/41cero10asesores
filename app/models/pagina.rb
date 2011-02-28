@@ -18,7 +18,7 @@ class Pagina < ActiveRecord::Base
   before_save :build_sidebar
   before_save :set_borrador
 
-  versioned dependent: :tracking, initial_version: true
+  versioned dependent: :tracking, initial_version: true, unless: :borrador_con_pagina?
   has_friendly_id :titulo,
     allow_nil:                    true,
     use_slug:                     true,
@@ -107,6 +107,11 @@ class Pagina < ActiveRecord::Base
     search, paginas = search_paginate(params)
     paginas.last unless paginas.length != default_per_page
   end
+
+  def borrador_con_pagina?
+    borrador? && !published.new_record? 
+  end
+
 private
   def build_sidebar
     if @ids_cajas

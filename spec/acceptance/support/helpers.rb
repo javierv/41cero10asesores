@@ -10,6 +10,11 @@ module HelperMethods
     end
   end
 
+  def login
+    usuario = Factory :usuario, password: "password"
+    login_with(email: usuario.email, password: "password")
+  end
+
   def logout
     visit admin_page
     click_on "Desconectar"
@@ -37,6 +42,28 @@ module HelperMethods
       fill_in "Cuerpo", with: pagina[:cuerpo]
       click_on "Guardar Página"
     end
+  end
+
+  def borra_pagina(opciones = { orden: 1 })
+    borradores = page.all "a", text: "Borrar"
+    borradores[opciones[:orden] -1].click
+  end
+
+  def borra_primera_pagina
+    borra_pagina
+  end
+
+  def deshaz_borrado
+    click_on "Deshacer"
+  end
+
+  def recupera_pagina(opciones = { orden: 1 })
+    recuperadores = page.all 'input[value="Recuperar"]'
+    recuperadores[opciones[:orden] -1].click
+  end
+
+  def recupera_primera_pagina
+    recupera_pagina
   end
 end
 

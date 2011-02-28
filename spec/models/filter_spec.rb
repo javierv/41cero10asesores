@@ -5,9 +5,7 @@ require 'spec_helper'
 describe Filter do
   describe "filter" do
     before(:each) do
-      ['título', 'mulo', 'web', 'css', 'pulómetro', 'html'].each do |titulo|
-        Factory :pagina, titulo: titulo
-      end 
+      crea_paginas_con_titulos ['título', 'mulo', 'web', 'css', 'pulómetro', 'html']
     end
 
     context "con un término" do

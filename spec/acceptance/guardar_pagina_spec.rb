@@ -8,11 +8,7 @@ feature "Guardar páginas", %q{
   Quiero poder guardar páginas
 } do
 
-  let(:usuario) { Factory :usuario, password: "password" }
-
-  background do
-    login_with(email: usuario.email, password: "password")
-  end
+  background { login }
   
   scenario "crear una nueva página" do
     crea_pagina titulo: "Prueba", cuerpo: "Probando"

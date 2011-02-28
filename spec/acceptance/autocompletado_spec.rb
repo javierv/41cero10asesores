@@ -8,13 +8,9 @@ feature "Autocompletado", %q{
   Quiero poder autocompletar la búsqueda
 } do
 
-  let(:usuario) { Factory :usuario, password: "password" }
-
   background do
-    ["Cien", "Mil", "Diez mil"].each do |titulo|
-      Factory :pagina, titulo: titulo
-    end
-    login_with(email: usuario.email, password: "password")
+    crea_paginas_con_titulos ["Cien", "Mil", "Diez mil"]
+    login
   end
   
   scenario "tecleando título en el filtrado", js: true do

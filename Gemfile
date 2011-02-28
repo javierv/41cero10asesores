@@ -57,7 +57,7 @@ gem "display_name"
 gem "xapian_db"
 gem "inploy"
 gem "barista"
-gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
+gem 'vestal_versions', :git => 'git://github.com/javierv/vestal_versions'
 gem "therubyracer"
 gem "differ"
 gem 'whenever', :require => false
