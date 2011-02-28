@@ -13,7 +13,7 @@ feature "Borrar Páginas", %q{
     login
   end
 
-  scenario "Borrar una página y deshacer" do
+  scenario "Borrar una página y deshacer", js: true do
     visit paginas_path
     page.should have_content "Primera"
 
