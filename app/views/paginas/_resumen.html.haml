@@ -3,3 +3,6 @@
     %h2= link_to search_highlight(pagina.to_s, term), pagina
   %section
     = search_highlight strict_textilize(truncate(pagina.cuerpo, length: 500, separator: ' ')), term
+
+  - if usuario_signed_in?
+    = actions_list([:edit, :historial], pagina)
