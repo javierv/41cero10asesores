@@ -1,12 +1,12 @@
 # encoding: utf-8
 
 module MatcherMethods
-  define_match :have_error do |actual|
-    actual.has_selector? "#flash_alert"
+  define_match :have_error do |actual, options = {}|
+    actual.has_selector? "#flash_alert", options
   end
 
-  define_match :have_success do |actual|
-    actual.has_selector? "#flash_notice"
+  define_match :have_success do |actual, options = {}|
+    actual.has_selector? "#flash_notice", options
   end
 
   define_match :have_admin_navigation do |actual|
