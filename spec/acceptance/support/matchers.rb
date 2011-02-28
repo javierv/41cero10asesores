@@ -13,6 +13,15 @@ module MatcherMethods
     actual.has_selector? "#admin"
   end
 
+  define_match :have_pages_list do |page, results|
+    rows = "tbody"
+    page.has_selector?(rows) &&
+      page.has_selector?("#{rows} tr", count: results.count) &&
+      results.inject(true) do |presentes, result|
+        presentes && page.has_selector?("#{rows} td", text: result)
+      end
+  end
+
   define_match :have_autocomplete_list do |page, results|
     list = ".ui-autocomplete"
     page.has_selector?(list) &&
