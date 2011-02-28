@@ -13,7 +13,6 @@
 * Vista previa al editar cajas.
 * Al editar cajas, poder asignarlas a las páginas.
 * Formulario de login: ¿autofocus en el email?
-* Paginación con kaminari.
 * Permitir al usuario configurar textos como el enlace al CRM o los "lemas".
 * Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
 * Borrar el historial de versiones de los borradores cuando se borra el borrador. No sé si se podrá poner una relación con versiones que las borre si la página es borrador. 
