@@ -9,8 +9,8 @@ feature "Autocompletado", %q{
 } do
 
   background do
-    login
     crea_paginas_con_titulos ["Cien", "Mil", "Diez mil"]
+    login
   end
   
   scenario "tecleando título en el filtrado", js: true do
