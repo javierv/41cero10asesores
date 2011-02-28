@@ -1,3 +1,5 @@
+= total_resultados(cajas)
+
 = table_for cajas do |table|
   = table.data do
     = table.cell :titulo, heading: sort_link(search, :titulo)
@@ -6,4 +8,4 @@
     = table.cell(:acciones, heading: 'Acciones', cell_html: {class: 'actions'}) do |caja|
       - acciones_para_caja(caja)
 
-#paginador= will_paginate
+= paginate cajas, window: 3

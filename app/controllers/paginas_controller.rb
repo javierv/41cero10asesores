@@ -2,7 +2,7 @@
 
 class PaginasController < ApplicationController
   # Tengo que declarar antes el JS para que las peticiones AJAX respondan así.
-  respond_to :js, only: [:index]
+  respond_to :js, only: [:index, :search]
   respond_to :html
 
   before_filter :params_updated_by, only: [:create, :update]
@@ -63,7 +63,8 @@ class PaginasController < ApplicationController
   end
 
   def search
-    @paginas = Pagina.search params[:q], per_page: Pagina.per_page, page: params[:page]
+    @paginas = Pagina.search params[:q], per_page: Pagina.default_per_page, page: params[:page]
+    respond_with @paginas
   end
 
 private

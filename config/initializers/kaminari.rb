@@ -1,0 +1,1 @@
+Kaminari::DEFAULT_PER_PAGE = 15

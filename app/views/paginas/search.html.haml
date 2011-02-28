@@ -1,5 +1,6 @@
 - title "Resultados para la búsqueda #{params[:q]}" # TODO: ¿@paginas.search_term o similar?
 - css 'resultados'
+- paginador_ajax
 - suggestion = @paginas.spelling_suggestion
 
 - if suggestion
@@ -7,8 +8,4 @@
     ¿Quiso decir
     = link_to(suggestion, search_paginas_path(q: suggestion)) + "?"
 
-%section#resultados
-  - @paginas.each do |pagina|
-    = render 'resumen', pagina: pagina.indexed_object, term: params[:q]
-
-#paginador= will_paginate @paginas
+#listado= render "resultados_busqueda", paginas: @paginas
