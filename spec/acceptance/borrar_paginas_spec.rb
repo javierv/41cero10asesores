@@ -16,13 +16,16 @@ feature "Borrar Páginas", %q{
   scenario "Borrar una página y deshacer", js: true do
     visit paginas_path
     page.should have_content "Primera"
+    page.should have_content "Segunda"
 
     click_on "Borrar"
     page.should have_success(text: "se borró")
     page.should have_no_content "Primera"
+    page.should have_content "Segunda"
 
     click_on "Deshacer"
     page.should have_success(text: "recuperada")
     page.should have_content "Primera"
+    page.should have_content "Segunda"
   end
 end
