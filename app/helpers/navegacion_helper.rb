@@ -21,11 +21,7 @@ module NavegacionHelper
 
   def acciones_para_pagina(pagina)
     acciones = [:edit,
-      ['Borrar', pagina_path(pagina), {
-        method: :delete,
-        class:  :destroy,
-        remote: true
-      }],
+      enlace(:destroy, pagina, { method: :delete, remote: true, confirm: false }),
       :historial]
 
     if pagina.has_draft?
@@ -96,8 +92,12 @@ private
     end
   end
 
-  def link_title(action)
+  def link_text(action)
     I18n.translate(action, scope: "tabletastic.actions", default: action.to_s.titleize)
+  end
+
+  def link_title(action, resource)
+    "#{link_text(action)} #{resource}"
   end
 
   def confirmation_message
@@ -106,16 +106,20 @@ private
 
   def enlaces(actions, resource)
     actions.map do |action|
-      if action.is_a?(Array)
-        action
-      else
-        opciones = {class: action}
-        url = action_url(action, resource)
-        if url.is_a?(Array)
-          opciones.merge!(url.extract_options!)
-        end
-        [link_title(action), url, opciones].flatten
+      enlace(action, resource)
+    end
+  end
+
+  def enlace(action, resource, opciones = {})
+    if action.is_a?(Array)
+      action
+    else
+      url = action_url(action, resource)
+      if url.is_a?(Array)
+        opciones.reverse_merge!(url.extract_options!)
       end
+      opciones.reverse_merge!(class: action, title: link_title(action, resource))
+      [link_text(action), url, opciones].flatten
     end
   end
 
