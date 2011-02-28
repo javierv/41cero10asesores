@@ -13,12 +13,13 @@
 * Vista previa al editar cajas.
 * Al editar cajas, poder asignarlas a las páginas.
 * Formulario de login: ¿autofocus en el email?
+* Páginas de errores: 404, 500, ...
 * Permitir al usuario configurar textos como el enlace al CRM o los "lemas".
-* Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
+
 * Borrar el historial de versiones de los borradores cuando se borra el borrador. No sé si se podrá poner una relación con versiones que las borre si la página es borrador. 
+* Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
 * Buscar usos de almacenamiento local. Uno erróneo: conservar lo que se estaba escribiendo al editar una página, porque puede que el usuario quiera descartar los cambios.
 * Buscar usos de Cells. Una especie de componentes para las vistas.
-* Páginas de errores: 404, 500, ...
 
 Sección de imágenes:
 * ¿Paginador en la galería?
