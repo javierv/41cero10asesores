@@ -61,6 +61,10 @@ describe NavegacionHelper do
         lista.should have_selector 'li form', count: 1
       end
 
+      it "cierra el formulario" do
+        lista.should include "</form>"
+      end
+
       it "genera un botón con el texto" do
         lista.should have_selector 'input[type="submit"][value="Borrar"]'
       end
