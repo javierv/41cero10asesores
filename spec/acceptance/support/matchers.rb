@@ -14,30 +14,19 @@ module MatcherMethods
   end
 
   define_match :have_pages_list do |page, results|
-    rows = "tbody"
-    page.has_selector?(rows) &&
-      page.has_selector?("#{rows} tr", count: results.count) &&
-      results.inject(true) do |presentes, result|
-        presentes && page.has_selector?("#{rows} td", text: result)
-      end
+    table = "tbody"
+    page.has_results? table, "#{table} tr", "#{table} td", results
   end
 
   define_match :have_autocomplete_list do |page, results|
     list = ".ui-autocomplete"
-    page.has_selector?(list) &&
-      page.has_selector?("#{list} li", count: results.count) &&
-      results.inject(true) do |presentes, result|
-        presentes && page.has_selector?("#{list} li", text: result)
-      end
+    page.has_results? list, "#{list} li", "#{list} li", results
   end
 
   define_match :have_search_results do |page, results|
     resultados = "#resultados"
-    page.has_selector?("#{resultados}") &&
-      page.has_selector?("#{resultados} article", count: results.count) &&
-      results.inject(true) do |presentes, result|
-        presentes && page.has_selector?("#{resultados} article header", text: result)
-      end
+    page.has_results? resultados, "#{resultados} article",
+                     "#{resultados} article header", results
   end
 
   define_match :have_search_suggestion do |page, suggestion|
@@ -51,6 +40,16 @@ module MatcherMethods
   define_match :have_highlight do |page, text|
     page.has_selector?("strong.searched_term", text: text)
   end
+
 end
 
+module Capybara::Node::Matchers
+  def has_results?(container, subcontainer, element, results)
+    has_selector?("#{container}") &&
+      has_selector?("#{subcontainer}", count: results.count) &&
+      results.inject(true) do |presentes, result|
+        presentes && has_selector?("#{element}", text: result)
+      end
+  end
+end
 RSpec.configuration.include MatcherMethods, type: :acceptance
