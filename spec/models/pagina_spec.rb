@@ -303,4 +303,26 @@ describe Pagina do
       paginas[2].cuerpo.should == busqueda
     end
   end
+
+  describe "versiones" do
+    it "guarda versiones de una nueva página" do
+      pagina = Factory :pagina
+      pagina.update_attribute(:titulo, "cambio")
+      pagina.versions.count.should == 2
+    end
+
+    it "guarda versiones de un borrador sin página publicada" do
+      pagina = Factory :pagina, borrador: true
+      pagina.update_attribute(:titulo, "cambio")
+      pagina.versions.count.should == 2
+    end
+
+    it "no guarda versiones de un borrador con página pubilcada" do
+      pagina = Factory :pagina
+      pagina.save_draft
+      borrador = pagina.draft
+      borrador.update_attribute(:titulo, "cambio")
+      borrador.versions.count.should == 0
+    end
+  end
 end
