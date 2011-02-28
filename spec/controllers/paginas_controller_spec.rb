@@ -199,10 +199,21 @@ describe PaginasController do
   end
 
   describe "search action" do
-    before(:each) { get :search, q: "buscando" }
+    context "with a normal request" do
+      before(:each) { get :search, q: "buscando" }
 
-    it { should respond_with(:success) }
-    it { assigns(:paginas).should be_true }
+      it { should respond_with(:success) }
+      it { assigns(:paginas).should be_true }
+    end
+
+    context "with an AJAX request" do
+      before(:each) { xhr :get, :search, q: "buscando" }
+
+      it { should respond_with_content_type(:js) }
+      it { should render_template(:search) }
+      it { should respond_with(:success) }
+      it { should_not render_with_layout }
+    end
   end
 
   describe 'ver el historial' do

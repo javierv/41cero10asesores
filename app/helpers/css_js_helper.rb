@@ -11,8 +11,13 @@ module CssJsHelper
   end
 
   def tabla
-    javascript 'jquery.history', 'jquery.paginator', 'listado_ajax'
+    paginador_ajax
     css 'tabla'
+  end
+
+  def paginador_ajax
+    javascript 'jquery.history', 'jquery.paginator', 'listado_ajax'
+    css "listado"
   end
 
   def live_preview_form
