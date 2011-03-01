@@ -7,16 +7,24 @@ module SearchHelper
 
   def total_resultados(records)
     content_tag :p, class: "total_resultados" do
-      "Mostrando resultados ".html_safe +
-      cantidad_tag(primero(records), class: "primero") + " a ".html_safe +
-      cantidad_tag(ultimo(records), class: "ultimo") +  " de ".html_safe +
-      cantidad_tag(records.total_count, class: "total")
+      if records.empty?
+        "No hay resultados"
+      else
+        muestra_numero_resultados(records)
+      end
     end
   end
 
 private
   def search_split(term)
     term.scan(/"[^"]+"|\S+/).map { |word| word.delete('"') }
+  end
+
+  def muestra_numero_resultados(records)
+    "Mostrando resultados ".html_safe +
+      cantidad_tag(primero(records), class: "primero") + " a ".html_safe +
+      cantidad_tag(ultimo(records), class: "ultimo") +  " de ".html_safe +
+      cantidad_tag(records.total_count, class: "total")
   end
 
   def cantidad_tag(cantidad, options = {})
