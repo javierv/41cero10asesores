@@ -32,18 +32,20 @@ class PaginasController < ApplicationController
   end
 
   def create
-    flash[:notice] = 'Pagina se creó correctamente.' if @pagina.save
+    @pagina.save
     respond_with @pagina
   end
 
   def update
-    flash[:notice] = 'Pagina se actualizó correctamente.' if @pagina.update_attributes(params[:pagina])
+    @pagina.update_attributes(params[:pagina])
     respond_with @pagina
   end
 
   def destroy
     if @pagina.destroy
-      flash[:notice] = 'Pagina se borró correctamente.'
+      # TODO: no funciona con AJAX sin poner esto.
+      flash[:notice] = t "flash.actions.destroy.notice",
+        resource_name: Pagina.model_name.human
       if @pagina.versions.last
         session[:deshacer] = { 
           method: :put,
