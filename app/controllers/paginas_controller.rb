@@ -2,7 +2,7 @@
 
 class PaginasController < ApplicationController
   # Tengo que declarar antes el JS para que las peticiones AJAX respondan así.
-  respond_to :js, only: [:index, :search]
+  respond_to :js, only: [:index, :search, :destroy]
   respond_to :html
 
   before_filter :params_updated_by, only: [:create, :update]
@@ -43,9 +43,6 @@ class PaginasController < ApplicationController
 
   def destroy
     if @pagina.destroy
-      # TODO: no funciona con AJAX sin poner esto.
-      flash[:notice] = t "flash.actions.destroy.notice",
-        resource_name: Pagina.model_name.human
       if @pagina.versions.last
         session[:deshacer] = { 
           method: :put,
@@ -55,9 +52,8 @@ class PaginasController < ApplicationController
     end
     if request.xhr?
       @siguiente = Pagina.siguiente(session_params(:index) || {})
-    else
-      respond_with @pagina
     end
+    respond_with @pagina
   end
 
   def historial
