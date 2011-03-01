@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class ApplicationController < ActionController::Base
+  responders :flash
   protect_from_forgery
   before_filter :conservar_parametros, only: [:index]
   before_filter :authenticate_usuario!, if: :requiere_usuario?
