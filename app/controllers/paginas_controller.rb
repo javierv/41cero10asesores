@@ -5,6 +5,8 @@ class PaginasController < ApplicationController
   respond_to :js, only: [:index, :search, :destroy]
   respond_to :html
 
+  public_actions :show, :search
+
   before_filter :params_updated_by, only: [:create, :update]
   before_filter :find_pagina, only: [:edit, :update, :destroy, :historial]
   before_filter :new_pagina, only: [:new, :create]
@@ -66,10 +68,6 @@ class PaginasController < ApplicationController
   end
 
 private
-  def public_actions
-    [:show, :search]
-  end
-
   def params_updated_by
     params[:pagina][:updated_by] = current_usuario
   end
