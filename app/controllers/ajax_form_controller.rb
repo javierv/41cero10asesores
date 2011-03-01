@@ -1,32 +1,17 @@
 # encoding: utf-8
 
+require 'filter'
+
 class AjaxFormController < ApplicationController
   respond_to :js
 
   def autocomplete
-    @resultados = modelo.metasearch(:"#{campo_busqueda}_all" => valores).order(campo)
-
-    json = @resultados.map do |resultado|
-      {"id" => resultado.id, "label" => resultado.send(campo).truncate(50), "value" => resultado.send(campo)}
-    end
-    render json: json
+    @resultados = modelo.filter params[:name], params[:term]
+    render json: @resultados.map { |result| result.to_autocomplete params[:name] }
   end
 
 private
-  #TODO: mover al modelo
   def modelo
     Rails.application.routes.recognize_path(params[:url])[:controller].classify.constantize
-  end
-
-  def campo_busqueda
-    @campo_busqueda ||= /\[(.*)\]/.match(params[:name])[1]
-  end
-
-  def campo
-    @campo ||= campo_busqueda.sub('_contains', '').to_sym
-  end
-
-  def valores
-    params[:term].split(' ')
   end
 end

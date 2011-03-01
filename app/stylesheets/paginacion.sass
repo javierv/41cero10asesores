@@ -1,0 +1,38 @@
+@import "compass/css3"
+@import partials/enlace.sass
+$margen_normal = 0.4em
+$margen_extra = 0.5em
+
+.pagination
+  margin-top: 1em
+  text-align: center
+
+  a
+    text-decoration:  none
+    padding:          0.2em 0.4em
+    border:           1px solid #ccc
+    display:          inline-block
+    margin-top:       0.5em
+    @include color_enlaces()
+
+    &.prev
+      margin-right: $margen_normal + $margen_extra
+
+      &:before
+        content: "« "
+
+    &.next
+      margin-left: $margen_extra
+
+      &:after
+        content: " »"
+
+    &:hover, &:focus
+      background-color: #ff9
+
+  a, .current, .skipped
+    margin-right: $margen_normal
+
+.total_resultados
+  margin-top: 1em
+  text-align: center

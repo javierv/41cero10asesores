@@ -276,10 +276,53 @@ describe Pagina do
     let(:paginas) { [] }
     before(:each) do
       11.times { paginas << Factory(:pagina)}
-      Pagina.stubs(:per_page).returns(3)
+      Pagina.stubs(:default_per_page).returns(3)
     end
 
     it { Pagina.siguiente(page: 1).should == paginas[2] }
     it { Pagina.siguiente(page: 4).should be_nil }
+  end
+
+  describe "search" do
+    let(:busqueda) { "primero" }
+    let(:nada) { "segundo" }
+    before(:each) do
+      Factory :pagina, titulo: busqueda, cuerpo: nada
+      Factory :pagina, titulo: nada, cuerpo: nada
+      Factory :pagina, titulo: nada, cuerpo: busqueda
+      Factory :pagina, titulo: busqueda, cuerpo: busqueda
+      Pagina.rebuild_xapian_index
+    end
+    let(:paginas) { Pagina.search busqueda }
+
+    it "da prioridad al título" do
+      paginas.should have(3).items
+      paginas[0].titulo.should == busqueda
+      paginas[0].cuerpo.should == busqueda
+      paginas[1].titulo.should == busqueda
+      paginas[2].cuerpo.should == busqueda
+    end
+  end
+
+  describe "versiones" do
+    it "guarda versiones de una nueva página" do
+      pagina = Factory :pagina
+      pagina.update_attribute(:titulo, "cambio")
+      pagina.versions.count.should == 2
+    end
+
+    it "guarda versiones de un borrador sin página publicada" do
+      pagina = Factory :pagina, borrador: true
+      pagina.update_attribute(:titulo, "cambio")
+      pagina.versions.count.should == 2
+    end
+
+    it "no guarda versiones de un borrador con página pubilcada" do
+      pagina = Factory :pagina
+      pagina.save_draft
+      borrador = pagina.draft
+      borrador.update_attribute(:titulo, "cambio")
+      borrador.versions.count.should == 0
+    end
   end
 end

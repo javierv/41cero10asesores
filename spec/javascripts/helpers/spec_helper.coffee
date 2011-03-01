@@ -20,6 +20,11 @@ create_script = (file) ->
     document.getElementsByTagName("head")[0].appendChild(script)
   script
 
+success = (text) ->
+  status: 200,
+  responseText: text,
+  responseHeaders: {"Content-type": "text/javascript"}
+
 beforeEach ->
   this.addMatchers({
     toHaveLength: (length) -> 

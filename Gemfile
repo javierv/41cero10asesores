@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.5'
 gem 'mysql2'
 
 group :development, :test do
@@ -40,7 +40,7 @@ end
 # gem 'unicorn'
 
 gem "devise"
-gem "will_paginate", ">= 3.0.pre"
+gem "kaminari"
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly'
 gem "haml"
@@ -57,8 +57,9 @@ gem "display_name"
 gem "xapian_db"
 gem "inploy"
 gem "barista"
-gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
+gem 'vestal_versions', :git => 'git://github.com/javierv/vestal_versions'
 gem "therubyracer"
 gem "differ"
 gem 'whenever', :require => false
 gem "friendly_id"
+gem "responders"

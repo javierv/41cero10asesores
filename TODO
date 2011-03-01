@@ -4,10 +4,7 @@
 
 * PDFs con el boletín.
 
-* Pasar a jQuery 1.5
-
 * Al recuperar una página, no se recupera qué cajas tenía asociadas.
-* No mostrar borradores en las páginas borradas.
 * Investigar si se borran los borradores de página nueva cuando se crea la página.
 * El enlace a "comparar con la actual" se comporta de forma un tanto extraña.
 * "Ordenar por..." como título de enlaces de cabecera de la tabla.
@@ -15,12 +12,10 @@
 * Vista previa al editar cajas.
 * Al editar cajas, poder asignarlas a las páginas.
 * Formulario de login: ¿autofocus en el email?
-* Paginación con kaminari.
+* Páginas de errores: 404, 500, ...
 * Permitir al usuario configurar textos como el enlace al CRM o los "lemas".
-* Pasar el método del formulario AJAX del controlador al modelo. Podemos poner también que si el atributo está "a pelo", añadir "_contains" (¡NO! No podemos por la petición HTML no AJAX, que depende de eso).
-* En Chromium el editor de texto ocupa menos de la mitad de lo que debería.
+
 * Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
-* Borrar el historial de versiones de los borradores cuando se borra el borrador. No sé si se podrá poner una relación con versiones que las borre si la página es borrador. 
 * Buscar usos de almacenamiento local. Uno erróneo: conservar lo que se estaba escribiendo al editar una página, porque puede que el usuario quiera descartar los cambios.
 * Buscar usos de Cells. Una especie de componentes para las vistas.
 

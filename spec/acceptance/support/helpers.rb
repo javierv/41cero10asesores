@@ -10,6 +10,11 @@ module HelperMethods
     end
   end
 
+  def login
+    usuario = Factory :usuario, password: "password"
+    login_with(email: usuario.email, password: "password")
+  end
+
   def logout
     visit admin_page
     click_on "Desconectar"
@@ -22,6 +27,14 @@ module HelperMethods
     end
   end
 
+  def busca(texto)
+    visit homepage
+    within("#buscador") do
+      fill_in "q", with: texto
+      click_on "Buscar"
+    end
+  end
+
   def crea_pagina(pagina)
     visit new_pagina_path
     within("#new_pagina") do
@@ -31,25 +44,26 @@ module HelperMethods
     end
   end
 
-  define_match :have_error do |actual|
-    actual.has_selector? "#flash_alert"
+  def borra_pagina(opciones = { orden: 1 })
+    borradores = page.all "a", text: "Borrar"
+    borradores[opciones[:orden] -1].click
   end
 
-  define_match :have_success do |actual|
-    actual.has_selector? "#flash_notice"
+  def borra_primera_pagina
+    borra_pagina
   end
 
-  define_match :have_admin_navigation do |actual|
-    actual.has_selector? "#admin"
+  def deshaz_borrado
+    click_on "Deshacer"
   end
 
-  define_match :have_autocomplete_list do |page, results|
-    list = ".ui-autocomplete"
-    page.has_selector?(list) &&
-    page.has_selector?("#{list} li", count: results.count) &&
-    results.inject(true) do |presentes, result|
-      presentes && page.has_selector?("#{list} li", text: result)
-    end
+  def recupera_pagina(opciones = { orden: 1 })
+    recuperadores = page.all 'input[value="Recuperar"]'
+    recuperadores[opciones[:orden] -1].click
+  end
+
+  def recupera_primera_pagina
+    recupera_pagina
   end
 end
 

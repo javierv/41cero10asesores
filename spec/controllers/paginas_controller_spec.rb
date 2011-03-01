@@ -56,6 +56,7 @@ describe PaginasController do
         post :create, pagina: @pagina.attributes
       end
       it { should redirect_to(pagina_path(assigns(:pagina))) }
+      it { should set_the_flash }
     end
 
     context "when using preview button" do
@@ -110,6 +111,7 @@ describe PaginasController do
         put :update, id: @pagina.to_param, pagina: @pagina.attributes
       end
       it { should redirect_to(pagina_path(@pagina)) }
+      it { should set_the_flash }
     end
 
     context "when using preview button" do
@@ -140,6 +142,7 @@ describe PaginasController do
         end
 
         it { should redirect_to(edit_pagina_path(@pagina.draft)) }
+        it { should set_the_flash }
       end
 
       context "with an AJAX request" do
@@ -166,6 +169,7 @@ describe PaginasController do
           @action[]
         end
         it { should redirect_to(pagina_path(@pagina)) }
+        it { should set_the_flash }
       end
 
       context 'when model is invalid' do
@@ -199,10 +203,21 @@ describe PaginasController do
   end
 
   describe "search action" do
-    before(:each) { get :search, q: "buscando" }
+    context "with a normal request" do
+      before(:each) { get :search, q: "buscando" }
 
-    it { should respond_with(:success) }
-    it { assigns(:paginas).should be_true }
+      it { should respond_with(:success) }
+      it { assigns(:paginas).should be_true }
+    end
+
+    context "with an AJAX request" do
+      before(:each) { xhr :get, :search, q: "buscando" }
+
+      it { should respond_with_content_type(:js) }
+      it { should render_template(:search) }
+      it { should respond_with(:success) }
+      it { should_not render_with_layout }
+    end
   end
 
   describe 'ver el historial' do

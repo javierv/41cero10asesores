@@ -272,3 +272,9 @@
       destroy: "Borrar"
       index: "Ir al listado"
       new: "Nueva"
+
+  views:
+    pagination:
+      previous: "Anterior"
+      next: "Siguiente"
+      truncate: "..."

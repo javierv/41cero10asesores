@@ -10,9 +10,9 @@ class CajasController < ApplicationController
 
   def index
     @search = Caja.search params[:search]
-    @cajas = @search.paginate page: params[:page], per_page: Caja.per_page
+    @cajas = @search.relation.page(params[:page])
 
-    respond_with @cajas    
+    respond_with @cajas
   end
 
   def new
@@ -25,7 +25,6 @@ class CajasController < ApplicationController
 
   def create
     if @caja.save
-      flash[:notice] = 'Caja se creó correctamente.'
       opciones = {location: edit_caja_path(@caja)}
     else
       opciones = {}
@@ -34,7 +33,6 @@ class CajasController < ApplicationController
   end
 
   def update
-    flash[:notice] = 'Caja se actualizó correctamente.'
     if @caja.save
       opciones = {location: edit_caja_path(@caja)}
     else
@@ -44,7 +42,7 @@ class CajasController < ApplicationController
   end
 
   def destroy
-    flash[:notice] = 'Caja se borró correctamente.' if @caja.destroy
+    @caja.destroy
     respond_with @caja
   end
 

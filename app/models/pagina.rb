@@ -18,7 +18,7 @@ class Pagina < ActiveRecord::Base
   before_save :build_sidebar
   before_save :set_borrador
 
-  versioned dependent: :tracking, initial_version: true
+  versioned dependent: :tracking, initial_version: true, unless: :borrador_con_pagina?
   has_friendly_id :titulo,
     allow_nil:                    true,
     use_slug:                     true,
@@ -32,10 +32,6 @@ class Pagina < ActiveRecord::Base
     blueprint.index :titulo_cajas, weight: 3
     blueprint.index :cuerpo_cajas, weight: 1
     blueprint.ignore_if { borrador? }
-  end
-
-  def self.per_page
-    15
   end
 
   def cajas_con_orden
@@ -102,16 +98,20 @@ class Pagina < ActiveRecord::Base
   
   def self.search_paginate(params)
     search = metasearch params[:search]
-    paginas = search.where(published_id: nil).paginate page: params[:page],
-      per_page: per_page
+    paginas = search.where(published_id: nil).page(params[:page])
 
     [search, paginas]
   end
 
   def self.siguiente(params)
     search, paginas = search_paginate(params)
-    paginas.last unless paginas.count != per_page
+    paginas.last unless paginas.length != default_per_page
   end
+
+  def borrador_con_pagina?
+    borrador? && !published.new_record? 
+  end
+
 private
   def build_sidebar
     if @ids_cajas

@@ -44,6 +44,7 @@ describe CajasController do
         post :create
       end
       it { should redirect_to(edit_caja_path(assigns(:caja))) }
+      it { should set_the_flash }
     end
   end
 
@@ -68,6 +69,7 @@ describe CajasController do
         put :update, id: @caja.to_param, caja: @caja.attributes
       end
       it { should redirect_to(edit_caja_path(@caja)) }
+      it { should set_the_flash }
     end
   end
 

@@ -5,7 +5,7 @@ development:
   writer:   direct
 
 test:
-  database: ":memory:"
+  database: db/xapian_db/test
   adapter:  active_record
   language: es
   writer:   direct
