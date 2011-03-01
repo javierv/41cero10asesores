@@ -1,5 +1,6 @@
 Calesur::Application.routes.draw do
   resources :navegaciones, only: [:new, :create]
+  resources :boletines, only: [:index, :show, :create]
   resources :fotos, only: [:create] do
     get :thumbnail, on: :member
   end
