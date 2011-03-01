@@ -13,6 +13,13 @@ describe BoletinesController do
     it { assigns(:boletines).should be_true }
   end
 
+  describe "new" do
+    before(:each) { get :new }
+
+    it { should respond_with(:success) }
+    it { assigns(:boletin).should be_true }
+  end
+
   describe "create" do
     context "when model is valid" do
       before(:each) do
