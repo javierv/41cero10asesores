@@ -62,3 +62,4 @@ gem "therubyracer"
 gem "differ"
 gem 'whenever', :require => false
 gem "friendly_id"
+gem "responders"
