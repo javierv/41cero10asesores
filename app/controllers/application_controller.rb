@@ -40,7 +40,26 @@ private
   def session_params=(params, action = nil)
     session[session_key(action)] = params
   end
+
   def session_key(action = nil)
     @session_key ||= :"#{params[:controller]}.#{action || params[:action]}"
+  end
+
+  def self.resource(resource_name)
+    define_method :resource_class do
+      resource_name.to_s.camelize.constantize
+    end
+
+    define_method :set_resource do |value|
+      instance_variable_set "@#{resource_name}", value
+    end
+
+    define_method :"new_#{resource_name}" do
+      set_resource resource_class.new(params[resource_name])
+    end
+
+    define_method :"find_#{resource_name}" do
+      set_resource resource_class.find(params[:id])
+    end
   end
 end

@@ -4,6 +4,8 @@ class CajasController < ApplicationController
   respond_to :js, only: [:index]
   respond_to :html
 
+  resource :caja
+
   before_filter :find_caja, only: [:edit, :update, :destroy]
   before_filter :new_caja, only: [:new, :create]
   before_filter :update_caja, only: :update
@@ -47,14 +49,6 @@ class CajasController < ApplicationController
   end
 
 private
-  def find_caja
-    @caja = Caja.find(params[:id])
-  end
-
-  def new_caja
-    @caja = Caja.new(params[:caja])
-  end
-
   def update_caja
     @caja.attributes = params[:caja]
   end

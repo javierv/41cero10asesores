@@ -6,6 +6,7 @@ class PaginasController < ApplicationController
   respond_to :html
 
   public_actions :show, :search
+  resource :pagina
 
   before_filter :params_updated_by, only: [:create, :update]
   before_filter :find_pagina, only: [:edit, :update, :destroy, :historial]
@@ -70,14 +71,6 @@ class PaginasController < ApplicationController
 private
   def params_updated_by
     params[:pagina][:updated_by] = current_usuario
-  end
-
-  def find_pagina
-    @pagina = Pagina.find(params[:id])
-  end
-
-  def new_pagina
-    @pagina = Pagina.new(params[:pagina])
   end
 
   def asignar_cajas
