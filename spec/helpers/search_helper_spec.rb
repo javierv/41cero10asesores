@@ -56,5 +56,9 @@ describe SearchHelper do
       total.should have_selector ".ultimo", text: "10"
       total.should have_selector ".total", text: "10"
     end
+
+    it "no muestra resultados vacíos" do
+      helper.total_resultados([]).should have_selector ".total_resultados", text: "No hay resultados"
+    end
   end
 end
