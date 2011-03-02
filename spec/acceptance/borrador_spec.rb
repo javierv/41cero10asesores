@@ -12,9 +12,9 @@ feature "Borrador", %q{
     login
   end
   
-  scenario do
-    visit new_pagina_path
-    click_on "Guardar borrador"
+  # TODO: Cuando el driver de capybara admita formaction, JS no será necesario.
+  scenario "guardando borrador de página nueva", js: true do
+    crea_borrador
     page.should have_success text: "Borrador guardado"
   end
 end
