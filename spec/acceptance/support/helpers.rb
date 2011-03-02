@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 module HelperMethods
+  include Warden::Test::Helpers  
+
   def login_with(usuario)
     visit login_page
     within("#login") do
@@ -12,7 +14,7 @@ module HelperMethods
 
   def login
     usuario = Factory :usuario, password: "password"
-    login_with(email: usuario.email, password: "password")
+    login_as usuario
   end
 
   def logout
