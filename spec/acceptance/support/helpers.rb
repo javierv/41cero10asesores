@@ -52,6 +52,12 @@ module HelperMethods
     crea_pagina({ titulo: "Borrador", cuerpo: "Borrador"}, "Guardar borrador")
   end
 
+  def publica_borrador
+    pagina = Factory :pagina, borrador: true
+    visit edit_pagina_path(pagina)
+    click_on "Publicar"
+  end
+
   def previsualiza_pagina
     crea_pagina({ titulo: "Preview", cuerpo: "Preview"}, "Vista previa")
   end
