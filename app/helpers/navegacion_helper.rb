@@ -30,7 +30,7 @@ module NavegacionHelper
 
   def acciones_para_pagina(pagina)
     acciones = [:edit,
-      enlace(:destroy, pagina, { method: :delete, remote: true, confirm: false }),
+      enlace(:destroy, pagina, { remote: true, confirm: false }),
       :historial]
 
     if pagina.has_draft?
