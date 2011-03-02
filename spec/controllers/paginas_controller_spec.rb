@@ -82,10 +82,20 @@ describe PaginasController do
   end
 
   describe "show action" do
-    before(:each) do
-      get :show, id: @pagina.to_param
+    let(:accion) { lambda { get :show, id: @pagina.to_param }}
+
+    context "con usuario identificado" do
+      before(:each) { accion.call }
+      it { should respond_with(:success) }
     end
-    it { should respond_with(:success) }
+
+    context "sin usuario identificado" do
+      before(:each) do
+        sign_out @usuario
+        accion.call
+      end
+      it { should respond_with(:success) }
+    end
   end
 
   describe "edit action" do
