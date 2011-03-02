@@ -19,8 +19,10 @@ describe CajasController do
   describe "index" do
     before(:each) { get :index }
 
-    it { should respond_with(:success) }
-    it { assigns(:cajas).should be_true }
+    it do
+      should respond_with(:success)
+      assigns(:cajas).should be_true
+    end
   end
 
   describe "new" do
@@ -43,8 +45,10 @@ describe CajasController do
         caja_valida_siempre
         post :create
       end
-      it { should redirect_to(edit_caja_path(assigns(:caja))) }
-      it { should set_the_flash }
+      it do
+        should redirect_to(edit_caja_path(assigns(:caja)))
+        should set_the_flash
+      end
     end
   end
 
@@ -68,16 +72,20 @@ describe CajasController do
         caja_valida_siempre
         put :update, id: @caja.to_param, caja: @caja.attributes
       end
-      it { should redirect_to(edit_caja_path(@caja)) }
-      it { should set_the_flash }
+      it do
+        should redirect_to(edit_caja_path(@caja))
+        should set_the_flash
+      end
     end
   end
 
   describe "destroy" do
     before(:each) { delete :destroy, id: @caja.to_param }
 
-    it { should redirect_to(cajas_path) }
-    it { should set_the_flash }
-    it { Caja.exists?(@caja.id).should be_false }
+    it do
+      should redirect_to(cajas_path)
+      should set_the_flash
+      Caja.exists?(@caja.id).should be_false
+    end
   end
 end

@@ -1,5 +1,5 @@
 * https://github.com/rubiety/validates_lengths_from_database
-* Usar el atributo formaction en cuanto salgan las próximas versiones de Firefox y Chrome. Para la administración vale con eso.
+* Usar el atributo formaction en cuanto salgan las próximas versiones de Firefox y Chrome. Para la administración vale con eso. Cuando salga esto, el botón de deshacer podrá ir dentro del mensaje de flash y simplificar aún más.
 * Podríamos poner un icono de borrar en la imagen desde la previsualización.
 
 * PDFs con el boletín.
