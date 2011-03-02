@@ -85,9 +85,8 @@ private
     
     content_tag :li do
       if opciones[:form]
-        form_tag(enlace[1], method: opciones[:method]) do
-          submit_tag(enlace[0])
-        end
+        opciones.delete(:form)
+        button_to enlace[0], enlace[1], opciones
       else
         link_to enlace[0], enlace[1], opciones
       end
