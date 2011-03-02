@@ -52,6 +52,10 @@ module HelperMethods
     crea_pagina({ titulo: "Borrador", cuerpo: "Borrador"}, "Guardar borrador")
   end
 
+  def previsualiza_pagina
+    crea_pagina({ titulo: "Preview", cuerpo: "Preview"}, "Vista previa")
+  end
+
   def borra_pagina(titulo)
     click_on "Borrar #{titulo}"
   end
