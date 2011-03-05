@@ -192,6 +192,8 @@
       usuario:
         password: "Contraseña"
         remember_me: "Recordarme"
+      boletin:
+        titulo: "Título"
 
   # Active Model
   errors:

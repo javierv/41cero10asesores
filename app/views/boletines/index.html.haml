@@ -3,7 +3,10 @@
 
 = table_for @boletines do |table|
   = table.data do
-    = table.cell :archivo_uid
+    = table.cell :titulo
+    = table.cell(:archivo) { |boletin| boletin.archivo.name }
+    = table.cell :updated_at, heading: "Creado" do |boletin|
+      - l boletin.created_at, format: :short
     = table.cell :acciones, heading: "Acciones", cell_html: {class: "actions"} do |boletin|
       - acciones_para_boletin(boletin)
 
