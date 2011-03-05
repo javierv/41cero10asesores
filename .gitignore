@@ -10,6 +10,7 @@ public/stylesheets/**/*.css
 public/javascripts/*.js
 spec/javascripts/compiled/*
 public/system/*
+spec/images/*/**
 *.swp
 prototipo/*
 config/database.yml
