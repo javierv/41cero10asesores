@@ -163,6 +163,7 @@
       messages:
         taken: "ya está en uso"
         record_invalid: "La validación falló: %{errors}"
+        invalid: "no es válido"
         # Append your own errors here or at the model/attributes scope.
 
       # You can define own errors for models or model attributes.
