@@ -2,6 +2,7 @@ class BoletinesController < ApplicationController
   respond_to :html
 
   before_filter :new_boletin, only: [:new, :create]
+  before_filter :find_boletin, only: [:edit, :update]
 
   def index
     @boletines = Boletin.all
@@ -9,6 +10,14 @@ class BoletinesController < ApplicationController
   end
 
   def new
+  end
+
+  def edit
+  end
+
+  def update
+    @boletin.update_attributes params[:boletin]
+    respond_with @boletin, location: boletines_path
   end
 
   def create
@@ -19,5 +28,9 @@ class BoletinesController < ApplicationController
 private
   def new_boletin
     @boletin = Boletin.new params[:boletin]
+  end
+
+  def find_boletin
+    @boletin = Boletin.find params[:id]
   end
 end

@@ -11,6 +11,7 @@ module NavegacionHelper
   def navegacion_admin    
     lista_con_enlaces [['Editar páginas', paginas_path, {controller: 'paginas'}],
      ['Editar cajas', cajas_path, {controller: 'cajas'}],
+     ["Editar boletines", boletines_path, {controller: "boletines"}],
      ['Editar navegación', new_navegacion_path, {controller: 'navegaciones'}],
      ['Desconectar', destroy_usuario_session_path, {class: 'desconectar'}]]
   end
@@ -52,6 +53,10 @@ module NavegacionHelper
                   {title: 'Comparar con la versión actual'}]
     end
     actions_list actions, version
+  end
+
+  def acciones_para_boletin(boletin)
+    actions_list [:edit], boletin
   end
  
 private

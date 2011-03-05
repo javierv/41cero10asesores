@@ -20,6 +20,15 @@ describe BoletinesController do
     it { assigns(:boletin).should be_true }
   end
 
+  describe "edit" do
+    before(:each) { get :edit, id: @boletin.to_param }
+
+    it do
+      should respond_with(:success)
+      assigns(:boletin).should be_true
+    end
+  end
+
   describe "create" do
     context "when model is valid" do
       before(:each) do
@@ -29,6 +38,20 @@ describe BoletinesController do
       
       it { should redirect_to(boletines_path) }
       it { should set_the_flash }
+    end
+  end
+
+  describe "update" do
+    context "when model is valid" do
+      before(:each) do
+        valida_siempre(Boletin)
+        put :update, id: @boletin.to_param, boletin: @boletin.attributes
+      end
+      
+      it do
+        should redirect_to(boletines_path)
+        should set_the_flash
+      end
     end
   end
 end

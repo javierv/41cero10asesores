@@ -1,3 +1,10 @@
 - title "Boletines"
+- listado
+
+= table_for @boletines do |table|
+  = table.data do
+    = table.cell :archivo_uid
+    = table.cell :acciones, heading: "Acciones", cell_html: {class: "actions"} do |boletin|
+      - acciones_para_boletin(boletin)
 
 = actions_list [:new], Boletin
