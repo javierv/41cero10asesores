@@ -58,6 +58,10 @@ module NavegacionHelper
   def acciones_para_boletin(boletin)
     actions_list [:edit], boletin
   end
+
+  def acciones_para_cliente(cliente)
+    actions_list [:edit], cliente
+  end
  
 private
   def elementos_lista_enlace(enlaces)

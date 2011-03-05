@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110305155238) do
+ActiveRecord::Schema.define(:version => 20110305210659) do
 
   create_table "boletines", :force => true do |t|
     t.string   "archivo_uid"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20110305155238) do
   create_table "cajas", :force => true do |t|
     t.string   "titulo"
     t.text     "cuerpo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clientes", :force => true do |t|
+    t.string   "nombre"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

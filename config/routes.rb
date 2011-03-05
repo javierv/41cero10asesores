@@ -1,4 +1,6 @@
 Calesur::Application.routes.draw do
+  resources :clientes
+
   resources :navegaciones, only: [:new, :create]
   resources :boletines
   resources :fotos, only: [:create] do
