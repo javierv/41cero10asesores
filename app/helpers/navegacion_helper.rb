@@ -56,7 +56,7 @@ module NavegacionHelper
   end
 
   def acciones_para_boletin(boletin)
-    actions_list [:edit], boletin
+    actions_list [:edit, :enviar], boletin
   end
 
   def acciones_para_cliente(cliente)
