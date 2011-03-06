@@ -5,6 +5,7 @@ Calesur::Application.routes.draw do
 
   resources :boletines do
     get :enviar, on: :member
+    put :email, on: :member 
   end
 
   resources :fotos, only: [:create] do

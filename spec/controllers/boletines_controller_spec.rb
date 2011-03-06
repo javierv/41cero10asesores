@@ -66,4 +66,17 @@ describe BoletinesController do
       assigns(:clientes).should be_true
     end
   end
+
+  describe "email" do
+    before(:each) do
+      valida_siempre(Boletin)
+      put :email, id: @boletin.to_param
+    end
+
+    it do
+      should redirect_to boletines_path
+      should set_the_flash
+      # TODO: debería enviar el boletín
+    end
+  end
 end

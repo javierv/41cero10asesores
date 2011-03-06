@@ -29,6 +29,10 @@ class BoletinesController < ApplicationController
     @clientes = Cliente.all
     respond_with @boletin
   end
+
+  def email
+    respond_with @boletin, location: boletines_path
+  end
 private
   def new_boletin
     @boletin = Boletin.new params[:boletin]
