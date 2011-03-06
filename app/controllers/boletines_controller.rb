@@ -2,7 +2,7 @@ class BoletinesController < ApplicationController
   respond_to :html
 
   before_filter :new_boletin, only: [:new, :create]
-  before_filter :find_boletin, only: [:edit, :update]
+  before_filter :find_boletin, only: [:edit, :update, :enviar, :email]
 
   def index
     @boletines = Boletin.all
@@ -25,6 +25,10 @@ class BoletinesController < ApplicationController
     respond_with @boletin, location: boletines_path
   end
 
+  def enviar
+    @clientes = Cliente.all
+    respond_with @boletin
+  end
 private
   def new_boletin
     @boletin = Boletin.new params[:boletin]

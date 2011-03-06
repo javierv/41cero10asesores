@@ -54,4 +54,16 @@ describe BoletinesController do
       end
     end
   end
+  
+  describe "enviar" do
+    before(:each) do
+      get :enviar, id: @boletin.to_param
+    end
+
+    it do
+      should respond_with(:success)
+      assigns(:boletin).should be_true
+      assigns(:clientes).should be_true
+    end
+  end
 end

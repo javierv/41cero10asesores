@@ -2,7 +2,11 @@ Calesur::Application.routes.draw do
   resources :clientes
 
   resources :navegaciones, only: [:new, :create]
-  resources :boletines
+
+  resources :boletines do
+    get :enviar, on: :member
+  end
+
   resources :fotos, only: [:create] do
     get :thumbnail, on: :member
   end
