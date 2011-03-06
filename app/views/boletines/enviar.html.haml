@@ -1,0 +1,11 @@
+- title "Enviar boletín #{@boletin}"
+- css "form"
+
+%p El boletín se enviará a los siguientes clientes
+
+%ul
+  - @clientes.each do |cliente|
+    %li= "#{cliente.nombre} <#{cliente.email}>"
+
+= simple_form_for @boletin, url: email_boletin_path(@boletin) do |form|
+  .actions= form.submit "Enviar"
