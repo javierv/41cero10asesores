@@ -10,4 +10,21 @@ describe Boletin do
       Boletin.new.enviado?.should be_false
     end
   end
+
+  describe "enviar" do
+    let(:boletin) { Factory :boletin }
+    before(:each) { boletin.enviar }
+
+    it "marca el boletín como enviado" do
+      boletin.enviado?.should be_true
+    end
+
+    it "no envía un boletín ya enviado" do
+      boletin.enviar.should be_false
+    end
+
+    it "indica éxito" do
+      Factory(:boletin).enviar.should be_true
+    end
+  end
 end

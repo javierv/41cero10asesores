@@ -8,4 +8,12 @@ class Boletin < ActiveRecord::Base
   validates :archivo, presence: true
   validates_property :mime_type, of: :archivo, in: %w(application/pdf),
     message: "Tiene que ser un PDF"
+
+  def enviar
+    if enviado?
+      false
+    else
+      update_attribute(:enviado, true)
+    end   
+  end
 end
