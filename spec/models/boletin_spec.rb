@@ -21,6 +21,7 @@ describe Boletin do
 
     it "no envía un boletín ya enviado" do
       boletin.enviar.should be_false
+      boletin.errors.should_not be_empty
     end
 
     it "indica éxito" do

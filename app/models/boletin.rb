@@ -11,6 +11,7 @@ class Boletin < ActiveRecord::Base
 
   def enviar
     if enviado?
+      errors.add(:enviado, "ya está enviado")
       false
     else
       update_attribute(:enviado, true)
