@@ -2,5 +2,5 @@
 
 Factory.define :cliente do |f|
   f.nombre "MyString"
-  f.email "MyString"
+  f.email "elretirao@elretirao.net"
 end
