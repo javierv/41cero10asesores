@@ -1,10 +1,10 @@
 # encoding: utf-8
 
 class BoletinMailer < ActionMailer::Base
-  default :from => "from@example.com"
+  default :from => "boletines@calesur.com"
 
   def envio(boletin)
     attachments[boletin.archivo.name] = boletin.archivo.data
-    mail(bcc: boletin.destinatarios)
+    mail(bcc: boletin.destinatarios, subject: boletin.titulo)
   end
 end
