@@ -70,7 +70,7 @@ describe BoletinesController do
   describe "email" do
     before(:each) do
       valida_siempre(Boletin)
-      put :email, id: @boletin.to_param
+      put :email, id: @boletin.to_param, boletin: {emails: "fulano@calesur.com"}
     end
 
     it do
