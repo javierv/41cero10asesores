@@ -23,6 +23,7 @@ class Boletin < ActiveRecord::Base
   end
 
   def clientes
+    return [] if destinatarios.nil?
     destinatarios.split(",")
   end
 

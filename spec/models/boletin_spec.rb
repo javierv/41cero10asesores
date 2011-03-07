@@ -48,6 +48,10 @@ describe Boletin do
         destinatarios: "María <maria@calesur.com>,Teresa <teresa@calesur.com>"
     end
 
+    it "devuelve array vacío para boletín sin destinatarios" do
+      Boletin.new.clientes.should == []
+    end
+
     it "tiene clientes" do
       boletin.clientes.should == ["María <maria@calesur.com>", "Teresa <teresa@calesur.com>"]
     end
