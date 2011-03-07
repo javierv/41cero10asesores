@@ -14,6 +14,7 @@ class Boletin < ActiveRecord::Base
       errors.add(:enviado, "ya está enviado")
       false
     else
+      BoletinMailer.envio(self).deliver
       update_attribute(:enviado, true)
     end   
   end

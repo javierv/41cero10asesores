@@ -76,7 +76,7 @@ describe BoletinesController do
     it do
       should redirect_to boletines_path
       should set_the_flash
-      # TODO: debería enviar el boletín
+      ActionMailer::Base.deliveries.should_not be_empty
     end
   end
 end

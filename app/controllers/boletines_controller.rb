@@ -31,8 +31,10 @@ class BoletinesController < ApplicationController
   end
 
   def email
+    @boletin.enviar
     respond_with @boletin, location: boletines_path
   end
+
 private
   def new_boletin
     @boletin = Boletin.new params[:boletin]
