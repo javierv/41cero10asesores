@@ -10,13 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110305210659) do
+ActiveRecord::Schema.define(:version => 20110307151315) do
 
   create_table "boletines", :force => true do |t|
     t.string   "archivo_uid"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "titulo"
+    t.text     "destinatarios"
   end
 
   create_table "cajas", :force => true do |t|
