@@ -10,13 +10,15 @@ class Boletin < ActiveRecord::Base
   validates_property :mime_type, of: :archivo, in: %w(application/pdf),
     message: "Tiene que ser un PDF"
 
-  def enviar
+  def enviar(params = {})
     if enviado?
       errors.add(:enviado, "ya está enviado")
       false
     else
+      self.attributes = attributes.merge(params)
       BoletinMailer.envio(self).deliver
-      update_attribute(:enviado, true)
+      self.enviado = true
+      save
     end   
   end
 

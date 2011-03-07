@@ -13,19 +13,32 @@ describe Boletin do
 
   describe "enviar" do
     let(:boletin) { Factory :boletin }
-    before(:each) { boletin.enviar }
 
-    it "marca el boletín como enviado" do
-      boletin.enviado?.should be_true
+    context "sin parámetros indicados" do
+      before(:each) { boletin.enviar }
+
+      it "marca el boletín como enviado" do
+        boletin.enviado?.should be_true
+      end
+
+      it "no envía un boletín ya enviado" do
+        boletin.enviar.should be_false
+        boletin.errors.should_not be_empty
+      end
+
+      it "indica éxito" do
+        Factory(:boletin).enviar.should be_true
+      end
     end
 
-    it "no envía un boletín ya enviado" do
-      boletin.enviar.should be_false
-      boletin.errors.should_not be_empty
-    end
+    context "pasando clientes" do
+       before(:each) do
+         boletin.enviar clientes: ["Rafa <rafa@calesur.com>","Inés <ines@calesur.com"]
+       end
 
-    it "indica éxito" do
-      Factory(:boletin).enviar.should be_true
+       it "asigna destinatarios" do
+         boletin.destinatarios.should == "Rafa <rafa@calesur.com>,Inés <ines@calesur.com"
+       end
     end
   end
 
