@@ -24,10 +24,10 @@ class Boletin < ActiveRecord::Base
 
   def clientes
     return [] if destinatarios.nil?
-    destinatarios.split(",")
+    destinatarios.split(", ")
   end
 
   def clientes=(emails)
-    self.destinatarios = emails.join(",")
+    self.destinatarios = emails.join(", ")
   end
 end

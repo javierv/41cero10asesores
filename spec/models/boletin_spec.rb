@@ -33,11 +33,11 @@ describe Boletin do
 
     context "pasando clientes" do
        before(:each) do
-         boletin.enviar clientes: ["Rafa <rafa@calesur.com>","Inés <ines@calesur.com"]
+         boletin.enviar clientes: ["Rafa <rafa@calesur.com>","Inés <ines@calesur.com>"]
        end
 
        it "asigna destinatarios" do
-         boletin.destinatarios.should == "Rafa <rafa@calesur.com>,Inés <ines@calesur.com"
+         boletin.destinatarios.should == "Rafa <rafa@calesur.com>, Inés <ines@calesur.com>"
        end
     end
   end
@@ -45,7 +45,7 @@ describe Boletin do
   describe "clientes" do
     let(:boletin) do
       Factory :boletin,
-        destinatarios: "María <maria@calesur.com>,Teresa <teresa@calesur.com>"
+        destinatarios: "María <maria@calesur.com>, Teresa <teresa@calesur.com>"
     end
 
     it "devuelve array vacío para boletín sin destinatarios" do
@@ -58,7 +58,7 @@ describe Boletin do
 
     it "asigna clientes" do
       boletin.clientes = ["Ana <ana@calesur.com>", "Carmen <carmen@calesur.com>"]
-      boletin.destinatarios.should == "Ana <ana@calesur.com>,Carmen <carmen@calesur.com>"
+      boletin.destinatarios.should == "Ana <ana@calesur.com>, Carmen <carmen@calesur.com>"
     end
   end
 end
