@@ -8,7 +8,7 @@
     - @boletin.clientes.each.with_index do |cliente, index|
       .input.boolean
         - id = "boletin_destinatarios_#{index}"
-        = check_box_tag "boletin[emails][]", cliente, true, id: id
+        = check_box_tag "boletin[clientes][]", cliente, true, id: id
         = label_tag id, cliente
 
   .actions= form.submit "Enviar"

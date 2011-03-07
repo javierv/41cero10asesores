@@ -65,6 +65,20 @@ module HelperMethods
   def recupera_primera_pagina
     recupera_pagina
   end
+
+  def crea_clientes(nombres)
+    nombres.each do |nombre|
+      Factory :cliente, nombre: nombre, email: "#{nombre.underscore}@elretirao.net"
+    end
+  end
+
+  def crea_boletin(titulo)
+    Factory :boletin, titulo: titulo
+  end
+
+  def correo_enviado
+    ActionMailer::Base.deliveries.last
+  end
 end
 
 RSpec.configuration.include HelperMethods, type: :acceptance
