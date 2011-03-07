@@ -36,7 +36,10 @@ Spork.prefork do
 
     config.use_transactional_fixtures = false
     DatabaseCleaner.strategy = :truncation 
-    config.before(:each) { DatabaseCleaner.clean }
+    config.before(:each) do
+      DatabaseCleaner.clean
+      ActionMailer::Base.deliveries.clear
+    end
   end
 end
 
