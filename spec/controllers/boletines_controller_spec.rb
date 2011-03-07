@@ -63,7 +63,7 @@ describe BoletinesController do
     it do
       should respond_with(:success)
       assigns(:boletin).should be_true
-      assigns(:clientes).should be_true
+      assigns(:boletin).clientes.should be_true
     end
   end
 

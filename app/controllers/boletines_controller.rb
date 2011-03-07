@@ -26,7 +26,7 @@ class BoletinesController < ApplicationController
   end
 
   def enviar
-    @clientes = Cliente.all
+    @boletin.clientes = Cliente.all.map(&:mailto)
     respond_with @boletin
   end
 

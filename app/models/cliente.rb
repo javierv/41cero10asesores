@@ -7,4 +7,8 @@ class Cliente < ActiveRecord::Base
   validates :email,  presence: true, email: true
 
   display_name :nombre
+
+  def mailto
+    "#{nombre} <#{email}>"
+  end
 end

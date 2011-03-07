@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class Boletin < ActiveRecord::Base
+  attr_accessible :titulo, :archivo, :clientes
   display_name :titulo
   image_accessor :archivo
 
@@ -17,5 +18,13 @@ class Boletin < ActiveRecord::Base
       BoletinMailer.envio(self).deliver
       update_attribute(:enviado, true)
     end   
+  end
+
+  def clientes
+    destinatarios.split(",")
+  end
+
+  def clientes=(emails)
+    self.destinatarios = emails.join(",")
   end
 end

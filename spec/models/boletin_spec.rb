@@ -28,4 +28,20 @@ describe Boletin do
       Factory(:boletin).enviar.should be_true
     end
   end
+
+  describe "clientes" do
+    let(:boletin) do
+      Factory :boletin,
+        destinatarios: "María <maria@calesur.com>,Teresa <teresa@calesur.com>"
+    end
+
+    it "tiene clientes" do
+      boletin.clientes.should == ["María <maria@calesur.com>", "Teresa <teresa@calesur.com>"]
+    end
+
+    it "asigna clientes" do
+      boletin.clientes = ["Ana <ana@calesur.com>", "Carmen <carmen@calesur.com>"]
+      boletin.destinatarios.should == "Ana <ana@calesur.com>,Carmen <carmen@calesur.com>"
+    end
+  end
 end
