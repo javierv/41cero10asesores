@@ -13,5 +13,10 @@ describe BoletinMailer do
     it "envía a los clientes con copia oculta" do
       email.bcc.should == %w(pedro@calesur.es juan@calesur.es)
     end 
+
+    it "adjunta un fichero" do
+      email.attachments.should have(1).item
+      email.attachments[0].filename.should == "example.pdf"
+    end
   end
 end
