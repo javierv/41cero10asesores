@@ -63,3 +63,4 @@ gem "differ"
 gem 'whenever', :require => false
 gem "friendly_id"
 gem "responders"
+gem 'spectator-validates_email', :require => 'validates_email'

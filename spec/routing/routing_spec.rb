@@ -59,4 +59,14 @@ describe "rutas" do
     it { { get: "/autocomplete" }.should route_to ruta("ajax_form#autocomplete") }
     it { { get: "/ayuda-textile" }.should route_to ruta("static#ayuda_textile") }
   end
+
+  describe "clientes" do
+    it { { get: "/clientes" }.should route_to ruta("clientes#index") }
+    it { { get: "/clientes/new" }.should route_to ruta("clientes#new") }
+    it { { get: "/clientes/1" }.should route_to ruta("clientes#show", id: "1") }
+    it { { get: "/clientes/1/edit" }.should route_to ruta("clientes#edit", id: "1") }
+    it { { post: "/clientes" }.should route_to ruta("clientes#create") }
+    it { { put: "/clientes/1" }.should route_to ruta("clientes#update", id: "1") }
+    it { { delete: "/clientes/1" }.should route_to ruta("clientes#destroy", id: "1") }
+  end
 end

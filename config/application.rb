@@ -1,5 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
+require 'yaml'
+APP_CONFIG =  YAML.load(File.read(File.expand_path('../app_config.yml', __FILE__)))
+
 require 'rails/all'
 
 # If you have a Gemfile, require the gems listed there, including any gems
@@ -52,5 +55,16 @@ module Calesur
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address:               "mail.calesur.com",
+      port:                  26,
+      domain:                "calesur.com",
+      user_name:             APP_CONFIG["email"].sub("@", "+"),
+      password:              APP_CONFIG["password"],
+      authentication:        'plain',
+      enable_starttls_auto:  false
+    }
   end
 end

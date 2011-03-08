@@ -42,6 +42,7 @@ Spork.prefork do
     end
 
     config.before(:each) do
+      ActionMailer::Base.deliveries.clear
       if example.metadata[:type] == :acceptance
         DatabaseCleaner.strategy = :truncation
       else
