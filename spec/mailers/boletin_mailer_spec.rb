@@ -11,7 +11,7 @@ describe BoletinMailer do
         titulo: "Aventuras nuevas")
     end
 
-    its(:from) { should == ["boletines@calesur.com"] }
+    its(:from) { should == ["info@calesur.com"] }
     its(:subject) { should == "Aventuras nuevas" }
     its(:bcc) { should == %w(pedro@calesur.es julian@calesur.es) }
     its(:attachments) { should have(1).item }

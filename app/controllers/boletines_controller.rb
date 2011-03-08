@@ -1,6 +1,7 @@
 class BoletinesController < ApplicationController
   respond_to :html
 
+  resource :boletin
   before_filter :new_boletin, only: [:new, :create]
   before_filter :find_boletin, only: [:edit, :update, :enviar, :email]
 
@@ -33,14 +34,5 @@ class BoletinesController < ApplicationController
   def email
     @boletin.enviar params[:boletin]
     respond_with @boletin, location: boletines_path
-  end
-
-private
-  def new_boletin
-    @boletin = Boletin.new params[:boletin]
-  end
-
-  def find_boletin
-    @boletin = Boletin.find params[:id]
   end
 end
