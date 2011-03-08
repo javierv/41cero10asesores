@@ -6,4 +6,6 @@ class DevelopmentMailInterceptor
   end
 end
 
-ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor)
+unless Rails.env.test?
+  ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor)
+end
