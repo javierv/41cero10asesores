@@ -1,6 +1,7 @@
 class ClientesController < ApplicationController
   respond_to :html
 
+  resource :cliente
   before_filter :new_cliente, only: [:new, :create]
   before_filter :find_cliente, only: [:edit, :update]
 
@@ -23,14 +24,5 @@ class ClientesController < ApplicationController
   def create
     @cliente.save
     respond_with @cliente, location: clientes_path
-  end
-
-private
-  def new_cliente
-    @cliente = Cliente.new params[:cliente]
-  end
-
-  def find_cliente
-    @cliente = Cliente.find params[:id]
   end
 end
