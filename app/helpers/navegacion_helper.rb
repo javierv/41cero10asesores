@@ -9,11 +9,13 @@ module NavegacionHelper
   end
 
   def navegacion_admin    
-    lista_con_enlaces [['Editar páginas', paginas_path, {controller: 'paginas'}],
-     ['Editar cajas', cajas_path, {controller: 'cajas'}],
-     ["Editar boletines", boletines_path, {controller: "boletines"}],
-     ['Editar navegación', new_navegacion_path, {controller: 'navegaciones'}],
-     ['Desconectar', destroy_usuario_session_path, {class: 'desconectar'}]]
+    lista_con_enlaces [
+     ["Páginas", paginas_path, {controller: "paginas"}],
+     ["Cajas", cajas_path, {controller: "cajas"}],
+     ["Boletines", boletines_path, {controller: "boletines"}],
+     ["Clientes", clientes_path, {controller: "clientes"}],
+     ["Navegación", new_navegacion_path, {controller: "navegaciones"}],
+     ["Desconectar", destroy_usuario_session_path, {class: "desconectar"}]]
   end
 
   def actions_list(actions, resource)
