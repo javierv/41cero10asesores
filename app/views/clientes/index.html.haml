@@ -5,7 +5,6 @@
   = table.data do
     = table.cell :nombre
     = table.cell(:email)
-    = table.cell :acciones, heading: "Acciones", cell_html: {class: "actions"} do |cliente|
-      - acciones_para_cliente(cliente)
+    = actions_cell(table) { |cliente| acciones_para_cliente(cliente) }
 
 = actions_list [:new], Cliente

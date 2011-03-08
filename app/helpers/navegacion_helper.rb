@@ -22,6 +22,12 @@ module NavegacionHelper
     lista_con_enlaces enlaces(actions, resource), class: 'actions'
   end
 
+  def actions_cell(table, &block)
+    table.cell :acciones, heading: "Acciones", cell_html: {class: "actions"} do |res|
+      block[res]
+    end
+  end
+
   def acciones_para_pagina(pagina)
     acciones = [:edit,
       enlace(:destroy, pagina, { method: :delete, remote: true, confirm: false }),

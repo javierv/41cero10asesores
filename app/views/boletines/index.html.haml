@@ -7,7 +7,6 @@
     = table.cell(:archivo) { |boletin| boletin.archivo.name }
     = table.cell :updated_at, heading: "Creado" do |boletin|
       - l boletin.created_at, format: :short
-    = table.cell :acciones, heading: "Acciones", cell_html: {class: "actions"} do |boletin|
-      - acciones_para_boletin(boletin)
+    = actions_cell(table) { |boletin| acciones_para_boletin(boletin) }
 
 = actions_list [:new], Boletin
