@@ -85,6 +85,13 @@ module HelperMethods
       attach_file "nueva imagen", Rails.root.join("spec", "images", "blank.png")
     end
   end
+
+  def crea_nuevo_boletin_con_adjunto(archivo)
+    visit new_boletin_path
+    fill_in "Título", with: "Título"
+    attach_file "Archivo", Rails.root.join("spec", "images", archivo)
+    click_on "Guardar"
+  end
 end
 
 RSpec.configuration.include HelperMethods, type: :acceptance
