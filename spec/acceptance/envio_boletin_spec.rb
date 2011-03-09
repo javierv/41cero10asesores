@@ -14,13 +14,8 @@ feature "Enviar boletín", %q{
     login
   end
 
-  scenario "envía un boletín" do
-    visit boletines_path
-    click_on "Enviar"
-    page.should have_clientes_seleccionados ["Juan", "Miguel", "Pedro"]
-    uncheck "Miguel"
-    click_on "Enviar"
-    page.should have_success
-    correo_enviado.bcc.should == %w(juan@elretirao.net pedro@elretirao.net)
+  scenario "adjunto con acentos", js: true do
+    crea_nuevo_boletin_con_adjunto "Presentación Añeja.pdf"
+    page.should have_content "Presentación Añeja.pdf"
   end
 end
