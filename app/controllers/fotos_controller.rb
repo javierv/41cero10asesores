@@ -7,7 +7,9 @@ class FotosController < ApplicationController
   before_filter :new_foto, only: :create
 
   def create
-    unless @foto.save
+    if @foto.save
+      respond_with @foto
+    else
       render 'error'
     end
   end

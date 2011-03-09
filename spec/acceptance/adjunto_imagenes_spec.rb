@@ -15,10 +15,11 @@ feature "Subir imágenes", %q{
 
   scenario "Adjuntar una imagen", js: true do
     visit edit_pagina_path(Pagina.first)
+    page.should_not have_selector "#galeria img"
     within("#fotos") do
       attach_file "nueva imagen", Rails.root.join("spec", "images", "blank.png")
     end
 
-    page.should have_selector "#galeria .foto", count: 1
+    page.should have_selector "#galeria img", count: 1
   end
 end
