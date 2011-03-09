@@ -18,6 +18,7 @@ describe FotosController do
       it do
         assigns(:foto).should be_true
         should respond_with(:success)
+        should respond_with_content_type(:js)
         should_not set_the_flash
         should render_template(:create)
       end
@@ -32,6 +33,7 @@ describe FotosController do
       it do
         assigns(:foto).should be_true
         should respond_with(:success)
+        should respond_with_content_type(:js)
         should render_template(:error)
       end
     end
