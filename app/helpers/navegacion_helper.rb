@@ -9,14 +9,23 @@ module NavegacionHelper
   end
 
   def navegacion_admin    
-    lista_con_enlaces [['Editar páginas', paginas_path, {controller: 'paginas'}],
-     ['Editar cajas', cajas_path, {controller: 'cajas'}],
-     ['Editar navegación', new_navegacion_path, {controller: 'navegaciones'}],
-     ['Desconectar', destroy_usuario_session_path, {class: 'desconectar'}]]
+    lista_con_enlaces [
+     ["Páginas", paginas_path, {controller: "paginas"}],
+     ["Cajas", cajas_path, {controller: "cajas"}],
+     ["Boletines", boletines_path, {controller: "boletines"}],
+     ["Clientes", clientes_path, {controller: "clientes"}],
+     ["Navegación", new_navegacion_path, {controller: "navegaciones"}],
+     ["Desconectar", destroy_usuario_session_path, {class: "desconectar"}]]
   end
 
   def actions_list(actions, resource)
     lista_con_enlaces enlaces(actions, resource), class: 'actions'
+  end
+
+  def actions_cell(table, &block)
+    table.cell :acciones, heading: "Acciones", cell_html: {class: "actions"} do |res|
+      block[res]
+    end
   end
 
   def acciones_para_pagina(pagina)
@@ -52,6 +61,16 @@ module NavegacionHelper
                   {title: 'Comparar con la versión actual'}]
     end
     actions_list actions, version
+  end
+
+  def acciones_para_boletin(boletin)
+    acciones = [:edit]
+    acciones << :enviar unless boletin.enviado?
+    actions_list acciones, boletin
+  end
+
+  def acciones_para_cliente(cliente)
+    actions_list [:edit], cliente
   end
  
 private

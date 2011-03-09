@@ -29,6 +29,11 @@ module MatcherMethods
                      "#{resultados} article header", results
   end
 
+  define_match :have_clientes_seleccionados do |page, results|
+    clientes = "#clientes"
+    page.has_results? clientes, "#{clientes} input", "#{clientes} label", results
+  end
+
   define_match :have_search_suggestion do |page, suggestion|
     page.has_selector?("#sugerencia", text: suggestion)
   end
@@ -41,6 +46,9 @@ module MatcherMethods
     page.has_selector?("strong.searched_term", text: text)
   end
 
+  define_match :have_fotos do |page, options|
+    page.has_selector?("#galeria img", options)
+  end
 end
 
 module Capybara::Node::Matchers

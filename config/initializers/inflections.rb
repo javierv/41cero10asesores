@@ -18,13 +18,14 @@ ActiveSupport::Inflector.inflections do |inflect|
     end
   end
 
-  inflect.irregular 'post', 'posts'
-  inflect.irregular 'tagging', 'taggings'
-  inflect.irregular 'tag', 'tags'
-  inflect.irregular 'session', 'sessions'
-  inflect.irregular 'job', 'jobs'
-  inflect.irregular 'sidebar', 'sidebars'
-  inflect.irregular 'version', 'versions'
-  inflect.irregular "slug", "slugs"
+  inflect.irregular "cliente",  "clientes"
+  inflect.irregular "post",     "posts"
+  inflect.irregular "tagging",  "taggings"
+  inflect.irregular "tag",      "tags"
+  inflect.irregular "session",  "sessions"
+  inflect.irregular "job",      "jobs"
+  inflect.irregular "sidebar",  "sidebars"
+  inflect.irregular "version",  "versions"
+  inflect.irregular "slug",     "slugs"
 #   inflect.uncountable %w( fish sheep )
 end

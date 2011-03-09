@@ -4,5 +4,4 @@
     = table.cell(:cuerpo, heading: sort_link(search, :cuerpo)) do |pagina|
       - truncate(pagina.cuerpo, length: 50)
     = table.cell :tipo, heading: sort_link(search, :borrador)
-    = table.cell(:acciones, heading: 'Acciones', cell_html: {class: 'actions'}) do |pagina|
-      - acciones_para_pagina(pagina)
+    = actions_cell(table) { |pagina| acciones_para_pagina(pagina) }

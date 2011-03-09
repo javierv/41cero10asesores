@@ -1,20 +1,29 @@
 * https://github.com/rubiety/validates_lengths_from_database
-* Usar el atributo formaction en cuanto salgan las próximas versiones de Firefox y Chrome. Para la administración vale con eso.
+* Usar el atributo formaction en cuanto salgan las próximas versiones de Firefox y Chrome. Para la administración vale con eso. Cuando salga esto, el botón de deshacer podrá ir dentro del mensaje de flash y simplificar aún más.
 * Podríamos poner un icono de borrar en la imagen desde la previsualización.
+* Portada.
+* Enlazar a los boletines desde la página.
+* Estilos IE8.
+* Borrar clientes y boletines.
 
-* PDFs con el boletín.
-
+* Conservar atributos falla al publicar borrador si no valida.
+* Enlaces a "nuevo", que tengan el género y el nombre.
 * Al recuperar una página, no se recupera qué cajas tenía asociadas.
 * Investigar si se borran los borradores de página nueva cuando se crea la página.
 * El enlace a "comparar con la actual" se comporta de forma un tanto extraña.
 * "Ordenar por..." como título de enlaces de cabecera de la tabla.
 * "Editar borrador" no se ve entero :S. Confirmado, cuando la ventana no es grande respecto al tamaño del texto. Por alguna razón, la tabla no se comprime en la celda de acciones.
+* Hacer que la paginación sea lista de enlaces, y que el primero tenga el parámetro.
 * Vista previa al editar cajas.
 * Al editar cajas, poder asignarlas a las páginas.
 * Formulario de login: ¿autofocus en el email?
 * Páginas de errores: 404, 500, ...
 * Permitir al usuario configurar textos como el enlace al CRM o los "lemas".
+* En diferencias: usar un clear u overflow: hidden, por si hay fotos o así.
 
+* Sugerencias de búsqueda según escribes, basándose en términos existentes y/o buscados.
+* Estilo de los input en función de si son válidos o no.
+* Usar caché en la acción "show".
 * Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
 * Buscar usos de almacenamiento local. Uno erróneo: conservar lo que se estaba escribiendo al editar una página, porque puede que el usuario quiera descartar los cambios.
 * Buscar usos de Cells. Una especie de componentes para las vistas.

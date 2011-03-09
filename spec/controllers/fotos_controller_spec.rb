@@ -15,10 +15,13 @@ describe FotosController do
         xhr :post, :create, foto: {imagen: File.new("spec/images/blank.png")}
       end
 
-      it { assigns(:foto).should be_true }
-      it { should respond_with(:success) }
-      it { should_not set_the_flash }
-      it { should render_template(:create) }
+      it do
+        assigns(:foto).should be_true
+        should respond_with(:success)
+        should respond_with_content_type(:js)
+        should_not set_the_flash
+        should render_template(:create)
+      end
     end
 
     context "with an invalid model" do
@@ -27,9 +30,12 @@ describe FotosController do
         xhr :post, :create
       end
 
-      it { assigns(:foto).should be_true }
-      it { should respond_with(:success) }
-      it { should render_template(:error) }
+      it do
+        assigns(:foto).should be_true
+        should respond_with(:success)
+        should respond_with_content_type(:js)
+        should render_template(:error)
+      end
     end
   end
 
@@ -38,8 +44,10 @@ describe FotosController do
       xhr :get, :thumbnail, id: foto.to_param, foto: { imagen_width: 300 }
     end
 
-    it { assigns(:foto).should be_true }
-    it { assigns(:size).should be_true }
-    it { should respond_with(:success) }
+    it do
+      assigns(:foto).should be_true
+      assigns(:size).should be_true
+      should respond_with(:success)
+    end
   end
 end

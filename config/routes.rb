@@ -1,5 +1,15 @@
 Calesur::Application.routes.draw do
+  resources :clientes
+
   resources :navegaciones, only: [:new, :create]
+
+  resources :boletines do
+    member do
+      get :enviar
+      put :email
+    end
+  end
+
   resources :fotos, only: [:create] do
     get :thumbnail, on: :member
   end
@@ -9,9 +19,11 @@ Calesur::Application.routes.draw do
 
   resources :vestal_versions_versions, path: 'versions', controller: 'versions',
     only: [:show] do
-    put :recover, on: :member
-    put :restore, on: :member
-    get 'compare(/:ref_id)', action: 'compare', as: :compare, on: :member
+    member do
+      put :recover
+      put :restore
+      get 'compare(/:ref_id)', action: 'compare', as: :compare
+    end
     get :borradas, on: :collection
   end
 

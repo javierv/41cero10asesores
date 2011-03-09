@@ -20,18 +20,22 @@ describe PaginasController do
     context "sin AJAX" do
       before(:each) { get :index }
 
-      it { should respond_with(:success) }
-      it { assigns(:paginas).should be_true }
-      it { should render_with_layout(:application) }
+      it do
+        should respond_with(:success)
+        assigns(:paginas).should be_true
+        should render_with_layout(:application) 
+      end
     end
 
     context "con AJAX" do
       before(:each) { xhr :get, :index }
 
-      it { should respond_with_content_type(:js) }
-      it { should render_template(:index) }
-      it { should respond_with(:success) }
-      it { should_not render_with_layout }
+      it do
+        should respond_with_content_type(:js)
+        should render_template(:index)
+        should respond_with(:success) 
+        should_not render_with_layout 
+      end
     end
   end
 
@@ -55,8 +59,10 @@ describe PaginasController do
         pagina_valida_siempre
         post :create, pagina: @pagina.attributes
       end
-      it { should redirect_to(pagina_path(assigns(:pagina))) }
-      it { should set_the_flash }
+      it do
+        should redirect_to(pagina_path(assigns(:pagina)))
+        should set_the_flash
+      end
     end
 
     context "when using preview button" do
@@ -65,8 +71,10 @@ describe PaginasController do
           post :create, pagina: @pagina.attributes, preview: true
         end
 
-        it { should render_template(:preview) }
-        it { assigns(:pagina).should be_true }
+        it do
+          should render_template(:preview)
+          assigns(:pagina).should be_true
+        end
       end
 
       context "with an AJAX request" do
@@ -74,18 +82,30 @@ describe PaginasController do
           xhr :post, :create, pagina: @pagina.attributes, preview: true
         end
 
-        it { should render_template(:preview) }
-        it { should respond_with_content_type(:js) }
-        it { should_not render_with_layout }
+        it do
+          should render_template(:preview)
+          should respond_with_content_type(:js)
+          should_not render_with_layout 
+        end
       end
     end
   end
 
   describe "show action" do
-    before(:each) do
-      get :show, id: @pagina.to_param
+    let(:accion) { lambda { get :show, id: @pagina.to_param }}
+
+    context "con usuario identificado" do
+      before(:each) { accion.call }
+      it { should respond_with(:success) }
     end
-    it { should respond_with(:success) }
+
+    context "sin usuario identificado" do
+      before(:each) do
+        sign_out @usuario
+        accion.call
+      end
+      it { should respond_with(:success) }
+    end
   end
 
   describe "edit action" do
@@ -110,8 +130,10 @@ describe PaginasController do
         pagina_valida_siempre
         put :update, id: @pagina.to_param, pagina: @pagina.attributes
       end
-      it { should redirect_to(pagina_path(@pagina)) }
-      it { should set_the_flash }
+      it do
+        should redirect_to(pagina_path(@pagina))
+        should set_the_flash
+      end
     end
 
     context "when using preview button" do
@@ -120,8 +142,10 @@ describe PaginasController do
           put :update, id: @pagina.to_param, pagina: @pagina.attributes, preview: true
         end
 
-        it { should render_template(:preview) }
-        it { assigns(:pagina).should be_true }
+        it do
+          should render_template(:preview)
+          assigns(:pagina).should be_true
+        end
       end
 
       context "with an AJAX request" do
@@ -129,9 +153,11 @@ describe PaginasController do
           xhr :put, :update, id: @pagina.to_param, pagina: @pagina.attributes, preview: true
         end
 
-        it { should render_template(:preview) }
-        it { should respond_with_content_type(:js) }
-        it { should_not render_with_layout }
+        it do
+          should render_template(:preview)
+          should respond_with_content_type(:js)
+          should_not render_with_layout
+        end
       end
     end
 
@@ -141,8 +167,10 @@ describe PaginasController do
           put :update, id: @pagina.to_param, pagina: @pagina.attributes, draft: true
         end
 
-        it { should redirect_to(edit_pagina_path(@pagina.draft)) }
-        it { should set_the_flash }
+        it do
+          should redirect_to(edit_pagina_path(@pagina.draft))
+          should set_the_flash
+        end
       end
 
       context "with an AJAX request" do
@@ -150,9 +178,11 @@ describe PaginasController do
           xhr :put, :update, id: @pagina.to_param, pagina: @pagina.attributes, draft: true
         end
 
-        it { should render_template(:borrador) }
-        it { should respond_with_content_type(:js) }
-        it { should_not render_with_layout }
+        it do
+          should render_template(:borrador)
+          should respond_with_content_type(:js)
+          should_not render_with_layout
+        end
       end
     end
 
@@ -168,8 +198,10 @@ describe PaginasController do
           Pagina.any_instance.stubs(:valid?).returns(true)
           @action[]
         end
-        it { should redirect_to(pagina_path(@pagina)) }
-        it { should set_the_flash }
+        it do
+          should redirect_to(pagina_path(@pagina))
+          should set_the_flash
+        end
       end
 
       context 'when model is invalid' do
@@ -187,9 +219,9 @@ describe PaginasController do
     context "with a normal request" do 
       before(:each) { delete :destroy, id: @pagina.to_param }
 
-      it { should redirect_to(paginas_path) }
-      it { should set_the_flash }
-      it 'destroy model' do
+      it do
+        should redirect_to(paginas_path)
+        should set_the_flash
         assert !Pagina.exists?(@pagina.id)
       end
     end
@@ -197,8 +229,10 @@ describe PaginasController do
     context "with an AJAX request" do
       before(:each) { xhr :delete, :destroy, id: @pagina.to_param }
 
-      it { should_not render_with_layout }
-      it { should respond_with(:success) }
+      it do
+        should_not render_with_layout
+        should respond_with(:success)
+      end
     end
   end
 
@@ -206,25 +240,31 @@ describe PaginasController do
     context "with a normal request" do
       before(:each) { get :search, q: "buscando" }
 
-      it { should respond_with(:success) }
-      it { assigns(:paginas).should be_true }
+      it do
+        should respond_with(:success)
+        assigns(:paginas).should be_true
+      end
     end
 
     context "with an AJAX request" do
       before(:each) { xhr :get, :search, q: "buscando" }
 
-      it { should respond_with_content_type(:js) }
-      it { should render_template(:search) }
-      it { should respond_with(:success) }
-      it { should_not render_with_layout }
+      it do
+        should respond_with_content_type(:js)
+        should render_template(:search)
+        should respond_with(:success)
+        should_not render_with_layout
+      end
     end
   end
 
   describe 'ver el historial' do
     before(:each) { get :historial, id: @pagina.to_param }
 
-    it { should respond_with(:success) }
-    it { assigns(:pagina).should be_true }
-    it { assigns(:versiones).should be_true }
+    it do
+      should respond_with(:success)
+      assigns(:pagina).should be_true
+      assigns(:versiones).should be_true
+    end
   end
 end

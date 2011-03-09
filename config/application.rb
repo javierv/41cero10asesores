@@ -1,5 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
+require 'yaml'
+APP_CONFIG =  YAML.load(File.read(File.expand_path('../app_config.yml', __FILE__)))
+
 require 'rails/all'
 
 # If you have a Gemfile, require the gems listed there, including any gems
@@ -20,6 +23,7 @@ module Calesur
     config.i18n.default_locale = :es
     # Para que funcione Faker
     # Otra opción es config.i18n.locale = :es, y quitar default_locale.
+    config.i18n.locale = :es
     config.i18n.fallbacks.defaults = [:en]
     config.time_zone  = 'Madrid'
     # Settings in config/environments/* take precedence over those specified here.
@@ -52,5 +56,16 @@ module Calesur
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address:               "mail.calesur.com",
+      port:                  26,
+      domain:                "calesur.com",
+      user_name:             APP_CONFIG["email"].sub("@", "+"),
+      password:              APP_CONFIG["password"],
+      authentication:        'plain',
+      enable_starttls_auto:  false
+    }
   end
 end
