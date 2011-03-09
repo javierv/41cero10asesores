@@ -79,6 +79,12 @@ module HelperMethods
   def correo_enviado
     ActionMailer::Base.deliveries.last
   end
+
+  def crea_foto
+    within("#fotos") do
+      attach_file "nueva imagen", Rails.root.join("spec", "images", "blank.png")
+    end
+  end
 end
 
 RSpec.configuration.include HelperMethods, type: :acceptance

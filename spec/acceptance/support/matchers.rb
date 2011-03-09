@@ -45,6 +45,10 @@ module MatcherMethods
   define_match :have_highlight do |page, text|
     page.has_selector?("strong.searched_term", text: text)
   end
+
+  define_match :have_fotos do |page, options|
+    page.has_selector?("#galeria img", options)
+  end
 end
 
 module Capybara::Node::Matchers
