@@ -6,4 +6,4 @@ es:
       edit: "Editar"
       destroy: "Borrar"
       index: "Ir al listado"
-      new: "Nueva"
+      new: "Nuev@{f:a|m:o}"

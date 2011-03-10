@@ -113,12 +113,21 @@ private
     end
   end
 
-  def link_text(action)
-    I18n.translate(action, scope: "tabletastic.actions", default: action.to_s.titleize)
+  def link_text(action, resource)
+    I18n.translate(action, scope: "tabletastic.actions", default: action.to_s.titleize, gender: gender(resource))
+  end
+
+  def gender(resource)
+    clase = if resource.respond_to?(:human_name)
+              resource
+            else
+              resource.class
+            end
+    clase.human_name.gender
   end
 
   def link_title(action, resource)
-    "#{link_text(action)} #{resource}"
+    "#{link_text(action, resource)} #{resource}"
   end
 
   def confirmation_message
@@ -140,7 +149,7 @@ private
         opciones.reverse_merge!(url.extract_options!)
       end
       opciones.reverse_merge!(class: action, title: link_title(action, resource))
-      [link_text(action), url, opciones].flatten
+      [link_text(action, resource), url, opciones].flatten
     end
   end
 
