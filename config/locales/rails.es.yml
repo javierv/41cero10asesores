@@ -183,6 +183,7 @@ es:
     # Translate model names. Used in Model.human_name().
     models:
       pagina: Página
+      boletin: Boletín
      
     # Translate model attribute names. Used in Model.human_attribute_name(attribute).
     attributes:
