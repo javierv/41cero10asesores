@@ -1,11 +1,7 @@
 - title "Traducciones"
+- css "form"
 
-= form_tag translations_path do
-  - scope = "#{I18n.locale}.public."
-  - @translations.keys("#{scope}*").each do |key|
-    - clave = key.sub scope, ""
-    - campo = "translations[#{clave}]"
-    %p
-      = label_tag campo, clave.humanize
-      = text_field_tag campo, @translations[key]
-  %p= submit_tag "Submit"
+= simple_form_for @translations, url: translations_path do |form|
+  - @translations.public_keys.each do |key, value|
+    = form.input key, input_html: {value: value}
+  .actions= submit_tag "Guardar"
