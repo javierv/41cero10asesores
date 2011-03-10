@@ -10,6 +10,8 @@ $(document).ready ->
     false
   )
   $('.actions', form).hide()
-  $('#galeria img').attr('title', 'Inserta la imagen en el contenido').live(
-    'click', -> $('form', $(this).parent()).submit()
-  )
+
+  $("#galeria img").wrap('<a href="" title="Inserta la imagen en el contenido" />')
+  $("#galeria a, #galeria img").live "click", ->
+    $("form", $(this).parents(".foto:first")).submit()
+    false
