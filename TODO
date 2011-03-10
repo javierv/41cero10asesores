@@ -7,7 +7,6 @@
 * Borrar clientes y boletines.
 
 * Conservar atributos falla al publicar borrador si no valida.
-* Enlaces a "nuevo", que tengan el género y el nombre.
 * Al recuperar una página, no se recupera qué cajas tenía asociadas.
 * Investigar si se borran los borradores de página nueva cuando se crea la página.
 * El enlace a "comparar con la actual" se comporta de forma un tanto extraña.
