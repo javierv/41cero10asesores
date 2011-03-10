@@ -191,6 +191,8 @@ es:
         titulo: "Título"
       caja:
         titulo: "Título"
+      navegacion:
+        pagina_id: "Páginas"
       usuario:
         password: "Contraseña"
         remember_me: "Recordarme"
