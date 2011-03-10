@@ -1,5 +1,6 @@
 Calesur::Application.routes.draw do
   resources :clientes
+  resources :translations
 
   resources :navegaciones, only: [:new, :create]
 
