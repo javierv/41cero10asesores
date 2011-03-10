@@ -1,7 +1,7 @@
 - title "Traducciones"
 
 %ul
-- @translations.keys.each do |key|
+- @translations.keys("es.public.*").each do |key|
   %li #{key}: #{@translations[key]}
 
 %h2 Añadir traducción
