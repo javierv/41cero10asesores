@@ -101,6 +101,12 @@ GEM
     haml (3.0.25)
     hirb (0.4.0)
     i18n (0.5.0)
+    i18n-inflector (2.5.1)
+      i18n (>= 0.4.1)
+    i18n-inflector-rails (1.0.3)
+      actionpack (~> 3.0)
+      i18n-inflector (~> 2.5)
+      railties (~> 3.0)
     inploy (1.9)
     jasmine (1.0.1.1)
       json_pure (>= 1.4.3)
@@ -240,6 +246,7 @@ DEPENDENCIES
   guard-spork
   haml
   hirb
+  i18n-inflector-rails
   inploy
   jasmine
   jquery-rails

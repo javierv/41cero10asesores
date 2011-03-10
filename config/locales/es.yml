@@ -1,1 +1,9 @@
 es:
+  i18n:
+    inflections:
+      gender:
+        f:        "female"
+        m:        "male"
+        female:   :@f
+        male:     :@m
+        default:  :m
