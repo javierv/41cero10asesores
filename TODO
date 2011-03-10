@@ -1,5 +1,4 @@
 * https://github.com/rubiety/validates_lengths_from_database
-* Usar el atributo formaction en cuanto salgan las próximas versiones de Firefox y Chrome. Para la administración vale con eso. Cuando salga esto, el botón de deshacer podrá ir dentro del mensaje de flash y simplificar aún más.
 * Podríamos poner un icono de borrar en la imagen desde la previsualización.
 * Portada.
 * Enlazar a los boletines desde la página.
@@ -7,7 +6,6 @@
 * Borrar clientes y boletines.
 
 * Conservar atributos falla al publicar borrador si no valida.
-* Enlaces a "nuevo", que tengan el género y el nombre.
 * Al recuperar una página, no se recupera qué cajas tenía asociadas.
 * Investigar si se borran los borradores de página nueva cuando se crea la página.
 * El enlace a "comparar con la actual" se comporta de forma un tanto extraña.
@@ -18,7 +16,6 @@
 * Al editar cajas, poder asignarlas a las páginas.
 * Formulario de login: ¿autofocus en el email?
 * Páginas de errores: 404, 500, ...
-* Permitir al usuario configurar textos como el enlace al CRM o los "lemas".
 * En diferencias: usar un clear u overflow: hidden, por si hay fotos o así.
 
 * Sugerencias de búsqueda según escribes, basándose en términos existentes y/o buscados.

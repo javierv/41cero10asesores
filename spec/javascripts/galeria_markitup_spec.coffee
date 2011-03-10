@@ -8,13 +8,13 @@ describe "markitup gallery", ->
   it "hides the insert button", ->
     expect($(".actions")).not.toBeVisible()
 
-  it "adds the title to the image", ->
-    expect($("img")).toHaveAttr('title')
+  it "adds a link with a title around the image", ->
+    expect($("#galeria .foto")).toContain("a[title]")
 
   describe "al pinchar en la imagen", ->
     request = null
     beforeEach ->
-      $('img').click()
+      $('a').click()
       request = mostRecentAjaxRequest()
 
     it "sends the form via AJAX", ->

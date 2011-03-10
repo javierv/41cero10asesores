@@ -47,6 +47,9 @@
 #fotos
   margin-top: 1.5em
 
+  p.pista
+    margin-bottom: 0.5em
+
   #galeria
     overflow: hidden
 
@@ -61,8 +64,15 @@
       text-align: center
       +border-radius(0.5em)
       
+      a
+        display: block
+
+        &:focus, &:hover
+          outline:  1px solid
       img
-        cursor: pointer
+        cursor:   pointer
+        display:  block
+        margin:   auto
 
       div.input
         text-align: center
