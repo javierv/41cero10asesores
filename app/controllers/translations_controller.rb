@@ -6,7 +6,9 @@ class TranslationsController < ApplicationController
   end
 
   def create
-    I18n.backend.store_translations(:es, :public => {params[:key] => params[:value]}, :escape => false)
-    redirect_to translations_url, :notice => "Added translation"
+    params[:translations].each do |key, value|
+      I18n.backend.store_translations(:es, public: {key => value}, escape: false)
+    end
+    redirect_to translations_url, notice: "Traducciones guardadas"
   end
 end

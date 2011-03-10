@@ -1,16 +1,10 @@
 - title "Traducciones"
 
-%ul
-- @translations.keys("es.public.*").each do |key|
-  %li #{key}: #{@translations[key]}
-
-%h2 Añadir traducción
-
 = form_tag translations_path do
-  %p
-    = label_tag :key
-    = text_field_tag :key
-  %p
-    = label_tag :value
-    = text_field_tag :value
+  - @translations.keys("es.public.*").each do |key|
+    - clave = key.sub("es.public.", "")
+    - campo = "translations[#{clave}]"
+    %p
+      = label_tag campo, clave.humanize
+      = text_field_tag campo, @translations[key]
   %p= submit_tag "Submit"
