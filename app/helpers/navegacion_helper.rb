@@ -114,16 +114,19 @@ private
   end
 
   def link_text(action, resource)
-    I18n.translate(action, scope: "tabletastic.actions", default: action.to_s.titleize, gender: gender(resource))
+    I18n.translate(action,
+                   scope:          "tabletastic.actions",
+                   default:        action.to_s.titleize,
+                   gender:         resource_name(resource).gender,
+                   resource_name:  resource_name(resource).downcase)
   end
 
-  def gender(resource)
-    clase = if resource.respond_to?(:human_name)
-              resource
-            else
-              resource.class
-            end
-    clase.human_name.gender
+  def resource_name(resource)
+    if resource.respond_to?(:human_name)
+      resource.human_name
+    else
+      resource.class.human_name
+    end
   end
 
   def link_title(action, resource)
