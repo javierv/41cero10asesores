@@ -122,10 +122,10 @@ private
   end
 
   def resource_name(resource)
-    if resource.respond_to?(:human_name)
-      resource.human_name
+    if resource.respond_to?(:model_name)
+      resource.model_name.human
     else
-      resource.class.human_name
+      resource.class.model_name.human
     end
   end
 
