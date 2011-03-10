@@ -10,6 +10,7 @@ $(document).ready ->
     false
   )
   $('.actions', form).hide()
+  $("#galeria").before('<p class="pista"><em>Pincha en cada imagen para insertarla en el contenido.</em></p>')
 
   $("#galeria img").wrap('<a href="" title="Inserta la imagen en el contenido" />')
   $("#galeria a, #galeria img").live "click", ->
