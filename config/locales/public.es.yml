@@ -1,3 +1,4 @@
 es:
-  lema: "Tu contabilidad como si fueras nuestro hijo"
-  privada: "Acceso al área privada"
+  public:
+    lema: "Tu contabilidad como si fueras nuestro hijo"
+    privada: "Acceso al área privada"
