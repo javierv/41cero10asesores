@@ -6,7 +6,9 @@ class Translation < Redis
   end
 
   def public_keys
-    keys(public_scope + "*").map {|key| [public_key(key), self[key]]}
+    keys(public_scope + "*").map do |key|
+      [public_key(key), I18n.translate(key.sub("#{I18n.locale}.", ""))]
+    end
   end
 
   def store_public_translations(translations, options = {})
