@@ -1,0 +1,9 @@
+es:
+  tabletastic:
+    actions:
+      confirmation: "¿Estás seguro?"
+      show: "Mostrar"
+      edit: "Editar"
+      destroy: "Borrar"
+      index: "Ir al listado"
+      new: "Nuev@{f:a|m:o} %{resource_name}"
