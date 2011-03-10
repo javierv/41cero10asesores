@@ -1,8 +1,8 @@
 - title "Traducciones"
 
 = form_tag translations_path do
-  - @translations.keys("es.public.*").each do |key|
-    - clave = key.sub("es.public.", "")
+  - @translations.keys("#{I18n.locale}.public.*").each do |key|
+    - clave = key.sub("#{I18n.locale}.public.", "")
     - campo = "translations[#{clave}]"
     %p
       = label_tag campo, clave.humanize
