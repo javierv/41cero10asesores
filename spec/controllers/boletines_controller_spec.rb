@@ -55,6 +55,17 @@ describe BoletinesController do
     end
   end
   
+  describe "destroy" do
+  # TODO: comentado porque borra el archivo.
+  #  before(:each) { delete :destroy, id: @boletin.to_param }
+
+  #  it do
+  #    should redirect_to(boletines_path)
+  #    should set_the_flash
+  #    Boletin.exists?(@boletin.id).should be_false
+  #  end
+  end
+
   describe "enviar" do
     before(:each) do
       get :enviar, id: @boletin.to_param

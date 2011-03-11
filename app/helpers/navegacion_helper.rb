@@ -64,13 +64,13 @@ module NavegacionHelper
   end
 
   def acciones_para_boletin(boletin)
-    acciones = [:edit]
+    acciones = [:edit, :destroy]
     acciones << :enviar unless boletin.enviado?
     actions_list acciones, boletin
   end
 
   def acciones_para_cliente(cliente)
-    actions_list [:edit], cliente
+    actions_list [:edit, :destroy], cliente
   end
  
 private

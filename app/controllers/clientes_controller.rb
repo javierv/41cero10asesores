@@ -3,7 +3,7 @@ class ClientesController < ApplicationController
 
   resource :cliente
   before_filter :new_cliente, only: [:new, :create]
-  before_filter :find_cliente, only: [:edit, :update]
+  before_filter :find_cliente, only: [:edit, :update, :destroy]
 
   def index
     @clientes = Cliente.all
@@ -24,5 +24,10 @@ class ClientesController < ApplicationController
   def create
     @cliente.save
     respond_with @cliente, location: clientes_path
+  end
+
+  def destroy
+    @cliente.destroy
+    respond_with @cliente
   end
 end

@@ -54,4 +54,14 @@ describe ClientesController do
       end
     end
   end
+
+  describe "destroy" do
+    before(:each) { delete :destroy, id: @cliente.to_param }
+
+    it do
+      should redirect_to(clientes_path)
+      should set_the_flash
+      Cliente.exists?(@cliente.id).should be_false
+    end
+  end
 end
