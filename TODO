@@ -3,7 +3,6 @@
 * Portada.
 * Enlazar a los boletines desde la página.
 * Estilos IE8.
-* Borrar clientes y boletines.
 
 * Conservar atributos falla al publicar borrador si no valida.
 * Al recuperar una página, no se recupera qué cajas tenía asociadas.

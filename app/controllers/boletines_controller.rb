@@ -3,7 +3,7 @@ class BoletinesController < ApplicationController
 
   resource :boletin
   before_filter :new_boletin, only: [:new, :create]
-  before_filter :find_boletin, only: [:edit, :update, :enviar, :email]
+  before_filter :find_boletin, only: [:edit, :update, :destroy, :enviar, :email]
 
   def index
     @boletines = Boletin.all
@@ -24,6 +24,11 @@ class BoletinesController < ApplicationController
   def create
     @boletin.save
     respond_with @boletin, location: boletines_path
+  end
+
+  def destroy
+    @boletin.destroy
+    respond_with @boletin
   end
 
   def enviar
