@@ -75,6 +75,20 @@ form
 #preview .pagina
   margin-bottom: 1em
 
+  div.quitar_imagen
+    position: relative
+    float:    left
+
+    a
+      position: absolute
+      top: 0
+      right: 0
+      font-size: 0
+      text-decoration: none
+
+      &:before
+        content: url("/images/destroy.png")
+
 #actualizado
   font-style: italic
   color: #666
