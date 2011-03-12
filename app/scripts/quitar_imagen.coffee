@@ -5,7 +5,8 @@ $(document).ready ->
     imagen.wrap(contenedor).before(
       $('<a href="' + src + '" title="Quitar imagen" class="quitar_imagen">Quitar</a>').click ->
         textarea = $("textarea")
-        textarea.val(textarea.val().replace("!" + src + "!", "")).keydown()
+        textarea.val(textarea.val().replace("!" + src + "!", ""))
+        $(this).parent().fadeOut()
         false
     )
 
