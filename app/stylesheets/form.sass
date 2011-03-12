@@ -72,22 +72,27 @@ form
     .input
       margin-top: 0.5em    
 
-#preview .pagina
-  margin-bottom: 1em
+#preview
+  .cargando
+    text-align: center
+    &:before
+      content: url(/images/loading.gif)
+  .pagina
+    margin-bottom: 1em
 
-  div.quitar_imagen
-    position: relative
-    float:    left
+    div.quitar_imagen
+      position: relative
+      float:    left
 
-    a
-      position: absolute
-      top: 0
-      right: 0
-      font-size: 0
-      text-decoration: none
+      a
+        position: absolute
+        top: 0
+        right: 0
+        font-size: 0
+        text-decoration: none
 
-      &:before
-        content: url("/images/destroy.png")
+        &:before
+          content: url("/images/destroy.png")
 
 #actualizado
   font-style: italic

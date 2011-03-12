@@ -6,6 +6,8 @@ $(document).ready ->
   $('input[type=text], textarea', $('form.pagina')).typeWatch(
     callback: ->
       $('form.pagina').ajaxSubmit(
+        beforeSend: ->
+          $('#preview').html('<p class="cargando">Cargando..</p>')
         success: (data) ->
           $('head').append($('#css', data).html())
           $('#preview').html($('#preview', data).html())
