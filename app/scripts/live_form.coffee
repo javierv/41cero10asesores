@@ -19,6 +19,7 @@ $(document).ready ->
               script.setAttribute "src", source.replace("script src=", "").replace(/"/g, "")
               document.getElementsByTagName("head")[0].appendChild(script)
 
+          imagenes_quitables()
         data: { preview: true }
       )
     wait: 1000

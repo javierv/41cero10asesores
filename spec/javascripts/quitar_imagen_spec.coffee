@@ -7,7 +7,7 @@ describe "Quitar imagen", ->
 
   describe "al quitar la imagen", ->
     beforeEach ->
-      $("#preview img").click()
+      $("#preview a.quitar_imagen").click()
 
     it "quita la imagen del textarea", ->
       expect($("textarea").val()).toEqual "Foto: "
