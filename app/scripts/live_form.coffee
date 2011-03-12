@@ -24,6 +24,7 @@ $(document).ready ->
           imagenes_quitables()
         data: { preview: true }
       )
-    wait: 1000
-    captureLenght: 1
+    wait:           1000
+    highlight:      false
+    captureLenght:  1
   )
