@@ -25,13 +25,6 @@ describe "markitup gallery", ->
       request.response success('/images/respuesta.png')
       expect($("textarea").val()).toEqual 'Antes.!/images/respuesta.png!'
 
-    describe "al quitar la imagen", ->
-      beforeEach ->
-        $('#preview img').click()
-
-        it "quita la imagen del textarea", ->
-          expect($("textarea").val()).toEqual 'Antes.'
-
   describe "al insertar otra imagen distinta y pinchar", ->
     nueva_request = null
     beforeEach ->
