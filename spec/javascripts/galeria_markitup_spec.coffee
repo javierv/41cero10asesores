@@ -4,6 +4,7 @@ describe "markitup gallery", ->
   beforeEach ->
     loadFixtures 'galeria_markitup.html'
     load 'galeria_markitup'
+    load "quitar_imagen"
 
   it "hides the insert button", ->
     expect($(".actions")).not.toBeVisible()
@@ -23,6 +24,13 @@ describe "markitup gallery", ->
     it "inserta la respuesta en el textarea", ->
       request.response success('/images/respuesta.png')
       expect($("textarea").val()).toEqual 'Antes.!/images/respuesta.png!'
+
+    describe "al quitar la imagen", ->
+      beforeEach ->
+        $('#preview img').click()
+
+        it "quita la imagen del textarea", ->
+          expect($("textarea").val()).toEqual 'Antes.'
 
   describe "al insertar otra imagen distinta y pinchar", ->
     nueva_request = null
