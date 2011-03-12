@@ -9,4 +9,4 @@ $(document).ready ->
         false
     )
 
-  imagenes_quitables = -> $("#preview img").each -> imagen_quitable($(this))
+  window.imagenes_quitables = -> $("#preview img").each -> imagen_quitable($(this))
