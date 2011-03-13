@@ -124,16 +124,14 @@ describe Pagina do
           end
 
           context 'al publicar el borrador' do
-            before(:each) do
+            subject do
               pagina.draft.publish
               pagina.reload
+              pagina
             end
 
-            it 'tiene los títulos cambiados en la base de datos' do
-              pagina.titulo.should == 'Título cambiado'
-            end
-
-            it { pagina.should_not have_draft }
+            its(:titulo) { should == 'Título cambiado' }
+            it { should_not have_draft }
           end
 
           context 'al publicar un borrador no válido' do
