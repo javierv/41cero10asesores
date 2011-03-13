@@ -98,7 +98,7 @@ class Pagina < ActiveRecord::Base
   
   def self.search_paginate(params)
     search = metasearch params[:search]
-    paginas = search.where(published_id: nil).page(params[:page])
+    paginas = search.where(published_id: nil).page(params[:page]).includes(:slug)
 
     [search, paginas]
   end
