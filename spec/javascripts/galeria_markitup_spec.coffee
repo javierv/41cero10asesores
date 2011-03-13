@@ -4,6 +4,7 @@ describe "markitup gallery", ->
   beforeEach ->
     loadFixtures 'galeria_markitup.html'
     load 'galeria_markitup'
+    load "quitar_imagen"
 
   it "hides the insert button", ->
     expect($(".actions")).not.toBeVisible()

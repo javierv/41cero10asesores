@@ -1,5 +1,4 @@
 * https://github.com/rubiety/validates_lengths_from_database
-* Podríamos poner un icono de borrar en la imagen desde la previsualización.
 * Portada.
 * Enlazar a los boletines desde la página.
 * Estilos IE8.
@@ -14,7 +13,7 @@
 * Vista previa al editar cajas.
 * Al editar cajas, poder asignarlas a las páginas.
 * Formulario de login: ¿autofocus en el email?
-* Páginas de errores: 404, 500, ...
+* Páginas de errores: 404, 500, ... ¡Incluyendo AJAX!
 * En diferencias: usar un clear u overflow: hidden, por si hay fotos o así.
 
 * Sugerencias de búsqueda según escribes, basándose en términos existentes y/o buscados.

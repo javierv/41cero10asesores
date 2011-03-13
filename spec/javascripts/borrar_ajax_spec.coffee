@@ -11,8 +11,8 @@ describe 'Destroy with AJAX', ->
     it 'makes an AJAX request', ->
       expect(ajaxRequests).toHaveLength 1
 
-    it 'shows a loading message', ->
-      expect($('#flash')).toHaveHtml '<p class="cargando">Cargando...</p>'
+    it "shows a loading message", ->
+      expect($("#listado")).toContain "p.loading"
 
     describe 'after succeeding', ->
       beforeEach ->
