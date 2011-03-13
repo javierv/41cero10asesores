@@ -3,6 +3,7 @@
 @import errores.sass
 @import partials/button.sass
 @import partials/input.sass
+@import partials/cargando.sass
 
 form
   .input
@@ -73,10 +74,7 @@ form
       margin-top: 0.5em    
 
 #preview
-  .cargando
-    text-align: center
-    &:before
-      content: url(/images/loading.gif)
+  @include cargando()
   .pagina
     margin-bottom: 1em
 

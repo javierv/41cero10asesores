@@ -1,5 +1,7 @@
 = total_resultados(paginas)
 
+= paginate paginas
+
 %section#resultados
   - paginas.each do |pagina|
     = render 'resumen', pagina: pagina.indexed_object, term: params[:q]

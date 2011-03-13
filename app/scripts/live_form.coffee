@@ -6,10 +6,10 @@ $(document).ready ->
   send_form = ->
     $('form.pagina').ajaxSubmit(
       beforeSend: ->
-        $('#preview').html('<p class="cargando">Cargando..</p>')
+        $('#preview').addCargando()
       success: (data) ->
         $('head').append($('#css', data).html())
-        $('#preview').html($('#preview', data).html())
+        $('#preview').html($('#preview', data).html()).removeCargando()
         $('#sidebar').remove()
         $('#sidebar', data).prependTo('#extra')
         sources = data.match(/script src="([^"]+)"/g)
