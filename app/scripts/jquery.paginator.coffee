@@ -17,7 +17,9 @@ jQuery.fn.ajaxPaginator = (options) ->
     paginator: '.pagination'
     table: 'table'
     beforeSend: -> $('#flashMessage').remove()
+    loading: 'Cargando...'
     history: true
+    hide_while_loading: false
 
   jQuery.extend(defaults, options)
 
@@ -48,5 +50,8 @@ jQuery.fn.ajaxPaginator = (options) ->
 
 load_page = (element, url, options) ->
   options['url'] = url
-  element.addCargando()
+  if options["hide_while_loading"]
+    element.empty().html('<p class="loading">' + options.loading + '</p>')
+  else
+    element.addCargando()
   $.ajax(options)

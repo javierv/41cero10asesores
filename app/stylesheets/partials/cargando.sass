@@ -20,7 +20,12 @@
 
   .loading strong
     display: block
-    text-align: center
-    &:before
-      content:         url(/images/loading.gif)
-      vertical-align:  -50%
+    @include imagen_cargando()
+
+@mixin imagen_cargando()
+  text-align: center
+  &:before
+    content:         url(/images/loading.gif)
+    vertical-align:  -50%
+    margin-right:    0.2em
+
