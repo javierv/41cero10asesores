@@ -124,14 +124,14 @@ describe Pagina do
           end
 
           context 'al publicar el borrador' do
-            before(:each) { pagina.draft.publish }
-
-            it 'tiene los títulos cambiados en la base de datos' do
-              pagina_bd = Pagina.find(pagina.id)
-              pagina_bd.titulo.should == 'Título cambiado'
+            subject do
+              pagina.draft.publish
+              pagina.reload
+              pagina
             end
 
-            it { pagina.should_not have_draft }
+            its(:titulo) { should == 'Título cambiado' }
+            it { should_not have_draft }
           end
 
           context 'al publicar un borrador no válido' do
@@ -202,7 +202,7 @@ describe Pagina do
         Pagina.where(titulo: '', borrador: true).should be_true
       end
 
-      it { nueva.draft.should == nueva }
+      it { nueva.should_not have_draft }
 
       context 'al crear otro nuevo borrador' do
         before(:each) { Pagina.new.save_draft }
@@ -216,7 +216,7 @@ describe Pagina do
         let(:draft) { Pagina.new }
         before(:each) do
           draft.titulo = 'Cambiado'
-          draft.save_draft(borrador_id: nueva.draft.id)
+          draft.save_draft(borrador_id: nueva.id)
         end
 
         it 'reemplaza el borrador existente' do
@@ -230,8 +230,7 @@ describe Pagina do
       let(:titulo) {'Borrador inicial'}
       let(:draft) { Factory(:pagina, borrador: true, titulo: titulo) }
 
-      it { draft.has_draft?.should be_false }
-      it { draft.draft.should == draft }
+      it { draft.should_not have_draft }
 
       context 'al publicar' do
         before(:each) { draft.publish }

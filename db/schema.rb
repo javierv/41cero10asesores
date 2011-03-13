@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110307160640) do
+ActiveRecord::Schema.define(:version => 20110313192719) do
 
   create_table "boletines", :force => true do |t|
     t.string   "archivo_uid"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(:version => 20110307160640) do
     t.datetime "updated_at"
   end
 
+  add_index "navegaciones", ["pagina_id"], :name => "index_navegaciones_on_pagina_id"
+
   create_table "paginas", :force => true do |t|
     t.string   "titulo"
     t.text     "cuerpo"
@@ -58,6 +60,8 @@ ActiveRecord::Schema.define(:version => 20110307160640) do
     t.integer  "published_id"
   end
 
+  add_index "paginas", ["published_id"], :name => "index_paginas_on_published_id"
+
   create_table "sidebars", :force => true do |t|
     t.integer  "pagina_id"
     t.integer  "caja_id"
@@ -65,6 +69,9 @@ ActiveRecord::Schema.define(:version => 20110307160640) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "sidebars", ["caja_id"], :name => "index_sidebars_on_caja_id"
+  add_index "sidebars", ["pagina_id"], :name => "index_sidebars_on_pagina_id"
 
   create_table "slugs", :force => true do |t|
     t.string   "name"
@@ -76,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20110307160640) do
   end
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
+  add_index "slugs", ["sluggable_id", "sluggable_type"], :name => "index_slugs_on_sluggable_id_and_sluggable_type"
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "usuarios", :force => true do |t|

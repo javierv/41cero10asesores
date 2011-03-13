@@ -7,7 +7,7 @@ module SearchHelper
 
   def total_resultados(records)
     content_tag :p, class: "total_resultados" do
-      if records.empty?
+      if records.length.zero?
         "No hay resultados"
       else
         muestra_numero_resultados(records)
