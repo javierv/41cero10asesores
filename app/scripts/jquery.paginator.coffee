@@ -30,9 +30,7 @@ jQuery.fn.ajaxPaginator = (options) ->
       $element.removeCargando()
 
     if defaults.history
-      if browser_supports_history()
-        $(window).bind("popstate", -> load_page($element, location.href, defaults))
-      else
+      if !browser_supports_history()
         $.history.init (hash) -> if hash != '' then load_page($element, hash, defaults)
 
     jQuery(defaults.paginator + ' a,' + defaults.table + ' th a', $element).live('click', ->
@@ -40,6 +38,7 @@ jQuery.fn.ajaxPaginator = (options) ->
         if browser_supports_history()
           history.pushState(null, document.title, @href)
           load_page($element, @href, defaults)
+          $(window).bind("popstate", -> load_page($element, location.href, defaults))
         else
           $.history.load(@href)
       else
