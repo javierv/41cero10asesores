@@ -1,7 +1,4 @@
-#listado .loading
-  text-align: center
-  margin-top: 1em
+@import partials/cargando.sass
 
-  &:before
-    content: url(/images/loading.gif)
-    margin-right: 0.2em
+#listado
+  @include cargando()
