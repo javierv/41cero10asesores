@@ -18,7 +18,6 @@ jQuery.fn.ajaxPaginator = (options) ->
     table: 'table'
     beforeSend: -> $('#flashMessage').remove()
     loading: 'Cargando...'
-    history: true
     hide_while_loading: false
 
   jQuery.extend(defaults, options)
@@ -29,20 +28,16 @@ jQuery.fn.ajaxPaginator = (options) ->
       $element.html(data)
       $element.removeCargando()
 
-    if defaults.history
-      if !browser_supports_history()
-        $.history.init (hash) -> if hash != '' then load_page($element, hash, defaults)
+    if !browser_supports_history()
+      $.history.init (hash) -> if hash != '' then load_page($element, hash, defaults)
 
     jQuery(defaults.paginator + ' a,' + defaults.table + ' th a', $element).live('click', ->
-      if defaults.history
-        if browser_supports_history()
-          history.pushState(null, document.title, @href)
-          load_page($element, @href, defaults)
-          $(window).bind("popstate", -> load_page($element, location.href, defaults))
-        else
-          $.history.load(@href)
-      else
+      if browser_supports_history()
+        history.pushState(null, document.title, @href)
         load_page($element, @href, defaults)
+        $(window).bind("popstate", -> load_page($element, location.href, defaults))
+      else
+        $.history.load(@href)
       
       return false
     )
