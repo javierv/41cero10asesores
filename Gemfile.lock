@@ -251,6 +251,7 @@ DEPENDENCIES
   jasmine
   jquery-rails
   kaminari
+  launchy
   meta_search
   meta_where
   mocha
