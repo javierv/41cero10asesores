@@ -15,9 +15,9 @@ class PaginasController < ApplicationController
   before_filter :preview, only: [:create, :update]
   before_filter :save_draft, only: [:create, :update]
   before_filter :publish_draft, only: [:create, :update]
+  before_filter :paginate_paginas, only: :index
 
   def index
-    @search, @paginas = Pagina.search_paginate(params)
     respond_with @paginas    
   end
 

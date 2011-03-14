@@ -9,11 +9,9 @@ class CajasController < ApplicationController
   before_filter :find_caja, only: [:edit, :update, :destroy]
   before_filter :new_caja, only: [:new, :create]
   before_filter :update_caja, only: :update
+  before_filter :paginate_cajas, only: :index
 
   def index
-    @search = Caja.search params[:search]
-    @cajas = @search.page(params[:page])
-
     respond_with @cajas
   end
 
