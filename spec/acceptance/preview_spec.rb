@@ -10,10 +10,9 @@ feature "Previsualización", %q{
 
   background { login }
   
-  # TODO: Cuando el driver de capybara admita formaction, JS no será necesario.
-  # Paradójicamente, además, necesito que se ejecute con javascript desactivado.
-  scenario "guardando borrador de página nueva", js: true do
+  scenario "guardando borrador de página nueva" do
     previsualiza_pagina
+    save_and_open_page
     page.should have_title text: "Vista previa"
   end
 end
