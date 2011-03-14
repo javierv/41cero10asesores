@@ -6,8 +6,6 @@ class Caja < ActiveRecord::Base
   validates :cuerpo, presence: true
   display_name :titulo
 
-  versioned dependent: :tracking, initial_version: true
-
   has_many :sidebars, dependent: :destroy
   scope :por_titulo, order("cajas.titulo")
 
