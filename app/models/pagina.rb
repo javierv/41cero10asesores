@@ -14,7 +14,6 @@ class Pagina < ActiveRecord::Base
   has_many :sidebars
   has_many :cajas, through: :sidebars
   has_one :navegacion, dependent: :destroy
-  has_one :draft, class_name: self.name, foreign_key: "published_id"
   before_save :titulo_nil_si_blank
   before_save :build_sidebar
   before_save :set_borrador
@@ -64,6 +63,11 @@ class Pagina < ActiveRecord::Base
     borrador.save
   end
 
+  def draft
+    return self if borrador?
+    Pagina.where(published_id: id).first
+  end
+
   def published
     Pagina.where(id: published_id).first || Pagina.new
   end
@@ -94,7 +98,7 @@ class Pagina < ActiveRecord::Base
   
   def self.search_paginate(params)
     search = metasearch params[:search]
-    paginas = search.where(published_id: nil).page(params[:page]).includes([:slug, :draft])
+    paginas = search.where(published_id: nil).page(params[:page]).includes(:slug)
 
     [search, paginas]
   end
