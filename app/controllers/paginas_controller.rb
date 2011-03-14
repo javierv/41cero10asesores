@@ -46,9 +46,7 @@ class PaginasController < ApplicationController
 
   def destroy
     if @pagina.destroy
-      if @pagina.versions.last
-        @deshacer = restore_vestal_versions_version_path(@pagina.versions.last)
-      end
+      @deshacer = restore_vestal_versions_version_path(@pagina.versions.last)
       @siguiente = next_pagina if request.xhr?
     end
     respond_with @pagina
