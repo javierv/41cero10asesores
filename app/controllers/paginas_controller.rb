@@ -47,10 +47,7 @@ class PaginasController < ApplicationController
   def destroy
     if @pagina.destroy
       if @pagina.versions.last
-        session[:deshacer] = { 
-          method: :put,
-          url:    restore_vestal_versions_version_path(@pagina.versions.last)
-        }
+        @deshacer = restore_vestal_versions_version_path(@pagina.versions.last)
       end
     end
     if request.xhr?

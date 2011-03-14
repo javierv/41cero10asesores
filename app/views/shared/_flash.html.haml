@@ -3,7 +3,6 @@
     - flash.each do |name, msg|
       .flash{id: "flash_#{name}"}
         %p= msg
-        - if session[:deshacer]
-          = render 'shared/deshacer', deshacer: session[:deshacer]
-          - session.delete(:deshacer)
+        - if @deshacer
+          = button_to "Deshacer", @deshacer, method: :put
   - flash.discard
