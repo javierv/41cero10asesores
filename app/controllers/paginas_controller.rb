@@ -51,7 +51,7 @@ class PaginasController < ApplicationController
       end
     end
     if request.xhr?
-      @siguiente = Pagina.siguiente(session_params(:index) || {})
+      @siguiente = Pagina.next(session_params(:index) || {})
     end
     respond_with @pagina
   end
