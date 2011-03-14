@@ -12,7 +12,6 @@ feature "Previsualización", %q{
   
   scenario "guardando borrador de página nueva" do
     previsualiza_pagina
-    save_and_open_page
     page.should have_title text: "Vista previa"
   end
 end
