@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-require 'filter'
-
 class AjaxFormController < ApplicationController
   respond_to :js
 
