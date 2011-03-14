@@ -144,15 +144,18 @@ private
 
   def enlace(action, resource, opciones = {})
     if action.is_a?(Array)
-      action
+      opciones.merge! action.extract_options!
+      url = action[1] || action_url(action[0], resource)
+      action = action[0]
     else
       url = action_url(action, resource)
-      if url.is_a?(Array)
-        opciones.reverse_merge!(url.extract_options!)
-      end
-      opciones.reverse_merge!(class: action, title: link_title(action, resource))
-      [link_text(action, resource), url, opciones].flatten
     end
+
+    if url.is_a?(Array)
+      opciones.reverse_merge!(url.extract_options!)
+    end
+    opciones.reverse_merge!(class: action, title: link_title(action, resource))
+    [link_text(action, resource), url, opciones].flatten
   end
 
   def action_url(action, resource)
