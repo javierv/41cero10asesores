@@ -30,4 +30,13 @@ class Boletin < ActiveRecord::Base
   def clientes=(emails)
     self.destinatarios = emails.join(", ")
   end
+
+private
+  def destroy_dragonfly_attachments
+    unless Rails.env.test?
+      dragonfly_attachments.each do |attribute, attachment|
+        attachment.destroy!
+      end
+    end
+  end
 end
