@@ -35,7 +35,7 @@ feature "Borrar Páginas", %q{
     visit deleted_path
     page.should have_pages_list ["Primera", "Segunda"]
 
-    recupera_pagina(orden: 2)
+    recupera_pagina "Segunda"
     current_path.should == paginas_path
     page.should have_pages_list ["Segunda", "Tercera"]
 

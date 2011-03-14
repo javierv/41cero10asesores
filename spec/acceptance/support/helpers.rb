@@ -58,13 +58,8 @@ module HelperMethods
     click_on "Deshacer"
   end
 
-  def recupera_pagina(opciones = { orden: 1 })
-    recuperadores = page.all 'input[value="Recuperar"]'
-    recuperadores[opciones[:orden] -1].click
-  end
-
-  def recupera_primera_pagina
-    recupera_pagina
+  def recupera_pagina(titulo)
+    click_on "Recuperar #{titulo}"
   end
 
   def crea_clientes(nombres)
