@@ -12,7 +12,7 @@ class CajasController < ApplicationController
 
   def index
     @search = Caja.search params[:search]
-    @cajas = @search.relation.page(params[:page])
+    @cajas = @search.page(params[:page])
 
     respond_with @cajas
   end
