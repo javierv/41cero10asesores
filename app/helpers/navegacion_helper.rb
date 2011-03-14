@@ -30,7 +30,7 @@ module NavegacionHelper
 
   def acciones_para_pagina(pagina)
     acciones = [:edit,
-      enlace(:destroy, pagina, { method: :delete, remote: true, confirm: false }),
+      enlace(:destroy, pagina, { remote: true, confirm: false }),
       :historial]
 
     if pagina.has_draft?
@@ -85,9 +85,8 @@ private
     
     content_tag :li do
       if opciones[:form]
-        form_tag(enlace[1], method: opciones[:method]) do
-          submit_tag(enlace[0])
-        end
+        opciones.delete(:form)
+        button_to enlace[0], enlace[1], opciones
       else
         link_to enlace[0], enlace[1], opciones
       end
@@ -145,15 +144,18 @@ private
 
   def enlace(action, resource, opciones = {})
     if action.is_a?(Array)
-      action
+      opciones.merge! action.extract_options!
+      url = action[1] || action_url(action[0], resource)
+      action = action[0]
     else
       url = action_url(action, resource)
-      if url.is_a?(Array)
-        opciones.reverse_merge!(url.extract_options!)
-      end
-      opciones.reverse_merge!(class: action, title: link_title(action, resource))
-      [link_text(action, resource), url, opciones].flatten
     end
+
+    if url.is_a?(Array)
+      opciones.reverse_merge!(url.extract_options!)
+    end
+    opciones.reverse_merge!(class: action, title: link_title(action, resource))
+    [link_text(action, resource), url, opciones].flatten
   end
 
   def action_url(action, resource)

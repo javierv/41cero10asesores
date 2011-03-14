@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 module HelperMethods
+  include Warden::Test::Helpers  
+
   def login_with(usuario)
     visit login_page
     within("#login") do
@@ -12,7 +14,7 @@ module HelperMethods
 
   def login
     usuario = Factory :usuario, password: "password"
-    login_with(email: usuario.email, password: "password")
+    login_as usuario
   end
 
   def logout
@@ -50,26 +52,26 @@ module HelperMethods
     crea_pagina({ titulo: "Borrador", cuerpo: "Borrador"}, "Guardar borrador")
   end
 
-  def borra_pagina(opciones = { orden: 1 })
-    borradores = page.all "a", text: "Borrar"
-    borradores[opciones[:orden] -1].click
+  def publica_borrador
+    pagina = Factory :pagina, borrador: true
+    visit edit_pagina_path(pagina)
+    click_on "Publicar"
   end
 
-  def borra_primera_pagina
-    borra_pagina
+  def previsualiza_pagina
+    crea_pagina({ titulo: "Preview", cuerpo: "Preview"}, "Vista previa")
+  end
+
+  def borra_pagina(titulo)
+    click_on "Borrar #{titulo}"
   end
 
   def deshaz_borrado
     click_on "Deshacer"
   end
 
-  def recupera_pagina(opciones = { orden: 1 })
-    recuperadores = page.all 'input[value="Recuperar"]'
-    recuperadores[opciones[:orden] -1].click
-  end
-
-  def recupera_primera_pagina
-    recupera_pagina
+  def recupera_pagina(titulo)
+    click_on "Recuperar #{titulo}"
   end
 
   def crea_clientes(nombres)

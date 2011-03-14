@@ -17,4 +17,9 @@ feature "Borrador", %q{
     crea_borrador
     page.should have_success text: "Borrador guardado"
   end
+
+  scenario "publicando un borrador", js: true do
+    publica_borrador
+    page.should have_success text: "Borrador publicado"
+  end
 end
