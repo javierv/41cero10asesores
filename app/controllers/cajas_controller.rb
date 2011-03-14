@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class CajasController < ApplicationController
-  respond_to :js, only: [:index]
+  respond_to :js, only: [:index, :destroy]
   respond_to :html
 
   resource :caja
@@ -38,7 +38,10 @@ class CajasController < ApplicationController
   end
 
   def destroy
-    @caja.destroy
+    if @caja.destroy
+      @deshacer = deshacer_borrado_path(@caja)
+      @siguiente = next_caja if request.xhr?
+    end
     respond_with @caja
   end
 
