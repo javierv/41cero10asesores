@@ -49,9 +49,9 @@ class PaginasController < ApplicationController
       if @pagina.versions.last
         @deshacer = restore_vestal_versions_version_path(@pagina.versions.last)
       end
-    end
-    if request.xhr?
-      @siguiente = next_pagina
+      if request.xhr?
+        @siguiente = next_pagina
+      end
     end
     respond_with @pagina
   end
