@@ -50,13 +50,8 @@ module HelperMethods
     crea_pagina({ titulo: "Borrador", cuerpo: "Borrador"}, "Guardar borrador")
   end
 
-  def borra_pagina(opciones = { orden: 1 })
-    borradores = page.all "a", text: "Borrar"
-    borradores[opciones[:orden] -1].click
-  end
-
-  def borra_primera_pagina
-    borra_pagina
+  def borra_pagina(titulo)
+    click_on "Borrar #{titulo}"
   end
 
   def deshaz_borrado

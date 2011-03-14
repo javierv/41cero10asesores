@@ -17,7 +17,7 @@ feature "Borrar Páginas", %q{
     visit paginas_path
     page.should have_pages_list ["Primera", "Segunda", "Tercera"]
 
-    borra_primera_pagina
+    borra_pagina "Primera"
     page.should have_success(text: "se borró")
     page.should have_pages_list ["Segunda", "Tercera"]
 
@@ -28,9 +28,9 @@ feature "Borrar Páginas", %q{
 
   scenario "Recuperar una página borrada", js: true do
     visit paginas_path
-    borra_pagina(orden: 2)
+    borra_pagina "Segunda"
     page.should have_pages_list ["Primera", "Tercera"]
-    borra_primera_pagina
+    borra_pagina "Primera"
 
     visit deleted_path
     page.should have_pages_list ["Primera", "Segunda"]
