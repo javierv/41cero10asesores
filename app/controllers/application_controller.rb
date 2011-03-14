@@ -67,5 +67,9 @@ private
       instance_variable_set "@search", search
       instance_variable_set "@#{resource_name.to_s.pluralize}", records
     end
+
+    define_method :"next_#{resource_name}" do
+      resource_class.next(session_params(:index) || {})
+    end
   end
 end
