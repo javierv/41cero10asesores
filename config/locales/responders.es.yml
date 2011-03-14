@@ -10,3 +10,5 @@ es:
         alert: "%{resource_name} no se pudo borrar."
       email:
         notice: "%{resource_name} se envió correctamente."
+      restore:
+        notice: "%{resource_name} se recuperó correctamente."
