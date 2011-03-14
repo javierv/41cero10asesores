@@ -202,7 +202,7 @@ describe Pagina do
         Pagina.where(titulo: '', borrador: true).should be_true
       end
 
-      it { nueva.should_not have_draft }
+      it { nueva.draft.should == nueva }
 
       context 'al crear otro nuevo borrador' do
         before(:each) { Pagina.new.save_draft }
@@ -216,7 +216,7 @@ describe Pagina do
         let(:draft) { Pagina.new }
         before(:each) do
           draft.titulo = 'Cambiado'
-          draft.save_draft(borrador_id: nueva.id)
+          draft.save_draft(borrador_id: nueva.draft.id)
         end
 
         it 'reemplaza el borrador existente' do
@@ -231,6 +231,7 @@ describe Pagina do
       let(:draft) { Factory(:pagina, borrador: true, titulo: titulo) }
 
       it { draft.should_not have_draft }
+      it { draft.draft.should == draft }
 
       context 'al publicar' do
         before(:each) { draft.publish }
