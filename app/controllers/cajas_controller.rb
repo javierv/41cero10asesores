@@ -33,12 +33,8 @@ class CajasController < ApplicationController
   end
 
   def update
-    if @caja.save
-      opciones = {location: edit_caja_path(@caja)}
-    else
-      opciones = {}
-    end
-    respond_with @caja, opciones
+    @caja.save
+    respond_with @caja, location: edit_caja_path(@caja)
   end
 
   def destroy
