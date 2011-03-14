@@ -279,8 +279,8 @@ describe Pagina do
       Pagina.stubs(:default_per_page).returns(3)
     end
 
-    it { Pagina.siguiente(page: 1).should == paginas[2] }
-    it { Pagina.siguiente(page: 4).should be_nil }
+    it { Pagina.next(page: 1).should == paginas[2] }
+    it { Pagina.next(page: 4).should be_nil }
   end
 
   describe "search" do
