@@ -62,12 +62,12 @@ describe ClientesController do
       it do
         should redirect_to(clientes_path)
         should set_the_flash
-        Cliente.exists?(@cilente.id).should be_false
+        Cliente.exists?(@cliente.id).should be_false
       end
     end
 
     context "with an AJAX request" do
-      before(:each) { xhr :delete, :destroy, id: @cilente.to_param }
+      before(:each) { xhr :delete, :destroy, id: @cliente.to_param }
 
       it do
         should_not render_with_layout
