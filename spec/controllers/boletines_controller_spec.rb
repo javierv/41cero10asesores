@@ -56,13 +56,23 @@ describe BoletinesController do
   end
   
   describe "destroy" do
-  # TODO: comentado porque borra el archivo.
-    before(:each) { delete :destroy, id: @boletin.to_param }
+    context "with a normal request" do
+      before(:each) { delete :destroy, id: @boletin.to_param }
 
-    it do
-      should redirect_to(boletines_path)
-      should set_the_flash
-      Boletin.exists?(@boletin.id).should be_false
+      it do
+        should redirect_to(boletines_path)
+        should set_the_flash
+        Boletin.exists?(@boletin.id).should be_false
+      end
+    end
+
+    context "with an AJAX request" do
+      before(:each) { xhr :delete, :destroy, id: @boletin.to_param }
+
+      it do
+        should_not render_with_layout
+        should respond_with(:success)
+      end
     end
   end
 
