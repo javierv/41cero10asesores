@@ -1,5 +1,5 @@
 class BoletinesController < ApplicationController
-  respond_to :js, only: [:index, :destroy]
+  respond_to :js, only: [:destroy]
   respond_to :html
 
   resource :boletin
