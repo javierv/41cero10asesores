@@ -28,7 +28,7 @@ class VersionsController < ApplicationController
   end
 
   def borradas
-    @versiones = VestalVersions::Version.where(tag: 'deleted').order("created_at DESC")
+    @versiones = VestalVersions::Version.where(tag: 'deleted', versioned_type: "Pagina").order("created_at DESC")
   end
 
 private
