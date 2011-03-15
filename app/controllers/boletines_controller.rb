@@ -2,13 +2,18 @@ class BoletinesController < ApplicationController
   respond_to :js, only: [:destroy]
   respond_to :html
 
+  public_actions :show
   resource :boletin
   before_filter :new_boletin, only: [:new, :create]
-  before_filter :find_boletin, only: [:edit, :update, :destroy, :enviar, :email]
+  before_filter :find_boletin, only: [:show, :edit, :update, :destroy, :enviar, :email]
 
   def index
     @boletines = Boletin.all
     respond_with @boletines
+  end
+
+  def show
+    send_file @boletin.archivo.file, filename: @boletin.archivo.name, type: :pdf
   end
 
   def new

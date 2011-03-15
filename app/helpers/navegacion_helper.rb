@@ -62,7 +62,7 @@ module NavegacionHelper
   end
 
   def acciones_para_boletin(boletin)
-    acciones = [:edit, :destroy]
+    acciones = [:show, :edit, :destroy]
     acciones << :enviar unless boletin.enviado?
     actions_list acciones, boletin
   end

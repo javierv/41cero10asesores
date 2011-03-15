@@ -15,6 +15,18 @@ describe BoletinesController do
     end
   end
 
+  describe "show" do
+    before(:each) do
+      sign_out @usuario 
+      get :show, id: @boletin.to_param
+    end
+
+    it do
+      should respond_with :success
+      should respond_with_content_type :pdf
+    end
+  end
+
   describe "new" do
     before(:each) { get :new }
 
