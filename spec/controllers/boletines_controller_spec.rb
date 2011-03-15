@@ -9,15 +9,19 @@ describe BoletinesController do
   describe "index" do
     before(:each) { get :index }
 
-    it { should respond_with(:success) }
-    it { assigns(:boletines).should be_true }
+    it do
+      should respond_with(:success)
+      assigns(:boletines).should be_true
+    end
   end
 
   describe "new" do
     before(:each) { get :new }
 
-    it { should respond_with(:success) }
-    it { assigns(:boletin).should be_true }
+    it do
+      should respond_with(:success)
+      assigns(:boletin).should be_true
+    end
   end
 
   describe "edit" do
