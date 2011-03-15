@@ -1,4 +1,5 @@
 class BoletinesController < ApplicationController
+  respond_to :js, only: [:destroy]
   respond_to :html
 
   resource :boletin
@@ -27,7 +28,10 @@ class BoletinesController < ApplicationController
   end
 
   def destroy
-    @boletin.destroy
+    if @boletin.destroy
+      @deshacer = deshacer_borrado_path(@boletin)
+      @siguiente = next_boletin if request.xhr?
+    end
     respond_with @boletin
   end
 

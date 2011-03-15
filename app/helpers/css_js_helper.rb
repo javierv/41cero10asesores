@@ -13,6 +13,7 @@ module CssJsHelper
   def tabla
     paginador_ajax
     css 'tabla'
+    javascript "borrar_ajax"
   end
 
   def paginador_ajax

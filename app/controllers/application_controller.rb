@@ -61,5 +61,19 @@ private
     define_method :"find_#{resource_name}" do
       set_resource resource_class.find(params[:id])
     end
+
+    define_method :"paginate_#{resource_name.to_s.pluralize}" do
+      search, records = resource_class.search_paginate params
+      instance_variable_set "@search", search
+      instance_variable_set "@#{resource_name.to_s.pluralize}", records
+    end
+
+    define_method :"next_#{resource_name}" do
+      resource_class.next(session_params(:index) || {})
+    end
+  end
+
+  def deshacer_borrado_path(record)
+    restore_vestal_versions_version_path(record.versions.last)
   end
 end

@@ -1,10 +1,1 @@
-= total_resultados(cajas)
-
-= table_for cajas do |table|
-  = table.data do
-    = table.cell :titulo, heading: sort_link(search, :titulo)
-    = table.cell :cuerpo, heading: sort_link(search, :cuerpo) do |caja|
-      - truncate(caja.cuerpo, length: 50)
-    = actions_cell(table) { |caja| acciones_para_caja(caja) }
-
-= paginate cajas, window: 3
+= render "shared/listado", records: cajas, search: search

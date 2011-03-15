@@ -79,13 +79,24 @@ describe CajasController do
     end
   end
 
-  describe "destroy" do
-    before(:each) { delete :destroy, id: @caja.to_param }
+  describe "destroy action" do
+    context "with a normal request" do 
+      before(:each) { delete :destroy, id: @caja.to_param }
 
-    it do
-      should redirect_to(cajas_path)
-      should set_the_flash
-      Caja.exists?(@caja.id).should be_false
+      it do
+        should redirect_to(cajas_path)
+        should set_the_flash
+        Caja.exists?(@caja.id).should be_false
+      end
+    end
+
+    context "with an AJAX request" do
+      before(:each) { xhr :delete, :destroy, id: @caja.to_param }
+
+      it do
+        should_not render_with_layout
+        should respond_with(:success)
+      end
     end
   end
 end

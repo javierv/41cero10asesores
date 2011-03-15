@@ -22,7 +22,7 @@ feature "Borrar Páginas", %q{
     page.should have_pages_list ["Segunda", "Tercera"]
 
     deshaz_borrado
-    page.should have_success(text: "recuperada")
+    page.should have_success(text: "recuperó")
     page.should have_pages_list ["Primera", "Segunda", "Tercera"]
   end
 

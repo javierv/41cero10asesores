@@ -29,9 +29,7 @@ module NavegacionHelper
   end
 
   def acciones_para_pagina(pagina)
-    acciones = [:edit,
-      enlace(:destroy, pagina, { remote: true, confirm: false }),
-      :historial]
+    acciones = [:edit, :destroy, :historial]
 
     if pagina.has_draft?
       acciones.push(['Editar borrador', edit_pagina_path(pagina.draft), {class: 'draft'}])
@@ -165,7 +163,7 @@ private
       when :index
         [resource.class, {class: "index #{resource.class.to_s.tableize}"}]
       when :destroy
-        [resource, {method: :delete, confirm: confirmation_message}]
+        [resource, {method: :delete, remote: true}]
       else
         polymorphic_path(resource, action: action)
       end

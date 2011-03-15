@@ -10,6 +10,8 @@ class Boletin < ActiveRecord::Base
   validates_property :mime_type, of: :archivo, in: %w(application/pdf),
     message: "Tiene que ser un PDF"
 
+  versioned dependent: :tracking, initial_version: true
+
   def enviar(params = {})
     if enviado?
       errors.add(:enviado, "ya está enviado")
@@ -29,5 +31,12 @@ class Boletin < ActiveRecord::Base
 
   def clientes=(emails)
     self.destinatarios = emails.join(", ")
+  end
+
+private
+  def destroy_dragonfly_attachments
+    unless Rails.env.test? || versions.count
+      super
+    end
   end
 end

@@ -1,0 +1,5 @@
+= table_for records do |table|
+  = table.data do
+    = table.cell :nombre
+    = table.cell(:email)
+    = actions_cell(table) { |cliente| acciones_para_cliente(cliente) }
