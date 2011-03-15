@@ -36,9 +36,7 @@ class Boletin < ActiveRecord::Base
 private
   def destroy_dragonfly_attachments
     unless Rails.env.test? || versions.count
-      dragonfly_attachments.each do |attribute, attachment|
-        attachment.destroy!
-      end
+      super
     end
   end
 end
