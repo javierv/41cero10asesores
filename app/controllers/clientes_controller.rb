@@ -1,4 +1,5 @@
 class ClientesController < ApplicationController
+  respond_to :js, only: [:destroy]
   respond_to :html
 
   resource :cliente
@@ -27,7 +28,10 @@ class ClientesController < ApplicationController
   end
 
   def destroy
-    @cliente.destroy
+    if @cliente.destroy
+      @deshacer = deshacer_borrado_path(@cliente)
+      @siguiente = next_cliente if request.xhr?
+    end
     respond_with @cliente
   end
 end

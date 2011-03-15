@@ -56,12 +56,23 @@ describe ClientesController do
   end
 
   describe "destroy" do
-    before(:each) { delete :destroy, id: @cliente.to_param }
+    context "with a normal request" do
+      before(:each) { delete :destroy, id: @cliente.to_param }
 
-    it do
-      should redirect_to(clientes_path)
-      should set_the_flash
-      Cliente.exists?(@cliente.id).should be_false
+      it do
+        should redirect_to(clientes_path)
+        should set_the_flash
+        Cliente.exists?(@cilente.id).should be_false
+      end
+    end
+
+    context "with an AJAX request" do
+      before(:each) { xhr :delete, :destroy, id: @cilente.to_param }
+
+      it do
+        should_not render_with_layout
+        should respond_with(:success)
+      end
     end
   end
 end

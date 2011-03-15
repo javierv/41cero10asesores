@@ -1,10 +1,6 @@
 - title "Clientes"
 - listado
 
-= table_for @clientes do |table|
-  = table.data do
-    = table.cell :nombre
-    = table.cell(:email)
-    = actions_cell(table) { |cliente| acciones_para_cliente(cliente) }
+#listado= render "tabla", records: @clientes
 
 = actions_list [:new], Cliente
