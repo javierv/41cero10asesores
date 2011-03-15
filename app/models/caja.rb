@@ -9,6 +9,8 @@ class Caja < ActiveRecord::Base
   versioned dependent: :tracking, initial_version: true
 
   has_many :sidebars, dependent: :destroy
+  has_many :paginas, through: :sidebars
+
   scope :por_titulo, order("cajas.titulo")
 
   scope :al_final_las_de_pagina, -> pagina {
