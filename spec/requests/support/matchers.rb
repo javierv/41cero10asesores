@@ -64,4 +64,4 @@ module Capybara::Node::Matchers
       end
   end
 end
-RSpec.configuration.include MatcherMethods, type: :acceptance
+RSpec.configuration.include MatcherMethods, type: :request

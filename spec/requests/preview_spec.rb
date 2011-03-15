@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
+require File.expand_path(File.dirname(__FILE__) + '/request_helper')
 
 feature "Previsualización", %q{
   Para poder ver lo que estoy editando sin grabar

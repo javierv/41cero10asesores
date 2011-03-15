@@ -20,4 +20,4 @@ module NavigationHelpers
   end
 end
 
-RSpec.configuration.include NavigationHelpers, :type => :acceptance
+RSpec.configuration.include NavigationHelpers, type: :request

@@ -5,7 +5,6 @@ gem 'mysql2'
 
 group :development, :test do
   gem "rspec-rails"
-  gem "steak"
   gem 'jasmine'
 end
 
