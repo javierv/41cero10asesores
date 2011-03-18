@@ -8,7 +8,6 @@
 * Investigar si se borran los borradores de página nueva cuando se crea la página.
 * El enlace a "comparar con la actual" se comporta de forma un tanto extraña.
 * "Ordenar por..." como título de enlaces de cabecera de la tabla.
-* "Editar borrador" no se ve entero :S. Confirmado, cuando la ventana no es grande respecto al tamaño del texto. Por alguna razón, la tabla no se comprime en la celda de acciones.
 * Hacer que la paginación sea lista de enlaces, y que el primero tenga el parámetro.
 * Vista previa al editar cajas.
 * Formulario de login: ¿autofocus en el email?
