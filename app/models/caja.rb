@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class Caja < ActiveRecord::Base
-  attr_accessible :titulo, :cuerpo
+  attr_accessible :titulo, :cuerpo, :pagina_ids
   validates :titulo, presence: true
   validates :cuerpo, presence: true
   display_name :titulo
