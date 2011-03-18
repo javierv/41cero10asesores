@@ -85,7 +85,16 @@ Spork.each_run do
     end
   end
 
+  # No he conseguido usar define_method para quitar duplicación.
   def crea_paginas_con_titulos(titulos)
-    titulos.map {|titulo| Factory :pagina, titulo: titulo}
+    crea_con_titulos :pagina, titulos
+  end
+  
+  def crea_cajas_con_titulos(titulos)
+    crea_con_titulos :caja, titulos
+  end
+
+  def crea_con_titulos(modelo, titulos)
+    titulos.map {|titulo| Factory modelo, titulo: titulo}
   end
 end
