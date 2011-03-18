@@ -100,6 +100,17 @@ module HelperMethods
     attach_file "Archivo", Rails.root.join("spec", "images", archivo)
     click_on "Guardar"
   end
+
+  def rellena_caja(caja)
+    fill_in "Título", with: caja[:titulo]
+    fill_in "Cuerpo", with: caja[:cuerpo]
+  end
+
+  def asigna_pagina(titulo)
+    rellena_caja titulo: "Mi caja", cuerpo: "Me la robaron"
+    check titulo
+    click_on "Guardar"
+  end
 end
 
 RSpec.configuration.include HelperMethods, type: :request

@@ -16,10 +16,7 @@ feature "Borrador", %q{
   scenario "asignando a una página" do
     visit new_caja_path
     page.should_not have_selector "input[checked]" 
-    fill_in "Título", with: "Mi caja"
-    fill_in "Cuerpo", with: "Me la robaron"
-    check "Primera"
-    click_on "Guardar"
+    asigna_pagina "Primera"
     page.should have_selector "input[checked]" 
   end
 end
