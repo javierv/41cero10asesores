@@ -6,7 +6,8 @@
 
   = form.input :titulo
   = form.input :cuerpo
-  = form.association :paginas, as: :check_boxes, label: "Páginas en las que aparece"
+  = form.association :paginas, as: :check_boxes, label: "Páginas en las que aparece",
+    collection: Pagina.por_orden
 
   .actions
     = form.button :submit

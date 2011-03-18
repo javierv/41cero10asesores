@@ -42,6 +42,8 @@ class Pagina < ActiveRecord::Base
     includes(:navegacion).where("borrador = ? OR borrador IS NULL", false).
       order("navegaciones.orden, paginas.titulo")
 
+  scope :por_orden, order(:titulo)
+
   scope :paginate, -> page { where(published_id: nil).includes(:slug).page(page)}
 
   def titulo_cajas
