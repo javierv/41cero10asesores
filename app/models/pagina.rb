@@ -42,7 +42,7 @@ class Pagina < ActiveRecord::Base
     includes(:navegacion).where("borrador = ? OR borrador IS NULL", false).
       order("navegaciones.orden, paginas.titulo")
 
-  scope :paginate, lambda { |page| where(published_id: nil).includes(:slug).page(page)}
+  scope :paginate, -> page { where(published_id: nil).includes(:slug).page(page)}
 
   def titulo_cajas
     cajas.map(&:titulo).join(' ')
