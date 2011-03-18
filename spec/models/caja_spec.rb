@@ -10,6 +10,7 @@ describe Caja do
 
   it { should allow_mass_assignment_of(:pagina_ids) }
   it { should have_many(:sidebars).dependent(:destroy) }
+  it { should have_many(:paginas) }
 
   it 'ordenar las cajas teniendo en cuenta las de una página' do
     pagina = Factory(:pagina)
