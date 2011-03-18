@@ -10,7 +10,6 @@
 * "Ordenar por..." como título de enlaces de cabecera de la tabla.
 * Hacer que la paginación sea lista de enlaces, y que el primero tenga el parámetro.
 * Vista previa al editar cajas.
-* Formulario de login: ¿autofocus en el email?
 * Páginas de errores: 404, 500, ... ¡Incluyendo AJAX!
 * En diferencias: usar un clear u overflow: hidden, por si hay fotos o así.
 
