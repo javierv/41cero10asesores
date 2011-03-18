@@ -58,7 +58,7 @@ describe NavegacionHelper do
       end
 
       it "genera un formulario" do
-        lista.should have_selector 'li form', count: 1
+        lista.should have_selector 'li form[action="/posts"]', count: 1
       end
 
       it "cierra el formulario" do

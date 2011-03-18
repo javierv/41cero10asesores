@@ -1,6 +1,10 @@
 # encoding: utf-8
 
 module MatcherMethods
+  define_match :have_title do |page, options = {}|
+    page.has_selector? "title", options
+  end
+
   define_match :have_error do |actual, options = {}|
     actual.has_selector? "#flash_alert", options
   end
@@ -60,4 +64,4 @@ module Capybara::Node::Matchers
       end
   end
 end
-RSpec.configuration.include MatcherMethods, type: :acceptance
+RSpec.configuration.include MatcherMethods, type: :request

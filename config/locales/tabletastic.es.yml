@@ -7,3 +7,4 @@ es:
       destroy: "Borrar"
       index: "Ir al listado"
       new: "Nuev@{f:a|m:o} %{resource_name}"
+      restore: "Recuperar"

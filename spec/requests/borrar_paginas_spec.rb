@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
+require File.expand_path(File.dirname(__FILE__) + '/request_helper')
 
 feature "Borrar Páginas", %q{
   Para quitar información vieja
@@ -17,25 +17,25 @@ feature "Borrar Páginas", %q{
     visit paginas_path
     page.should have_pages_list ["Primera", "Segunda", "Tercera"]
 
-    borra_primera_pagina
+    borra_pagina "Primera"
     page.should have_success(text: "se borró")
     page.should have_pages_list ["Segunda", "Tercera"]
 
     deshaz_borrado
-    page.should have_success(text: "recuperada")
+    page.should have_success(text: "recuperó")
     page.should have_pages_list ["Primera", "Segunda", "Tercera"]
   end
 
   scenario "Recuperar una página borrada", js: true do
     visit paginas_path
-    borra_pagina(orden: 2)
+    borra_pagina "Segunda"
     page.should have_pages_list ["Primera", "Tercera"]
-    borra_primera_pagina
+    borra_pagina "Primera"
 
     visit deleted_path
     page.should have_pages_list ["Primera", "Segunda"]
 
-    recupera_pagina(orden: 2)
+    recupera_pagina "Segunda"
     current_path.should == paginas_path
     page.should have_pages_list ["Segunda", "Tercera"]
 

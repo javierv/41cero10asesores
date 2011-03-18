@@ -8,5 +8,4 @@
     = table.cell :created_at, heading: 'Borrada el' do |version|
       - l version.created_at, format: :long
     = actions_cell(table) do |version|
-      - actions_list [['Recuperar', restore_vestal_versions_version_path(version),
-        {form: true, method: :put}]], version
+      - actions_list [[:restore,  {form: true, method: :put}]], version

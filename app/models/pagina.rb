@@ -42,6 +42,11 @@ class Pagina < ActiveRecord::Base
     includes(:navegacion).where("borrador = ? OR borrador IS NULL", false).
       order("navegaciones.orden, paginas.titulo")
 
+  scope :por_orden, order(:titulo)
+  scope :publicadas, where(published_id: nil)
+
+  scope :paginate, -> page { publicadas.includes(:slug).page(page)}
+
   def titulo_cajas
     cajas.map(&:titulo).join(' ')
   end
@@ -96,17 +101,6 @@ class Pagina < ActiveRecord::Base
     end
   end
   
-  def self.search_paginate(params)
-    search = metasearch params[:search]
-    paginas = search.where(published_id: nil).page(params[:page])
-
-    [search, paginas]
-  end
-
-  def self.siguiente(params)
-    search, paginas = search_paginate(params)
-    paginas.last unless paginas.length != default_per_page
-  end
 
   def borrador_con_pagina?
     borrador? && !published.new_record? 

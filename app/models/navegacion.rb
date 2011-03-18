@@ -8,7 +8,7 @@ class Navegacion < ActiveRecord::Base
   display_name :pagina
 
   scope :por_orden, order(:orden)
-  scope :con_paginas, includes(:pagina).por_orden
+  scope :con_paginas, includes(:pagina => :slug).por_orden
 
   def self.establecer(ids)
     delete_all

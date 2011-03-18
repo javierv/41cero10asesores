@@ -1,0 +1,7 @@
+= table_for records do |table|
+  = table.data do
+    = table.cell :titulo
+    = table.cell(:archivo) { |boletin| boletin.archivo.name.force_encoding("utf-8") }
+    = table.cell :updated_at, heading: "Creado" do |boletin|
+      - l boletin.created_at, format: :short
+    = actions_cell(table) { |boletin| acciones_para_boletin(boletin) }

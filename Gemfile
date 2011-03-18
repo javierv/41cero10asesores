@@ -5,7 +5,6 @@ gem 'mysql2'
 
 group :development, :test do
   gem "rspec-rails"
-  gem "steak"
   gem 'jasmine'
 end
 
@@ -26,6 +25,8 @@ group :test do
   gem 'guard-spork'
   gem 'simplecov', :require => false
   gem "database_cleaner"
+  gem "launchy"
+  gem "libnotify"
 end
 
 group :production, :development do

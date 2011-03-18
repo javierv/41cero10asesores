@@ -8,6 +8,8 @@ class Cliente < ActiveRecord::Base
 
   display_name :nombre
 
+  versioned dependent: :tracking, initial_version: true
+
   def mailto
     "#{nombre} <#{email}>"
   end

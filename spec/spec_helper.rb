@@ -43,7 +43,7 @@ Spork.prefork do
 
     config.before(:each) do
       ActionMailer::Base.deliveries.clear
-      if example.metadata[:type] == :acceptance
+      if example.metadata[:js]
         DatabaseCleaner.strategy = :truncation
       else
         DatabaseCleaner.start
@@ -52,7 +52,7 @@ Spork.prefork do
 
     config.after(:each) do
       DatabaseCleaner.clean
-      if example.metadata[:type] == :acceptance
+      if example.metadata[:js]
         DatabaseCleaner.strategy = :transaction
       end
     end
@@ -85,7 +85,16 @@ Spork.each_run do
     end
   end
 
+  # No he conseguido usar define_method para quitar duplicación.
   def crea_paginas_con_titulos(titulos)
-    titulos.map {|titulo| Factory :pagina, titulo: titulo}
+    crea_con_titulos :pagina, titulos
+  end
+  
+  def crea_cajas_con_titulos(titulos)
+    crea_con_titulos :caja, titulos
+  end
+
+  def crea_con_titulos(modelo, titulos)
+    titulos.map {|titulo| Factory modelo, titulo: titulo}
   end
 end

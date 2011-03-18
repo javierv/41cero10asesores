@@ -10,6 +10,8 @@ end
 
 module VestalVersions
   class Version < ActiveRecord::Base
+    display_name :versioned_name
+
     def reify(version_number = nil)
       version_number ||= number
       restored = versioned.class.find(versioned.id)
@@ -31,6 +33,11 @@ module VestalVersions
 
     def current
       versioned.versions.order("number DESC").first
+    end
+
+  private
+    def versioned_name
+      (versioned || restore).display_name
     end
   end
 end

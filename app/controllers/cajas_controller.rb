@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class CajasController < ApplicationController
-  respond_to :js, only: [:index]
+  respond_to :js, only: [:index, :destroy]
   respond_to :html
 
   resource :caja
@@ -9,11 +9,9 @@ class CajasController < ApplicationController
   before_filter :find_caja, only: [:edit, :update, :destroy]
   before_filter :new_caja, only: [:new, :create]
   before_filter :update_caja, only: :update
+  before_filter :paginate_cajas, only: :index
 
   def index
-    @search = Caja.search params[:search]
-    @cajas = @search.relation.page(params[:page])
-
     respond_with @cajas
   end
 
@@ -35,16 +33,15 @@ class CajasController < ApplicationController
   end
 
   def update
-    if @caja.save
-      opciones = {location: edit_caja_path(@caja)}
-    else
-      opciones = {}
-    end
-    respond_with @caja, opciones
+    @caja.save
+    respond_with @caja, location: edit_caja_path(@caja)
   end
 
   def destroy
-    @caja.destroy
+    if @caja.destroy
+      @deshacer = deshacer_borrado_path(@caja)
+      @siguiente = next_caja if request.xhr?
+    end
     respond_with @caja
   end
 

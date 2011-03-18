@@ -15,9 +15,9 @@ class PaginasController < ApplicationController
   before_filter :preview, only: [:create, :update]
   before_filter :save_draft, only: [:create, :update]
   before_filter :publish_draft, only: [:create, :update]
+  before_filter :paginate_paginas, only: :index
 
   def index
-    @search, @paginas = Pagina.search_paginate(params)
     respond_with @paginas    
   end
 
@@ -46,15 +46,8 @@ class PaginasController < ApplicationController
 
   def destroy
     if @pagina.destroy
-      if @pagina.versions.last
-        session[:deshacer] = { 
-          method: :put,
-          url:    restore_vestal_versions_version_path(@pagina.versions.last)
-        }
-      end
-    end
-    if request.xhr?
-      @siguiente = Pagina.siguiente(session_params(:index) || {})
+      @deshacer = deshacer_borrado_path(@pagina)
+      @siguiente = next_pagina if request.xhr?
     end
     respond_with @pagina
   end
