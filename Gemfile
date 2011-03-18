@@ -26,6 +26,7 @@ group :test do
   gem 'simplecov', :require => false
   gem "database_cleaner"
   gem "launchy"
+  gem "libnotify"
 end
 
 group :production, :development do
