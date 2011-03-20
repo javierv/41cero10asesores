@@ -10,6 +10,6 @@ feature "Errores", %q{
 
   scenario "página no encontrada", js: true do
     visit "/no-encontrado"
-    page.should have_title "No encontrada"
+    page.should have_title text: "No encontrada"
   end
 end
