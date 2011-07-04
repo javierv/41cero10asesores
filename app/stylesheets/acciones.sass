@@ -3,24 +3,22 @@
 @import partials/button.sass
 
 ul.actions
-  margin-top: 1em
-  display: table
-  li
-    display: table-cell
-    padding-left: 0.5em
-    line-height: 0.9
+  margin-top:  1em
+  padding:     0
 
-    &:first-child
-      padding-left: 0
+  li
+    display:       inline-block
+    line-height:   2
 
     &:after
-      content: '|'
-      padding-left: 0.5em
+      content:       '|'
+      padding-left:  0.5em
+      margin-right:  0.5em
 
     &:last-child
-      padding-right: 0
       &:after
-        content: ''
+        content:       ''
+        margin-right:  0
   a
     padding-left: 1.1em
     background: no-repeat center left

@@ -66,3 +66,4 @@ gem "friendly_id"
 gem "responders"
 gem 'spectator-validates_email', :require => 'validates_email'
 gem "i18n-inflector-rails"
+gem "goalie"
