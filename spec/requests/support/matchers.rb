@@ -55,13 +55,16 @@ module MatcherMethods
   end
 end
 
-module Capybara::Node::Matchers
-  def has_results?(container, subcontainer, element, results)
-    has_selector?("#{container}") &&
-      has_selector?("#{subcontainer}", count: results.count) &&
-      results.inject(true) do |presentes, result|
+module Capybara
+  # HACK: ya no funciona extender Node::Matchers, así que extiendo la sesión :-(.
+  class Session 
+    def has_results?(container, subcontainer, element, results)
+      has_selector?("#{container}") &&
+        has_selector?("#{subcontainer}", count: results.count) &&
+        results.inject(true) do |presentes, result|
         presentes && has_selector?("#{element}", text: result)
-      end
+        end
+    end
   end
 end
 RSpec.configuration.include MatcherMethods, type: :request

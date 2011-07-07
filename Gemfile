@@ -20,7 +20,7 @@ group :test do
   gem "shoulda-matchers"
   gem "factory_girl_rails"
   gem "mocha"
-  gem "capybara", :git => "https://github.com/jnicklas/capybara.git"
+  gem "capybara"
   gem 'spork', '>= 0.9.0RC'
   gem 'guard-spork'
   gem 'simplecov', :require => false
