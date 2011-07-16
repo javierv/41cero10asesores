@@ -1,0 +1,65 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+require "bundler/setup"
+require 'rails'
+require 'daemons'
+require "xapian_db"
+require 'yaml'
+require 'rails/railtie' # execute xapian_db railtie
+
+# daemon script to manage the beanstalk worker daemon
+# @author Gernot Kogler
+module XapianDb
+  class BeanstalkWorker
+
+    def process_requests
+
+      Rails.logger.info "XapianDb beanstalk worker: initializing..."
+
+      url = XapianDb::Config.beanstalk_daemon_url
+      beanstalk = Beanstalk::Pool.new([url])
+      worker    = XapianDb::IndexWriters::BeanstalkWorker.new
+      Rails.logger.info "XapianDb beanstalk worker: ready"
+
+      loop do
+        job = beanstalk.reserve
+        begin
+          params = YAML::load job.body
+          Rails.logger.info "XapianDb beanstalk worker: executing task #{params}"
+          task = params.delete :task
+          worker.send task, params
+        rescue Exception => ex
+          Rails.logger.error "XapianDb beanstalk worker: could not process #{job.body} (#{ex})"
+        end
+        job.delete
+      end
+    end
+  end
+end
+
+# =========================================================================================
+# daemon setup
+# =========================================================================================
+dir = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+pids_dir = File.join(dir, 'tmp', 'pids')
+FileUtils.makedirs pids_dir unless File.exists?(pids_dir)
+
+daemon_options = {
+  :multiple   => false,
+  :dir_mode   => :normal,
+  :dir        => pids_dir,
+  :backtrace  => true
+}
+
+Daemons.run_proc('beanstalk_worker', daemon_options) do
+  if ARGV.include?('--')
+    ARGV.slice! 0..ARGV.index('--')
+  else
+    ARGV.clear
+  end
+
+  Dir.chdir dir
+  require File.expand_path(File.join(File.dirname(__FILE__), '..', 'config', 'environment'))
+  XapianDb::BeanstalkWorker.new.process_requests
+end
