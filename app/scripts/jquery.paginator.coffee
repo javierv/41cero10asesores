@@ -4,7 +4,7 @@
  Ver http://docs.jquery.com/License para la licencia.
  
  Opciones:
- paginador: string con el elemento que tiene los enlaces para paginar. Por defecto, '#paginador'.
+ paginador: string con el elemento que tiene los enlaces de paginación. Por defecto, '#paginador'.
  table:	string con el elemento que tiene los datos. Por defecto, 'table'.
  loading: texto a mostrar mientras carga el resultado.
 ###
