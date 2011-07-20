@@ -259,7 +259,7 @@ DEPENDENCIES
   meta_where
   mocha
   mongrel (>= 1.2.0.pre2)
-  mysql2
+  mysql2 (< 0.3)
   rack-cache
   rails (= 3.0.9)
   rails3-generators

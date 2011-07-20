@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.9'
-gem 'mysql2'
 
 group :development, :test do
   gem "rspec-rails"
@@ -30,7 +29,7 @@ group :test do
 end
 
 group :production, :development do
-  gem 'mysql2'
+  gem 'mysql2', '< 0.3'
 end
 
 group :production do
