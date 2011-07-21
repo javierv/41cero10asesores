@@ -15,20 +15,28 @@ $margen_extra: 0.5em
     margin-top:       0.5em
     @include color_enlaces()
 
-    &.prev
-      margin-right: $margen_normal + $margen_extra
-
-      &:before
-        content: "« "
-
-    &.next
-      margin-left: $margen_extra
-
-      &:after
-        content: " »"
-
     &:hover, &:focus
       background-color: #ff9
+
+  .first a
+    &:before
+      content: "« "
+
+  .prev a
+    margin-right: $margen_normal + $margen_extra
+
+    &:before
+      content: "< "
+
+  .next a
+    margin-left: $margen_extra
+
+    &:after
+      content: " >"
+
+  .last a
+    &:after
+      content: " » "
 
   a, .current, .skipped
     margin-right: $margen_normal

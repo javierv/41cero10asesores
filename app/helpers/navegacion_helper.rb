@@ -15,7 +15,9 @@ module NavegacionHelper
      ["Boletines", boletines_path, {controller: "boletines"}],
      ["Clientes", clientes_path, {controller: "clientes"}],
      ["Navegación", new_navegacion_path, {controller: "navegaciones"}],
-     ["Desconectar", destroy_usuario_session_path, {class: "desconectar"}]]
+     ["Desconectar", destroy_usuario_session_path,
+       {class: "desconectar", method: :delete}]
+    ]
   end
 
   def actions_list(actions, resource)

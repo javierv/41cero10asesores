@@ -4,3 +4,5 @@ es:
       previous: "Anterior"
       next: "Siguiente"
       truncate: "..."
+      first: "Primero"
+      last: "Último"
