@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
-gem 'mysql2'
+gem 'rails', '3.0.9'
 
 group :development, :test do
   gem "rspec-rails"
@@ -20,7 +19,7 @@ group :test do
   gem "shoulda-matchers"
   gem "factory_girl_rails"
   gem "mocha"
-  gem "capybara", :git => "https://github.com/jnicklas/capybara.git"
+  gem "capybara"
   gem 'spork', '>= 0.9.0RC'
   gem 'guard-spork'
   gem 'simplecov', :require => false
@@ -30,7 +29,7 @@ group :test do
 end
 
 group :production, :development do
-  gem 'mysql2'
+  gem 'mysql2', '< 0.3'
 end
 
 group :production do

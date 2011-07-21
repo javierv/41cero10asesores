@@ -12,6 +12,10 @@ class Boletin < ActiveRecord::Base
 
   versioned dependent: :tracking, initial_version: true
 
+  def filename
+    archivo.name.force_encoding("utf-8")
+  end
+
   def enviar(params = {})
     if enviado?
       errors.add(:enviado, "ya está enviado")
