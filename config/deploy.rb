@@ -1,5 +1,5 @@
 application = "calesur"
-repository = '/home/elretir/git/calesur'
+repository = '/home/elretirao/git/calesur'
 hosts = ['elretirao.net']
-path = '/home/elretir/apps'
-user = 'elretir'
+path = '/home/elretirao'
+user = 'elretirao'
