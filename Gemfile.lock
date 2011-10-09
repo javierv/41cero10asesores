@@ -7,6 +7,14 @@ GIT
       activerecord (>= 3.1)
       activesupport (>= 3.1)
 
+GIT
+  remote: git://github.com/norman/friendly_id
+  revision: a093ff8725c88359dc47e7dbcc0ada6d8f686395
+  branch: 3.x
+  specs:
+    friendly_id (3.3.0.1)
+      babosa (~> 0.3.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -87,8 +95,6 @@ GEM
     faker (0.9.5)
       i18n (~> 0.4)
     ffi (1.0.9)
-    friendly_id (3.3.0.1)
-      babosa (~> 0.3.0)
     fssm (0.2.7)
     goalie (0.0.4)
       actionpack (>= 3.0.0)
@@ -257,7 +263,7 @@ DEPENDENCIES
   dragonfly (~> 0.9.8)
   factory_girl_rails
   faker
-  friendly_id
+  friendly_id!
   goalie
   guard-spork
   haml
