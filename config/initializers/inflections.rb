@@ -27,5 +27,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular "sidebar",  "sidebars"
   inflect.irregular "version",  "versions"
   inflect.irregular "slug",     "slugs"
+  inflect.irregular "stylesheet",  "stylesheets"
+  inflect.irregular "javascript",  "javascripts"
 #   inflect.uncountable %w( fish sheep )
 end
