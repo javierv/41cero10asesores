@@ -1,5 +1,6 @@
-# Read about factories at http://github.com/thoughtbot/factory_girl
+# encoding: utf-8
 
 Factory.define :foto do |f|
-  f.imagen_uid "MyString"
+  f.imagen_uid "blank.png"
+  f.imagen_name "blank.png"
 end
