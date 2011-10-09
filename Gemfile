@@ -33,7 +33,7 @@ group :production, :development do
 end
 
 group :production do
-  gem 'mongrel', '>= 1.2.0.pre2'
+  gem 'thin'
 end
 
 # Use unicorn as the web server
