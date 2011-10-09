@@ -13,7 +13,7 @@ class Boletin < ActiveRecord::Base
   versioned dependent: :tracking, initial_version: true
 
   def filename
-    archivo.name.force_encoding("utf-8")
+    archivo_name.force_encoding("utf-8")
   end
 
   def enviar(params = {})
