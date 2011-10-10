@@ -14,4 +14,4 @@
           = check_box_tag "boletin[clientes][]", cliente, true, id: id
           = label_tag id, cliente
 
-    .actions= form.submit "Enviar"
+    = buttons { form.submit "Enviar" }

@@ -13,5 +13,5 @@
         = table.cell :user, heading: 'Modificado por'
         = actions_cell(table) { |version| acciones_para_version version }
 
-  .actions= submit_tag 'Comparar seleccionadas' 
+  = buttons { submit_tag 'Comparar seleccionadas' }
 = actions_list [:show, :edit, :index], @pagina

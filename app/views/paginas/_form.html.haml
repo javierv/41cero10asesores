@@ -21,7 +21,7 @@
   = form.association :cajas, collection: Caja.al_final_las_de_pagina(pagina),
     input_html: {class: 'cajas'}
 
-  .actions
+  = buttons do
     - if pagina.borrador?
       = form.submit 'Publicar', name: 'publish'
     - else
