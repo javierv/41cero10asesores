@@ -54,12 +54,5 @@ $borde_foco: 2px solid #d95
         border: $borde_foco
 
     input[type=submit]
-      @extend .button
-      padding-right: 0.7em
+      @include button(image-url("lupa.png"))
       padding-left: 1.7em      
-      +background-size(auto 90%)
-
-      &, &:focus, &:active
-        background-image: image-url("lupa.png")
-        background-repeat: no-repeat
-        background-position: 0.2em center
