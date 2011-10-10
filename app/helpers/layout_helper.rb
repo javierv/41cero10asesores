@@ -12,28 +12,12 @@ module LayoutHelper
     @show_title
   end
 
-  def stylesheet(*args)
-    asset :stylesheet, *args
-  end
-
-  alias_method :css, :stylesheet
-
   def javascript(*args)
     asset :javascript, *args
   end
 
-  def stylesheets
-    assets[:stylesheet]
-  end
-
   def javascripts
     assets[:javascript]
-  end
-
-  def include_stylesheets
-    include_assets :stylesheet do |stylesheet|
-      stylesheet_link_tag(stylesheet)
-    end
   end
 
   def include_javascripts

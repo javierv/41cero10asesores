@@ -2,23 +2,16 @@
 
 module CssJsHelper
   def listado
-    filtrador
     tabla
-  end
-
-  def filtrador
-    css 'filtrador'
   end
 
   def tabla
     paginador_ajax
-    css 'tabla'
     javascript "borrar_ajax"
   end
 
   def paginador_ajax
     javascript 'jquery.history', 'jquery.paginator', 'listado_ajax'
-    css "listado"
   end
 
   def live_preview_form
@@ -38,17 +31,14 @@ module CssJsHelper
 
   def js_form
     markitup
-    css 'form'
     javascript 'form'
   end
 
   def markitup
-    css 'markitup', '/javascripts/markitup/sets/textile/style.css'
     javascript 'markitup/jquery.markitup', 'markitup/sets/textile/set', 'ayuda_textile'
   end
 
   def bsmselect
-    css 'jquery.bsmselect'
     javascript 'jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.mouse',
       'jquery.ui.draggable', 'jquery.ui.droppable', 'jquery.ui.sortable',
       'jquery.bsmselect'
@@ -60,18 +50,15 @@ module CssJsHelper
   end
 
   def autocomplete
-    css 'jquery.ui.core', 'jquery.ui.theme', 'jquery.ui.autocomplete'
     javascript 'jquery.ui.core', 'jquery.ui.widget', 'jquery.ui.position',
       'jquery.ui.autocomplete', 'jquery.autocomplete_form'
   end
 
   def adjuntos_ajax
-    css 'jquery.ui.core', 'jquery.ui.theme', 'jquery.fileupload-ui'
     javascript 'jquery.ui.core', 'jquery.fileupload', 'jquery.fileupload-ui'
   end
 
   def google_maps
-    css "google_maps"
     javascript "http://maps.google.com/maps/api/js?sensor=false", "google_maps"
   end
 end

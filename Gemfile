@@ -2,6 +2,15 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
 
+group :assets do
+  gem "sass-rails", "~> 3.1.0"
+  gem "coffee-rails", "~> 3.1.0"
+  gem "uglifier"
+  gem "compass", '~> 0.12.alpha'
+end
+
+gem "jquery-rails"
+
 group :development, :test do
   gem "rspec-rails"
   gem 'jasmine'
@@ -11,7 +20,6 @@ group :development do
   gem 'hirb'
   gem 'faker'
   gem "rails3-generators"
-  gem "jquery-rails"
 end
 
 group :test do
@@ -42,8 +50,7 @@ end
 gem "devise"
 gem "kaminari"
 gem 'dragonfly', '~> 0.9.8'
-gem "haml"
-gem "compass"
+gem "haml", "~> 3.1.0"
 gem "acts-as-taggable-on"
 gem "validation_reflection"
 gem "RedCloth", "~> 4.2.8"
@@ -55,7 +62,6 @@ gem "tabletastic", "~> 0.2.3"
 gem "display_name"
 gem "xapian_db"
 gem "inploy"
-gem "barista"
 gem 'vestal_versions', git: 'git://github.com/javierv/vestal_versions', branch: "rails3.1"
 gem "therubyracer"
 gem "differ"
