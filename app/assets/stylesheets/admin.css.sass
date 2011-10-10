@@ -30,17 +30,17 @@
     border-bottom: 1px solid #666
 
     &.navegaciones
-      @include fondo_navegacion(url(/images/arrow.png))
+      @include fondo_navegacion(image-url("arrow.png"))
     &.paginas
-      @include fondo_navegacion(url(/images/paginas.png))
+      @include fondo_navegacion(image-url("paginas.png"))
     &.cajas
-      @include fondo_navegacion(url(/images/cajas.png))
+      @include fondo_navegacion(image-url("cajas.png"))
     &.clientes
-      @include fondo_navegacion(url(/images/clientes.png))
+      @include fondo_navegacion(image-url("clientes.png"))
     &.desconectar
-      @include fondo_navegacion(url(/images/desconectar.png))
+      @include fondo_navegacion(image-url("desconectar.png"))
     &.boletines
-      @include fondo_navegacion(url(/images/boletines.png))
+      @include fondo_navegacion(image-url("boletines.png"))
 
   li:first-child a
     +border-top-left-radius(0.5em)
