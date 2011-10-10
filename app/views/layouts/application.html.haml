@@ -7,7 +7,7 @@
     = stylesheet_link_tag 'application'
     = csrf_meta_tag
 
-  %body
+  %body{class: controller_name}
     %header#cabecera{role: 'banner'}= render 'general/cabecera'
     #navegacion
       %nav= render 'general/navegacion'
