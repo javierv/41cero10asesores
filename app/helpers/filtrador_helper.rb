@@ -10,7 +10,7 @@ module FiltradorHelper
 private
   def filter_form(search, &block)
     simple_form_for search, html: {class: 'filtrador'} do |form|
-      capture(form, &block) + form.submit('Filtrar')
+      capture(form, &block) + buttons { form.submit('Filtrar') }
     end
   end
 
