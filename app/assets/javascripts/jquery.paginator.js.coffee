@@ -9,9 +9,6 @@
  loading: texto a mostrar mientras carga el resultado.
 ###
 
-browser_supports_history = ->
-  history && history.pushState
-
 jQuery.fn.ajaxPaginator = (options) ->
   defaults =
     paginator: '.pagination'
@@ -28,18 +25,12 @@ jQuery.fn.ajaxPaginator = (options) ->
       $element.html(data)
       $element.removeCargando()
 
-    if !browser_supports_history()
-      $.history.init (hash) -> if hash != '' then load_page($element, hash, defaults)
-
     jQuery(defaults.paginator + ' a,' + defaults.table + ' th a', $element).live('click', ->
-      if browser_supports_history()
+      if history && history.pushState
         history.pushState(null, document.title, @href)
         load_page($element, @href, defaults)
         $(window).bind("popstate", -> load_page($element, location.href, defaults))
-      else
-        $.history.load(@href)
-      
-      return false
+        return false
     )
 
 load_page = (element, url, options) ->
