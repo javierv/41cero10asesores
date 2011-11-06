@@ -1,4 +1,4 @@
-$("a.destroy")
+$("a.destroy", $('#listado'))
   .live('ajax:beforeSend', ->
     $('#flash').remove()
     $('<div id="flash" />').prependTo('#content')
