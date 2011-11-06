@@ -21,7 +21,6 @@ jQuery.fn.ajaxPaginator = (options) ->
 
   this.each ->
     $element = jQuery(this)
-    defaults['dataType'] = 'text'
     defaults['success'] = (data) ->
       $element.html(data)
       $element.removeCargando()
