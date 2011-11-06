@@ -21,4 +21,4 @@ $(document).ready ->
       $('.upload_files').fadeOut('slow', -> $(this).empty().fadeIn())
       $('#galeria').append(xhr.responseText)
   )
-  $('.actions', formulario).hide()
+  $('.buttons', formulario).hide()
