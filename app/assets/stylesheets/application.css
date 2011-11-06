@@ -1,4 +1,7 @@
 /*
- *= require_self
+ *= require jquery.bsmselect
+ *= require jquery.ui.autocomplete
+ *= require jquery.ui.core
+ *= require jquery.ui.theme
  *= require_tree .
 */
