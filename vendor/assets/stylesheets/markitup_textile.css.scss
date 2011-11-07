@@ -1,0 +1,31 @@
+.markItUp .negrita a {
+	background-image: image-url("markitup/bold.png");
+}
+.markItUp .cursiva a {
+	background-image: image-url("markitup/italic.png");
+}
+.markItUp .tachado a {
+	background-image: image-url("markitup/stroke.png");
+}
+
+.markItUp .lista a {
+	background-image: image-url("markitup/list-bullet.png");
+}
+.markItUp .numerada a {
+	background-image: image-url("markitup/list-numeric.png");
+}
+
+.markItUp .imagen a {
+	background-image: image-url("markitup/picture.png"); 
+}
+.markItUp .enlace a {
+	background-image: image-url("markitup/link.png");
+}
+
+.markItUp .cita a	{
+	background-image: image-url("markitup/quotes.png");
+}
+
+.markItUp .seccion a	{
+	background-image: image-url("markitup/h2.png");
+}

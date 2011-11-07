@@ -84,7 +84,6 @@ describe PaginasController do
 
         it do
           should render_template(:preview)
-          should respond_with_content_type(:js)
           should_not render_with_layout 
         end
       end
@@ -155,7 +154,6 @@ describe PaginasController do
 
         it do
           should render_template(:preview)
-          should respond_with_content_type(:js)
           should_not render_with_layout
         end
       end
@@ -180,7 +178,6 @@ describe PaginasController do
 
         it do
           should render_template(:borrador)
-          should respond_with_content_type(:js)
           should_not render_with_layout
         end
       end

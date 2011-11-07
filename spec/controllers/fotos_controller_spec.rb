@@ -12,7 +12,7 @@ describe FotosController do
     context "with a valid model" do
       before(:each) do
         valida_siempre Foto
-        xhr :post, :create, foto: {imagen: File.new("spec/images/blank.png")}
+        xhr :post, :create, foto: foto.attributes
       end
 
       it do

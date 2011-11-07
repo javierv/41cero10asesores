@@ -1,7 +1,4 @@
-- js_form
-
 = simple_form_for caja do |form|
-
   = render 'shared/errors', record: caja
 
   = form.input :titulo
@@ -9,5 +6,4 @@
   = form.association :paginas, as: :check_boxes, label: "Páginas en las que aparece",
     collection: Pagina.publicadas.por_orden
 
-  .actions
-    = form.button :submit
+  = buttons { form.button :submit }

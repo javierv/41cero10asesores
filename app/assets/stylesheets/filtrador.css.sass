@@ -1,0 +1,27 @@
+@import "partials/button"
+@import "partials/input"
+
+#filtrador
+  overflow: hidden
+
+  form.search
+    overflow: hidden
+    float: left
+    margin-right: 0.5em
+
+    div
+      float: left
+      margin-right: 0.5em
+
+      label
+        display: block
+        margin-bottom: 0.1em
+
+      input:not([type=submit])
+        @extend .control
+        width: 15em
+
+    input[type=submit]
+      @include button()
+      width: auto
+      margin-top: 0.7em

@@ -1,10 +1,3 @@
-- live_preview_form
-- autosave_form
-- bsmselect_con_cajas
-- javascript 'galeria_markitup'
-- javascript "quitar_imagen"
-- google_maps
-
 #actualizado
   - unless pagina.new_record?
     Página guardada el #{time_tag pagina.updated_at}
@@ -21,7 +14,7 @@
   = form.association :cajas, collection: Caja.al_final_las_de_pagina(pagina),
     input_html: {class: 'cajas'}
 
-  .actions
+  = buttons do
     - if pagina.borrador?
       = form.submit 'Publicar', name: 'publish'
     - else

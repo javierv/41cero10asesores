@@ -1,4 +1,4 @@
 = simple_form_for cliente do |form|
   = form.input :nombre
   = form.input :email
-  .actions= form.submit
+  = buttons { form.button :submit }

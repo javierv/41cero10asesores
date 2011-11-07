@@ -1,0 +1,9 @@
+@import compass/css3
+
+@mixin background-gradient($gradient, $image, $padding: 0.5em)
+  @if $image != ""
+    +background($image no-repeat $padding center, $gradient)
+    +background-size(auto 90%, 100%)
+  @else
+    +background($gradient)
+

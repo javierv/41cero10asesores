@@ -1,0 +1,20 @@
+@import compass/css3
+@import "partials/gradient"
+
+@mixin button($image:"", $padding: 0.2em)
+  +background-gradient(linear-gradient(#f0f0f0, #d0d0d0), $image, $padding)
+  background-color: #ebebeb
+  padding: 0.1em 0.3em
+  +border-radius(0.2em)
+  border: 2px outset #999
+  cursor: pointer
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7)
+  +box-shadow(rgba(0, 0, 0, 0.3), 1px, 1px, 1px)
+
+  &:focus, &:active
+    border: 2px solid #d95
+    +background-gradient(linear-gradient(#ffe, #fea), $image, $padding)
+    background-color: #ffd
+
+  &:active
+    border-style: inset
