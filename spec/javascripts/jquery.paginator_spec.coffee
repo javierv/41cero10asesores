@@ -1,5 +1,4 @@
-require 'jquery.history'
-require 'jquery.paginator'
+# 'jquery.history', 'jquery.paginator'
 
 describe "Paginator", ->
   beforeEach ->

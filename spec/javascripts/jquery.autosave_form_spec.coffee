@@ -1,5 +1,4 @@
-require 'jquery.form'
-require 'jquery.autosave_form'
+# 'jquery.form', 'jquery.autosave_form'
 
 describe 'Autosave form', ->
   beforeEach ->

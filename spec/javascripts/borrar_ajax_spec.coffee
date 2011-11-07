@@ -1,4 +1,4 @@
-require 'borrar_ajax'
+# 'borrar_ajax'
 
 describe 'Destroy with AJAX', ->
   beforeEach ->

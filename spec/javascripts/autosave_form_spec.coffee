@@ -1,7 +1,5 @@
-require 'jquery.form'
-require 'jquery.autosave_form'
-require 'jquery.effects.core'
-require 'jquery.effects.highlight'
+# 'jquery.form', 'jquery.autosave_form', 'jquery.effects.core',
+# 'jquery.effects.highlight', 'autosave_form'
 
 describe 'Formulario de guardado', ->
   beforeEach ->
@@ -9,7 +7,6 @@ describe 'Formulario de guardado', ->
       arguments[0].call() 
     )
     loadFixtures 'autosave_form.html'
-    load 'autosave_form'
 
   it "makes an AJAX request to the form action", ->
     expect(ajaxRequests).toHaveLength 1
