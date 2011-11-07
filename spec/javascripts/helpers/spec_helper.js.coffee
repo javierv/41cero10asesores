@@ -1,4 +1,4 @@
-success = (text) ->
+window.success = (text) ->
   status: 200,
   responseText: text,
   responseHeaders: {"Content-type": "text/javascript"}
