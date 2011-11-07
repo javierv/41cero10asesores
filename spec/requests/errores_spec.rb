@@ -9,7 +9,7 @@ feature "Errores", %q{
 } do
 
   # TODO: Hacer que "external" considere la petición como remota.
-  scenario "página no encontrada", js: true, external: true do
+  pending "página no encontrada", js: true, external: true do
     visit "/no-encontrado"
     # page.should have_title text: "Página no encontrada"
   end
