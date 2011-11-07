@@ -1,6 +1,7 @@
 describe 'adjuntos AJAX', ->
   beforeEach ->
     loadFixtures "adjuntos"
+    $('form').adjuntaImagen()
 
   it 'esconde las acciones', ->
     expect($('input[type="submit"]')).not.toBeVisible()
