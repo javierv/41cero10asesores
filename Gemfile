@@ -14,7 +14,7 @@ gem "jquery-rails"
 group :development, :test do
   gem "rspec-rails"
   gem 'jasmine'
-  gem "evergreen"
+  gem "jasminerice"
   gem "pry"
 end
 
