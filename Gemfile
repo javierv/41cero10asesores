@@ -50,7 +50,7 @@ end
 
 gem "devise"
 gem "kaminari"
-gem 'dragonfly', '~> 0.9.8'
+gem 'dragonfly', '~> 0.9.8' # Pozor! Changed a line! Pull request?
 gem "haml", "~> 3.1.0"
 gem "acts-as-taggable-on"
 gem "validation_reflection"
