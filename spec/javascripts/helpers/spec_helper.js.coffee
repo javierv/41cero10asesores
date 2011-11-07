@@ -9,6 +9,10 @@ beforeEach ->
       this.actual.length == length
   })
 
+  preloadFixtures("adjuntos", "autosave_form", "ayuda_textile",
+    "borrar_ajax", "galeria_markitup", "autocomplete_form",
+    "live_form", "paginator", "quitar_imagen", "seleccion_diferencias")
+
   spyOn(jQuery.ajaxSettings, 'xhr').andCallFake ->
     newXhr = new FakeXMLHttpRequest()
     ajaxRequests.push(newXhr)
