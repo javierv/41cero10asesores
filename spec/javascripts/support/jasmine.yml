@@ -11,10 +11,6 @@
 #   - dist/**/*.js
 #
 src_files:
-  - public/javascripts/jquery.js
-  - public/javascripts/rails.js
-  - public/javascripts/application.js
-  - public/javascripts/cargando.js
   - spec/javascripts/lib/mock-ajax.js
   - spec/javascripts/lib/jasmine-jquery.js
 
@@ -44,7 +40,6 @@ stylesheets:
 #
 helpers:
   - helpers/**/*.js
-  - compiled/helpers/**/*.js
 
 # spec_files
 #
@@ -56,6 +51,8 @@ helpers:
 # spec_files:
 #   - **/*[sS]pec.js
 #
+spec_files:
+  - '**/*[sS]pec.js'
 
 # src_dir
 #
