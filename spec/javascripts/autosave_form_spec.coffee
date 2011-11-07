@@ -6,7 +6,7 @@ describe 'Formulario de guardado', ->
     spyOn(window, 'setInterval').andCallFake( ->
       arguments[0].call() 
     )
-    loadFixtures 'autosave_form.html'
+    preloadFixtures 'autosave_form.html'
 
   it "makes an AJAX request to the form action", ->
     expect(ajaxRequests).toHaveLength 1

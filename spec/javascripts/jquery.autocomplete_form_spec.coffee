@@ -3,7 +3,7 @@
 
 describe 'Autocomplete form', ->
   beforeEach ->
-    loadFixtures 'jquery.autocomplete_form.html'
+    preloadFixtures 'jquery.autocomplete_form.html'
     $("form").autocompleteForm()
 
   it "calls autocomplete on the input", ->

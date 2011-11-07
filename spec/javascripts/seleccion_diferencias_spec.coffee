@@ -2,7 +2,7 @@
 
 describe 'Selección diferencias', ->
   beforeEach ->
-    loadFixtures 'seleccion_diferencias.html'
+    preloadFixtures 'seleccion_diferencias.html'
 
   it 'selecciona el primer botón de versión a mirar', ->
     expect($('#version_id_36')).toBeChecked()

@@ -2,7 +2,7 @@
 
 describe 'Live form', ->
   beforeEach ->
-    loadFixtures 'live_form.html'
+    preloadFixtures 'live_form.html'
 
   it 'removes the preview button', ->
     expect($('input[name=preview]')).not.toExist()

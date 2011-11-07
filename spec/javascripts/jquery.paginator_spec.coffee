@@ -2,7 +2,7 @@
 
 describe "Paginator", ->
   beforeEach ->
-    loadFixtures 'paginator.html'
+    preloadFixtures 'paginator.html'
     $('#list').ajaxPaginator()
 
   describe 'clicking a link', ->

@@ -2,6 +2,10 @@ var readFixtures = function() {
   return jasmine.getFixtures().proxyCallTo_('read', arguments);
 };
 
+var preloadFixtures = function() {
+  jasmine.getFixtures().proxyCallTo_('preload', arguments);
+};
+
 var loadFixtures = function() {
   jasmine.getFixtures().proxyCallTo_('load', arguments);
 };
@@ -28,41 +32,13 @@ jasmine.Fixtures = function() {
   this.fixturesPath = 'spec/javascripts/fixtures';
 };
 
-jasmine.Fixtures.XHR= window.XMLHttpRequest || (function(){
-  var progIdCandidates= ['Msxml2.XMLHTTP.4.0', 'Microsoft.XMLHTTP', 'Msxml2.XMLHTTP'];
-  var len= progIdCandidates.length;
-
-  var progId;
-  var xhr;
-  
-  function ConstructXhr()
-  {
-    return new window.ActiveXObject(ConstructXhr.progId);
-  }
-  
-  while (len--)
-  {
-    try
-    {
-      progId= progIdCandidates[len];
-      xhr= new window.ActiveXObject(progId);
-      //  ActiveXObject constructor throws an exception
-      //  if the component isn't available.
-      xhr= null;
-      ConstructXhr.progId= progId;
-      return ConstructXhr;
-    }
-    catch (e)
-    {
-      //  Ignore the error
-    }
-  }
-  throw new Error('No XMLHttpRequest implementation found');
-})();
-
 jasmine.Fixtures.prototype.set = function(html) {
   this.cleanUp();
   this.createContainer_(html);
+};
+
+jasmine.Fixtures.prototype.preload = function() {
+  this.read.apply(this, arguments);
 };
 
 jasmine.Fixtures.prototype.load = function() {
@@ -86,18 +62,23 @@ jasmine.Fixtures.prototype.clearCache = function() {
 };
 
 jasmine.Fixtures.prototype.cleanUp = function() {
-  $('#' + this.containerId).remove();
+  jQuery('#' + this.containerId).remove();
 };
 
 jasmine.Fixtures.prototype.sandbox = function(attributes) {
   var attributesToSet = attributes || {};
-  return $('<div id="sandbox" />').attr(attributesToSet);
+  return jQuery('<div id="sandbox" />').attr(attributesToSet);
 };
 
 jasmine.Fixtures.prototype.createContainer_ = function(html) {
-  var container = $('<div id="' + this.containerId + '" />');
-  container.html(html);
-  $('body').append(container);
+  var container;
+  if(html instanceof jQuery) {
+    container = jQuery('<div id="' + this.containerId + '" />');
+    container.html(html);
+  } else {
+    container = '<div id="' + this.containerId + '">' + html + '</div>'
+  }
+  jQuery('body').append(container);
 };
 
 jasmine.Fixtures.prototype.getFixtureHtml_ = function(url) {  
@@ -110,16 +91,18 @@ jasmine.Fixtures.prototype.getFixtureHtml_ = function(url) {
 jasmine.Fixtures.prototype.loadFixtureIntoCache_ = function(relativeUrl) {
   var self = this;
   var url = this.fixturesPath.match('/$') ? this.fixturesPath + relativeUrl : this.fixturesPath + '/' + relativeUrl;
-
-  var xhr= new jasmine.Fixtures.XHR();
-  xhr.open('GET', url, false);
-  xhr.send(null);
-  var status= xhr.status;
-  var succeeded= 0===status || (status>=200 && status<300) || 304==status;
-    
-  if (!succeeded)
-    throw new Error('Failed to load resource: status=' + status + ' url=' + url);
-  this.fixturesCache_[relativeUrl]= xhr.responseText;
+  jQuery.ajax({
+    async: false, // must be synchronous to guarantee that no tests are run before fixture is loaded
+    cache: false,
+    dataType: 'html',
+    url: url,
+    success: function(data) {
+      self.fixturesCache_[relativeUrl] = data;
+    },
+    error: function(jqXHR, status, errorThrown) {
+        throw Error('Fixture could not be loaded: ' + url + ' (status: ' + status + ', message: ' + errorThrown.message + ')');
+    }
+  });
 };
 
 jasmine.Fixtures.prototype.proxyCallTo_ = function(methodName, passedArguments) {
@@ -130,11 +113,11 @@ jasmine.Fixtures.prototype.proxyCallTo_ = function(methodName, passedArguments) 
 jasmine.JQuery = function() {};
 
 jasmine.JQuery.browserTagCaseIndependentHtml = function(html) {
-  return $('<div/>').append(html).html();
+  return jQuery('<div/>').append(html).html();
 };
 
 jasmine.JQuery.elementToString = function(element) {
-  return $('<div />').append(element.clone()).html();
+  return jQuery('<div />').append(element.clone()).html();
 };
 
 jasmine.JQuery.matchersClass = {};
@@ -150,7 +133,7 @@ jasmine.JQuery.matchersClass = {};
       var handler = function(e) {
         data.spiedEvents[[selector, eventName]] = e;
       };
-      $(selector).bind(eventName, handler);
+      jQuery(selector).bind(eventName, handler);
       data.handlers.push(handler);
     },
 
@@ -231,9 +214,27 @@ jasmine.JQuery.matchersClass = {};
       return this.actual.find(selector).size() > 0;
     },
 
-		toBeDisabled: function(selector){
-			return this.actual.attr("disabled") == true;
-		}
+    toBeDisabled: function(selector){
+      return this.actual.is(':disabled');
+    },
+
+    // tests the existence of a specific event binding
+    toHandle: function(eventName) {
+      var events = this.actual.data("events");
+      return events && events[eventName].length > 0;
+    },
+    
+    // tests the existence of a specific event binding + handler
+    toHandleWith: function(eventName, eventHandler) {
+      var stack = this.actual.data("events")[eventName];
+      var i;
+      for (i = 0; i < stack.length; i++) {
+        if (stack[i].handler == eventHandler) {
+          return true;
+        }
+      }
+      return false;
+    }
   };
 
   var hasProperty = function(actualValue, expectedValue) {

@@ -2,7 +2,7 @@
 
 describe 'adjuntos AJAX', ->
   beforeEach ->
-    loadFixtures 'adjuntos.html'
+    preloadFixtures 'adjuntos.html'
 
   it 'esconde las acciones', ->
     expect($('input[type="submit"]')).not.toBeVisible()
