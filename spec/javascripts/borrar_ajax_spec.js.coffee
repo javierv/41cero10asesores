@@ -1,8 +1,6 @@
-# 'borrar_ajax'
-
 describe 'Destroy with AJAX', ->
   beforeEach ->
-    preloadFixtures 'borrar_ajax.html'
+    loadFixtures "borrar_ajax"
 
   describe 'clicking a link', ->
     beforeEach ->

@@ -5,7 +5,7 @@ success = (text) ->
 
 beforeEach ->
   this.addMatchers({
-    toHaveLength: (length) -> 
+    toHaveLength: (length) ->
       this.actual.length == length
   })
 

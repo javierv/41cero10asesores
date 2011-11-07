@@ -1,12 +1,9 @@
-# 'jquery.form', 'jquery.autosave_form', 'jquery.effects.core',
-# 'jquery.effects.highlight', 'autosave_form'
-
 describe 'Formulario de guardado', ->
   beforeEach ->
     spyOn(window, 'setInterval').andCallFake( ->
-      arguments[0].call() 
+      arguments[0].call()
     )
-    preloadFixtures 'autosave_form.html'
+    loadFixtures "autosave_form"
 
   it "makes an AJAX request to the form action", ->
     expect(ajaxRequests).toHaveLength 1

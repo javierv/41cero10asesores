@@ -1,8 +1,6 @@
-# "jquery.form", "galeria_markitup", "quitar_imagen"
-
 describe "markitup gallery", ->
   beforeEach ->
-    preloadFixtures 'galeria_markitup.html'
+    loadFixtures "galeria_markitup"
 
   it "hides the insert button", ->
     expect($(".actions")).not.toBeVisible()

@@ -1,8 +1,6 @@
-# 'jquery.form', 'typewatch', 'live_form'
-
 describe 'Live form', ->
   beforeEach ->
-    preloadFixtures 'live_form.html'
+    loadFixtures "live_form"
 
   it 'removes the preview button', ->
     expect($('input[name=preview]')).not.toExist()

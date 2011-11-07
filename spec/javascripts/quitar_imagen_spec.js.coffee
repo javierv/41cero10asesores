@@ -1,8 +1,6 @@
-# "quitar_imagen"
-
 describe "Quitar imagen", ->
   beforeEach ->
-    preloadFixtures "quitar_imagen.html"
+    loadFixtures "quitar_imagen"
 
   describe "al quitar la imagen", ->
     beforeEach ->

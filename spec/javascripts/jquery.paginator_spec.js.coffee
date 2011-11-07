@@ -1,8 +1,6 @@
-# 'jquery.history', 'jquery.paginator'
-
 describe "Paginator", ->
   beforeEach ->
-    preloadFixtures 'paginator.html'
+    loadFixtures "paginator"
     $('#list').ajaxPaginator()
 
   describe 'clicking a link', ->
@@ -34,4 +32,4 @@ describe "Paginator", ->
       if browser_supports_history()
         history.replaceState null, null, '/'
       else
-        location.hash = null 
+        location.hash = null
