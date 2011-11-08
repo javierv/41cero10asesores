@@ -1,6 +1,7 @@
 describe 'Live form', ->
   beforeEach ->
     loadFixtures "live_form"
+    $('form.pagina').liveForm()
 
   it 'removes the preview button', ->
     expect($('input[name=preview]')).not.toExist()
