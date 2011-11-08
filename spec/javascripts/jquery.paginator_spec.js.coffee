@@ -23,13 +23,9 @@ describe "Paginator", ->
       expect($('#list')).toHaveHtml request.responseText
 
     it "updates the browser's address bar", ->
-      if browser_supports_history()
+      if history && history.pushState
         expect(location.href).toEqual link[0].href
-      else
-        expect(location.hash).toEqual link[0].href
 
     afterEach ->
-      if browser_supports_history()
+      if history && history.pushState
         history.replaceState null, null, '/'
-      else
-        location.hash = null
