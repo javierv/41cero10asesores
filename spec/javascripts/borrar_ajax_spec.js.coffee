@@ -1,6 +1,7 @@
 describe 'Destroy with AJAX', ->
   beforeEach ->
     loadFixtures "borrar_ajax"
+    $('#listado').borrarAjax()
 
   describe 'clicking a link', ->
     beforeEach ->
@@ -34,5 +35,3 @@ describe 'Destroy with AJAX', ->
 
       it 'updates the flash', ->
         expect($('#flash')).toHaveHtml '<div class="flash">New flash</div>'
-
-     
