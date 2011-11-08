@@ -1,6 +1,7 @@
 describe "markitup gallery", ->
   beforeEach ->
     loadFixtures "galeria_markitup"
+    $('#galeria').galeriaMarkitup()
 
   it "hides the insert button", ->
     expect($(".actions")).not.toBeVisible()
