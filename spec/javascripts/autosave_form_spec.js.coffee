@@ -4,6 +4,7 @@ describe 'Formulario de guardado', ->
       arguments[0].call()
     )
     loadFixtures "autosave_form"
+    $('form').autosaveHighlightForm()
 
   it "makes an AJAX request to the form action", ->
     expect(ajaxRequests).toHaveLength 1
