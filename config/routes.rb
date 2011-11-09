@@ -5,7 +5,7 @@ Calesur::Application.routes.draw do
   end
 
   resources :clientes
-
+  resources :translations, only: [:index, :create]
   resources :navegaciones, only: [:new, :create]
 
   resources :boletines do

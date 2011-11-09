@@ -1,0 +1,7 @@
+- title "Traducciones"
+- css "form"
+
+= simple_form_for @translations, url: translations_path do |form|
+  - @translations.public_keys.each do |key, value|
+    = form.input key, input_html: {value: value}
+  .actions= submit_tag "Guardar"
