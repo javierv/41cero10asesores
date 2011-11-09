@@ -73,4 +73,5 @@ gem "responders"
 gem 'spectator-validates_email', "~> 0.0.8", require: 'validates_email'
 gem "i18n-inflector-rails"
 gem "goalie"
+gem "yajl-ruby"
 gem "redis"
