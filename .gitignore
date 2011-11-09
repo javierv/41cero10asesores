@@ -1,7 +1,10 @@
 .bundle
 db/*.sqlite3
 db/xapian*/*
+db/redis/*.rdb
 log/*.log
+log/redis/*.pid
+log/redis/*.log
 tmp/**/*
 tmp/*
 nbproject/*
