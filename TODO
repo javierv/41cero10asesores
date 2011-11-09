@@ -2,7 +2,6 @@
 * Portada.
 * Enlazar a los boletines desde la página.
 * Estilos IE8.
-* No va la imagen de la lupa por conflicto con el gradiente del .button
 
 * Conservar atributos falla al publicar borrador si no valida.
 * Al recuperar una página, no se recupera qué cajas tenía asociadas.
