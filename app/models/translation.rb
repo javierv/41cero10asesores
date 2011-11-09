@@ -12,7 +12,8 @@ class Translation < Redis
   end
 
   def store_public_translations(translations, options = {})
-    I18n.backend.store_translations I18n.locale, {public: translations}, options
+    I18n.backend.store_translations I18n.locale, {public_prefix => translations},
+      options
   end
 
   def method_missing(method, *args, &block)
