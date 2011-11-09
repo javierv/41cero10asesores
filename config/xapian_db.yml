@@ -1,8 +1,8 @@
 development:
   database: db/xapian_db/development
-  adapter:  active_record
+  writer:       resque
+  resque_queue: xapian_db_development
   language: es
-  writer:   direct
 
 test:
   database: db/xapian_db/test
@@ -12,6 +12,6 @@ test:
 
 production:
   database: db/xapian_db/production
-  adapter:  active_record
+  writer:       resque
+  resque_queue: xapian_db_production
   language: es
-  writer:   direct
