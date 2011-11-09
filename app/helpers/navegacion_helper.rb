@@ -15,6 +15,7 @@ module NavegacionHelper
      ["Boletines", boletines_path, {controller: "boletines"}],
      ["Clientes", clientes_path, {controller: "clientes"}],
      ["Navegación", new_navegacion_path, {controller: "navegaciones"}],
+     ["Textos", translations_path, {controller: "translations"}],
      ["Desconectar", destroy_usuario_session_path,
        {class: "desconectar", method: :delete}]
     ]
