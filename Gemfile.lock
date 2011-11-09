@@ -273,7 +273,7 @@ GEM
       activesupport (>= 2.3.4)
       chronic (~> 0.6.3)
     xapian-ruby (1.2.7.1)
-    xapian_db (1.1.4)
+    xapian_db (1.2.1)
       daemons (>= 1.0.10)
       xapian-ruby (>= 1.2.6)
     xpath (0.1.4)
@@ -334,5 +334,5 @@ DEPENDENCIES
   validation_reflection
   vestal_versions!
   whenever
-  xapian_db (~> 1.1.4)
+  xapian_db (~> 1.2.0)
   yajl-ruby
