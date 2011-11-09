@@ -41,9 +41,6 @@ end
 group :production, :development do
   gem 'mysql2', "~> 0.3.0"
   gem "resque"
-end
-
-group :production do
   gem 'thin'
 end
 
