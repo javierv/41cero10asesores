@@ -22,7 +22,7 @@ jQuery.fn.liveForm = ->
               script.setAttribute "src", source.replace("script src=", "").replace(/"/g, "")
               document.getElementsByTagName("head")[0].appendChild(script)
 
-          imagenes_quitables()
+          $('#preview').imagenesQuitables()
         data: { preview: true }
       )
 

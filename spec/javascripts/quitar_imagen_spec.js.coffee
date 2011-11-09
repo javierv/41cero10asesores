@@ -1,6 +1,7 @@
 describe "Quitar imagen", ->
   beforeEach ->
     loadFixtures "quitar_imagen"
+    $('#preview').imagenesQuitables()
 
   describe "al quitar la imagen", ->
     beforeEach ->
