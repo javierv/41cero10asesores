@@ -1,6 +1,7 @@
 describe 'Selección diferencias', ->
   beforeEach ->
     loadFixtures "seleccion_diferencias"
+    $('form.diferencias').quitarDiferencias()
 
   it 'selecciona el primer botón de versión a mirar', ->
     expect($('#version_id_36')).toBeChecked()
