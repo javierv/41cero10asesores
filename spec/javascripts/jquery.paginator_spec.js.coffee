@@ -28,4 +28,4 @@ describe "Paginator", ->
 
     afterEach ->
       if history && history.pushState
-        history.replaceState null, null, '/'
+        window.history.replaceState null, null, '/jasmine'
