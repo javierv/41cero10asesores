@@ -1,11 +1,7 @@
-require 'jquery.ui.core'
-require 'jquery.fileupload'
-require 'jquery.fileupload-ui'
-
 describe 'adjuntos AJAX', ->
   beforeEach ->
-    loadFixtures 'adjuntos.html'
-    load 'adjuntos'
+    loadFixtures "adjuntos"
+    $('form').adjuntaImagen()
 
   it 'esconde las acciones', ->
     expect($('input[type="submit"]')).not.toBeVisible()

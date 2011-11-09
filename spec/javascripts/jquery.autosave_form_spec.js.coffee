@@ -1,9 +1,6 @@
-require 'jquery.form'
-require 'jquery.autosave_form'
-
 describe 'Autosave form', ->
   beforeEach ->
-    loadFixtures  'jquery.autosave_form.html'
+    loadFixtures  "autosave_form"
     # Comentado porque jquery.form no se comporta
     # de manera estándar con $.ajax (aparentemente)
     # y no se falsea la llamada

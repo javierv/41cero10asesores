@@ -1,4 +1,9 @@
 Calesur::Application.routes.draw do
+
+  if ["development", "test"].include? Rails.env
+    mount Jasminerice::Engine => "/jasmine" 
+  end
+
   resources :clientes
 
   resources :navegaciones, only: [:new, :create]

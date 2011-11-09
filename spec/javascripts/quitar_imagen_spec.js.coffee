@@ -1,9 +1,7 @@
-require "quitar_imagen"
-
 describe "Quitar imagen", ->
   beforeEach ->
-    loadFixtures "quitar_imagen.html"
-    load "quitar_imagen"
+    loadFixtures "quitar_imagen"
+    $('#preview').imagenesQuitables()
 
   describe "al quitar la imagen", ->
     beforeEach ->

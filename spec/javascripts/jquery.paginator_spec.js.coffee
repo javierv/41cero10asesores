@@ -1,9 +1,6 @@
-require 'jquery.history'
-require 'jquery.paginator'
-
 describe "Paginator", ->
   beforeEach ->
-    loadFixtures 'paginator.html'
+    loadFixtures "paginator"
     $('#list').ajaxPaginator()
 
   describe 'clicking a link', ->
@@ -26,13 +23,9 @@ describe "Paginator", ->
       expect($('#list')).toHaveHtml request.responseText
 
     it "updates the browser's address bar", ->
-      if browser_supports_history()
+      if history && history.pushState
         expect(location.href).toEqual link[0].href
-      else
-        expect(location.hash).toEqual link[0].href
 
     afterEach ->
-      if browser_supports_history()
-        history.replaceState null, null, '/'
-      else
-        location.hash = null 
+      if history && history.pushState
+        window.history.replaceState null, null, '/jasmine'

@@ -1,7 +1,7 @@
 describe 'Selección diferencias', ->
   beforeEach ->
-    loadFixtures 'seleccion_diferencias.html'
-    load 'seleccion_diferencias'
+    loadFixtures "seleccion_diferencias"
+    $('form.diferencias').quitarDiferencias()
 
   it 'selecciona el primer botón de versión a mirar', ->
     expect($('#version_id_36')).toBeChecked()
@@ -26,5 +26,5 @@ describe 'Selección diferencias', ->
       beforeEach ->
         $('#version_id_35').click().change()
 
-      it 'hace desaparecer versión de referencia posterior', -> 
+      it 'hace desaparecer versión de referencia posterior', ->
         expect($('#ref_id_35')).not.toBeVisible()

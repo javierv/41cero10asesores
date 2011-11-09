@@ -1,12 +1,6 @@
-require 'jquery.ui.core'
-require 'jquery.ui.widget'
-require 'jquery.ui.position'
-require 'jquery.ui.autocomplete'
-require 'jquery.autocomplete_form'
-
 describe 'Autocomplete form', ->
   beforeEach ->
-    loadFixtures 'jquery.autocomplete_form.html'
+    loadFixtures "autocomplete_form"
     $("form").autocompleteForm()
 
   it "calls autocomplete on the input", ->
