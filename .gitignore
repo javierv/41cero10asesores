@@ -17,6 +17,7 @@ spec/images/*/**
 *.swp
 prototipo/*
 config/database.yml
+config/thin.yml
 config/app_config.yml
 tmp/restart.txt
 tags
