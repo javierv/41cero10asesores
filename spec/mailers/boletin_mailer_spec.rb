@@ -7,7 +7,7 @@ describe BoletinMailer do
     subject do
       BoletinMailer.envio Factory(:boletin,
         destinatarios: "Pedro <pedro@calesur.es>, Julián <julian@calesur.es>",
-        archivo: File.new("spec/images/example.pdf"),
+        archivo_name: "example.pdf",
         titulo: "Aventuras nuevas")
     end
 

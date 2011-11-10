@@ -1,0 +1,47 @@
+@import "compass/css3"
+@import "partials/enlace"
+@import "partials/button"
+
+ul.actions
+  margin-top:  1em
+  padding:     0
+
+  li
+    display:       inline-block
+    line-height:   2
+
+    &:after
+      content:       '|'
+      padding-left:  0.5em
+      margin-right:  0.5em
+
+    &:last-child
+      &:after
+        content:       ''
+        margin-right:  0
+  a
+    padding-left: 1.1em
+    background: no-repeat center left
+    +background-size(auto 80%)
+
+    &.show
+      background-image: image-url("lupa.png")
+    &.edit
+      background-image: image-url("edit.png")
+    &.destroy
+      background-image: image-url("destroy.png")
+      @include color_enlaces()
+    &.new
+      background-image: image-url("new.png")
+    &.draft
+      background-image: image-url("draft.png")
+    &.historial
+      background-image: image-url("historial.png")
+    &.enviar
+      background-image: image-url("email.png")
+    &.index.paginas
+      background-image: image-url("paginas.png")
+    &.index.cajas
+      background-image: image-url("cajas.png")
+  input
+    @include button()

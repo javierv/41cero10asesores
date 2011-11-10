@@ -1,4 +1,4 @@
 = simple_form_for boletin, html: { multipart: true } do |form|
   = form.input :titulo
   = form.input :archivo, as: :file
-  .actions= form.submit
+  = buttons { form.submit }

@@ -1,7 +1,11 @@
 .bundle
 db/*.sqlite3
 db/xapian*/*
+db/redis/*.rdb
 log/*.log
+log/redis/*.pid
+log/redis/*.log
+log/foreman/*.log
 tmp/**/*
 tmp/*
 nbproject/*
@@ -14,6 +18,7 @@ spec/images/*/**
 *.swp
 prototipo/*
 config/database.yml
+config/thin.yml
 config/app_config.yml
 tmp/restart.txt
 tags
@@ -22,3 +27,4 @@ coverage/**/*
 coverage/*
 .metrics
 Guardfile
+.sass-cache

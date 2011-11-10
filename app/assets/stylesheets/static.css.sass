@@ -1,0 +1,27 @@
+body.static #main
+  h2
+    margin-top: 1em
+    margin-bottom: 0.5em
+  ul, ol
+    margin-left: 2em
+
+  dl
+    padding-left: 0.5em
+
+  dt
+    padding-top: 0.5em
+
+    &:first-child
+      padding-top: 0
+
+  dd
+    padding:      0.5em 0 0.5em 1em
+    border-bottom: 1px dashed #666
+
+    &:last-child
+      padding-bottom: 0
+      border-bottom:  0
+
+    &:before
+      content: 'Resultado:'
+      margin-right: 0.2em

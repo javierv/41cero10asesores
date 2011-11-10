@@ -1,4 +1,3 @@
-- css 'form'
 - title 'Identificación de usuarios'
 
 = simple_form_for(resource,
@@ -11,4 +10,4 @@
   - if devise_mapping.rememberable?
     = form.input :remember_me, as: :boolean,
       hint: "durante #{distance_of_time_in_words(Devise.remember_for)}"
-  .actions= form.submit "Entrar"
+  = buttons { form.submit "Entrar" }

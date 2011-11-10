@@ -1,9 +1,6 @@
 - title "Historial de #{@pagina}"
-- css 'tabla'
-- javascript 'seleccion_diferencias'
-- css 'seleccion_diferencias'
 
-= form_tag(compare_vestal_versions_version_path, method: :get) do
+= form_tag(compare_vestal_versions_version_path, method: :get, class: "diferencias") do
 
   %section#listado
     = table_for @versiones do |table|
@@ -15,5 +12,5 @@
         = table.cell :user, heading: 'Modificado por'
         = actions_cell(table) { |version| acciones_para_version version }
 
-  .actions= submit_tag 'Comparar seleccionadas' 
+  = buttons { submit_tag 'Comparar seleccionadas' }
 = actions_list [:show, :edit, :index], @pagina

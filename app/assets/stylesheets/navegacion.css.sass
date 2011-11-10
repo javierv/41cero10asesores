@@ -1,0 +1,58 @@
+@import "partials/button"
+$borde_foco: 2px solid #d95
+
+#navegacion
+  +background-image(linear-gradient(#127402, #074400))
+  background-color: #0e4400
+  overflow: hidden
+  width: 100%
+  display: table
+
+  ul
+    list-style: none
+    padding-left: 0.5em
+
+    li
+      float: left
+      padding: 0.3em 0
+
+      a
+        float: left
+        color: #fdfdfd
+        padding: 0.3em 1em
+        text-decoration: none
+        +transition(all, 0.3s)
+
+        &:hover, &:focus
+          color: #105400
+          background-color: #fdfdfd          
+          +background-image(linear-gradient(#fafafa, #fefefe))
+          +border-radius(0.5em)
+          +scale(1.1)
+
+  #buscador
+    text-align: right
+    padding-right: 0.5em
+    display: table-cell
+    vertical-align: middle
+
+    div
+      display: inline
+
+    input
+      color: #111
+
+    input[type=search]
+      font-size: 0.9em
+      padding: 0.1em 0.3em
+      width: 15em
+      border: 1px solid #999
+      background-color: #fdfdfd
+      +border-radius(1em)
+
+      &:focus
+        border: $borde_foco
+
+    input[type=submit]
+      @include button(image-url("lupa.png"))
+      padding-left: 1.7em      
