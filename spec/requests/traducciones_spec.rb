@@ -16,6 +16,8 @@ feature "Traducciones", %q{
     login
   end
 
+  # TODO: este caso debería probarse con Redis ejecutándose, y hacer otro
+  # sin Redis ejecutándose, pero no lo veo claro...
   scenario "traducciones" do
     visit root_path
     page.should_not have_content lema

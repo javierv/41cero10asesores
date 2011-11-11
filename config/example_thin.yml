@@ -2,7 +2,6 @@
 chdir: /var/www/calesur
 environment: production
 address: 0.0.0.0
-port: 5000
 timeout: 30
 log: log/thin.log
 pid: tmp/pids/thin.pid
@@ -11,5 +10,6 @@ max_persistent_conns: 512
 require: []
 wait: 30
 # No incluir con foreman
+port: 5000
 servers: 3
 daemonize: true
