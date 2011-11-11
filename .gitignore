@@ -9,10 +9,7 @@ log/foreman/*.log
 tmp/**/*
 tmp/*
 nbproject/*
-public/stylesheets/*.css
-public/stylesheets/**/*.css
-public/javascripts/*.js
-spec/javascripts/compiled/*
+public/assets/
 public/system/*
 spec/images/*/**
 *.swp
