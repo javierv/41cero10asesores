@@ -6,6 +6,7 @@ log/*.log
 log/redis/*.pid
 log/redis/*.log
 log/foreman/*.log
+.env
 tmp/**/*
 tmp/*
 nbproject/*
