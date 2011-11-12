@@ -1,19 +1,21 @@
-$(document).ready ->
-  $(".google_map").each ->
-    position = new google.maps.LatLng(
-      $(this).attr("data-latitud"), $(this).attr("data-longitud")
-    )
-    options =
-      zoom:       14
-      center:     position
-      mapTypeId:  google.maps.MapTypeId.ROADMAP
+jQuery.fn.googleMaps = ->
+  this.each ->
+    $(".google_map", $(this)).each ->
+      position = new google.maps.LatLng(
+        $(this).attr("data-latitud"), $(this).attr("data-longitud")
+      )
+      options =
+        zoom:       14
+        center:     position
+        mapTypeId:  google.maps.MapTypeId.ROADMAP
 
-    map = new google.maps.Map(this, options)
+      map = new google.maps.Map(this, options)
 
-    marker = new google.maps.Marker
-      position:  position
-      map:       map
+      marker = new google.maps.Marker
+        position:  position
+        map:       map
 
-    infowindow = new google.maps.InfoWindow content: $(this).attr("data-titulo")
+      infowindow = new google.maps.InfoWindow content: $(this).attr("data-titulo")
+      google.maps.event.addListener marker, 'click', -> infowindow.open map, marker
 
-    google.maps.event.addListener marker, 'click', -> infowindow.open map, marker
+$(document).ready -> $('article.pagina').googleMaps()
