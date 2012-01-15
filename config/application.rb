@@ -3,6 +3,8 @@ require File.expand_path('../boot', __FILE__)
 require 'yajl/json_gem'
 require 'yaml'
 APP_CONFIG =  YAML.load(File.read(File.expand_path('../app_config.yml', __FILE__)))
+APP_CONFIG["company"] = "41cero10 Asesores"
+APP_CONFIG["domain"] = "41cero10.com"
 
 require 'rails/all'
 require "goalie/rails"
@@ -66,9 +68,9 @@ module Calesur
 
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-      address:               "mail.calesur.com",
+      address:               "mail.#{APP_CONFIG["domain"]}",
       port:                  26,
-      domain:                "calesur.com",
+      domain:                APP_CONFIG["domain"],
       user_name:             APP_CONFIG["email"].sub("@", "+"),
       password:              APP_CONFIG["password"],
       authentication:        'plain',
