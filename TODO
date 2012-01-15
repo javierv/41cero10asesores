@@ -13,6 +13,7 @@
 * En diferencias: usar un clear u overflow: hidden, por si hay fotos o así.
 * ValidAttribute https://github.com/bcardarella/valid_attribute
 
+* Draper.
 * Sugerencias de búsqueda según escribes, basándose en términos existentes y/o buscados.
 * Estilo de los input en función de si son válidos o no.
 * Usar caché en la acción "show".
