@@ -11,7 +11,7 @@ jQuery.fn.liveForm = ->
           $('#preview').addCargando()
         success: (data) ->
           $('#preview').html($('#preview', data).html())
-            .removeCargando().imagenesQuitables().googleMaps()
+            .removeCargando().imagenesQuitables().worldMaps()
           $('#sidebar').remove()
           $('#sidebar', data).prependTo('#extra')
 
