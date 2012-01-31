@@ -67,7 +67,7 @@ gem 'vestal_versions', git: 'git://github.com/javierv/vestal_versions', branch: 
 gem "therubyracer"
 gem "differ"
 gem 'whenever', require: false
-gem "friendly_id", git: "git://github.com/norman/friendly_id", branch: "3.x"
+gem "friendly_id", "~> 3.3.1"
 gem "responders"
 gem 'spectator-validates_email', "~> 0.0.8", require: 'validates_email'
 gem "i18n-inflector-rails"
