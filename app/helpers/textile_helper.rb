@@ -1,31 +1,20 @@
 # encoding: utf-8
 module MapTags
-  def gm(options)
-    map(options.merge({class: "google_map"}))
-  end
-
   def osm(options)
-    map(options.merge({class: "osm", id: "openstreetmap"}))
-  end
-
-private
-  def map(options)
     data = extract_coordinates(options[:text])
 
-    html = %Q{<div class="#{options[:class]}" data-latitud="#{data[:lat]}" } +
+    # FIXME: el atributo id está puesto porque OSM lo necesita
+    html = %Q{<div class="osm" id="openstreetmap" data-latitud="#{data[:lat]}" } +
            %Q{data-longitud="#{data[:long]}"}
   
     if data[:titulo]
       html += %Q{ data-titulo="#{data[:titulo]}"}
     end
 
-    if options[:id] # FIXME: está hecho porque OSM necesita una ID
-      html += %Q{ id="#{options[:id]}"}
-    end
-
     html + "></div>"
   end
 
+private
   def extract_coordinates(text)
     text.match /(?<lat>[^,]+),(?<long>[^\(]+)(\((?<titulo>.+)\))?/
   end
