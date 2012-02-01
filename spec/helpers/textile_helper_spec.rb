@@ -1,14 +1,14 @@
 # encoding: utf-8
 require 'spec_helper'
 
-class GoogleMapTagTest
-  include GoogleMapTag
+class MapTagsTest
+  include MapTags
 end
 
 describe TextileHelper do
   describe "extract_coordinates" do
     let(:block) do
-      lambda { |text| GoogleMapTagTest.new.extract_coordinates(text) }
+      lambda { |text| MapTagsTest.new.extract_coordinates(text) }
     end
 
     it "permite no poner el título" do
@@ -40,15 +40,15 @@ describe TextileHelper do
     end
   end
 
-  describe "google maps" do
+  describe "osm maps" do
     let(:html) do
-      %Q{<div class="google_map" data-latitud="37.34" } +
+      %Q{<div class="osm" id="openstreetmap" data-latitud="37.34" } +
       %Q{data-longitud="-5.93"></div>}
     end
 
-    let(:input) { "gm. 37.34,-5.93" }
+    let(:input) { "osm. 37.34,-5.93" }
 
-    it "genera un mapa de google" do
+    it "genera un mapa de open street map" do
       RedCloth.new(input).to_html.should == html
     end
 
