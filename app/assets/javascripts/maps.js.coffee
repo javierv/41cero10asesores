@@ -14,4 +14,4 @@ jQuery.fn.worldMaps = ->
 
       map.setCenter(lonlat, 15)
 
-$(document).ready -> $('article.pagina').worldMaps()
+$(document).ready -> $('article.pagina, body.static #main').worldMaps()
