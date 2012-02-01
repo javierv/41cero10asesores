@@ -11,4 +11,4 @@ jQuery.fn.ayudaTextile = ->
       .wrap('<div class="ayuda-textile" />')
 
 $(document).ready ->
-  $('textarea:not(.no-avanzado').ayudaTextile()
+  $('textarea:not(.no-avanzado)').ayudaTextile()
