@@ -14,7 +14,6 @@ module MapTags
     html + "></div>"
   end
 
-private
   def extract_coordinates(text)
     text.match /(?<lat>[^,]+),(?<long>[^\(]+)(\((?<titulo>.+)\))?/
   end
