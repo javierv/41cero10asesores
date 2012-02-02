@@ -1,8 +1,10 @@
 @import "compass/css3"
 
+$fondo: #2f7512
+
 #pie
-  +background-image(linear-gradient(#51a039, #003D00))
-  background-color: #2f7512
+  +background-image(linear-gradient(lighten($fondo, 10%), darken($fondo, 13%)))
+  background-color: $fondo
   color: white
   padding: 1em 0
   text-align: center
