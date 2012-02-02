@@ -1,11 +1,10 @@
 @import "compass/css3"
-
-$fondo: #2f9510
+@import "partials/colores"
 
 #cabecera
   +background-image(linear-gradient(darken($fondo, 3%), lighten($fondo, 3%) 50%, darken($fondo, 3%)))
-  background-color: #2f9510
-  color: white
+  background-color: $fondo
+  color: $blanco
   font-size: 1.5em
   padding: 0.5em 0
   display: table
@@ -19,7 +18,7 @@ $fondo: #2f9510
     right: 0.6em
 
     a
-      color: #eee
+      color: darken($blanco, 3%)
       opacity: 0.85
 
       &:hover, &:focus
