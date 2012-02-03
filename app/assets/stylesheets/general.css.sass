@@ -1,5 +1,6 @@
 @import "compass/css3"
 @import "partials/enlace"
+@import "partials/colores"
 
 body
   margin:           0 auto
@@ -27,15 +28,16 @@ p, li
 
 h1
   font-size:        1.6em
-  border-bottom:    1px dotted #155600
-  color: #207500
+  border-bottom:    1px dotted darken($fondo, 12%)
   padding-bottom:   0.1em  
   margin-bottom:    0.5em
 
 h2
   font-size:        1.3em
   margin:           0.5em 0
-  color:            #207500
+
+h1, h2
+  color:            darken($fondo, 7%)
 
 blockquote
   margin-left: 1em
