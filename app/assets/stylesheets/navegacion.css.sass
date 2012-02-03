@@ -1,9 +1,9 @@
 @import "partials/button"
-$borde_foco: 2px solid #d95
+@import "partials/colores"
 
 #navegacion
-  +background-image(linear-gradient(#127402, #074400))
-  background-color: #0e4400
+  +background-image(linear-gradient(darken($fondo, 8%), darken($fondo, 18%)))
+  background-color: darken($fondo, 17%)
   overflow: hidden
   width: 100%
   display: table
@@ -18,15 +18,15 @@ $borde_foco: 2px solid #d95
 
       a
         float: left
-        color: #fdfdfd
+        color: $blanco
         padding: 0.3em 1em
         text-decoration: none
         +transition(all, 0.3s)
 
         &:hover, &:focus
-          color: #105400
-          background-color: #fdfdfd          
-          +background-image(linear-gradient(#fafafa, #fefefe))
+          color: $fondo
+          background-color: $blanco
+          +background-image(linear-gradient(darken($blanco, 1%), lighten($blanco, 1%)))
           +border-radius(0.5em)
           +scale(1.1)
 
@@ -47,11 +47,11 @@ $borde_foco: 2px solid #d95
       padding: 0.1em 0.3em
       width: 15em
       border: 1px solid #999
-      background-color: #fdfdfd
+      background-color: $blanco
       +border-radius(1em)
 
       &:focus
-        border: $borde_foco
+        border: 2px solid #d95
 
     input[type=submit]
       @include button(image-url("lupa.png"))

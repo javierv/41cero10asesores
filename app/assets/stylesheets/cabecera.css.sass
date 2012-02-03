@@ -1,37 +1,30 @@
 @import "compass/css3"
+@import "partials/colores"
 
 #cabecera
-  +background-image(linear-gradient(#208500, #45a52a 50%, #208500))
-  background-color: #2f9510
-  color: white
+  +background-image(linear-gradient(darken($fondo, 3%), lighten($fondo, 3%) 50%, darken($fondo, 3%)))
+  background-color: $fondo
+  color: $blanco
   font-size: 1.5em
-  padding: 0.5em 0
+  padding: 0.5em 0 0.2em 0.5em
   display: table
   width: 100%
   position: relative
 
-  #crm
-    font-size: 0.65em
-    position: absolute
-    top: 0.4em
-    right: 0.6em
-
-    a
-      color: #eee
-      opacity: 0.85
-
-      &:hover, &:focus
-        opacity: 1
-
-
   #logo
-    opacity: 0.9
+    opacity: 0.94
+    font-size: 2em
+    text-decoration: none
+    color: $blanco
 
     &:hover, &:focus
       opacity: 1
+
+    &, img
+      float: left
 
   #lema
     display: table-cell
     vertical-align: middle
     font-size: 1.3em
-    text-shadow: 2px 2px 0.1em #0e4400
+    text-shadow: 2px 2px 0.1em darken($fondo, 20%)
