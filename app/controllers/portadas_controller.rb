@@ -5,9 +5,9 @@ class PortadasController < ApplicationController
   before_filter :find_portada
   before_filter :update_portada, only: [:update, :create]
 
-  public_actions :show
+  public_actions :principal
 
-  def show
+  def principal
     @pagina = @portada.pagina
     respond_with @pagina
   end

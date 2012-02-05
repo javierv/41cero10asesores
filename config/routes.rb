@@ -8,7 +8,7 @@ Calesur::Application.routes.draw do
   resources :translations, only: [:index, :create]
   resources :navegaciones, only: [:new, :create]
   resources :portadas, only: [:new, :update, :create] do
-    get :show, on: :collection
+    get :principal, on: :collection
   end
 
   resources :boletines do

@@ -6,8 +6,8 @@ describe PortadasController do
   before(:each) { authenticate_usuario }
   let(:pagina) { Factory :pagina }
 
-  describe "show" do
-    before(:each) { get :show }
+  describe "principal" do
+    before(:each) { get :principal }
     let(:portada) { Factory :portada, pagina_id: pagina.id }
 
     it do
