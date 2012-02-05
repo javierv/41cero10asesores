@@ -15,7 +15,6 @@ describe PortadasController do
     it do
       should respond_with(:success)
       assigns(:pagina).should be_true
-      should render_template("paginas/show")
     end
   end
 
