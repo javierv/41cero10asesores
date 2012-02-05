@@ -10,6 +10,16 @@ class PortadasController < ApplicationController
     @pagina = @portada.pagina
     respond_with @pagina
   end
+
+  def new
+    @paginas = Pagina.publicadas
+  end
+
+  def update
+    @portada.update_attributes params[:portada]
+    respond_with @portada, location: new_portada_path
+  end
+
 private
   def find_portada
     @portada = Portada.portada

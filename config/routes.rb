@@ -7,7 +7,7 @@ Calesur::Application.routes.draw do
   resources :clientes
   resources :translations, only: [:index, :create]
   resources :navegaciones, only: [:new, :create]
-  resources :portadas, only: [:new, :create] do
+  resources :portadas, only: [:new, :update] do
     get :show, on: :collection
   end
 
