@@ -49,12 +49,12 @@ describe "rutas" do
 
   describe "rutas de otras acciones de páginas" do
     it { { get: "/search" }.should route_to ruta("paginas#search") }
-    it { { get: "/paginas/new" }.should route_to ruta("paginas#new") }
-    it { { post: "/paginas"}.should route_to ruta("paginas#create")}
+    it { { get: "/new" }.should route_to ruta("paginas#new") }
+    it { { post: "/"}.should route_to ruta("paginas#create")}
   end
 
   describe "ruta a la portada" do
-    specify { { get: "/" }.should route_to ruta("portadas#show") }
+    pending { { get: "/" }.should route_to ruta("portadas#show") }
   end
 
   describe "rutas varias" do
