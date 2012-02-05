@@ -3,11 +3,12 @@
 require 'spec_helper'
 
 describe PortadasController do
-  let(:portada) { Factory :portada, pagina: Factory(:pagina) }
   before(:each) { authenticate_usuario }
+  let(:pagina) { Factory :pagina }
 
   describe "show" do
     before(:each) { get :show }
+    let(:portada) { Factory :portada, pagina_id: pagina.id }
 
     it do
       should respond_with(:success)
@@ -26,7 +27,20 @@ describe PortadasController do
   end
 
   describe "update" do
+    let(:portada) { Factory :portada, pagina_id: pagina.id }
     before(:each) { put :update, id: portada.to_param,  portada: portada.attributes }
+
+    it do
+      should redirect_to(new_portada_path)
+      should set_the_flash
+    end
+  end
+
+  describe "create" do
+    before(:each) do
+      valida_siempre(Portada)
+      post :create
+    end
 
     it do
       should redirect_to(new_portada_path)
