@@ -8,7 +8,7 @@ class PortadasController < ApplicationController
 
   def show
     @pagina = @portada.pagina
-    respond_with @pagina, template: "paginas/show"
+    respond_with @pagina
   end
 private
   def find_portada
