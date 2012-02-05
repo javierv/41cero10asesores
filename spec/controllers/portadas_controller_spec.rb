@@ -7,8 +7,10 @@ describe PortadasController do
   let(:pagina) { Factory :pagina }
 
   describe "principal" do
-    before(:each) { get :principal }
-    let(:portada) { Factory :portada, pagina_id: pagina.id }
+    before(:each) do
+      @portada = Factory :portada, pagina: pagina
+      get :principal
+    end
 
     it do
       should respond_with(:success)
