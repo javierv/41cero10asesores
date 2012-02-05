@@ -8,8 +8,4 @@ class Portada < ActiveRecord::Base
   def self.portada
     first || new
   end
-
-  def self.pagina
-    portada.pagina || Pagina.new
-  end
 end

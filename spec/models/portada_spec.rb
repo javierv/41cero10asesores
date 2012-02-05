@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 define_match :be_portada do |actual|
-  Portada.pagina == actual
+  Portada.portada.pagina == actual
 end
 
 describe Portada do
@@ -15,10 +15,6 @@ describe Portada do
     context "sin portadas asignadas" do
       it "devuelve una portada nueva" do
         Portada.portada.id.should be_nil
-      end
-
-      it "devuelve una página nueva" do
-        Portada.pagina.id.should be_nil
       end
     end
 

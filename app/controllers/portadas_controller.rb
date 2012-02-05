@@ -2,11 +2,16 @@
 
 class PortadasController < ApplicationController
   respond_to :html
+  before_filter :find_portada
 
   public_actions :show
 
   def show
-    @pagina = Portada.pagina
+    @pagina = @portada.pagina
     respond_with @pagina, template: "paginas/show"
+  end
+private
+  def find_portada
+    @portada = Portada.portada
   end
 end
