@@ -32,14 +32,21 @@ Calesur::Application.routes.draw do
     get :borradas, on: :collection
   end
 
+
   match '/autocomplete' => "ajax_form#autocomplete"
   match '/ayuda-textile' => "static#ayuda_textile"
 
-  resources :paginas, path: "" do
+  resources :portadas, only: [:show, :edit]
+  root to: "portadas#show"
+
+  # Área pública
+  resources :paginas, path: "", only:[:show] do
     get :search, on: :collection
+  end
+
+  resources :paginas, except: :show do
     get :historial, on: :member
   end
-  root to: "paginas#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
