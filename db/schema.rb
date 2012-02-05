@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120205184718) do
+ActiveRecord::Schema.define(:version => 20120205195719) do
 
   create_table "boletines", :force => true do |t|
     t.string   "archivo_uid"
@@ -60,10 +60,15 @@ ActiveRecord::Schema.define(:version => 20120205184718) do
     t.datetime "updated_at"
     t.boolean  "borrador"
     t.integer  "published_id"
-    t.boolean  "portada",      :default => false
   end
 
   add_index "paginas", ["published_id"], :name => "index_paginas_on_published_id"
+
+  create_table "portadas", :force => true do |t|
+    t.integer  "pagina_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sidebars", :force => true do |t|
     t.integer  "pagina_id"

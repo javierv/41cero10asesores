@@ -3,14 +3,12 @@
 require 'spec_helper'
 
 describe PortadasController do
-  before(:each) do
-    @pagina = Factory(:pagina)
-    authenticate_usuario
-  end
+  let(:pagina) { Factory :pagina }
+  before(:each) { authenticate_usuario }
 
   describe "show" do
     before(:each) do
-      @pagina.asigna_portada
+      Portada.asigna(pagina)
       get :show
     end
 

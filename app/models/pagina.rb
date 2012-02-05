@@ -34,15 +34,6 @@ class Pagina < ActiveRecord::Base
     blueprint.ignore_if { borrador? }
   end
 
-  def self.portada
-    where(portada: true).first
-  end
-
-  def asigna_portada
-    Pagina.where(portada: true).update_all(portada: false)
-    update_attribute(:portada, true)
-  end
-
   def cajas_con_orden
     cajas.order("sidebars.orden ASC")
   end

@@ -6,7 +6,7 @@ class PortadasController < ApplicationController
   public_actions :show
 
   def show
-    @pagina = Pagina.portada
+    @pagina = Portada.pagina
     respond_with @pagina, template: "paginas/show"
   end
 end
