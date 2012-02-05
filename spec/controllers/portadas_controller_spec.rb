@@ -29,7 +29,7 @@ describe PortadasController do
   end
 
   describe "update" do
-    let(:portada) { Factory :portada, pagina_id: pagina.id }
+    let(:portada) { Factory :portada, pagina: pagina }
     before(:each) { put :update, id: portada.to_param,  portada: portada.attributes }
 
     it do
