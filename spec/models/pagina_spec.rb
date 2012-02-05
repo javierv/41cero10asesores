@@ -6,11 +6,16 @@ define_match :have_draft do |actual|
   actual.has_draft?
 end
 
+define_match :be_portada do |actual|
+  actual.portada?
+end
+
 describe Pagina do
   it { should validate_presence_of(:titulo) }
   it { should allow_mass_assignment_of(:titulo) }
   it { should validate_presence_of(:cuerpo) }
   it { should allow_mass_assignment_of(:cuerpo) }
+  it { should_not allow_mass_assignment_of(:portada) }
 
   it { should have_one(:navegacion).dependent(:destroy) }
   it { should have_many(:cajas).through(:sidebars) }
@@ -323,6 +328,32 @@ describe Pagina do
       borrador = pagina.draft
       borrador.update_attribute(:titulo, "cambio")
       borrador.versions.count.should == 0
+    end
+  end
+
+  describe "portada" do
+    context "sin portadas asignadas" do
+      let(:portada_primera) { Factory :pagina }
+      before(:each) { portada_primera.asigna_portada }
+
+      specify { portada_primera.should be_portada }
+
+      context "con portadas asignadas" do
+        let(:portada_posterior) { Factory :pagina }
+        before(:each) do
+          portada_posterior.asigna_portada
+          portada_primera.reload #¿Es bueno tener que hacer esto?
+        end
+
+        specify do
+          portada_primera.should_not be_portada
+          portada_posterior.should be_portada
+        end
+
+        it "encuentra la portada" do
+          Pagina.portada.should == portada_posterior
+        end
+      end
     end
   end
 end
