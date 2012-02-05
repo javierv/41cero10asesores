@@ -5,12 +5,11 @@ class Portada < ActiveRecord::Base
   validates :pagina_id, presence: true
   belongs_to :pagina
 
-  def self.pagina
-    first.pagina
+  def self.portada
+    first || new
   end
 
-  def self.asigna(pagina)
-    delete_all
-    create(pagina_id: pagina.id)
+  def self.pagina
+    portada.pagina || Pagina.new
   end
 end

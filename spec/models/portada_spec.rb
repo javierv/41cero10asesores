@@ -13,20 +13,37 @@ describe Portada do
 
   describe "portada" do
     context "sin portadas asignadas" do
-      let(:portada_primera) { Factory :pagina }
-      before(:each) { Portada.asigna(portada_primera) }
+      it "devuelve una portada nueva" do
+        Portada.portada.id.should be_nil
+      end
 
-      specify { portada_primera.should be_portada }
+      it "devuelve una página nueva" do
+        Portada.pagina.id.should be_nil
+      end
+    end
+
+    context "asignando portada" do
+      let(:primera) { Factory :pagina }
+      let(:portada) { Factory :portada }
+
+      before(:each) do
+        portada.pagina = primera
+        portada.save
+      end
+
+      specify { primera.should be_portada }
 
       context "con portadas asignadas" do
-        let(:portada_posterior) { Factory :pagina }
+        let(:posterior) { Factory :pagina }
+
         before(:each) do
-          Portada.asigna(portada_posterior)
+          portada.pagina = posterior
+          portada.save
         end
 
         specify do
-          portada_primera.should_not be_portada
-          portada_posterior.should be_portada
+          primera.should_not be_portada
+          posterior.should be_portada
         end
       end
     end
