@@ -10,7 +10,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
-    RedCloth (4.2.8)
+    RedCloth (4.2.9)
     actionmailer (3.1.1)
       actionpack (= 3.1.1)
       mail (~> 2.3.0)
@@ -297,7 +297,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  RedCloth (~> 4.2.8)
+  RedCloth (~> 4.2.9)
   acts-as-taggable-on
   capybara
   coffee-rails (~> 3.1.0)

@@ -54,7 +54,7 @@ gem 'dragonfly', '~> 0.9.8' # Pozor! Changed a line! Pull request?
 gem "haml", "~> 3.1.0"
 gem "acts-as-taggable-on"
 gem "validation_reflection"
-gem "RedCloth", "~> 4.2.8"
+gem "RedCloth", "~> 4.2.9"
 gem "validates_date_time"
 gem "squeel"
 gem "meta_search"
