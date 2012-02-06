@@ -95,7 +95,9 @@ private
     paginas.map do |pagina|
       enlace = [pagina.display_name, pagina_path(pagina)]
 
-      if pagina.to_param == params[:id]
+      # ¿Hay forma de conseguir esto sin usar variables de clase,
+      # y que aun así funcione para URLs obsoletas?
+      if pagina == @pagina
         enlace << {class: "current"}
       else
         enlace
