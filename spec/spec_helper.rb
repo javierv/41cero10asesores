@@ -18,6 +18,18 @@ Spork.prefork do
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+  class ActiveRecord::Base
+    mattr_accessor :shared_connection
+    @@shared_connection = nil
+
+    def self.connection
+      @@shared_connection || retrieve_connection
+    end
+  end
+  # Forces all threads to share the same connection. This works on
+  # Capybara because it starts the web server in a thread.
+  ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+
   RSpec.configure do |config|
     # Don't stub views
     config.render_views
@@ -34,27 +46,10 @@ Spork.prefork do
     config.include Devise::TestHelpers, type: :controller
     config.include Capybara::RSpecMatchers, type: :helper
 
-    config.use_transactional_fixtures = false
-
-    config.before(:suite) do
-      DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.clean_with(:truncation)
-    end
+    config.use_transactional_fixtures = true
 
     config.before(:each) do
       ActionMailer::Base.deliveries.clear
-      if example.metadata[:js]
-        DatabaseCleaner.strategy = :truncation
-      else
-        DatabaseCleaner.start
-      end
-    end
-
-    config.after(:each) do
-      DatabaseCleaner.clean
-      if example.metadata[:js]
-        DatabaseCleaner.strategy = :transaction
-      end
     end
   end
 end

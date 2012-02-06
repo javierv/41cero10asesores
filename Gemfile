@@ -33,7 +33,6 @@ group :test do
   gem 'spork', '>= 0.9.0RC'
   gem 'guard-spork'
   gem 'simplecov', require: false
-  gem "database_cleaner"
   gem "launchy"
   gem "libnotify"
 end
