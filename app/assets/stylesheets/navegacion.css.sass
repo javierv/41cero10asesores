@@ -20,15 +20,22 @@
         float: left
         color: $blanco
         padding: 0.3em 1em
+        margin-right: 0.2em
         text-decoration: none
         +transition(all, 0.3s)
 
-        &:hover, &:focus
-          color: $fondo
+        &:hover, &:focus, &.current
+          color: darken($fondo, 10%)
           background-color: $blanco
           +background-image(linear-gradient(darken($blanco, 1%), lighten($blanco, 1%)))
           +border-radius(0.5em)
-          +scale(1.1)
+          +scale(1.02, 1.1)
+
+        &.current
+          opacity: 0.95
+
+          &:hover, &:focus
+            opacity: 1
 
   #buscador
     text-align: right

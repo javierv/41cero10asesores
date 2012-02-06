@@ -12,6 +12,10 @@ module NavegacionHelper
     lista_con_enlaces(enlaces_admin << enlace_desconectar)
   end
 
+  def navegacion_principal(paginas)
+    lista_con_enlaces enlaces_navegacion(paginas)
+  end
+
   def actions_list(actions, resource)
     lista_con_enlaces enlaces(actions, resource), class: 'actions'
   end
@@ -85,6 +89,18 @@ private
   def enlace_desconectar
      ["Desconectar", destroy_usuario_session_path,
        {class: "desconectar", method: :delete}]
+  end
+
+  def enlaces_navegacion(paginas)
+    paginas.map do |pagina|
+      enlace = [pagina.display_name, pagina_path(pagina)]
+
+      if pagina.to_param == params[:id]
+        enlace << {class: "current"}
+      else
+        enlace
+      end
+    end
   end
 
   def elementos_lista_enlace(enlaces)
