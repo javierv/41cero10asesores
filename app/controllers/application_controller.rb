@@ -21,6 +21,10 @@ private
     !public_actions.include?(action_name.to_sym)
   end
 
+  def after_sign_in_path_for(resource)
+    paginas_path
+  end
+
   def conservar_parametros
     if estan_accediendo_al_indice_principal?
       self.params = session_params if session_params

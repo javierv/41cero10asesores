@@ -27,7 +27,7 @@ feature "Login", %q{
     login_with(email: usuario.email, password: "correcta")
     logout
     page.should_not have_admin_navigation
-    current_path.should == login_page
+    current_path.should == homepage
   end
 
   scenario "accediendo a contenido no autorizado" do

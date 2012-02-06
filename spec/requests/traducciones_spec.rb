@@ -13,7 +13,6 @@ feature "Traducciones", %q{
     # TODO: Hacerlo independiente de si se muestra
     # el lema en la web o no (es decir, probar sólo el valor en la BD)
     TRANSLATION_STORE.store_public_translations(lema: "Lema falso")
-    login
   end
 
   # TODO: este caso debería probarse con Redis ejecutándose, y hacer otro
@@ -22,6 +21,7 @@ feature "Traducciones", %q{
     visit root_path
     page.should_not have_content lema
 
+    login
     visit translations_path
     fill_in "Lema", with: lema
     click_on "Guardar"

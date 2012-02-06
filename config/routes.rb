@@ -7,6 +7,9 @@ Calesur::Application.routes.draw do
   resources :clientes
   resources :translations, only: [:index, :create]
   resources :navegaciones, only: [:new, :create]
+  resources :portadas, only: [:new, :update, :create] do
+    get :principal, on: :collection
+  end
 
   resources :boletines do
     member do
@@ -35,11 +38,13 @@ Calesur::Application.routes.draw do
   match '/autocomplete' => "ajax_form#autocomplete"
   match '/ayuda-textile' => "static#ayuda_textile"
 
-  resources :paginas, path: "" do
+  resources :paginas, only: [:index, :create]
+  resources :paginas, path: "", except: [:index, :create] do
     get :search, on: :collection
     get :historial, on: :member
   end
-  root to: "paginas#index"
+
+  root to: "portadas#principal"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
