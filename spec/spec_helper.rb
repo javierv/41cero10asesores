@@ -18,6 +18,9 @@ Spork.prefork do
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+  Devise.stretches = 1
+  Rails.logger.level = 4
+
   class ActiveRecord::Base
     mattr_accessor :shared_connection
     @@shared_connection = nil
