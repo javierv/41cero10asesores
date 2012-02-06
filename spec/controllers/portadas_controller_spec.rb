@@ -7,14 +7,23 @@ describe PortadasController do
   let(:pagina) { Factory :pagina }
 
   describe "principal" do
-    before(:each) do
-      @portada = Factory :portada, pagina: pagina
-      get :principal
+    context "sin portada existente" do
+      before(:each) { get :principal }
+      # En el entorno de test esto no parece funcionar,
+      # igual que pasa con las páginas de errores.
+      pending { should respond_with(:missing) }
     end
 
-    it do
-      should respond_with(:success)
-      assigns(:pagina).should be_true
+    context "con portada existente" do
+      before(:each) do
+        @portada = Factory :portada, pagina: pagina
+        get :principal
+      end
+
+      it do
+        should respond_with(:success)
+        assigns(:pagina).should be_true
+      end
     end
   end
 

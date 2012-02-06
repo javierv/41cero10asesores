@@ -2,12 +2,13 @@
 
 class PortadasController < ApplicationController
   respond_to :html
-  before_filter :find_portada
+  before_filter :find_portada, except: :principal
   before_filter :update_portada, only: [:update, :create]
 
   public_actions :principal
 
   def principal
+    @portada = Portada.first!
     @pagina = @portada.pagina
     respond_with @pagina
   end
