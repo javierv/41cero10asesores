@@ -9,16 +9,11 @@ module NavegacionHelper
   end
 
   def navegacion_admin    
-    lista_con_enlaces [
-     ["Páginas", paginas_path, {controller: "paginas"}],
-     ["Cajas", cajas_path, {controller: "cajas"}],
-     ["Boletines", boletines_path, {controller: "boletines"}],
-     ["Clientes", clientes_path, {controller: "clientes"}],
-     ["Navegación", new_navegacion_path, {controller: "navegaciones"}],
-     ["Textos", translations_path, {controller: "translations"}],
-     ["Desconectar", destroy_usuario_session_path,
-       {class: "desconectar", method: :delete}]
-    ]
+    lista_con_enlaces(enlaces_admin << enlace_desconectar)
+  end
+
+  def navegacion_principal(paginas)
+    lista_con_enlaces enlaces_navegacion(paginas)
   end
 
   def actions_list(actions, resource)
@@ -75,6 +70,39 @@ module NavegacionHelper
   end
  
 private
+  def enlaces_admin
+    [
+      ["Páginas", paginas_path],
+      ["Cajas", cajas_path],
+      ["Boletines", boletines_path],
+      ["Clientes", clientes_path],
+      ["Navegación", new_navegacion_path],
+      ["Portada", new_portada_path],
+      ["Textos", translations_path]
+    ].map { |enlace| enlace << { controller: recognize_controller(enlace) }}
+  end
+
+  def recognize_controller(enlace)
+    Rails.application.routes.recognize_path(enlace[1])[:controller]
+  end
+
+  def enlace_desconectar
+     ["Desconectar", destroy_usuario_session_path,
+       {class: "desconectar", method: :delete}]
+  end
+
+  def enlaces_navegacion(paginas)
+    paginas.map do |pagina|
+      enlace = [pagina.display_name, pagina_path(pagina)]
+
+      if pagina.to_param == params[:id]
+        enlace << {class: "current"}
+      else
+        enlace
+      end
+    end
+  end
+
   def elementos_lista_enlace(enlaces)
     enlaces.map do |enlace|
       elemento_lista_enlace(enlace)

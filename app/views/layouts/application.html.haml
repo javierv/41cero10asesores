@@ -10,7 +10,7 @@
   %body{class: controller_name}
     %header#cabecera{role: 'banner'}= render 'general/cabecera'
     #navegacion
-      %nav= render 'general/navegacion'
+      %nav= navegacion_principal(Navegacion.paginas)
       = render 'general/buscador'
 
     #content

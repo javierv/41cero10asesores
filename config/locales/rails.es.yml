@@ -192,6 +192,8 @@ es:
       caja:
         titulo: "Título"
         paginas: "Páginas"
+      portada:
+        pagina_id: "Página"
       navegacion:
         pagina_id: "Páginas"
       usuario:
