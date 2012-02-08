@@ -89,11 +89,11 @@ module HelperMethods
   end
 
   def crea_foto
-    within("#fotos") { adjunta_imagen }
+    within("#fotos") { adjunta_imagen_en("nueva imagen") }
   end
 
-  def adjunta_imagen(imagen = "blank.png")
-    attach_file "nueva imagen", Rails.root.join("spec", "images", imagen)
+  def adjunta_imagen_en(campo)
+    attach_file campo, Rails.root.join("spec", "images", "blank.png")
   end
 
   def crea_nuevo_boletin_con_adjunto(archivo)
@@ -114,9 +114,9 @@ module HelperMethods
     click_on "Guardar"
   end
 
-  def crea_caja_con_imagen_en_pagina(imagen, pagina)
+  def crea_caja_con_imagen_en_pagina(pagina)
     visit new_caja_path
-    adjunta_imagen(imagen)
+    adjunta_imagen_en("Imagen")
     asigna_pagina pagina
     click_on "Guardar"
   end

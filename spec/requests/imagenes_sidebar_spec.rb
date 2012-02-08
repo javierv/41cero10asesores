@@ -14,8 +14,8 @@ feature "Imágenes en sidebar", %q{
   end
   
   scenario "nueva caja" do
-    crea_caja_con_imagen_en_pagina("blank.png", "primera")
+    crea_caja_con_imagen_en_pagina("primera")
     visit pagina_path("primera") # FIXME: Depende de las rutas.
-    page.shoud have_selector "#sidebar img[src~='blank.png']"
+    page.should have_imagen_en_sidebar
   end
 end
