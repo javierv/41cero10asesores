@@ -68,6 +68,11 @@ module NavegacionHelper
   def acciones_para_cliente(cliente)
     actions_list [:edit, :destroy], cliente
   end
+
+  def enlace_desconectar
+     ["Desconectar", destroy_usuario_session_path,
+       {class: "desconectar", method: :delete}]
+  end
  
 private
   def enlaces_admin
@@ -84,11 +89,6 @@ private
 
   def recognize_controller(enlace)
     Rails.application.routes.recognize_path(enlace[1])[:controller]
-  end
-
-  def enlace_desconectar
-     ["Desconectar", destroy_usuario_session_path,
-       {class: "desconectar", method: :delete}]
   end
 
   def enlaces_navegacion(paginas)

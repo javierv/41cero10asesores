@@ -57,6 +57,14 @@ module MatcherMethods
   define_match :have_imagen_en_sidebar do |page|
     page.has_selector? "#sidebar figure"
   end
+
+  define_match :have_welcome_message do |page, text|
+    page.has_selector?("#cabecera .bienvenido", text: text)
+  end
+
+  define_match :have_link_to_connect do |page|
+    page.has_selector?("#cabecera .conectar")
+  end
 end
 
 module Capybara

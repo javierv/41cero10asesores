@@ -13,6 +13,7 @@ feature "Login", %q{
   scenario "con contraseña incorrecta" do
     login_with(email: usuario.email, password: "incorrecta")
     page.should have_error
+    page.should have_link_to_connect
     current_path.should == login_page
   end
 
@@ -20,6 +21,7 @@ feature "Login", %q{
     login_with(email: usuario.email, password: "correcta")
     page.should have_success
     page.should have_admin_navigation
+    page.should have_welcome_message usuario.email
     current_path.should == admin_page
   end
 
