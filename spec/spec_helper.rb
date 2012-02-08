@@ -21,18 +21,6 @@ Spork.prefork do
   Devise.stretches = 1
   Rails.logger.level = 4
 
-  class ActiveRecord::Base
-    mattr_accessor :shared_connection
-    @@shared_connection = nil
-
-    def self.connection
-      @@shared_connection || retrieve_connection
-    end
-  end
-  # Forces all threads to share the same connection. This works on
-  # Capybara because it starts the web server in a thread.
-  ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
-
   RSpec.configure do |config|
     # Don't stub views
     config.render_views
@@ -58,8 +46,21 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  Calesur::Application.reload_routes!
   # This code will be run each time you run your specs.
+  Calesur::Application.reload_routes!
+
+  class ActiveRecord::Base
+    mattr_accessor :shared_connection
+    @@shared_connection = nil
+
+    def self.connection
+      @@shared_connection || retrieve_connection
+    end
+  end
+  # Forces all threads to share the same connection. This works on
+  # Capybara because it starts the web server in a thread.
+  ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+
   def authenticate_usuario
     @usuario = Factory :usuario
     sign_in @usuario
