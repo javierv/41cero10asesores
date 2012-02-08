@@ -68,6 +68,11 @@ module NavegacionHelper
   def acciones_para_cliente(cliente)
     actions_list [:edit, :destroy], cliente
   end
+
+  def enlace_desconectar
+     ["Desconectar", destroy_usuario_session_path,
+       {class: "desconectar", method: :delete}]
+  end
  
 private
   def enlaces_admin
@@ -86,16 +91,13 @@ private
     Rails.application.routes.recognize_path(enlace[1])[:controller]
   end
 
-  def enlace_desconectar
-     ["Desconectar", destroy_usuario_session_path,
-       {class: "desconectar", method: :delete}]
-  end
-
   def enlaces_navegacion(paginas)
     paginas.map do |pagina|
       enlace = [pagina.display_name, pagina_path(pagina)]
 
-      if pagina.to_param == params[:id]
+      # ¿Hay forma de conseguir esto sin usar variables de clase,
+      # y que aun así funcione para URLs obsoletas?
+      if pagina == @pagina
         enlace << {class: "current"}
       else
         enlace
@@ -159,10 +161,6 @@ private
 
   def link_title(action, resource)
     "#{link_text(action, resource)} #{resource}"
-  end
-
-  def confirmation_message
-    I18n.t("tabletastic.actions.confirmation", default: "Are you sure?")
   end
 
   def enlaces(actions, resource)

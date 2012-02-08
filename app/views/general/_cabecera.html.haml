@@ -3,4 +3,10 @@
   id: 'logo',
   title: "#{APP_CONFIG["company"]}: Página principal"
 
+#privado
+  - if usuario_signed_in?
+    %span.bienvenido Bienvenido, #{current_usuario}
+    %span.desconectar= link_to *enlace_desconectar
+  - else
+    %span.conectar= link_to I18n.t("public.privada"), new_usuario_session_path
 #lema= I18n.t("public.lema")

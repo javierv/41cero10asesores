@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.1.3'
 
 group :assets do
   gem "sass-rails", "~> 3.1.0"
@@ -30,10 +30,10 @@ group :test do
   gem "factory_girl_rails"
   gem "mocha"
   gem "capybara"
-  gem 'spork', '>= 0.9.0RC'
+  gem 'spork', '~> 0.9.0'
   gem 'guard-spork'
+  gem "rb-inotify"
   gem 'simplecov', require: false
-  gem "database_cleaner"
   gem "launchy"
   gem "libnotify"
 end
@@ -54,7 +54,7 @@ gem 'dragonfly', '~> 0.9.8' # Pozor! Changed a line! Pull request?
 gem "haml", "~> 3.1.0"
 gem "acts-as-taggable-on"
 gem "validation_reflection"
-gem "RedCloth", "~> 4.2.8"
+gem "RedCloth", "~> 4.2.9"
 gem "validates_date_time"
 gem "squeel"
 gem "meta_search"

@@ -2,11 +2,16 @@
 
 require 'spec_helper'
 
+define_match :be_imagen do |actual|
+  actual.imagen?
+end
+
 describe Caja do
   it { should validate_presence_of(:titulo) }
   it { should allow_mass_assignment_of(:titulo) }
-  it { should validate_presence_of(:cuerpo) }
+
   it { should allow_mass_assignment_of(:cuerpo) }
+  it { should allow_mass_assignment_of(:imagen) }
 
   it { should allow_mass_assignment_of(:pagina_ids) }
   it { should have_many(:sidebars).dependent(:destroy) }
@@ -50,6 +55,18 @@ describe Caja do
     it "mantiene la caja en la posición en que ya estaba" do
       cajas[1].pagina_ids = [paginas[1], paginas[0]].map(&:id)
       paginas[0].cajas_con_orden.should == [cajas[0], cajas[1], cajas[3]]
+    end
+  end
+
+  describe "imágenes" do
+    context "caja sin imagen" do
+      subject { Factory :caja, imagen_uid: nil }
+      it { should_not be_imagen }
+    end
+
+    context "caja con imagen" do
+      subject { Factory :caja, imagen_uid: "blank.png"}
+      it { should be_imagen }
     end
   end
 end

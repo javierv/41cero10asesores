@@ -1,10 +1,7 @@
 # encoding: utf-8
 module DiffHelper
   def diferencias(pagina_actual, pagina_anterior)
-    actual = render_pagina(pagina_actual)
-    anterior = render_pagina(pagina_anterior)
-    content_for(:sidebar) {differ actual[:sidebar], anterior[:sidebar]}
-    differ actual[:content], anterior[:content]
+    differ render_pagina(pagina_actual), render_pagina(pagina_anterior)
   end
 
   def botones_seleccion_diferencias(version)
@@ -21,8 +18,7 @@ module DiffHelper
   end
 private
   def render_pagina(pagina)
-    {content: render('paginas/texto_pagina', pagina: pagina),
-    sidebar: render('paginas/sidebar', pagina: pagina, cajas: pagina.cajas_con_orden)}
+    render('paginas/texto_pagina', pagina: pagina)
   end
 
   def differ(actual, anterior)

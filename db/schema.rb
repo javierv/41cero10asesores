@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120205195719) do
+ActiveRecord::Schema.define(:version => 20120208195254) do
 
   create_table "boletines", :force => true do |t|
     t.string   "archivo_uid"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(:version => 20120205195719) do
     t.text     "cuerpo"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "imagen_uid"
+    t.string   "imagen_name"
   end
 
   create_table "clientes", :force => true do |t|

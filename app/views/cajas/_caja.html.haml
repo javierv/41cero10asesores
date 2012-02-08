@@ -1,5 +1,17 @@
-%article.caja
-  %header
-    %h2= caja.titulo
+- if caja.imagen?
+  %figure.caja
+    =image_tag caja.imagen.thumb('300x300#').url, alt: caja.titulo
+    -if !caja.cuerpo.blank?
+      %figcaption= caja.cuerpo
 
-  = strict_textilize caja.cuerpo
+    - if usuario_signed_in?
+      = actions_list([:edit], caja)
+- else
+  %article.caja
+    %header
+      %h2= caja.titulo
+
+    = strict_textilize caja.cuerpo
+
+    - if usuario_signed_in?
+      = actions_list([:edit], caja)
