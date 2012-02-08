@@ -25,4 +25,8 @@ class Caja < ActiveRecord::Base
       order("sidebars.orden, cajas.titulo")
     end
   }
+
+  def imagen?
+    imagen != nil
+  end
 end

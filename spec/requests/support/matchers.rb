@@ -55,7 +55,7 @@ module MatcherMethods
   end
 
   define_match :have_imagen_en_sidebar do |page|
-    page.has_selector? "#sidebar img"
+    page.has_selector? "#sidebar figure"
   end
 end
 
