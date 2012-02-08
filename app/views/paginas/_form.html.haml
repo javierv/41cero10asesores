@@ -27,4 +27,4 @@
   %header
     %h2 Puedes insertar imágenes de la galería
   = render 'fotos/form', foto: Foto.new
-  = render 'fotos/galeria'
+  %section#galeria= render Foto.all
