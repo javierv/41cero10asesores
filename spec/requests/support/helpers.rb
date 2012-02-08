@@ -106,10 +106,14 @@ module HelperMethods
     fill_in "Cuerpo", with: caja[:cuerpo]
   end
 
-  def asigna_pagina(titulo)
+  def crea_asignando_pagina(titulo)
     rellena_caja titulo: "Mi caja", cuerpo: "Me la robaron"
-    check titulo
+    asigna_pagina(titulo)
     click_on "Guardar"
+  end
+
+  def asigna_pagina(titulo)
+    check titulo
   end
 end
 
