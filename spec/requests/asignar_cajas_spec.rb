@@ -16,7 +16,7 @@ feature "Borrador", %q{
   scenario "asignando a una página" do
     visit new_caja_path
     page.should_not have_selector "input[checked]" 
-    asigna_pagina "Primera"
+    crea_asignando_pagina "Primera"
     page.should have_success
     page.should have_selector "input[checked]" 
   end

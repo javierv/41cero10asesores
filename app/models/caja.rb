@@ -1,9 +1,13 @@
 # encoding: utf-8
 
 class Caja < ActiveRecord::Base
-  attr_accessible :titulo, :cuerpo, :pagina_ids
+  attr_accessible :titulo, :cuerpo, :pagina_ids, :imagen
   validates :titulo, presence: true
-  validates :cuerpo, presence: true
+
+  image_accessor :imagen
+  validates_property :mime_type, of: :imagen, in: %w(image/jpeg image/png image/gif),
+    message: "Se admiten formatos PNG, GIF y JPEG"
+
   display_name :titulo
 
   versioned dependent: :tracking, initial_version: true
@@ -21,4 +25,8 @@ class Caja < ActiveRecord::Base
       order("sidebars.orden, cajas.titulo")
     end
   }
+
+  def imagen?
+    imagen != nil
+  end
 end

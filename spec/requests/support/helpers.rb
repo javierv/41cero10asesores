@@ -89,15 +89,13 @@ module HelperMethods
   end
 
   def crea_foto
-    within("#fotos") do
-      attach_file "nueva imagen", Rails.root.join("spec", "images", "blank.png")
-    end
+    within("#fotos") { adjunta_imagen_en("nueva imagen") }
   end
 
   def crea_nuevo_boletin_con_adjunto(archivo)
     visit new_boletin_path
     fill_in "Título", with: "Título"
-    attach_file "Archivo", Rails.root.join("spec", "images", archivo)
+    attach_file "Archivo", ruta_adjunto(archivo)
     click_on "Guardar"
   end
 
@@ -106,10 +104,29 @@ module HelperMethods
     fill_in "Cuerpo", with: caja[:cuerpo]
   end
 
-  def asigna_pagina(titulo)
+  def crea_asignando_pagina(titulo)
     rellena_caja titulo: "Mi caja", cuerpo: "Me la robaron"
-    check titulo
+    asigna_pagina(titulo)
     click_on "Guardar"
+  end
+
+  def crea_caja_con_imagen_en_pagina(titulo)
+    visit new_caja_path
+    adjunta_imagen_en("Imagen")
+    crea_asignando_pagina(titulo)
+  end
+
+  def asigna_pagina(titulo)
+    check titulo
+  end
+
+private
+  def adjunta_imagen_en(campo)
+    attach_file campo, ruta_adjunto("blank.png")
+  end
+
+  def ruta_adjunto(archivo)
+    Rails.root.join("spec", "images", archivo)
   end
 end
 
