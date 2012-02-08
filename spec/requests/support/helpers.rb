@@ -114,6 +114,13 @@ module HelperMethods
     click_on "Guardar"
   end
 
+  def crea_caja_con_imagen_en_pagina(imagen, pagina)
+    visit new_caja_path
+    adjunta_imagen(imagen)
+    asigna_pagina pagina
+    click_on "Guardar"
+  end
+
   def asigna_pagina(titulo)
     check titulo
   end
