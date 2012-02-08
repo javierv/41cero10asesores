@@ -163,10 +163,6 @@ private
     "#{link_text(action, resource)} #{resource}"
   end
 
-  def confirmation_message
-    I18n.t("tabletastic.actions.confirmation", default: "Are you sure?")
-  end
-
   def enlaces(actions, resource)
     actions.map do |action|
       enlace(action, resource)
