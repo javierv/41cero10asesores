@@ -5,8 +5,9 @@ require 'spec_helper'
 describe Caja do
   it { should validate_presence_of(:titulo) }
   it { should allow_mass_assignment_of(:titulo) }
-  it { should validate_presence_of(:cuerpo) }
+
   it { should allow_mass_assignment_of(:cuerpo) }
+  it { should allow_mass_assignment_of(:imagen) }
 
   it { should allow_mass_assignment_of(:pagina_ids) }
   it { should have_many(:sidebars).dependent(:destroy) }
