@@ -89,9 +89,11 @@ module HelperMethods
   end
 
   def crea_foto
-    within("#fotos") do
-      attach_file "nueva imagen", Rails.root.join("spec", "images", "blank.png")
-    end
+    within("#fotos") { adjunta_imagen }
+  end
+
+  def adjunta_imagen(imagen = "blank.png")
+    attach_file "nueva imagen", Rails.root.join("spec", "images", imagen)
   end
 
   def crea_nuevo_boletin_con_adjunto(archivo)
