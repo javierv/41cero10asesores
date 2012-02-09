@@ -64,30 +64,6 @@ describe PaginasController do
         should set_the_flash
       end
     end
-
-    context "when using preview button" do
-      context "with a normal request" do
-        before(:each) do
-          post :create, pagina: @pagina.attributes, preview: true
-        end
-
-        it do
-          should render_template(:preview)
-          assigns(:pagina).should be_true
-        end
-      end
-
-      context "with an AJAX request" do
-        before(:each) do
-          xhr :post, :create, pagina: @pagina.attributes, preview: true
-        end
-
-        it do
-          should render_template(:preview)
-          should_not render_with_layout 
-        end
-      end
-    end
   end
 
   describe "show action" do
@@ -132,30 +108,6 @@ describe PaginasController do
       it do
         should redirect_to(pagina_path(@pagina))
         should set_the_flash
-      end
-    end
-
-    context "when using preview button" do
-      context "with a normal request" do
-        before(:each) do
-          put :update, id: @pagina.to_param, pagina: @pagina.attributes, preview: true
-        end
-
-        it do
-          should render_template(:preview)
-          assigns(:pagina).should be_true
-        end
-      end
-
-      context "with an AJAX request" do
-        before(:each) do
-          xhr :put, :update, id: @pagina.to_param, pagina: @pagina.attributes, preview: true
-        end
-
-        it do
-          should render_template(:preview)
-          should_not render_with_layout
-        end
       end
     end
 
@@ -235,6 +187,58 @@ describe PaginasController do
         should render_template(:create_draft)
         should respond_with_content_type(:js)
         should_not render_with_layout
+      end
+    end
+  end
+
+  describe "preview" do
+    context "for an existing record" do
+      context "with a normal request" do
+        before(:each) do
+          put :preview, id: @pagina.to_param, pagina: @pagina.attributes
+        end
+
+        it do
+          should render_template(:preview)
+          assigns(:pagina).should be_true
+        end
+      end
+
+      context "with an AJAX request" do
+        before(:each) do
+          xhr :put, :preview, id: @pagina.to_param, pagina: @pagina.attributes
+        end
+
+        it do
+          should render_template(:preview)
+          should respond_with_content_type(:js)
+          should_not render_with_layout
+        end
+      end
+    end
+
+    context "for a new record" do
+      context "with a normal request" do
+        before(:each) do
+          post :preview, pagina: @pagina.attributes
+        end
+
+        it do
+          should render_template(:preview)
+          assigns(:pagina).should be_true
+        end
+      end
+
+      context "with an AJAX request" do
+        before(:each) do
+          xhr :post, :preview, pagina: @pagina.attributes
+        end
+
+        it do
+          should render_template(:preview)
+          should respond_with_content_type(:js)
+          should_not render_with_layout
+        end
       end
     end
   end

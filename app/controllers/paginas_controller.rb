@@ -2,7 +2,7 @@
 
 class PaginasController < ApplicationController
   # Tengo que declarar antes el JS para que las peticiones AJAX respondan así.
-  respond_to :js, only: [:index, :search, :destroy, :create_draft, :update_draft]
+  respond_to :js, only: [:index, :search, :destroy, :create_draft, :update_draft, :preview]
   respond_to :html
 
   public_actions :show, :search
@@ -12,7 +12,7 @@ class PaginasController < ApplicationController
   before_filter :find_pagina, only: [:edit, :update, :destroy, :historial, :update_draft]
   before_filter :new_pagina, only: [:new, :create, :create_draft]
   before_filter :asignar_cajas, only: [:create, :update, :create_draft, :update_draft]
-  before_filter :preview, only: [:create, :update]
+  before_filter :find_or_new_pagina, only: :preview
   before_filter :save_draft, only: [:create_draft, :update_draft]
   before_filter :publish_draft, only: [:create, :update]
   before_filter :paginate_paginas, only: :index
@@ -52,6 +52,15 @@ class PaginasController < ApplicationController
     respond_with @pagina.draft, location: edit_pagina_path(@pagina.draft)
   end
 
+  def preview
+    # HACK: asignar caja_ids guarda la relación en la BD. Ver:
+    # https://github.com/rails/rails/issues/674
+    attributes = params[:pagina].clone
+    @cajas = Caja.find_all_by_id(attributes.delete(:caja_ids) || [])
+    @pagina.attributes = attributes
+    respond_with @pagina
+  end
+
   def destroy
     if @pagina.destroy
       @deshacer = deshacer_borrado_path(@pagina)
@@ -80,19 +89,11 @@ private
     end
   end
 
-  # TODO: pasar a acción independiente en cuanto funcione "formaction".
-  def preview
-    if params[:preview]
-      # HACK: asignar caja_ids guarda la relación en la BD. Ver:
-      # https://rails.lighthouseapp.com/projects/8994/tickets/4521
-      attributes = params[:pagina].clone
-      @cajas = Caja.find_all_by_id(attributes.delete(:caja_ids) || [])
-      @pagina.attributes = attributes
-      if request.xhr?
-        render 'preview.js'
-      else
-        render 'preview'
-      end
+  def find_or_new_pagina
+    if params[:id]
+      find_pagina
+    else
+      new_pagina
     end
   end
 
