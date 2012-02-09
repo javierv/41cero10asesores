@@ -7,6 +7,7 @@ jQuery.fn.liveForm = ->
 
     send_form = (form) ->
       form.ajaxSubmit(
+        url: $('input[formaction*="preview"]').attr("formaction")
         beforeSend: ->
           $('#preview').addCargando()
         success: (data) ->
@@ -14,8 +15,6 @@ jQuery.fn.liveForm = ->
             .removeCargando().imagenesQuitables().worldMaps()
           $('#sidebar').remove()
           $('#sidebar', data).prependTo('#extra')
-
-        data: { preview: true }
       )
 
     $('input[type=text], textarea', form).typeWatch(

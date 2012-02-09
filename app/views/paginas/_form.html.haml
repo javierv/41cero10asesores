@@ -24,7 +24,8 @@
     
     = form.submit 'Guardar borrador', id: 'draft_submit',
       formaction: save_draft_path(pagina)
-    = form.submit 'Vista previa', name: 'preview', id: 'preview_submit'
+    = form.submit 'Vista previa', id: 'preview_submit',
+      formaction: preview_path(pagina)
 
 %section#fotos
   %header
