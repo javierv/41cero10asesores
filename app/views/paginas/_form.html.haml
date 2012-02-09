@@ -10,6 +10,8 @@
   = form.input :titulo
   = form.input :cuerpo
 
+  //Idealmente, habría enlaces a editar las cajas, pero no parece nada sencillo
+  //hacer eso y además mantener la opción de ordenar las cajas.
   = hidden_field_tag "pagina[caja_ids][]"
   = form.association :cajas, collection: Caja.al_final_las_de_pagina(pagina),
     input_html: {class: 'cajas'}
