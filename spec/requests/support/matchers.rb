@@ -65,6 +65,10 @@ module MatcherMethods
   define_match :have_link_to_connect do |page|
     page.has_selector?("#cabecera .conectar")
   end
+
+  define_match :have_pagina_asignada do |page|
+    page.has_selector?("input[checked]")
+  end
 end
 
 module Capybara
