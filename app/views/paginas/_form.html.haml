@@ -18,12 +18,14 @@
 
   = buttons do
     - if pagina.borrador?
-      = form.submit 'Publicar', name: 'publish'
+      = form.submit 'Publicar', formaction: publish_pagina_path(pagina)
     - else
       = form.button :submit
     
-    = form.submit 'Guardar borrador', name: 'draft', id: 'draft_submit'
-    = form.submit 'Vista previa', name: 'preview', id: 'preview_submit'
+    = form.submit 'Guardar borrador', id: 'draft_submit',
+      formaction: save_draft_path(pagina)
+    = form.submit 'Vista previa', id: 'preview_submit',
+      formaction: preview_path(pagina)
 
 %section#fotos
   %header

@@ -9,6 +9,21 @@ module ApplicationHelper
     end
   end
 
+  def save_draft_path(pagina)
+    if pagina.new_record?
+      save_draft_paginas_path
+    else
+      save_draft_pagina_path(pagina)
+    end
+  end
+
+  def preview_path(pagina)
+    if pagina.new_record?
+      preview_paginas_path
+    else
+      preview_pagina_path(pagina)
+    end
+  end
 
   def time_tag(date_or_time, *args)
     options  = args.extract_options!

@@ -4,7 +4,7 @@ describe 'Live form', ->
     $('form.pagina').liveForm()
 
   it 'removes the preview button', ->
-    expect($('input[name=preview]')).not.toExist()
+    expect($('input[value=Preview]')).not.toExist()
 
   it 'adds a preview element', ->
     expect($('#preview')).toExist()
@@ -13,6 +13,10 @@ describe 'Live form', ->
     beforeEach ->
       $('#post_title').val('my title').keydown()
       waits(1000)
+
+    it "sends the form to the preview button action", ->
+      request = mostRecentAjaxRequest()
+      expect(request.url).toEqual "/preview"
 
     it 'fills the preview with the content', ->
       request = mostRecentAjaxRequest()

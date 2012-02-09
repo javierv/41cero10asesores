@@ -2,19 +2,17 @@
 
 class PaginasController < ApplicationController
   # Tengo que declarar antes el JS para que las peticiones AJAX respondan así.
-  respond_to :js, only: [:index, :search, :destroy]
+  respond_to :js, only: [:index, :search, :destroy, :save_draft, :preview]
   respond_to :html
 
   public_actions :show, :search
   resource :pagina
 
-  before_filter :params_updated_by, only: [:create, :update]
-  before_filter :find_pagina, only: [:edit, :update, :destroy, :historial]
+  before_filter :params_updated_by, only: [:create, :update, :save_draft, :publish]
+  before_filter :find_pagina, only: [:edit, :update, :destroy, :historial, :publish]
   before_filter :new_pagina, only: [:new, :create]
-  before_filter :asignar_cajas, only: [:create, :update]
-  before_filter :preview, only: [:create, :update]
-  before_filter :save_draft, only: [:create, :update]
-  before_filter :publish_draft, only: [:create, :update]
+  before_filter :find_or_new_pagina, only: [:preview, :save_draft]
+  before_filter :asignar_cajas, only: [:create, :update, :save_draft]
   before_filter :paginate_paginas, only: :index
 
   def index
@@ -41,6 +39,28 @@ class PaginasController < ApplicationController
 
   def update
     @pagina.update_attributes(params[:pagina])
+    respond_with @pagina
+  end
+
+  def save_draft
+    @pagina.save_draft(params[:pagina])
+    respond_with @pagina.draft, location: edit_pagina_path(@pagina.draft)
+  end
+
+  def publish
+    if @pagina.publish params[:pagina]
+      respond_with @pagina.published
+    else
+      respond_with @pagina
+    end
+  end
+
+  def preview
+    # HACK: asignar caja_ids guarda la relación en la BD. Ver:
+    # https://github.com/rails/rails/issues/674
+    attributes = params[:pagina].clone
+    @cajas = Caja.find_all_by_id(attributes.delete(:caja_ids) || [])
+    @pagina.attributes = attributes
     respond_with @pagina
   end
 
@@ -72,42 +92,11 @@ private
     end
   end
 
-  # TODO: pasar a acción independiente en cuanto funcione "formaction".
-  def preview
-    if params[:preview]
-      # HACK: asignar caja_ids guarda la relación en la BD. Ver:
-      # https://rails.lighthouseapp.com/projects/8994/tickets/4521
-      attributes = params[:pagina].clone
-      @cajas = Caja.find_all_by_id(attributes.delete(:caja_ids) || [])
-      @pagina.attributes = attributes
-      if request.xhr?
-        render 'preview.js'
-      else
-        render 'preview'
-      end
-    end
-  end
-
-  def save_draft
-    if params[:draft]
-      if request.xhr?
-        @pagina.save_draft(params[:pagina])
-        render 'borrador.js'
-      else
-        flash[:notice] = 'Borrador guardado.' if @pagina.save_draft(params[:pagina])
-        redirect_to edit_pagina_path(@pagina.draft)
-      end
-    end
-  end
-
-  def publish_draft
-    if params[:publish]
-      if @pagina.publish(params[:pagina])
-        flash[:notice] = 'Borrador publicado.'
-        redirect_to(pagina_path(@pagina.published))
-      else
-        render 'edit'
-      end
+  def find_or_new_pagina
+    if params[:id]
+      find_pagina
+    else
+      new_pagina
     end
   end
 end

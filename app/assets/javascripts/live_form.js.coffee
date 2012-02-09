@@ -3,10 +3,12 @@ jQuery.fn.liveForm = ->
     form = $(this)
 
     $('#main').prepend('<div id="preview"></div>')
-    $('input[name=preview]').remove()
+    preview_button = $('input[formaction*="preview"]')
+    preview_button.remove()
 
     send_form = (form) ->
       form.ajaxSubmit(
+        url: preview_button.attr("formaction")
         beforeSend: ->
           $('#preview').addCargando()
         success: (data) ->
@@ -14,8 +16,6 @@ jQuery.fn.liveForm = ->
             .removeCargando().imagenesQuitables().worldMaps()
           $('#sidebar').remove()
           $('#sidebar', data).prependTo('#extra')
-
-        data: { preview: true }
       )
 
     $('input[type=text], textarea', form).typeWatch(
