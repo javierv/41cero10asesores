@@ -4,7 +4,7 @@ describe 'Live form', ->
     $('form.pagina').liveForm()
 
   it 'removes the preview button', ->
-    expect($('input[name=preview]')).not.toExist()
+    expect($('input[value=Preview]')).not.toExist()
 
   it 'adds a preview element', ->
     expect($('#preview')).toExist()
