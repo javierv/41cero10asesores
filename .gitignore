@@ -17,6 +17,7 @@ spec/images/*/**
 prototipo/*
 config/database.yml
 config/thin.yml
+config/redis.conf
 config/app_config.yml
 tmp/restart.txt
 tags
