@@ -39,13 +39,13 @@ Calesur::Application.routes.draw do
   match '/ayuda-textile' => "static#ayuda_textile"
 
   resources :paginas, only: [:index, :create] do
-    post :create_draft, on: :collection
+    post :save_draft,   on: :collection
     post :preview,      on: :collection
   end
   resources :paginas, path: "", except: [:index, :create] do
     get :search,       on: :collection
     get :historial,    on: :member
-    put :update_draft, on: :member
+    put :save_draft,   on: :member
     put :preview,      on: :member
   end
 

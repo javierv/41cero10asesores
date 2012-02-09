@@ -2,18 +2,17 @@
 
 class PaginasController < ApplicationController
   # Tengo que declarar antes el JS para que las peticiones AJAX respondan así.
-  respond_to :js, only: [:index, :search, :destroy, :create_draft, :update_draft, :preview]
+  respond_to :js, only: [:index, :search, :destroy, :save_draft, :preview]
   respond_to :html
 
   public_actions :show, :search
   resource :pagina
 
-  before_filter :params_updated_by, only: [:create, :update, :update_draft]
-  before_filter :find_pagina, only: [:edit, :update, :destroy, :historial, :update_draft]
-  before_filter :new_pagina, only: [:new, :create, :create_draft]
-  before_filter :asignar_cajas, only: [:create, :update, :create_draft, :update_draft]
-  before_filter :find_or_new_pagina, only: :preview
-  before_filter :save_draft, only: [:create_draft, :update_draft]
+  before_filter :params_updated_by, only: [:create, :update, :save_draft]
+  before_filter :find_pagina, only: [:edit, :update, :destroy, :historial]
+  before_filter :new_pagina, only: [:new, :create]
+  before_filter :asignar_cajas, only: [:create, :update, :save_draft]
+  before_filter :find_or_new_pagina, only: [:preview, :save_draft]
   before_filter :publish_draft, only: [:create, :update]
   before_filter :paginate_paginas, only: :index
 
@@ -44,11 +43,8 @@ class PaginasController < ApplicationController
     respond_with @pagina
   end
 
-  def update_draft
-    respond_with @pagina.draft, location: edit_pagina_path(@pagina.draft)
-  end
-
-  def create_draft
+  def save_draft
+    @pagina.save_draft(params[:pagina])
     respond_with @pagina.draft, location: edit_pagina_path(@pagina.draft)
   end
 
@@ -95,10 +91,6 @@ private
     else
       new_pagina
     end
-  end
-
-  def save_draft
-    @pagina.save_draft(params[:pagina])
   end
 
   def publish_draft

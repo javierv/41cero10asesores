@@ -140,53 +140,54 @@ describe PaginasController do
     end
   end
 
-  describe "update draft" do
-    context "with a normal request" do
-      before(:each) do
-        put :update_draft, id: @pagina.to_param, pagina: @pagina.attributes
+  describe "save draft" do
+    context "with an existing record" do
+      context "with a normal request" do
+        before(:each) do
+          put :save_draft, id: @pagina.to_param, pagina: @pagina.attributes
+        end
+
+        it do
+          should redirect_to(edit_pagina_path(@pagina.draft))
+          should set_the_flash
+        end
       end
 
-      it do
-        should redirect_to(edit_pagina_path(@pagina.draft))
-        should set_the_flash
-      end
+      context "with an AJAX request" do
+        before(:each) do
+          xhr :put, :save_draft, id: @pagina.to_param, pagina: @pagina.attributes
+        end
 
-    end
-
-    context "with an AJAX request" do
-      before(:each) do
-        xhr :put, :update_draft, id: @pagina.to_param, pagina: @pagina.attributes
-      end
-
-      it do
-        should render_template(:update_draft)
-        should respond_with_content_type(:js)
-        should_not render_with_layout
-      end
-    end
-  end
-
-  describe "create draft" do
-    context "with a normal request" do
-      before(:each) do
-        post :create_draft, pagina: @pagina.attributes
-      end
-
-      it do
-        should redirect_to(edit_pagina_path(Pagina.where(borrador: true).last))
-        should set_the_flash
+        it do
+          should render_template(:save_draft)
+          should respond_with_content_type(:js)
+          should_not render_with_layout
+        end
       end
     end
 
-    context "with an AJAX request" do
-      before(:each) do
-        xhr :post, :create_draft, pagina: @pagina.attributes
+    context "with a new record" do
+      context "with a normal request" do
+        before(:each) do
+          post :save_draft, pagina: @pagina.attributes
+        end
+
+        it do
+          should redirect_to(edit_pagina_path(Pagina.where(borrador: true).last))
+          should set_the_flash
+        end
       end
 
-      it do
-        should render_template(:create_draft)
-        should respond_with_content_type(:js)
-        should_not render_with_layout
+      context "with an AJAX request" do
+        before(:each) do
+          xhr :post, :save_draft, pagina: @pagina.attributes
+        end
+
+        it do
+          should render_template(:save_draft)
+          should respond_with_content_type(:js)
+          should_not render_with_layout
+        end
       end
     end
   end

@@ -11,9 +11,9 @@ module ApplicationHelper
 
   def save_draft_path(pagina)
     if pagina.new_record?
-      create_draft_paginas_path
+      save_draft_paginas_path
     else
-      update_draft_pagina_path(pagina)
+      save_draft_pagina_path(pagina)
     end
   end
 
