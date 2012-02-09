@@ -11,8 +11,8 @@ class PaginasController < ApplicationController
   before_filter :params_updated_by, only: [:create, :update, :save_draft, :publish]
   before_filter :find_pagina, only: [:edit, :update, :destroy, :historial, :publish]
   before_filter :new_pagina, only: [:new, :create]
-  before_filter :asignar_cajas, only: [:create, :update, :save_draft]
   before_filter :find_or_new_pagina, only: [:preview, :save_draft]
+  before_filter :asignar_cajas, only: [:create, :update, :save_draft]
   before_filter :paginate_paginas, only: :index
 
   def index
