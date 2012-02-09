@@ -2,18 +2,18 @@
 
 class PaginasController < ApplicationController
   # Tengo que declarar antes el JS para que las peticiones AJAX respondan así.
-  respond_to :js, only: [:index, :search, :destroy]
+  respond_to :js, only: [:index, :search, :destroy, :create_draft, :update_draft]
   respond_to :html
 
   public_actions :show, :search
   resource :pagina
 
-  before_filter :params_updated_by, only: [:create, :update]
-  before_filter :find_pagina, only: [:edit, :update, :destroy, :historial]
-  before_filter :new_pagina, only: [:new, :create]
-  before_filter :asignar_cajas, only: [:create, :update]
+  before_filter :params_updated_by, only: [:create, :update, :update_draft]
+  before_filter :find_pagina, only: [:edit, :update, :destroy, :historial, :update_draft]
+  before_filter :new_pagina, only: [:new, :create, :create_draft]
+  before_filter :asignar_cajas, only: [:create, :update, :create_draft, :update_draft]
   before_filter :preview, only: [:create, :update]
-  before_filter :save_draft, only: [:create, :update]
+  before_filter :save_draft, only: [:create_draft, :update_draft]
   before_filter :publish_draft, only: [:create, :update]
   before_filter :paginate_paginas, only: :index
 
@@ -42,6 +42,14 @@ class PaginasController < ApplicationController
   def update
     @pagina.update_attributes(params[:pagina])
     respond_with @pagina
+  end
+
+  def update_draft
+    respond_with @pagina.draft, location: edit_pagina_path(@pagina.draft)
+  end
+
+  def create_draft
+    respond_with @pagina.draft, location: edit_pagina_path(@pagina.draft)
   end
 
   def destroy
@@ -89,15 +97,7 @@ private
   end
 
   def save_draft
-    if params[:draft]
-      if request.xhr?
-        @pagina.save_draft(params[:pagina])
-        render 'borrador.js'
-      else
-        flash[:notice] = 'Borrador guardado.' if @pagina.save_draft(params[:pagina])
-        redirect_to edit_pagina_path(@pagina.draft)
-      end
-    end
+    @pagina.save_draft(params[:pagina])
   end
 
   def publish_draft

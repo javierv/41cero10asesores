@@ -159,30 +159,6 @@ describe PaginasController do
       end
     end
 
-    context "when saving as draft" do
-      context "with a normal request" do
-        before(:each) do
-          put :update, id: @pagina.to_param, pagina: @pagina.attributes, draft: true
-        end
-
-        it do
-          should redirect_to(edit_pagina_path(@pagina.draft))
-          should set_the_flash
-        end
-      end
-
-      context "with an AJAX request" do
-        before(:each) do
-          xhr :put, :update, id: @pagina.to_param, pagina: @pagina.attributes, draft: true
-        end
-
-        it do
-          should render_template(:borrador)
-          should_not render_with_layout
-        end
-      end
-    end
-
     context "when publishing a draft" do
       before(:each) do
         @pagina.save_draft
@@ -208,6 +184,57 @@ describe PaginasController do
         end
 
         it { should render_template(:edit) }
+      end
+    end
+  end
+
+  describe "update draft" do
+    context "with a normal request" do
+      before(:each) do
+        put :update_draft, id: @pagina.to_param, pagina: @pagina.attributes
+      end
+
+      it do
+        should redirect_to(edit_pagina_path(@pagina.draft))
+        should set_the_flash
+      end
+
+    end
+
+    context "with an AJAX request" do
+      before(:each) do
+        xhr :put, :update_draft, id: @pagina.to_param, pagina: @pagina.attributes
+      end
+
+      it do
+        should render_template(:update_draft)
+        should respond_with_content_type(:js)
+        should_not render_with_layout
+      end
+    end
+  end
+
+  describe "create draft" do
+    context "with a normal request" do
+      before(:each) do
+        post :create_draft, pagina: @pagina.attributes
+      end
+
+      it do
+        should redirect_to(edit_pagina_path(Pagina.where(borrador: true).last))
+        should set_the_flash
+      end
+    end
+
+    context "with an AJAX request" do
+      before(:each) do
+        xhr :post, :create_draft, pagina: @pagina.attributes
+      end
+
+      it do
+        should render_template(:create_draft)
+        should respond_with_content_type(:js)
+        should_not render_with_layout
       end
     end
   end

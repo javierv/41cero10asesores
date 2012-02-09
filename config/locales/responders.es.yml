@@ -12,3 +12,7 @@ es:
         notice: "%{resource_name} se envió correctamente."
       restore:
         notice: "%{resource_name} se recuperó correctamente."
+      create_draft:
+        notice: "Borrador guardado"
+      update_draft:
+        notice: "Borrador guardado"
