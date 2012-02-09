@@ -22,7 +22,8 @@
     - else
       = form.button :submit
     
-    = form.submit 'Guardar borrador', name: 'draft', id: 'draft_submit'
+    = form.submit 'Guardar borrador', id: 'draft_submit',
+      formaction: save_draft_path(pagina)
     = form.submit 'Vista previa', name: 'preview', id: 'preview_submit'
 
 %section#fotos
