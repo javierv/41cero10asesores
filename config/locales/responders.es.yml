@@ -14,3 +14,5 @@ es:
         notice: "%{resource_name} se recuperó correctamente."
       save_draft:
         notice: "Borrador guardado"
+      publish:
+        notice: "Borrador publicado"

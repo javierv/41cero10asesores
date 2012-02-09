@@ -18,7 +18,7 @@
 
   = buttons do
     - if pagina.borrador?
-      = form.submit 'Publicar', name: 'publish'
+      = form.submit 'Publicar', formaction: publish_pagina_path(pagina)
     - else
       = form.button :submit
     

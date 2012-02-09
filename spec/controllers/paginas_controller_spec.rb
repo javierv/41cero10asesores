@@ -110,34 +110,6 @@ describe PaginasController do
         should set_the_flash
       end
     end
-
-    context "when publishing a draft" do
-      before(:each) do
-        @pagina.save_draft
-        @borrador = @pagina.draft
-        @action = -> {put :update, id: @borrador.to_param, pagina: @pagina.attributes, publish: true}
-      end
-      
-      context "when model is valid" do
-        before(:each) do
-          Pagina.any_instance.stubs(:valid?).returns(true)
-          @action[]
-        end
-        it do
-          should redirect_to(pagina_path(@pagina))
-          should set_the_flash
-        end
-      end
-
-      context 'when model is invalid' do
-        before(:each) do
-          Pagina.any_instance.stubs(:valid?).returns(false)
-          @action[]
-        end
-
-        it { should render_template(:edit) }
-      end
-    end
   end
 
   describe "save draft" do
@@ -188,6 +160,38 @@ describe PaginasController do
           should respond_with_content_type(:js)
           should_not render_with_layout
         end
+      end
+    end
+  end
+
+  describe "publish" do
+    before(:each) do
+      @pagina.save_draft
+      @borrador = @pagina.draft
+      @action = -> {put :publish, id: @borrador.to_param, pagina: @pagina.attributes}
+    end
+
+    context "when model is valid" do
+      before(:each) do
+       pagina_valida_siempre
+       @action[]
+      end
+
+      it do
+        should redirect_to(pagina_path(@pagina))
+        should set_the_flash
+      end
+    end
+
+    context 'when model is invalid' do
+      before(:each) do
+        pagina_falla_validacion
+        @action[]
+      end
+
+      it do
+        should respond_with(:success)
+        should render_template(:edit)
       end
     end
   end

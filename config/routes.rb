@@ -46,6 +46,7 @@ Calesur::Application.routes.draw do
     get :search,       on: :collection
     get :historial,    on: :member
     put :save_draft,   on: :member
+    put :publish,      on: :member
     put :preview,      on: :member
   end
 

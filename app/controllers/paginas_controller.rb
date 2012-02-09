@@ -8,12 +8,11 @@ class PaginasController < ApplicationController
   public_actions :show, :search
   resource :pagina
 
-  before_filter :params_updated_by, only: [:create, :update, :save_draft]
-  before_filter :find_pagina, only: [:edit, :update, :destroy, :historial]
+  before_filter :params_updated_by, only: [:create, :update, :save_draft, :publish]
+  before_filter :find_pagina, only: [:edit, :update, :destroy, :historial, :publish]
   before_filter :new_pagina, only: [:new, :create]
   before_filter :asignar_cajas, only: [:create, :update, :save_draft]
   before_filter :find_or_new_pagina, only: [:preview, :save_draft]
-  before_filter :publish_draft, only: [:create, :update]
   before_filter :paginate_paginas, only: :index
 
   def index
@@ -46,6 +45,14 @@ class PaginasController < ApplicationController
   def save_draft
     @pagina.save_draft(params[:pagina])
     respond_with @pagina.draft, location: edit_pagina_path(@pagina.draft)
+  end
+
+  def publish
+    if @pagina.publish params[:pagina]
+      respond_with @pagina.published
+    else
+      respond_with @pagina
+    end
   end
 
   def preview
@@ -90,17 +97,6 @@ private
       find_pagina
     else
       new_pagina
-    end
-  end
-
-  def publish_draft
-    if params[:publish]
-      if @pagina.publish(params[:pagina])
-        flash[:notice] = 'Borrador publicado.'
-        redirect_to(pagina_path(@pagina.published))
-      else
-        render 'edit'
-      end
     end
   end
 end

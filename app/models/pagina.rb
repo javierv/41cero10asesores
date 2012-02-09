@@ -130,7 +130,9 @@ private
   end
 
   def copy_errors(pagina)
-    pagina.errors.each { |field, message| errors.add(field, message) }
+    unless pagina.errors == errors
+      pagina.errors.each { |field, message| errors.add(field, message) }
+    end
   end
 
   def titulo_nil_si_blank
