@@ -1,14 +1,6 @@
 # encoding: utf-8
 
 module ApplicationHelper
-  def edit_pagina_title(pagina)
-    if pagina.borrador?
-      "Editando borrador de #{pagina}"
-    else
-      "Editando la página #{pagina}"
-    end
-  end
-
   def save_draft_path(pagina)
     if pagina.new_record?
       save_draft_paginas_path

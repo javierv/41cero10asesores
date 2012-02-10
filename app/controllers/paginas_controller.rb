@@ -99,4 +99,8 @@ private
       new_pagina
     end
   end
+
+  def find_pagina
+    @pagina = PaginaDecorator.find params[:id]
+  end
 end
