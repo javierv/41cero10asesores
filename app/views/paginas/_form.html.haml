@@ -31,4 +31,4 @@
   %header
     %h2 Puedes insertar imágenes de la galería
   = render 'fotos/form', foto: Foto.new
-  %section#galeria= render Foto.all
+  %section#galeria= render FotoDecorator.all
