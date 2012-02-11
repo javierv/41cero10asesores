@@ -39,6 +39,22 @@ class PaginaDecorator < ApplicationDecorator
     differ render_pagina, pagina.render_pagina
   end
 
+  def save_draft_path
+    if model.new_record?
+      h.save_draft_paginas_path
+    else
+      h.save_draft_pagina_path(model)
+    end
+  end
+
+  def preview_path
+    if model.new_record?
+      h.preview_paginas_path
+    else
+      h.preview_pagina_path(model)
+    end
+  end
+
 protected
   def render_pagina
     h.render('paginas/texto_pagina', pagina: self)
