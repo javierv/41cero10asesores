@@ -47,16 +47,6 @@ module NavegacionHelper
     actions_list actions, version
   end
 
-  def acciones_para_boletin(boletin)
-    acciones = [:show, :edit, :destroy]
-    acciones << :enviar unless boletin.enviado?
-    actions_list acciones, boletin
-  end
-
-  def acciones_para_cliente(cliente)
-    actions_list [:edit, :destroy], cliente
-  end
-
   def enlace_desconectar
      ["Desconectar", destroy_usuario_session_path,
        {class: "desconectar", method: :delete}]
