@@ -3,7 +3,7 @@
 class NavegacionesController < ApplicationController
   def new
     @ids = Navegacion.pagina_ids
-    @paginas = Pagina.al_final_las_de_navegacion
+    @paginas = PaginaDecorator.decorate Pagina.al_final_las_de_navegacion
   end
 
   def create

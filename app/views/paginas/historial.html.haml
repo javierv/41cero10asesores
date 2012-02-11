@@ -5,12 +5,10 @@
   %section#listado
     = table_for @versiones do |table|
       = table.data do
-        = table.cell :id, heading: 'Comparar' do |version|
-          - botones_seleccion_diferencias(version)
-        = table.cell :created_at, heading: 'Modificado el' do |version|
-          - l version.created_at, format: :short
+        = table.cell :botones_seleccion_diferencias, heading: 'Comparar'
+        = table.cell :created_at, heading: 'Modificado el'
         = table.cell :user, heading: 'Modificado por'
-        = actions_cell(table) { |version| acciones_para_version version }
+        = actions_cell table, :actions_list
 
   = buttons { submit_tag 'Comparar seleccionadas' }
 = actions_list [:show, :edit, :index], @pagina

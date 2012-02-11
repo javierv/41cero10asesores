@@ -11,6 +11,7 @@ feature "Buscador", %q{
   background do
     crea_paginas_con_titulos ["Un título", "Dos títulos", "Una cosa", "Dos cosas"]
     Pagina.rebuild_xapian_index
+    crea_portada
   end
 
   scenario "búsqueda normal" do

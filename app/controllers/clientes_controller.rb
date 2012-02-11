@@ -7,7 +7,7 @@ class ClientesController < ApplicationController
   before_filter :find_cliente, only: [:edit, :update, :destroy]
 
   def index
-    @clientes = Cliente.all
+    @clientes = ClienteDecorator.all
     respond_with @clientes
   end
 

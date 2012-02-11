@@ -16,57 +16,18 @@ module NavegacionHelper
     lista_con_enlaces enlaces_navegacion(paginas)
   end
 
+  def admin_actions_list(actions, resource)
+    if usuario_signed_in?
+      actions_list(actions, resource)
+    end
+  end
+
   def actions_list(actions, resource)
     lista_con_enlaces enlaces(actions, resource), class: 'actions'
   end
 
-  def actions_cell(table, &block)
-    table.cell :acciones, heading: "Acciones", cell_html: {class: "actions"} do |res|
-      block[res]
-    end
-  end
-
-  def acciones_para_pagina(pagina)
-    acciones = [:edit, :destroy, :historial]
-
-    if pagina.has_draft?
-      acciones.push(['Editar borrador', edit_pagina_path(pagina.draft), {class: 'draft'}])
-    end
-
-    unless pagina.borrador?
-      acciones.unshift :show
-    end
-
-    actions_list(acciones, pagina)
-  end
-
-  def acciones_para_caja(caja)
-    actions_list [:edit, :destroy], caja
-  end
-
-  def acciones_para_version(version)
-    actions = [:show]
-    if version.previous
-      actions << ['Anterior', 
-                compare_vestal_versions_version_path(version, version.previous),
-                {title: 'Comparar con la versión anterior a esta'}]
-    end
-    
-    unless version.current?
-      actions << ['Actual', compare_vestal_versions_version_path(version),
-                  {title: 'Comparar con la versión actual'}]
-    end
-    actions_list actions, version
-  end
-
-  def acciones_para_boletin(boletin)
-    acciones = [:show, :edit, :destroy]
-    acciones << :enviar unless boletin.enviado?
-    actions_list acciones, boletin
-  end
-
-  def acciones_para_cliente(cliente)
-    actions_list [:edit, :destroy], cliente
+  def actions_cell(table, method)
+    table.cell method, heading: "Acciones", cell_html: {class: "actions"}
   end
 
   def enlace_desconectar
@@ -194,7 +155,7 @@ private
       when :show
         resource
       when :index
-        [resource.class, {class: "index #{resource.class.to_s.tableize}"}]
+        [resource.class, {class: "index #{resource.class.to_s.sub("Decorator", "").tableize}"}]
       when :destroy
         [resource, {method: :delete, remote: true}]
       else

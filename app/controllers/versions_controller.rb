@@ -10,7 +10,7 @@ class VersionsController < ApplicationController
 
   def recover
     @pagina.save
-    redirect_to @pagina, notice: 'Versión recuperada'
+    respond_with @pagina
   end
 
   def restore
@@ -21,22 +21,24 @@ class VersionsController < ApplicationController
   def compare
     @referencia =
       if params[:ref_id]
-        VestalVersions::Version.find(params[:ref_id])
+        VersionDecorator.find(params[:ref_id])
       else
-        @version.current
+        VersionDecorator.decorate @version.current
       end
+
+    @pagina_referencia = PaginaDecorator.decorate @referencia.reify
   end
 
   def borradas
-    @versiones = VestalVersions::Version.where(tag: 'deleted', versioned_type: "Pagina").order("created_at DESC")
+    @versiones = VersionDecorator.decorate VestalVersions::Version.where(tag: 'deleted', versioned_type: "Pagina").order("created_at DESC")
   end
 
 private
   def find_version
-    @version = VestalVersions::Version.find(params[:version_id] || params[:id])
+    @version = VersionDecorator.find(params[:version_id] || params[:id])
   end
 
   def reify_pagina
-    @pagina = @version.reify
+    @pagina = PaginaDecorator.decorate @version.reify
   end
 end

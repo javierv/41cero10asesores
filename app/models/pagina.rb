@@ -35,7 +35,8 @@ class Pagina < ActiveRecord::Base
   end
 
   def cajas_con_orden
-    cajas.order("sidebars.orden ASC")
+    # TODO: Hack porque todavía no se pueden "decorar" automáticamente.
+    CajaDecorator.decorate cajas.order("sidebars.orden ASC")
   end
 
   scope :al_final_las_de_navegacion, 
@@ -92,15 +93,6 @@ class Pagina < ActiveRecord::Base
       false
     end
   end
-
-  def tipo
-    if borrador?
-      'Borrador'
-    else
-      'Publicada'
-    end
-  end
-  
 
   def borrador_con_pagina?
     borrador? && !published.new_record? 

@@ -1,8 +1,7 @@
-%article[pagina]
+%article.pagina
   %header
-    %h2= link_to search_highlight(pagina.to_s, term), pagina
+    %h2= pagina.title_link_highlight term
   %section
-    = search_highlight strict_textilize(truncate(pagina.cuerpo, length: 500, separator: ' ')), term
+    = pagina.highlight term
 
-  - if usuario_signed_in?
-    = actions_list([:edit, :historial], pagina)
+  = admin_actions_list([:edit, :historial], pagina)

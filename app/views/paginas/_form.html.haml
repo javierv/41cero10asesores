@@ -1,10 +1,7 @@
-#actualizado
-  - unless pagina.new_record?
-    Página guardada el #{time_tag pagina.updated_at}
+#actualizado= pagina.texto_actualizado
 
 = simple_form_for pagina do |form|
-
-  = render 'shared/errors', record: pagina
+  = pagina.error_messages
 
   = hidden_field_tag 'pagina[borrador_id]'
   = form.input :titulo
@@ -23,12 +20,12 @@
       = form.button :submit
     
     = form.submit 'Guardar borrador', id: 'draft_submit',
-      formaction: save_draft_path(pagina)
+      formaction: pagina.save_draft_path
     = form.submit 'Vista previa', id: 'preview_submit',
-      formaction: preview_path(pagina)
+      formaction: pagina.preview_path
 
 %section#fotos
   %header
     %h2 Puedes insertar imágenes de la galería
   = render 'fotos/form', foto: Foto.new
-  %section#galeria= render Foto.all
+  %section#galeria= render FotoDecorator.all

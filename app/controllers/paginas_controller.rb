@@ -20,7 +20,7 @@ class PaginasController < ApplicationController
   end
 
   def show
-    @pagina = Pagina.where(borrador: false).find(params[:id])
+    @pagina = PaginaDecorator.decorate Pagina.where(borrador: false).find(params[:id])
     respond_with @pagina
   end
 
@@ -59,7 +59,7 @@ class PaginasController < ApplicationController
     # HACK: asignar caja_ids guarda la relación en la BD. Ver:
     # https://github.com/rails/rails/issues/674
     attributes = params[:pagina].clone
-    @cajas = Caja.find_all_by_id(attributes.delete(:caja_ids) || [])
+    @cajas = CajaDecorator.decorate Caja.find_all_by_id(attributes.delete(:caja_ids) || [])
     @pagina.attributes = attributes
     respond_with @pagina
   end
@@ -73,12 +73,13 @@ class PaginasController < ApplicationController
   end
 
   def historial
-    @versiones = @pagina.versions.order("number DESC")
+    @versiones = VersionDecorator.decorate @pagina.versions.order("number DESC")
   end
 
   def search
-    @paginas = Pagina.search params[:q], per_page: Pagina.default_per_page, page: params[:page]
-    respond_with @paginas
+    @resultados = Pagina.search params[:q], per_page: Pagina.default_per_page, page: params[:page]
+    @paginas = PaginaDecorator.decorate @resultados.map(&:indexed_object)
+    respond_with @resultados
   end
 
 private

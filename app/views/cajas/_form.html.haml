@@ -1,10 +1,10 @@
 = simple_form_for caja do |form|
-  = render 'shared/errors', record: caja
+  = caja.error_messages
 
   = form.input :titulo
   = form.input :cuerpo
   = form.input :imagen, as: :file
   = form.association :paginas, as: :check_boxes, label: "Páginas en las que aparece",
-    collection: Pagina.publicadas.por_orden, label_method: lambda {|pagina| "#{pagina} #{enlace_accion :edit, pagina}".html_safe}
+    collection: paginas, label_method: :etiqueta_con_enlace_a_editar
 
   = buttons { form.button :submit }

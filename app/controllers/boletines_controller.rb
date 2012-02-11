@@ -8,7 +8,7 @@ class BoletinesController < ApplicationController
   before_filter :find_boletin, only: [:show, :edit, :update, :destroy, :enviar, :email]
 
   def index
-    @boletines = Boletin.all
+    @boletines = BoletinDecorator.all
     respond_with @boletines
   end
 

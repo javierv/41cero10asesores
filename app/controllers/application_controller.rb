@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :conservar_parametros, only: [:index]
   before_filter :authenticate_usuario!, if: :requiere_usuario?
+  before_filter :navegacion
 
 private
   def public_actions
@@ -15,6 +16,10 @@ private
     define_method :public_actions do
       args
     end
+  end
+
+  def navegacion
+    @navegacion = Navegacion.paginas
   end
 
   def requiere_usuario?
@@ -54,22 +59,26 @@ private
       resource_name.to_s.camelize.constantize
     end
 
+    define_method :decorator_class do
+      "#{resource_name}Decorator".camelize.constantize
+    end
+
     define_method :set_resource do |value|
       instance_variable_set "@#{resource_name}", value
     end
 
     define_method :"new_#{resource_name}" do
-      set_resource resource_class.new(params[resource_name])
+      set_resource decorator_class.decorate(resource_class.new(params[resource_name]))
     end
 
     define_method :"find_#{resource_name}" do
-      set_resource resource_class.find(params[:id])
+      set_resource decorator_class.find(params[:id])
     end
 
     define_method :"paginate_#{resource_name.to_s.pluralize}" do
       search, records = resource_class.search_paginate params
       instance_variable_set "@search", search
-      instance_variable_set "@#{resource_name.to_s.pluralize}", records
+      instance_variable_set "@#{resource_name.to_s.pluralize}", decorator_class.decorate(records)
     end
 
     define_method :"next_#{resource_name}" do

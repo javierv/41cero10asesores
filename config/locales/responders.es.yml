@@ -12,6 +12,8 @@ es:
         notice: "%{resource_name} se envió correctamente."
       restore:
         notice: "%{resource_name} se recuperó correctamente."
+      recover:
+        notice: "Versión recuperada"
       save_draft:
         notice: "Borrador guardado"
       publish:
