@@ -32,20 +32,6 @@ module NavegacionHelper
     end
   end
 
-  def acciones_para_pagina(pagina)
-    acciones = [:edit, :destroy, :historial]
-
-    if pagina.has_draft?
-      acciones.push(['Editar borrador', edit_pagina_path(pagina.draft), {class: 'draft'}])
-    end
-
-    unless pagina.borrador?
-      acciones.unshift :show
-    end
-
-    actions_list(acciones, pagina)
-  end
-
   def acciones_para_caja(caja)
     actions_list [:edit, :destroy], caja
   end

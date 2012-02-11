@@ -22,4 +22,23 @@ class PaginaDecorator < ApplicationDecorator
       'Publicada'
     end
   end
+
+  def actions_list
+    h.actions_list acciones, model
+  end
+
+private
+  def acciones
+    acciones = [:show, :edit, :destroy, :historial]
+
+    if model.has_draft?
+      acciones.push ["Editar borrador", h.edit_pagina_path(model.draft), {class: "draft"}]
+    end
+
+    if pagina.borrador?
+      acciones.shift
+    end
+
+    acciones
+  end
 end
