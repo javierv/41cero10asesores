@@ -155,7 +155,7 @@ private
       when :show
         resource
       when :index
-        [resource.class, {class: "index #{resource.class.to_s.tableize}"}]
+        [resource.class, {class: "index #{resource.class.to_s.sub("Decorator", "").tableize}"}]
       when :destroy
         [resource, {method: :delete, remote: true}]
       else
