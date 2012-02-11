@@ -1,6 +1,6 @@
 - if caja.imagen?
   %figure.caja
-    =image_tag caja.imagen.thumb('300x300#').url, alt: caja.titulo
+    = caja.thumbnail
     -if !caja.cuerpo.blank?
       %figcaption= caja.cuerpo
 

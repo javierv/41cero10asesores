@@ -59,7 +59,7 @@ class PaginasController < ApplicationController
     # HACK: asignar caja_ids guarda la relación en la BD. Ver:
     # https://github.com/rails/rails/issues/674
     attributes = params[:pagina].clone
-    @cajas = Caja.find_all_by_id(attributes.delete(:caja_ids) || [])
+    @cajas = CajaDecorator.decorate Caja.find_all_by_id(attributes.delete(:caja_ids) || [])
     @pagina.attributes = attributes
     respond_with @pagina
   end
