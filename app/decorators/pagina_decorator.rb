@@ -28,7 +28,7 @@ class PaginaDecorator < ApplicationDecorator
   end
 
   def highlight(term)
-    h.search_highlight textilize(cuerpo_truncado), term
+    h.search_highlight textilize(cuerpo_truncado 500), term
   end
 
   def title_link_highlight(term)
@@ -67,10 +67,6 @@ protected
 private
   def differ(actual, anterior)
     Differ.diff(actual, anterior).to_s.html_safe
-  end
-
-  def cuerpo_truncado
-    h.truncate model.cuerpo, length: 500, separator: ' '
   end
 
   def acciones

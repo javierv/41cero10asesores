@@ -29,6 +29,10 @@ class ApplicationDecorator < Draper::Base
     h.strict_textilize(texto)
   end
 
+  def principio_cuerpo
+    cuerpo_truncado 50
+  end
+
 private
   def lista_de_acciones(acciones)
     h.actions_list acciones, model
@@ -52,5 +56,9 @@ private
     else
       date.rfc3339
     end
+  end
+
+  def cuerpo_truncado(length)
+    h.truncate model.cuerpo, length: length, separator: ' '
   end
 end

@@ -1,7 +1,6 @@
 = table_for records do |table|
   = table.data do
     = table.cell :titulo, heading: sort_link(search, :titulo)
-    = table.cell(:cuerpo, heading: sort_link(search, :cuerpo)) do |pagina|
-      - truncate(pagina.cuerpo, length: 50)
+    = table.cell :principio_cuerpo, heading: sort_link(search, :cuerpo)
     = table.cell :tipo, heading: sort_link(search, :borrador)
     = actions_cell table, :actions_list
