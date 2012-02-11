@@ -74,7 +74,7 @@ class PaginasController < ApplicationController
   end
 
   def historial
-    @versiones = @pagina.versions.order("number DESC")
+    @versiones = VersionDecorator.decorate @pagina.versions.order("number DESC")
   end
 
   def search

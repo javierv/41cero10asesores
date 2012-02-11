@@ -32,21 +32,6 @@ module NavegacionHelper
     end
   end
 
-  def acciones_para_version(version)
-    actions = [:show]
-    if version.previous
-      actions << ['Anterior', 
-                compare_vestal_versions_version_path(version, version.previous),
-                {title: 'Comparar con la versión anterior a esta'}]
-    end
-    
-    unless version.current?
-      actions << ['Actual', compare_vestal_versions_version_path(version),
-                  {title: 'Comparar con la versión actual'}]
-    end
-    actions_list actions, version
-  end
-
   def enlace_desconectar
      ["Desconectar", destroy_usuario_session_path,
        {class: "desconectar", method: :delete}]

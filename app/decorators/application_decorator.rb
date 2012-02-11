@@ -12,10 +12,14 @@ class ApplicationDecorator < Draper::Base
   end
 
   def actions_list
-    h.actions_list acciones, model
+    lista_de_acciones acciones
   end
 
 private
+  def lista_de_acciones(acciones)
+    h.actions_list acciones, model
+  end
+
   def resize(size)
     model.imagen.thumb("#{size}x#{size}#")
   end

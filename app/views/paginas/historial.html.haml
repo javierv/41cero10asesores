@@ -10,7 +10,7 @@
         = table.cell :created_at, heading: 'Modificado el' do |version|
           - l version.created_at, format: :short
         = table.cell :user, heading: 'Modificado por'
-        = actions_cell(table) { |version| acciones_para_version version }
+        = actions_cell(table) { |version| version.actions_list }
 
   = buttons { submit_tag 'Comparar seleccionadas' }
 = actions_list [:show, :edit, :index], @pagina
