@@ -5,7 +5,6 @@ class Navegacion < ActiveRecord::Base
   validates :pagina_id, presence: true
   validates :orden, presence: true
   belongs_to :pagina
-  display_name :pagina
 
   scope :por_orden, order(:orden)
   scope :con_paginas, includes(:pagina => :slug).por_orden
