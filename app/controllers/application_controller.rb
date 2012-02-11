@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :conservar_parametros, only: [:index]
   before_filter :authenticate_usuario!, if: :requiere_usuario?
+  before_filter :navegacion
 
 private
   def public_actions
@@ -15,6 +16,10 @@ private
     define_method :public_actions do
       args
     end
+  end
+
+  def navegacion
+    @navegacion = Navegacion.paginas
   end
 
   def requiere_usuario?

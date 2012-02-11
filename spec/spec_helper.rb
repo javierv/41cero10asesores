@@ -96,4 +96,8 @@ Spork.each_run do
   def crea_con_titulos(modelo, titulos)
     titulos.map {|titulo| Factory modelo, titulo: titulo}
   end
+
+  def crea_portada
+    Factory :portada, pagina: Factory(:pagina)
+  end
 end
