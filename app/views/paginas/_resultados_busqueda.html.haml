@@ -1,9 +1,9 @@
-= total_resultados(paginas)
+= total_resultados(resultados)
 
-= paginate paginas
+= paginate resultados
 
 %section#resultados
   - paginas.each do |pagina|
-    = render 'resumen', pagina: pagina.indexed_object, term: params[:q]
+    = render 'resumen', pagina: pagina, term: params[:q]
 
-= paginate paginas
+= paginate resultados

@@ -27,7 +27,19 @@ class PaginaDecorator < ApplicationDecorator
     textilize model.cuerpo
   end
 
+  def highlight(term)
+    h.search_highlight textilize(cuerpo_truncado), term
+  end
+
+  def title_link_highlight(term)
+    h.link_to h.search_highlight(model.display_name, term), model
+  end
+
 private
+  def cuerpo_truncado
+    h.truncate model.cuerpo, length: 500, separator: ' '
+  end
+
   def acciones
     acciones = [:show, :edit, :destroy, :historial]
 

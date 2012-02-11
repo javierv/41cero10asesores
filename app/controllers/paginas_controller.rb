@@ -77,8 +77,9 @@ class PaginasController < ApplicationController
   end
 
   def search
-    @paginas = Pagina.search params[:q], per_page: Pagina.default_per_page, page: params[:page]
-    respond_with @paginas
+    @resultados = Pagina.search params[:q], per_page: Pagina.default_per_page, page: params[:page]
+    @paginas = PaginaDecorator.decorate @resultados.map(&:indexed_object)
+    respond_with @resultados
   end
 
 private
