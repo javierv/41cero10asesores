@@ -7,8 +7,7 @@
       = table.data do
         = table.cell :id, heading: 'Comparar' do |version|
           - botones_seleccion_diferencias(version)
-        = table.cell :created_at, heading: 'Modificado el' do |version|
-          - l version.created_at, format: :short
+        = table.cell :created_at, heading: 'Modificado el'
         = table.cell :user, heading: 'Modificado por'
         = actions_cell table, :actions_list
 

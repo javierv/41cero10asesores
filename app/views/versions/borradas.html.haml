@@ -4,6 +4,5 @@
   = table.data do
     = table.cell :versioned, heading: 'Título' do |version|
       - version.restore.titulo
-    = table.cell :created_at, heading: 'Borrada el' do |version|
-      - l version.created_at, format: :long
+    = table.cell :created_at, heading: 'Borrada el'
     = actions_cell table, :borradas_actions_list

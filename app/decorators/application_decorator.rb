@@ -15,6 +15,10 @@ class ApplicationDecorator < Draper::Base
     lista_de_acciones acciones
   end
 
+  def created_at
+    h.l model.created_at, format: :long
+  end
+
 private
   def lista_de_acciones(acciones)
     h.actions_list acciones, model
