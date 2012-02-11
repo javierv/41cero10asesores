@@ -10,4 +10,8 @@ class PaginaDecorator < ApplicationDecorator
       "Editando la página #{model}"
     end
   end
+
+  def etiqueta_con_enlace_a_editar
+    "#{model} #{h.enlace_accion :edit, model}".html_safe
+  end
 end

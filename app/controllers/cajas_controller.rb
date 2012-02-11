@@ -10,6 +10,7 @@ class CajasController < ApplicationController
   before_filter :new_caja, only: [:new, :create]
   before_filter :update_caja, only: :update
   before_filter :paginate_cajas, only: :index
+  before_filter :set_paginas, only: [:new, :edit]
 
   def index
     respond_with @cajas
@@ -48,5 +49,9 @@ class CajasController < ApplicationController
 private
   def update_caja
     @caja.attributes = params[:caja]
+  end
+
+  def set_paginas
+    @paginas = PaginaDecorator.decorate Pagina.publicadas.por_orden
   end
 end
