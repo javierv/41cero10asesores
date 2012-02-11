@@ -23,6 +23,10 @@ class PaginaDecorator < ApplicationDecorator
     end
   end
 
+  def cuerpo
+    textilize model.cuerpo
+  end
+
 private
   def acciones
     acciones = [:show, :edit, :destroy, :historial]

@@ -19,6 +19,12 @@ class ApplicationDecorator < Draper::Base
     h.l model.created_at, format: :long
   end
 
+  def textilize(texto)
+    # Mantenemos este ayudante en vez de pasarlo aquí, porque
+    # lo usamos en la página de ayuda del editor.
+    h.strict_textilize(texto)
+  end
+
 private
   def lista_de_acciones(acciones)
     h.actions_list acciones, model
