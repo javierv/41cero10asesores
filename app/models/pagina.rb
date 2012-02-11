@@ -94,15 +94,6 @@ class Pagina < ActiveRecord::Base
     end
   end
 
-  def tipo
-    if borrador?
-      'Borrador'
-    else
-      'Publicada'
-    end
-  end
-  
-
   def borrador_con_pagina?
     borrador? && !published.new_record? 
   end

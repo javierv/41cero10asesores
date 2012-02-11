@@ -14,4 +14,12 @@ class PaginaDecorator < ApplicationDecorator
   def etiqueta_con_enlace_a_editar
     "#{model} #{h.enlace_accion :edit, model}".html_safe
   end
+
+  def tipo
+    if borrador?
+      'Borrador'
+    else
+      'Publicada'
+    end
+  end
 end

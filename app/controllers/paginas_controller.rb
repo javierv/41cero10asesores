@@ -16,6 +16,7 @@ class PaginasController < ApplicationController
   before_filter :paginate_paginas, only: :index
 
   def index
+    @paginas = PaginaDecorator.decorate @paginas
     respond_with @paginas    
   end
 
