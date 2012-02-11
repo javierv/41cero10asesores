@@ -1,5 +1,5 @@
 #extra
   - if content_for?(:sidebar)
     %aside#sidebar{role: 'complementary'}= yield(:sidebar)
-  - elsif usuario_signed_in?
+  - if usuario_signed_in?
     %section#admin= navegacion_admin
