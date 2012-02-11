@@ -23,10 +23,6 @@ class PaginaDecorator < ApplicationDecorator
     end
   end
 
-  def actions_list
-    h.actions_list acciones, model
-  end
-
 private
   def acciones
     acciones = [:show, :edit, :destroy, :historial]

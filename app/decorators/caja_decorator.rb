@@ -7,7 +7,8 @@ class CajaDecorator < ApplicationDecorator
     resized_image 300, alt: model.to_s
   end
 
-  def actions_list
-    h.actions_list [:edit, :destroy], caja
+private
+  def acciones
+    [:edit, :destroy]
   end
 end

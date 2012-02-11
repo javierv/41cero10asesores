@@ -11,6 +11,10 @@ class ApplicationDecorator < Draper::Base
     resize(size).url
   end
 
+  def actions_list
+    h.actions_list acciones, model
+  end
+
 private
   def resize(size)
     model.imagen.thumb("#{size}x#{size}#")
