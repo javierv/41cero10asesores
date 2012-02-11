@@ -32,19 +32,21 @@ private
   end
 
   def acciones
-    actions = [:show]
+    [:show, previous_action, current_action].compact
+  end
 
-    if version.previous
-      actions << ['Anterior',
-                h.compare_vestal_versions_version_path(version, version.previous),
-                {title: 'Comparar con la versión anterior a esta'}]
+  def previous_action
+    if model.previous
+      ['Anterior',
+        h.compare_vestal_versions_version_path(model, model.previous),
+        {title: 'Comparar con la versión anterior a esta'}]
     end
+  end
 
-    unless version.current?
-      actions << ['Actual', h.compare_vestal_versions_version_path(version),
-                  {title: 'Comparar con la versión actual'}]
+  def current_action
+    unless model.current?
+      ['Actual', h.compare_vestal_versions_version_path(model),
+        {title: 'Comparar con la versión actual'}]
     end
-
-    actions
   end
 end

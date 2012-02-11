@@ -54,16 +54,16 @@ private
   end
 
   def acciones
-    acciones = [:show, :edit, :destroy, :historial]
+    [show_action, :edit, :destroy, :historial, edit_draft_action].compact
+  end
 
+  def show_action
+    :show unless model.borrador?
+  end
+
+  def edit_draft_action
     if model.has_draft?
-      acciones.push ["Editar borrador", h.edit_pagina_path(model.draft), {class: "draft"}]
+      ["Editar borrador", h.edit_pagina_path(model.draft), {class: "draft"}]
     end
-
-    if pagina.borrador?
-      acciones.shift
-    end
-
-    acciones
   end
 end

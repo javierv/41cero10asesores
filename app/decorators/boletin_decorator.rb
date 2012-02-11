@@ -9,8 +9,6 @@ class BoletinDecorator < ApplicationDecorator
 
 private
   def acciones
-    acciones = [:show, :edit, :destroy]
-    acciones << :enviar unless boletin.enviado?
-    acciones
+    [:show, :edit, :destroy, (:enviar unless model.enviado?)].compact
   end
 end
