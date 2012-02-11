@@ -13,6 +13,7 @@ class CajasController < ApplicationController
   before_filter :set_paginas, only: [:new, :edit]
 
   def index
+    @cajas = CajaDecorator.decorate @cajas
     respond_with @cajas
   end
 

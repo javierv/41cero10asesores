@@ -32,10 +32,6 @@ module NavegacionHelper
     end
   end
 
-  def acciones_para_caja(caja)
-    actions_list [:edit, :destroy], caja
-  end
-
   def acciones_para_version(version)
     actions = [:show]
     if version.previous
