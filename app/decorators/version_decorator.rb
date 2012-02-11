@@ -12,7 +12,7 @@ class VersionDecorator < ApplicationDecorator
   end
 
   def texto_version_modificada
-    html = "Modificada el #{h.content_tag :span, h.l(model.updated_at, format: :long)}"
+    html = "Modificada el #{h.content_tag :span, updated_at}"
     if version.user
       html += " por #{h.content_tag :span, model.user}"
     end

@@ -16,7 +16,11 @@ class ApplicationDecorator < Draper::Base
   end
 
   def created_at
-    h.l model.created_at, format: :long
+    format_date model.created_at
+  end
+
+  def updated_at
+    format_date model.updated_at
   end
 
   def textilize(texto)
@@ -32,5 +36,9 @@ private
 
   def resize(size)
     model.imagen.thumb("#{size}x#{size}#")
+  end
+
+  def format_date(date)
+    h.l date, format: :long
   end
 end
