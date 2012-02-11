@@ -12,12 +12,7 @@ class VersionDecorator < ApplicationDecorator
   end
 
   def texto_version_modificada
-    html = "Modificada el #{h.content_tag :span, updated_at}"
-    if version.user
-      html += " por #{h.content_tag :span, model.user}"
-    end
-
-    html.html_safe
+    [texto_fecha_modificacion, texto_autor_modificacion].compact.join(" ").html_safe
   end
 
 private
@@ -29,6 +24,16 @@ private
   def boton_id
     h.radio_button_tag :version_id, model.id, false,
                      title: 'Selecciona como versión posterior en la comparación'
+  end
+
+  def texto_fecha_modificacion
+    "Modificada el #{h.content_tag :span, updated_at}"
+  end
+
+  def texto_autor_modificacion
+    if model.user
+      "por #{h.content_tag :span, model.user}"
+    end
   end
 
   def acciones
