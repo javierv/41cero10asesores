@@ -15,6 +15,10 @@ class VersionDecorator < ApplicationDecorator
     [texto_fecha_modificacion, texto_autor_modificacion].compact.join(" ").html_safe
   end
 
+  def date
+    format_date model.created_at
+  end
+
 private
   def boton_referencia
     h.radio_button_tag :ref_id, model.id, false,
