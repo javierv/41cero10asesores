@@ -6,4 +6,4 @@
       - version.restore.titulo
     = table.cell :created_at, heading: 'Borrada el' do |version|
       - l version.created_at, format: :long
-    = actions_cell(table) { |version| version.borradas_actions_list }
+    = actions_cell table, :borradas_actions_list

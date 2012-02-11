@@ -3,4 +3,4 @@
     = table.cell :titulo, heading: sort_link(search, :titulo)
     = table.cell :cuerpo, heading: sort_link(search, :cuerpo) do |caja|
       - truncate(caja.cuerpo, length: 50)
-    = actions_cell(table) { |caja| caja.actions_list }
+    = actions_cell table, :actions_list

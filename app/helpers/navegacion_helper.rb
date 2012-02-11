@@ -26,10 +26,8 @@ module NavegacionHelper
     lista_con_enlaces enlaces(actions, resource), class: 'actions'
   end
 
-  def actions_cell(table, &block)
-    table.cell :acciones, heading: "Acciones", cell_html: {class: "actions"} do |res|
-      block[res]
-    end
+  def actions_cell(table, method)
+    table.cell method, heading: "Acciones", cell_html: {class: "actions"}
   end
 
   def enlace_desconectar
