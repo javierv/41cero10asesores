@@ -5,6 +5,6 @@
   %del.differ= @referencia.texto_version_modificada
   %ins.differ= @version.texto_version_modificada
 
-= diferencias(@pagina, @referencia.reify)
+= @pagina.diferencias @pagina_referencia
 
 = actions_list [:historial], @pagina

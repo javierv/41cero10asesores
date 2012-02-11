@@ -35,7 +35,20 @@ class PaginaDecorator < ApplicationDecorator
     h.link_to h.search_highlight(model.display_name, term), model
   end
 
+  def diferencias(pagina)
+    differ render_pagina, pagina.render_pagina
+  end
+
+protected
+  def render_pagina
+    h.render('paginas/texto_pagina', pagina: model)
+  end
+
 private
+  def differ(actual, anterior)
+    Differ.diff(actual, anterior).to_s.html_safe
+  end
+
   def cuerpo_truncado
     h.truncate model.cuerpo, length: 500, separator: ' '
   end

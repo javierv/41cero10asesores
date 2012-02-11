@@ -10,7 +10,7 @@ class VersionsController < ApplicationController
 
   def recover
     @pagina.save
-    redirect_to @pagina, notice: 'Versión recuperada'
+    respond_with @pagina
   end
 
   def restore
@@ -25,6 +25,8 @@ class VersionsController < ApplicationController
       else
         VersionDecorator.decorate @version.current
       end
+
+    @pagina_referencia = PaginaDecorator.decorate @referencia.reify
   end
 
   def borradas
@@ -37,6 +39,6 @@ private
   end
 
   def reify_pagina
-    @pagina = @version.reify
+    @pagina = PaginaDecorator.decorate @version.reify
   end
 end
