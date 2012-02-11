@@ -22,4 +22,8 @@ private
   def new_foto_decorator
     @foto = FotoDecorator.decorate new_foto
   end
+
+  def find_foto
+    @foto = FotoDecorator.find params[:id]
+  end
 end
