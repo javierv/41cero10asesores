@@ -55,6 +55,10 @@ class PaginaDecorator < ApplicationDecorator
     end
   end
 
+  def versions_actions_list(version)
+    lista_de_acciones [:historial, recover_version_action(version)]
+  end
+
 protected
   def render_pagina
     h.render('paginas/texto_pagina', pagina: self)
@@ -81,5 +85,10 @@ private
     if model.has_draft?
       ["Editar borrador", h.edit_pagina_path(model.draft), {class: "draft"}]
     end
+  end
+
+  def recover_version_action(version)
+    ['Recuperar', h.recover_vestal_versions_version_path(version),
+      {form: true, method: :put}]
   end
 end

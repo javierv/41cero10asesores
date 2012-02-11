@@ -1,5 +1,3 @@
 - title "Versión de #{@pagina} el #{@version.date}", false
 = render 'paginas/pagina', pagina: @pagina, cajas: @pagina.cajas_con_orden
-= actions_list [:historial, 
-  ['Recuperar', recover_vestal_versions_version_path(@version),
-  {form: true, method: :put}]], @pagina
+= @pagina.versions_actions_list @version
