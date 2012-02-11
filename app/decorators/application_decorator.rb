@@ -16,11 +16,11 @@ class ApplicationDecorator < Draper::Base
   end
 
   def created_at
-    format_date model.created_at
+    time_tag model.created_at
   end
 
   def updated_at
-    format_date model.updated_at
+    time_tag model.updated_at
   end
 
   def textilize(texto)
@@ -38,8 +38,12 @@ private
     model.imagen.thumb("#{size}x#{size}#")
   end
 
+  def time_tag(date)
+    h.content_tag :time, format_date(date), datetime: datetime_attr(date)
+  end
+
   def format_date(date)
-    h.content_tag :time, h.l(date, format: :long), datetime: datetime_attr(date)
+    h.l(date, format: :long)
   end
 
   def datetime_attr(date)
