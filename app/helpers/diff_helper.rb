@@ -4,14 +4,6 @@ module DiffHelper
     differ render_pagina(pagina_actual), render_pagina(pagina_anterior)
   end
 
-  def texto_version_modificada(version)
-    html = "Modificada el #{content_tag :span, l(version.updated_at, format: :long)}"
-    if version.user
-      html += " por #{content_tag :span, version.user}" 
-    end
-
-    html.html_safe
-  end
 private
   def render_pagina(pagina)
     render('paginas/texto_pagina', pagina: pagina)

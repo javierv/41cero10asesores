@@ -11,6 +11,15 @@ class VersionDecorator < ApplicationDecorator
     boton_referencia + boton_id
   end
 
+  def texto_version_modificada
+    html = "Modificada el #{h.content_tag :span, h.l(model.updated_at, format: :long)}"
+    if version.user
+      html += " por #{h.content_tag :span, model.user}"
+    end
+
+    html.html_safe
+  end
+
 private
   def boton_referencia
     h.radio_button_tag :ref_id, model.id, false,
