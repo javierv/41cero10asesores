@@ -59,6 +59,12 @@ class PaginaDecorator < ApplicationDecorator
     lista_de_acciones [:historial, recover_version_action(version)]
   end
 
+  def texto_actualizado
+    unless model.new_record?
+      "Página guardada el #{updated_at}".html_safe
+    end
+  end
+
 protected
   def render_pagina
     h.render('paginas/texto_pagina', pagina: self)
