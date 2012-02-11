@@ -39,6 +39,14 @@ private
   end
 
   def format_date(date)
-    h.l date, format: :long
+    h.content_tag :time, h.l(date, format: :long), datetime: datetime_attr(date)
+  end
+
+  def datetime_attr(date)
+    if date.acts_like?(:time)
+      date.xmlschema
+    else
+      date.rfc3339
+    end
   end
 end

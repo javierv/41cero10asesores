@@ -27,7 +27,7 @@ private
   end
 
   def texto_fecha_modificacion
-    "Modificada el #{h.content_tag :span, updated_at}"
+    "Modificada el #{updated_at}"
   end
 
   def texto_autor_modificacion
