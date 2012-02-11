@@ -5,8 +5,7 @@
   %section#listado
     = table_for @versiones do |table|
       = table.data do
-        = table.cell :id, heading: 'Comparar' do |version|
-          - botones_seleccion_diferencias(version)
+        = table.cell :botones_seleccion_diferencias, heading: 'Comparar'
         = table.cell :created_at, heading: 'Modificado el'
         = table.cell :user, heading: 'Modificado por'
         = actions_cell table, :actions_list
