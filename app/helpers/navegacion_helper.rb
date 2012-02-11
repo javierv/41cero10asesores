@@ -16,6 +16,12 @@ module NavegacionHelper
     lista_con_enlaces enlaces_navegacion(paginas)
   end
 
+  def admin_actions_list(actions, resource)
+    if usuario_signed_in?
+      actions_list(actions, resource)
+    end
+  end
+
   def actions_list(actions, resource)
     lista_con_enlaces enlaces(actions, resource), class: 'actions'
   end

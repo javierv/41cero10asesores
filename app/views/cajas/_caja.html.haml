@@ -4,14 +4,11 @@
     -if !caja.cuerpo.blank?
       %figcaption= caja.cuerpo
 
-    - if usuario_signed_in?
-      = actions_list([:edit], caja)
+    = admin_actions_list([:edit], caja)
 - else
   %article.caja
     %header
       %h2= caja.titulo
 
     = strict_textilize caja.cuerpo
-
-    - if usuario_signed_in?
-      = actions_list([:edit], caja)
+    = admin_actions_list([:edit], caja)

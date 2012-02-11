@@ -4,5 +4,4 @@
   %section
     = search_highlight strict_textilize(truncate(pagina.cuerpo, length: 500, separator: ' ')), term
 
-  - if usuario_signed_in?
-    = actions_list([:edit, :historial], pagina)
+  = admin_actions_list([:edit, :historial], pagina)
