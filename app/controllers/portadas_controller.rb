@@ -8,7 +8,7 @@ class PortadasController < ApplicationController
   public_actions :principal
 
   def principal
-    @pagina = Portada.first!.pagina
+    @pagina = PaginaDecorator.decorate Portada.first!.pagina
     respond_with @pagina
   end
 

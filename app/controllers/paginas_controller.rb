@@ -16,12 +16,11 @@ class PaginasController < ApplicationController
   before_filter :paginate_paginas, only: :index
 
   def index
-    @paginas = PaginaDecorator.decorate @paginas
     respond_with @paginas    
   end
 
   def show
-    @pagina = Pagina.where(borrador: false).find(params[:id])
+    @pagina = PaginaDecorator.decorate Pagina.where(borrador: false).find(params[:id])
     respond_with @pagina
   end
 
@@ -99,9 +98,5 @@ private
     else
       new_pagina
     end
-  end
-
-  def find_pagina
-    @pagina = PaginaDecorator.find params[:id]
   end
 end

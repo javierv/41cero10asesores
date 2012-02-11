@@ -21,9 +21,9 @@ class VersionsController < ApplicationController
   def compare
     @referencia =
       if params[:ref_id]
-        VestalVersions::Version.find(params[:ref_id])
+        VersionDecorator.find(params[:ref_id])
       else
-        @version.current
+        VersionDecorator.decorate @version.current
       end
   end
 

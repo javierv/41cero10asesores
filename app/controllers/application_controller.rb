@@ -59,22 +59,26 @@ private
       resource_name.to_s.camelize.constantize
     end
 
+    define_method :decorator_class do
+      "#{resource_name}Decorator".camelize.constantize
+    end
+
     define_method :set_resource do |value|
       instance_variable_set "@#{resource_name}", value
     end
 
     define_method :"new_#{resource_name}" do
-      set_resource resource_class.new(params[resource_name])
+      set_resource decorator_class.decorate(resource_class.new(params[resource_name]))
     end
 
     define_method :"find_#{resource_name}" do
-      set_resource resource_class.find(params[:id])
+      set_resource decorator_class.find(params[:id])
     end
 
     define_method :"paginate_#{resource_name.to_s.pluralize}" do
       search, records = resource_class.search_paginate params
       instance_variable_set "@search", search
-      instance_variable_set "@#{resource_name.to_s.pluralize}", records
+      instance_variable_set "@#{resource_name.to_s.pluralize}", decorator_class.decorate(records)
     end
 
     define_method :"next_#{resource_name}" do
