@@ -2,7 +2,7 @@
 %html{lang: I18n.locale}
 
   %head
-    %title= h(title || "Untitled")
+    %title= title
     %meta{charset: "utf-8"}
     = stylesheet_link_tag 'application'
     = csrf_meta_tag
@@ -18,9 +18,8 @@
       = render "general/sidebar"
 
       %section#main{role: 'main'}
-        - if show_title?
-          %header
-            %h1= title
+        %header
+          %h1= title
         = yield
 
     %footer#pie{role: 'contentinfo'}= render 'general/pie'

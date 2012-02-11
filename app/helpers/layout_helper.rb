@@ -1,12 +1,12 @@
 # encoding: utf-8
 
 module LayoutHelper
-  def title(page_title = @page_title, show_title = true)
-    @show_title = show_title unless defined?(@show_title)
-    @page_title = page_title
+  def title
+    I18n.translate! page_title_path, {resource: @resource}
   end
 
-  def show_title?
-    @show_title
+private
+  def page_title_path
+    "page_titles.#{params[:controller]}.#{params[:action]}"
   end
 end
