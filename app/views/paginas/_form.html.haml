@@ -3,8 +3,7 @@
     Página guardada el #{pagina.updated_at}
 
 = simple_form_for pagina do |form|
-
-  = render 'shared/errors', record: pagina
+  = pagina.error_messages
 
   = hidden_field_tag 'pagina[borrador_id]'
   = form.input :titulo

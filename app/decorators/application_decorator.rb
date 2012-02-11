@@ -33,6 +33,14 @@ class ApplicationDecorator < Draper::Base
     cuerpo_truncado 50
   end
 
+  def error_messages
+    if model.errors.any?
+      h.content_tag :div, id: "error_messages" do
+        h.content_tag(:h2, texto_numero_errores) + lista_errores
+      end
+    end
+  end
+
 private
   def lista_de_acciones(acciones)
     h.actions_list acciones, model
@@ -60,5 +68,29 @@ private
 
   def cuerpo_truncado(length)
     h.truncate model.cuerpo, length: length, separator: ' '
+  end
+
+  def texto_numero_errores
+    "#{h.pluralize model.errors.count, "error"} al rellenar el formulario:"
+  end
+
+  def lista_errores
+    h.content_tag :ul do
+      model.errors.map do |field, msg|
+        h.content_tag :li, link_to_error(field, msg)
+      end.join.html_safe
+    end
+  end
+
+  def link_to_error(field, msg)
+    h.link_to "#{human_name(field)} #{msg}", "##{error_html_id(field)}"
+  end
+
+  def human_name(field)
+    model.class.human_attribute_name field
+  end
+
+  def error_html_id(field)
+    "#{model.class.to_s.downcase}_#{field}"
   end
 end
