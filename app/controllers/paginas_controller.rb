@@ -17,7 +17,13 @@ class PaginasController < ApplicationController
     end
   end
 
-  expose(:cajas) { CajaDecorator.decorate Caja.al_final_las_de_pagina(pagina) }
+  expose(:cajas) do
+    if params[:action].to_sym == :preview
+      CajaDecorator.decorate Caja.find_all_by_id(params[:pagina].clone.delete(:caja_ids) || [])
+    else
+      CajaDecorator.decorate Caja.al_final_las_de_pagina(pagina)
+    end
+  end
   expose(:fotos) { FotoDecorator.all }
   expose(:foto) { FotoDecorator.decorate Foto.new }
   expose(:versiones) { VersionDecorator.decorate pagina.versions.order("number DESC") }
@@ -72,9 +78,9 @@ class PaginasController < ApplicationController
   def preview
     # HACK: asignar caja_ids guarda la relación en la BD. Ver:
     # https://github.com/rails/rails/issues/674
-    attributes = params[:pagina].clone
-    @cajas = CajaDecorator.decorate Caja.find_all_by_id(attributes.delete(:caja_ids) || [])
-    pagina.attributes = attributes
+    # Además, no tenemos ningún test que indique que se asignan
+    # las cajas de la forma esperada.
+    pagina.attributes = params[:pagina].clone.tap {|attributes| attributes.delete(:caja_ids)}
     respond_with pagina
   end
 
