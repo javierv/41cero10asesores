@@ -1,9 +1,4 @@
 = total_resultados(resultados)
-
 = paginate resultados
-
-%section#resultados
-  - paginas.each do |pagina|
-    = render 'resumen', pagina: pagina, term: params[:q]
-
+%section#resultados= render partial: "resumen", collection: paginas, as: :pagina
 = paginate resultados

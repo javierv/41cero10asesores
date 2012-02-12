@@ -2,7 +2,6 @@
   = form.input :titulo_contains, label: 'Título'
   = form.input :cuerpo_contains, label: 'Cuerpo'
 
-%section#listado
-  = render "shared/listado", records: cajas, filtracion: filtracion
+%section#listado= render "shared/listado"
 
 = actions_list [:new], Caja
