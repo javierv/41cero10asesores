@@ -1,7 +1,7 @@
-- title resource: @pagina.title_for_edit
+- title resource: pagina.title_for_edit
 
-= render 'form', pagina: @pagina
-- if @pagina.borrador?
-  = actions_list [:index], @pagina
+= render 'form', pagina: pagina, cajas: cajas, foto: foto, fotos: fotos
+- if pagina.borrador?
+  = actions_list [:index], pagina
 - else
-  = actions_list [:show, :index], @pagina
+  = actions_list [:show, :index], pagina

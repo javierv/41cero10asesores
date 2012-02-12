@@ -22,7 +22,6 @@ describe PaginasController do
 
       it do
         should respond_with(:success)
-        assigns(:paginas).should be_true
         should render_with_layout(:application) 
       end
     end
@@ -60,7 +59,7 @@ describe PaginasController do
         post :create, pagina: @pagina.attributes
       end
       it do
-        should redirect_to(pagina_path(assigns(:pagina)))
+        should respond_with(:redirect)
         should set_the_flash
       end
     end
@@ -205,7 +204,6 @@ describe PaginasController do
 
         it do
           should render_template(:preview)
-          assigns(:pagina).should be_true
         end
       end
 
@@ -230,7 +228,6 @@ describe PaginasController do
 
         it do
           should render_template(:preview)
-          assigns(:pagina).should be_true
         end
       end
 
@@ -275,7 +272,6 @@ describe PaginasController do
 
       it do
         should respond_with(:success)
-        assigns(:paginas).should be_true
       end
     end
 
@@ -296,8 +292,6 @@ describe PaginasController do
 
     it do
       should respond_with(:success)
-      assigns(:pagina).should be_true
-      assigns(:versiones).should be_true
     end
   end
 end

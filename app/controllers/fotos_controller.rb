@@ -3,18 +3,18 @@
 class FotosController < ApplicationController
   respond_to :js
   resource :foto
-  before_filter :find_foto, only: :thumbnail
-  before_filter :new_foto, only: :create
+
+  expose(:foto) { find_or_new_foto }
+  expose(:size) { params[:foto][:imagen_width] }
 
   def create
-    if @foto.save
-      respond_with @foto
+    if foto.save
+      respond_with foto
     else
       render 'error'
     end
   end
 
   def thumbnail
-    @size = params[:foto][:imagen_width]
   end
 end

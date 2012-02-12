@@ -8,77 +8,100 @@ class PaginasController < ApplicationController
   public_actions :show, :search
   resource :pagina
 
+  expose(:pagina) do
+    # Código feo, pero más claro que antes de decent_exposure
+    if params[:action].to_sym == :show
+      PaginaDecorator.decorate Pagina.where(borrador: false).find(params[:id])
+    else
+      find_or_new_pagina
+    end
+  end
+
+  expose(:cajas) do
+    if params[:action].to_sym == :preview
+      CajaDecorator.decorate Caja.find_all_by_id(params[:pagina].clone.delete(:caja_ids) || [])
+    else
+      CajaDecorator.decorate Caja.al_final_las_de_pagina(pagina)
+    end
+  end
+
+  expose(:paginas) do
+    if params[:action].to_sym == :search
+      PaginaDecorator.decorate resultados.map(&:indexed_object)
+    else
+      PaginaDecorator.decorate Pagina.paginated_records(params)
+    end
+  end
+
+  expose(:fotos) { FotoDecorator.all }
+  expose(:foto) { FotoDecorator.decorate Foto.new }
+  expose(:versiones) { VersionDecorator.decorate pagina.versions.order("number DESC") }
+  expose(:resultados) do
+    Pagina.search params[:q], per_page: Pagina.default_per_page, page: params[:page]
+  end
+  expose(:filtracion) { Pagina.filtered_search params }
+
   before_filter :params_updated_by, only: [:create, :update, :save_draft, :publish]
-  before_filter :find_pagina, only: [:edit, :update, :destroy, :historial, :publish]
-  before_filter :new_pagina, only: [:new, :create]
-  before_filter :find_or_new_pagina, only: [:preview, :save_draft]
   before_filter :asignar_cajas, only: [:create, :update, :save_draft]
-  before_filter :paginate_paginas, only: :index
   before_filter :destroy_pagina, only: :destroy
 
   def index
-    respond_with @paginas    
+    respond_with paginas
   end
 
   def show
-    @pagina = PaginaDecorator.decorate Pagina.where(borrador: false).find(params[:id])
-    # FIXME: Hack para el título.
-    @resource = @pagina
-    respond_with @pagina
+    respond_with pagina
   end
 
   def new
-    respond_with @pagina
+    respond_with pagina
   end
 
   def edit
-    respond_with @pagina
+    respond_with pagina
   end
 
   def create
-    @pagina.save
-    respond_with @pagina
+    pagina.save
+    respond_with pagina
   end
 
   def update
-    @pagina.update_attributes(params[:pagina])
-    respond_with @pagina
+    pagina.update_attributes(params[:pagina])
+    respond_with pagina
   end
 
   def save_draft
-    @pagina.save_draft(params[:pagina])
-    respond_with @pagina.draft, location: edit_pagina_path(@pagina.draft)
+    pagina.save_draft(params[:pagina])
+    respond_with pagina.draft, location: edit_pagina_path(pagina.draft)
   end
 
   def publish
-    if @pagina.publish params[:pagina]
-      respond_with @pagina.published
+    if pagina.publish params[:pagina]
+      respond_with pagina.published
     else
-      respond_with @pagina
+      respond_with pagina
     end
   end
 
   def preview
     # HACK: asignar caja_ids guarda la relación en la BD. Ver:
     # https://github.com/rails/rails/issues/674
-    attributes = params[:pagina].clone
-    @cajas = CajaDecorator.decorate Caja.find_all_by_id(attributes.delete(:caja_ids) || [])
-    @pagina.attributes = attributes
-    respond_with @pagina
+    # Además, no tenemos ningún test que indique que se asignan
+    # las cajas de la forma esperada.
+    pagina.attributes = params[:pagina].clone.tap {|attributes| attributes.delete(:caja_ids)}
+    respond_with pagina
   end
 
   def destroy
-    respond_with @pagina
+    respond_with pagina
   end
 
   def historial
-    @versiones = VersionDecorator.decorate @pagina.versions.order("number DESC")
   end
 
   def search
-    @resultados = Pagina.search params[:q], per_page: Pagina.default_per_page, page: params[:page]
-    @paginas = PaginaDecorator.decorate @resultados.map(&:indexed_object)
-    respond_with @resultados
+    respond_with resultados
   end
 
 private
@@ -88,15 +111,7 @@ private
 
   def asignar_cajas
     if params[:pagina][:caja_ids]
-      @pagina.ids_cajas = params[:pagina][:caja_ids]
-    end
-  end
-
-  def find_or_new_pagina
-    if params[:id]
-      find_pagina
-    else
-      new_pagina
+      pagina.ids_cajas = params[:pagina][:caja_ids]
     end
   end
 end

@@ -10,7 +10,7 @@
   //Idealmente, habría enlaces a editar las cajas, pero no parece nada sencillo
   //hacer eso y además mantener la opción de ordenar las cajas.
   = hidden_field_tag "pagina[caja_ids][]"
-  = form.association :cajas, collection: Caja.al_final_las_de_pagina(pagina),
+  = form.association :cajas, collection: cajas,
     input_html: {class: 'cajas'}
 
   = buttons do
@@ -27,5 +27,5 @@
 %section#fotos
   %header
     %h2 Puedes insertar imágenes de la galería
-  = render 'fotos/form', foto: Foto.new
-  %section#galeria= render FotoDecorator.all
+  = render 'fotos/form', foto: foto
+  %section#galeria= render fotos

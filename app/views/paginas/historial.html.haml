@@ -1,7 +1,7 @@
 = form_tag(compare_vestal_versions_version_path, method: :get, class: "diferencias") do
 
   %section#listado
-    = table_for @versiones do |table|
+    = table_for versiones do |table|
       = table.data do
         = table.cell :botones_seleccion_diferencias, heading: 'Comparar'
         = table.cell :created_at, heading: 'Modificado el'
@@ -9,4 +9,4 @@
         = actions_cell table, :actions_list
 
   = buttons { submit_tag 'Comparar seleccionadas' }
-= actions_list [:show, :edit, :index], @pagina
+= actions_list [:show, :edit, :index], pagina

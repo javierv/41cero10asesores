@@ -8,11 +8,7 @@ describe BoletinesController do
 
   describe "index" do
     before(:each) { get :index }
-
-    it do
-      should respond_with(:success)
-      assigns(:boletines).should be_true
-    end
+    it { should respond_with(:success) }
   end
 
   describe "show" do
@@ -29,20 +25,12 @@ describe BoletinesController do
 
   describe "new" do
     before(:each) { get :new }
-
-    it do
-      should respond_with(:success)
-      assigns(:boletin).should be_true
-    end
+    it { should respond_with(:success) }
   end
 
   describe "edit" do
     before(:each) { get :edit, id: @boletin.to_param }
-
-    it do
-      should respond_with(:success)
-      assigns(:boletin).should be_true
-    end
+    it { should respond_with(:success) }
   end
 
   describe "create" do
@@ -93,15 +81,8 @@ describe BoletinesController do
   end
 
   describe "enviar" do
-    before(:each) do
-      get :enviar, id: @boletin.to_param
-    end
-
-    it do
-      should respond_with(:success)
-      assigns(:boletin).should be_true
-      assigns(:boletin).clientes.should be_true
-    end
+    before(:each) { get :enviar, id: @boletin.to_param }
+    it { should respond_with(:success) }
   end
 
   describe "email" do

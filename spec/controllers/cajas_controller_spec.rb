@@ -19,10 +19,7 @@ describe CajasController do
   describe "index" do
     before(:each) { get :index }
 
-    it do
-      should respond_with(:success)
-      assigns(:cajas).should be_true
-    end
+    it { should respond_with(:success) }
   end
 
   describe "new" do
@@ -46,7 +43,7 @@ describe CajasController do
         post :create
       end
       it do
-        should redirect_to(edit_caja_path(assigns(:caja)))
+        should respond_with :redirect
         should set_the_flash
       end
     end
