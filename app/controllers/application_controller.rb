@@ -82,12 +82,12 @@ private
     end
 
     define_method :"destroy_#{resource_name}" do
-      if resource.destroy
-        @deshacer = resource.deshacer_borrado_path
+      if record.destroy
+        @deshacer = record.deshacer_borrado_path
       end
     end
 
-    expose(:resource) { send :"#{resource_name}" }
+    expose(:record) { send :"#{resource_name}" }
     expose(:siguiente) { decorator_class.decorate(next_resource) if next_resource }
   end
 end
