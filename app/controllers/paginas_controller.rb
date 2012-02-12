@@ -12,8 +12,6 @@ class PaginasController < ApplicationController
   before_filter :asignar_cajas, only: [:create, :update, :save_draft]
   before_filter :paginate_paginas, only: :index
   before_filter :destroy_pagina, only: :destroy
-  before_filter :set_fotos, only: [:new, :edit, :update, :create, :preview, :publish]
-  before_filter :set_cajas, only: [:new, :edit, :update, :create, :preview, :publish]
 
   def index
     respond_with @paginas    
@@ -90,18 +88,21 @@ private
     end
   end
 
-  def set_fotos
-    @foto = FotoDecorator.decorate Foto.new
-    @fotos = FotoDecorator.all
-  end
-
-  def set_cajas
-    @cajas = Caja.al_final_las_de_pagina(pagina)
-  end
-
   def pagina
     @pagina ||= find_or_new_pagina
   end
 
-  helper_method :pagina
+  def cajas
+    @cajas ||= Caja.al_final_las_de_pagina(pagina)
+  end
+
+  def fotos
+    FotoDecorator.all
+  end
+
+  def foto
+    FotoDecorator.decorate Foto.new
+  end
+
+  helper_method :pagina, :cajas, :fotos, :foto
 end
