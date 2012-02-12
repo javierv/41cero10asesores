@@ -14,6 +14,7 @@ class PaginasController < ApplicationController
   before_filter :find_or_new_pagina, only: [:preview, :save_draft]
   before_filter :asignar_cajas, only: [:create, :update, :save_draft]
   before_filter :paginate_paginas, only: :index
+  before_filter :destroy_pagina, only: :destroy
 
   def index
     respond_with @paginas    
@@ -67,10 +68,6 @@ class PaginasController < ApplicationController
   end
 
   def destroy
-    if @pagina.destroy
-      @deshacer = @pagina.deshacer_borrado_path
-      @siguiente = next_pagina if request.xhr?
-    end
     respond_with @pagina
   end
 

@@ -5,6 +5,7 @@ class ClientesController < ApplicationController
   resource :cliente
   before_filter :new_cliente, only: [:new, :create]
   before_filter :find_cliente, only: [:edit, :update, :destroy]
+  before_filter :destroy_cliente, only: :destroy
 
   def index
     @clientes = ClienteDecorator.all
@@ -28,10 +29,6 @@ class ClientesController < ApplicationController
   end
 
   def destroy
-    if @cliente.destroy
-      @deshacer = @cliente.deshacer_borrado_path
-      @siguiente = next_cliente if request.xhr?
-    end
     respond_with @cliente
   end
 end
