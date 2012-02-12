@@ -18,8 +18,9 @@
       = render "general/sidebar"
 
       %section#main{role: 'main'}
-        %header
-          %h1= title
+        - if show_title?
+          %header
+            %h1= title
         = yield
 
     %footer#pie{role: 'contentinfo'}= render 'general/pie'
