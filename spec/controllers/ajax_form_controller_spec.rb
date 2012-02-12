@@ -17,9 +17,6 @@ describe AjaxFormController do
       xhr :get, :autocomplete, name: "search[titulo_contains]", term: 'ul', url: url
     end
 
-    it do
-      should respond_with(:success)
-      assigns(:resultados).should_not be_nil
-    end
+    it { should respond_with(:success) }
   end
 end    
