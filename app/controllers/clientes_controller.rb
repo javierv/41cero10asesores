@@ -5,12 +5,12 @@ class ClientesController < ApplicationController
   resource :cliente
 
   expose(:cliente) { find_or_new_cliente }
+  expose(:clientes) { ClienteDecorator.all }
 
   before_filter :destroy_cliente, only: :destroy
 
   def index
-    @clientes = ClienteDecorator.all
-    respond_with @clientes
+    respond_with clientes
   end
 
   def new

@@ -6,12 +6,12 @@ class BoletinesController < ApplicationController
   resource :boletin
 
   expose(:boletin) { find_or_new_boletin }
+  expose(:boletines) { BoletinDecorator.all }
 
   before_filter :destroy_boletin, only: :destroy
 
   def index
-    @boletines = BoletinDecorator.all
-    respond_with @boletines
+    respond_with boletines
   end
 
   def show
