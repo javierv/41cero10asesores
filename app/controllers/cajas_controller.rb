@@ -6,11 +6,7 @@ class CajasController < ApplicationController
 
   resource :caja
 
-  before_filter :find_caja, only: [:edit, :update, :destroy]
-  before_filter :new_caja, only: [:new, :create]
-  before_filter :update_caja, only: :update
   before_filter :paginate_cajas, only: :index
-  before_filter :set_paginas, only: [:new, :edit]
   before_filter :destroy_caja, only: :destroy
 
   def index
@@ -18,37 +14,39 @@ class CajasController < ApplicationController
   end
 
   def new
-    respond_with @caja
+    respond_with caja
   end
 
   def edit
-    respond_with @caja
+    respond_with caja
   end
 
   def create
-    if @caja.save
-      opciones = {location: edit_caja_path(@caja)}
+    if caja.save
+      opciones = {location: edit_caja_path(caja)}
     else
       opciones = {}
     end
-    respond_with @caja, opciones
+    respond_with caja, opciones
   end
 
   def update
-    @caja.save
-    respond_with @caja, location: edit_caja_path(@caja)
+    caja.update_attributes params[:caja]
+    respond_with caja, location: edit_caja_path(caja)
   end
 
   def destroy
-    respond_with @caja
+    respond_with caja
   end
 
 private
-  def update_caja
-    @caja.attributes = params[:caja]
+  def paginas
+    @paginas ||= PaginaDecorator.decorate Pagina.publicadas.por_orden
   end
 
-  def set_paginas
-    @paginas = PaginaDecorator.decorate Pagina.publicadas.por_orden
+  def caja
+    @caja ||= find_or_new_caja
   end
+
+  helper_method :caja, :paginas
 end
