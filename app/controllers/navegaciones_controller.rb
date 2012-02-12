@@ -1,11 +1,7 @@
 # encoding: utf-8
 
 class NavegacionesController < ApplicationController
-  before_filter :new_navegacion
-
   def new
-    @ids = Navegacion.pagina_ids
-    @paginas = PaginaDecorator.decorate Pagina.al_final_las_de_navegacion
   end
 
   def create
@@ -14,7 +10,17 @@ class NavegacionesController < ApplicationController
   end
 
 private
-  def new_navegacion
-    @navegacion = Navegacion.new
+  def navegacion
+    @navegacion ||= Navegacion.new
   end
+
+  def paginas
+    @paginas ||= PaginaDecorator.decorate Pagina.al_final_las_de_navegacion
+  end
+
+  def ids
+    @ids ||= Navegacion.pagina_ids
+  end
+
+  helper_method :navegacion, :paginas, :ids
 end
