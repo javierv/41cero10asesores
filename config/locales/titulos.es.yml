@@ -2,6 +2,7 @@ es:
   page_titles:
     devise/sessions:
       new: "Identificación de usuarios"
+      create: "Email o contraseña incorrectos; por favor, identifíquese de nuevo"
 
     portadas:
       principal: "41 Cero 10 Asesores"
