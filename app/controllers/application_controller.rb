@@ -83,7 +83,7 @@ private
     end
 
     define_method :"next_#{resource_name}" do
-      resource_class.next(session_params(:index) || {})
+      decorator_class.decorate resource_class.next(session_params(:index) || {})
     end
   end
 end
