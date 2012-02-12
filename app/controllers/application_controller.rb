@@ -63,11 +63,6 @@ private
       "#{resource_name}Decorator".camelize.constantize
     end
 
-    define_method :set_resource do |value|
-      instance_variable_set "@#{resource_name}", value
-      instance_variable_set "@resource", value
-    end
-
     define_method :"new_#{resource_name}" do
       decorator_class.decorate(resource_class.new(params[resource_name]))
     end
