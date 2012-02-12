@@ -4,6 +4,9 @@ class BoletinesController < ApplicationController
 
   public_actions :show
   resource :boletin
+
+  expose(:boletin) { find_or_new_boletin }
+
   before_filter :destroy_boletin, only: :destroy
 
   def index
@@ -44,11 +47,4 @@ class BoletinesController < ApplicationController
     boletin.enviar params[:boletin]
     respond_with boletin, location: boletines_path
   end
-
-private
-  def boletin
-    @boletin ||= find_or_new_boletin
-  end
-
-  helper_method :boletin
 end

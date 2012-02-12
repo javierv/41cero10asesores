@@ -79,10 +79,6 @@ private
       end
     end
 
-    define_method :resource do
-      send :"#{resource_name}"
-    end
-
     define_method :"paginate_#{resource_name.to_s.pluralize}" do
       search, records = resource_class.search_paginate params
       instance_variable_set "@search", search
@@ -102,6 +98,6 @@ private
       end
     end
 
-    helper_method :resource
+    expose(:resource) { send :"#{resource_name}" }
   end
 end

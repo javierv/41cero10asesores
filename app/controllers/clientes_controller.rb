@@ -3,6 +3,9 @@ class ClientesController < ApplicationController
   respond_to :html
 
   resource :cliente
+
+  expose(:cliente) { find_or_new_cliente }
+
   before_filter :destroy_cliente, only: :destroy
 
   def index
@@ -29,11 +32,4 @@ class ClientesController < ApplicationController
   def destroy
     respond_with cliente
   end
-
-private
-  def cliente
-    @cliente ||= find_or_new_cliente
-  end
-
-  helper_method :cliente
 end

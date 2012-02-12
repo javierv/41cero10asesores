@@ -6,6 +6,9 @@ class CajasController < ApplicationController
 
   resource :caja
 
+  expose(:caja) { find_or_new_caja }
+  expose(:paginas) { PaginaDecorator.decorate Pagina.publicadas.por_orden }
+
   before_filter :paginate_cajas, only: :index
   before_filter :destroy_caja, only: :destroy
 
@@ -38,15 +41,4 @@ class CajasController < ApplicationController
   def destroy
     respond_with caja
   end
-
-private
-  def paginas
-    @paginas ||= PaginaDecorator.decorate Pagina.publicadas.por_orden
-  end
-
-  def caja
-    @caja ||= find_or_new_caja
-  end
-
-  helper_method :caja, :paginas
 end

@@ -1,6 +1,10 @@
 # encoding: utf-8
 
 class NavegacionesController < ApplicationController
+  expose(:navegacion) { Navegacion.new }
+  expose(:paginas) { PaginaDecorator.decorate Pagina.al_final_las_de_navegacion }
+  expose(:ids) { Navegacion.pagina_ids }
+
   def new
   end
 
@@ -8,19 +12,4 @@ class NavegacionesController < ApplicationController
     Navegacion.establecer params[:navegacion][:pagina_id]
     redirect_to new_navegacion_path, notice: 'Navegación guardada'
   end
-
-private
-  def navegacion
-    @navegacion ||= Navegacion.new
-  end
-
-  def paginas
-    @paginas ||= PaginaDecorator.decorate Pagina.al_final_las_de_navegacion
-  end
-
-  def ids
-    @ids ||= Navegacion.pagina_ids
-  end
-
-  helper_method :navegacion, :paginas, :ids
 end

@@ -2,9 +2,13 @@
 
 class PortadasController < ApplicationController
   respond_to :html
-  before_filter :update_portada, only: [:update, :create]
-
   public_actions :principal
+
+  expose(:portada) { Portada.portada }
+  expose(:pagina) { PaginaDecorator.decorate Portada.first!.pagina  }
+  expose(:paginas) { Pagina.publicadas }
+
+  before_filter :update_portada, only: [:update, :create]
 
   def principal
     respond_with pagina, template: "paginas/show"
@@ -22,21 +26,7 @@ class PortadasController < ApplicationController
   end
 
 private
-  def portada
-    @portada ||= Portada.portada
-  end
-
-  def pagina
-    @pagina ||= PaginaDecorator.decorate Portada.first!.pagina 
-  end
-
   def update_portada
     portada.update_attributes params[:portada]
   end
-
-  def paginas
-    @paginas ||= Pagina.publicadas
-  end
-
-  helper_method :portada, :pagina, :paginas
 end

@@ -8,6 +8,23 @@ class PaginasController < ApplicationController
   public_actions :show, :search
   resource :pagina
 
+  expose(:pagina) do
+    # Código feo, pero mejor que poner @pagina en la acción show.
+    if params[:action].to_sym == :show
+      PaginaDecorator.decorate Pagina.where(borrador: false).find(params[:id])
+    else
+      find_or_new_pagina
+    end
+  end
+
+  expose(:cajas) { CajaDecorator.decorate Caja.al_final_las_de_pagina(pagina) }
+  expose(:fotos) { FotoDecorator.all }
+  expose(:foto) { FotoDecorator.decorate Foto.new }
+  expose(:versiones) { VersionDecorator.decorate pagina.versions.order("number DESC") }
+  expose(:resultados) do
+    Pagina.search params[:q], per_page: Pagina.default_per_page, page: params[:page]
+  end
+
   before_filter :params_updated_by, only: [:create, :update, :save_draft, :publish]
   before_filter :asignar_cajas, only: [:create, :update, :save_draft]
   before_filter :paginate_paginas, only: :index
@@ -18,7 +35,6 @@ class PaginasController < ApplicationController
   end
 
   def show
-    @pagina = PaginaDecorator.decorate Pagina.where(borrador: false).find(params[:id])
     respond_with pagina
   end
 
@@ -84,30 +100,4 @@ private
       pagina.ids_cajas = params[:pagina][:caja_ids]
     end
   end
-
-  def pagina
-    @pagina ||= find_or_new_pagina
-  end
-
-  def cajas
-    @cajas ||= Caja.al_final_las_de_pagina(pagina)
-  end
-
-  def fotos
-    FotoDecorator.all
-  end
-
-  def foto
-    FotoDecorator.decorate Foto.new
-  end
-
-  def resultados
-    @resultados ||= Pagina.search params[:q], per_page: Pagina.default_per_page, page: params[:page]
-  end
-
-  def versiones
-    @versiones ||= VersionDecorator.decorate pagina.versions.order("number DESC")
-  end
-
-  helper_method :pagina, :cajas, :fotos, :foto, :resultados, :versiones
 end
