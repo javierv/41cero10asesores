@@ -9,7 +9,7 @@ class PaginasController < ApplicationController
   resource :pagina
 
   expose(:pagina) do
-    # Código feo, pero mejor que poner @pagina en la acción show.
+    # Código feo, pero más claro que antes de decent_exposure
     if params[:action].to_sym == :show
       PaginaDecorator.decorate Pagina.where(borrador: false).find(params[:id])
     else
