@@ -106,5 +106,7 @@ private
         end
       end
     end
+
+    helper_method :resource
   end
 end

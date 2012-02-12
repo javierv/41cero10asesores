@@ -22,7 +22,6 @@ class PaginasController < ApplicationController
   def show
     @pagina = PaginaDecorator.decorate Pagina.where(borrador: false).find(params[:id])
     # FIXME: Hack para el título.
-    @resource = @pagina
     respond_with @pagina
   end
 
@@ -102,7 +101,6 @@ private
 
   def pagina
     @pagina ||= find_or_new_pagina
-    @resource ||= @pagina
   end
 
   helper_method :pagina
