@@ -35,7 +35,7 @@ private
   end
 
   def paginas
-    Pagina.publicadas
+    @paginas ||= Pagina.publicadas
   end
 
   helper_method :portada, :pagina, :paginas
