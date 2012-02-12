@@ -20,20 +20,13 @@ describe PortadasController do
         get :principal
       end
 
-      it do
-        should respond_with(:success)
-        assigns(:pagina).should be_true
-      end
+      it { should respond_with(:success) }
     end
   end
 
   describe "new" do
     before(:each) { get :new }
-
-    it do
-      should respond_with(:success)
-      assigns(:paginas).should be_true
-    end
+    it { should respond_with(:success) }
   end
 
   describe "update" do
