@@ -9,7 +9,10 @@ es:
 
     paginas:
       index: "Listado de páginas"
+      update: "Por favor, corrija los errores del formulario"
       new: "Nueva página"
+      create: "Por favor, corrija los errores del formulario"
+      publish: "Por favor, corrija los errores del formulario"
       show: "%{resource}"
       historial: "Historial de %{resource}"
       preview: "Vista previa de %{resource}"
@@ -17,7 +20,9 @@ es:
     cajas:
       index: "Listado de cajas"
       edit: "Editando caja %{resource}"
+      update: "Por favor, corrija los errores del formulario"
       new: "Nueva caja"
+      create: "Por favor, corrija los errores del formulario"
 
     boletines:
       index: "Boletines"
