@@ -1,7 +1,6 @@
-- title @pagina.title_for_edit
+- title resource: @pagina.title_for_edit
 
 = render 'form', pagina: @pagina
-
 - if @pagina.borrador?
   = actions_list [:index], @pagina
 - else

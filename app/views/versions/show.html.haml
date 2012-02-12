@@ -1,3 +1,4 @@
-- title "Versión de #{@pagina} el #{@version.date}", false
+- title resource: @pagina, date: @version.date
+- dont_show_title
 = render 'paginas/pagina', pagina: @pagina, cajas: @pagina.cajas_con_orden
 = @pagina.versions_actions_list @version

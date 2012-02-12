@@ -1,4 +1,4 @@
-- title "Resultados para la búsqueda #{params[:q]}" # TODO: ¿@paginas.search_term o similar?
+- title term: params[:q]
 - suggestion = @resultados.spelling_suggestion
 
 - if suggestion

@@ -65,6 +65,7 @@ private
 
     define_method :set_resource do |value|
       instance_variable_set "@#{resource_name}", value
+      instance_variable_set "@resource", value
     end
 
     define_method :"new_#{resource_name}" do

@@ -1,5 +1,5 @@
-- title @pagina, false
+- dont_show_title
 
-= render 'pagina', pagina: @pagina, cajas: @pagina.cajas_con_orden
+= render "paginas/pagina", pagina: @pagina, cajas: @pagina.cajas_con_orden
 
 = admin_actions_list([:edit, :index, :historial], @pagina)
