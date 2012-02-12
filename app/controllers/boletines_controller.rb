@@ -34,7 +34,7 @@ class BoletinesController < ApplicationController
 
   def destroy
     if @boletin.destroy
-      @deshacer = deshacer_borrado_path(@boletin)
+      @deshacer = @boletin.deshacer_borrado_path
       @siguiente = next_boletin if request.xhr?
     end
     respond_with @boletin

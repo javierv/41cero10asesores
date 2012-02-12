@@ -29,7 +29,7 @@ class ClientesController < ApplicationController
 
   def destroy
     if @cliente.destroy
-      @deshacer = deshacer_borrado_path(@cliente)
+      @deshacer = @cliente.deshacer_borrado_path
       @siguiente = next_cliente if request.xhr?
     end
     respond_with @cliente

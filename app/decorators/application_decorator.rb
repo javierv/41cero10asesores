@@ -41,6 +41,10 @@ class ApplicationDecorator < Draper::Base
     end
   end
 
+  def deshacer_borrado_path
+    h.restore_vestal_versions_version_path model.versions.last
+  end
+
 private
   def lista_de_acciones(acciones)
     h.actions_list acciones, model

@@ -40,7 +40,7 @@ class CajasController < ApplicationController
 
   def destroy
     if @caja.destroy
-      @deshacer = deshacer_borrado_path(@caja)
+      @deshacer = @caja.deshacer_borrado_path
       @siguiente = next_caja if request.xhr?
     end
     respond_with @caja

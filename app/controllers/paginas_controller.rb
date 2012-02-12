@@ -68,7 +68,7 @@ class PaginasController < ApplicationController
 
   def destroy
     if @pagina.destroy
-      @deshacer = deshacer_borrado_path(@pagina)
+      @deshacer = @pagina.deshacer_borrado_path
       @siguiente = next_pagina if request.xhr?
     end
     respond_with @pagina

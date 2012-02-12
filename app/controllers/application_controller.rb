@@ -86,8 +86,4 @@ private
       resource_class.next(session_params(:index) || {})
     end
   end
-
-  def deshacer_borrado_path(record)
-    restore_vestal_versions_version_path(record.versions.last)
-  end
 end
