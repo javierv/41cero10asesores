@@ -19,8 +19,7 @@ class PaginasController < ApplicationController
 
   def show
     @pagina = PaginaDecorator.decorate Pagina.where(borrador: false).find(params[:id])
-    # FIXME: Hack para el título.
-    respond_with @pagina
+    respond_with pagina
   end
 
   def new
