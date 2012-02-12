@@ -2,7 +2,7 @@
 
 module LayoutHelper
   def title(variables = {})
-    @title ||= I18n.translate! page_title_path, {resource: resource}.merge(variables)
+    @title ||= I18n.translate! page_title_path, {resource: get_resource}.merge(variables)
   end
 
   def show_title?
@@ -16,5 +16,14 @@ module LayoutHelper
 private
   def page_title_path
     "page_titles.#{params[:controller]}.#{params[:action]}"
+  end
+
+  # Un poco hack...
+  def get_resource
+    begin
+      resource
+    rescue
+      nil
+    end
   end
 end
