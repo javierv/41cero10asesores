@@ -1,8 +1,8 @@
 # encoding: utf-8
 
 module LayoutHelper
-  def title
-    I18n.translate! page_title_path, {resource: @resource}
+  def title(variables = {})
+    @title ||= I18n.translate! page_title_path, {resource: @resource}.merge(variables)
   end
 
 private

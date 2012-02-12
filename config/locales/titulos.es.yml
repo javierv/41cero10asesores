@@ -9,6 +9,7 @@ es:
 
     paginas:
       index: "Listado de páginas"
+      edit: "Editando %{resource}"
       update: "Por favor, corrija los errores del formulario"
       new: "Nueva página"
       create: "Por favor, corrija los errores del formulario"
@@ -16,6 +17,7 @@ es:
       show: "%{resource}"
       historial: "Historial de %{resource}"
       preview: "Vista previa de %{resource}"
+      search: "Resultados para la búsqueda %{term}"
 
     cajas:
       index: "Listado de cajas"
@@ -42,6 +44,8 @@ es:
       ayuda_textile: "Ayuda para la sintaxis del editor"
 
     versions:
+      show: "Versión de %{resource} el %{date}"
+      compare: "Comparación de %{resource}"
       borradas: "Páginas borradas"
 
     translations:
