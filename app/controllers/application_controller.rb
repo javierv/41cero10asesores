@@ -69,11 +69,23 @@ private
     end
 
     define_method :"new_#{resource_name}" do
-      set_resource decorator_class.decorate(resource_class.new(params[resource_name]))
+      decorator_class.decorate(resource_class.new(params[resource_name]))
     end
 
     define_method :"find_#{resource_name}" do
-      set_resource decorator_class.find(params[:id])
+      decorator_class.find(params[:id])
+    end
+
+    define_method :"find_or_new_#{resource_name}" do
+      if params[:id]
+        send :"find_#{resource_name}"
+      else
+        send :"new_#{resource_name}"
+      end
+    end
+
+    define_method :resource do
+      send :"#{resource_name}"
     end
 
     define_method :"paginate_#{resource_name.to_s.pluralize}" do
@@ -87,8 +99,8 @@ private
     end
 
     define_method :"destroy_#{resource_name}" do
-      if @resource.destroy
-        @deshacer = @resource.deshacer_borrado_path
+      if resource.destroy
+        @deshacer = resource.deshacer_borrado_path
         if next_resource && request.xhr?
           @siguiente = decorator_class.decorate next_resource
         end

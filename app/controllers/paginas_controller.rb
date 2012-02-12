@@ -9,9 +9,6 @@ class PaginasController < ApplicationController
   resource :pagina
 
   before_filter :params_updated_by, only: [:create, :update, :save_draft, :publish]
-  before_filter :find_pagina, only: [:edit, :update, :destroy, :historial, :publish]
-  before_filter :new_pagina, only: [:new, :create]
-  before_filter :find_or_new_pagina, only: [:preview, :save_draft]
   before_filter :asignar_cajas, only: [:create, :update, :save_draft]
   before_filter :paginate_paginas, only: :index
   before_filter :destroy_pagina, only: :destroy
@@ -30,33 +27,33 @@ class PaginasController < ApplicationController
   end
 
   def new
-    respond_with @pagina
+    respond_with pagina
   end
 
   def edit
-    respond_with @pagina
+    respond_with pagina
   end
 
   def create
-    @pagina.save
-    respond_with @pagina
+    pagina.save
+    respond_with pagina
   end
 
   def update
-    @pagina.update_attributes(params[:pagina])
-    respond_with @pagina
+    pagina.update_attributes(params[:pagina])
+    respond_with pagina
   end
 
   def save_draft
-    @pagina.save_draft(params[:pagina])
-    respond_with @pagina.draft, location: edit_pagina_path(@pagina.draft)
+    pagina.save_draft(params[:pagina])
+    respond_with pagina.draft, location: edit_pagina_path(pagina.draft)
   end
 
   def publish
-    if @pagina.publish params[:pagina]
-      respond_with @pagina.published
+    if pagina.publish params[:pagina]
+      respond_with pagina.published
     else
-      respond_with @pagina
+      respond_with pagina
     end
   end
 
@@ -65,16 +62,16 @@ class PaginasController < ApplicationController
     # https://github.com/rails/rails/issues/674
     attributes = params[:pagina].clone
     @cajas = CajaDecorator.decorate Caja.find_all_by_id(attributes.delete(:caja_ids) || [])
-    @pagina.attributes = attributes
-    respond_with @pagina
+    pagina.attributes = attributes
+    respond_with pagina
   end
 
   def destroy
-    respond_with @pagina
+    respond_with pagina
   end
 
   def historial
-    @versiones = VersionDecorator.decorate @pagina.versions.order("number DESC")
+    @versiones = VersionDecorator.decorate pagina.versions.order("number DESC")
   end
 
   def search
@@ -90,15 +87,7 @@ private
 
   def asignar_cajas
     if params[:pagina][:caja_ids]
-      @pagina.ids_cajas = params[:pagina][:caja_ids]
-    end
-  end
-
-  def find_or_new_pagina
-    if params[:id]
-      find_pagina
-    else
-      new_pagina
+      pagina.ids_cajas = params[:pagina][:caja_ids]
     end
   end
 
@@ -108,6 +97,13 @@ private
   end
 
   def set_cajas
-    @cajas = Caja.al_final_las_de_pagina(@pagina)
+    @cajas = Caja.al_final_las_de_pagina(pagina)
   end
+
+  def pagina
+    @pagina ||= find_or_new_pagina
+    @resource ||= @pagina
+  end
+
+  helper_method :pagina
 end
