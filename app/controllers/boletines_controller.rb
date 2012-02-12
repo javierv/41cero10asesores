@@ -49,4 +49,6 @@ private
   def boletin
     @boletin ||= find_or_new_boletin
   end
+
+  helper_method :boletin
 end
