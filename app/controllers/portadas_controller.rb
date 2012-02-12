@@ -9,7 +9,7 @@ class PortadasController < ApplicationController
 
   def principal
     @pagina = PaginaDecorator.decorate Portada.first!.pagina
-    respond_with @pagina
+    respond_with @pagina, template: "paginas/show"
   end
 
   def new
