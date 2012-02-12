@@ -11,6 +11,7 @@ class CajasController < ApplicationController
   before_filter :update_caja, only: :update
   before_filter :paginate_cajas, only: :index
   before_filter :set_paginas, only: [:new, :edit]
+  before_filter :destroy_caja, only: :destroy
 
   def index
     respond_with @cajas
@@ -39,10 +40,6 @@ class CajasController < ApplicationController
   end
 
   def destroy
-    if @caja.destroy
-      @deshacer = deshacer_borrado_path(@caja)
-      @siguiente = next_caja if request.xhr?
-    end
     respond_with @caja
   end
 

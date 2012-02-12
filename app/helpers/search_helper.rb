@@ -15,6 +15,14 @@ module SearchHelper
     end
   end
 
+  def sugerencia_busqueda(sugerencia)
+    if sugerencia
+      content_tag :p, id: "sugerencia" do
+        "¿Quiso decir #{link_to sugerencia, search_paginas_path(q: sugerencia)}?".html_safe
+      end
+    end
+  end
+
 private
   def search_split(term)
     term.scan(/"[^"]+"|\S+/).map { |word| word.delete('"') }

@@ -6,6 +6,7 @@ class BoletinesController < ApplicationController
   resource :boletin
   before_filter :new_boletin, only: [:new, :create]
   before_filter :find_boletin, only: [:show, :edit, :update, :destroy, :enviar, :email]
+  before_filter :destroy_boletin, only: :destroy
 
   def index
     @boletines = BoletinDecorator.all
@@ -33,10 +34,6 @@ class BoletinesController < ApplicationController
   end
 
   def destroy
-    if @boletin.destroy
-      @deshacer = deshacer_borrado_path(@boletin)
-      @siguiente = next_boletin if request.xhr?
-    end
     respond_with @boletin
   end
 

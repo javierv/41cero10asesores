@@ -82,12 +82,17 @@ private
       instance_variable_set "@#{resource_name.to_s.pluralize}", decorator_class.decorate(records)
     end
 
-    define_method :"next_#{resource_name}" do
+    define_method :"next_resource" do
       resource_class.next(session_params(:index) || {})
     end
-  end
 
-  def deshacer_borrado_path(record)
-    restore_vestal_versions_version_path(record.versions.last)
+    define_method :"destroy_#{resource_name}" do
+      if @resource.destroy
+        @deshacer = @resource.deshacer_borrado_path
+        if next_resource && request.xhr?
+          @siguiente = decorator_class.decorate next_resource
+        end
+      end
+    end
   end
 end

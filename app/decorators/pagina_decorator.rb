@@ -5,9 +5,9 @@ class PaginaDecorator < ApplicationDecorator
 
   def title_for_edit
     if model.borrador?
-      "Editando borrador de #{model}"
+      "borrador de #{model}"
     else
-      "Editando la página #{model}"
+      "la página #{model}"
     end
   end
 
