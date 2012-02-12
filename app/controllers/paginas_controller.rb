@@ -68,13 +68,11 @@ class PaginasController < ApplicationController
   end
 
   def historial
-    @versiones = VersionDecorator.decorate pagina.versions.order("number DESC")
   end
 
   def search
-    @resultados = Pagina.search params[:q], per_page: Pagina.default_per_page, page: params[:page]
-    @paginas = PaginaDecorator.decorate @resultados.map(&:indexed_object)
-    respond_with @resultados
+    @paginas = PaginaDecorator.decorate resultados.map(&:indexed_object)
+    respond_with resultados
   end
 
 private
@@ -104,5 +102,13 @@ private
     FotoDecorator.decorate Foto.new
   end
 
-  helper_method :pagina, :cajas, :fotos, :foto
+  def resultados
+    @resultados ||= Pagina.search params[:q], per_page: Pagina.default_per_page, page: params[:page]
+  end
+
+  def versiones
+    @versiones ||= VersionDecorator.decorate pagina.versions.order("number DESC")
+  end
+
+  helper_method :pagina, :cajas, :fotos, :foto, :resultados, :versiones
 end
