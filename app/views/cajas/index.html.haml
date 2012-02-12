@@ -1,8 +1,8 @@
-= filter_form_for @search do |form|
+= filter_form_for filtracion do |form|
   = form.input :titulo_contains, label: 'Título'
   = form.input :cuerpo_contains, label: 'Cuerpo'
 
 %section#listado
-  = render "shared/listado", records: @cajas, search: @search
+  = render "shared/listado", records: cajas, filtracion: filtracion
 
 = actions_list [:new], Caja

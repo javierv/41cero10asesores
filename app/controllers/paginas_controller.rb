@@ -24,20 +24,29 @@ class PaginasController < ApplicationController
       CajaDecorator.decorate Caja.al_final_las_de_pagina(pagina)
     end
   end
+
+  expose(:paginas) do
+    if params[:action].to_sym == :search
+      PaginaDecorator.decorate resultados.map(&:indexed_object)
+    else
+      PaginaDecorator.decorate Pagina.paginated_records(params)
+    end
+  end
+
   expose(:fotos) { FotoDecorator.all }
   expose(:foto) { FotoDecorator.decorate Foto.new }
   expose(:versiones) { VersionDecorator.decorate pagina.versions.order("number DESC") }
   expose(:resultados) do
     Pagina.search params[:q], per_page: Pagina.default_per_page, page: params[:page]
   end
+  expose(:filtracion) { Pagina.filtered_search params }
 
   before_filter :params_updated_by, only: [:create, :update, :save_draft, :publish]
   before_filter :asignar_cajas, only: [:create, :update, :save_draft]
-  before_filter :paginate_paginas, only: :index
   before_filter :destroy_pagina, only: :destroy
 
   def index
-    respond_with @paginas    
+    respond_with paginas
   end
 
   def show
@@ -92,7 +101,6 @@ class PaginasController < ApplicationController
   end
 
   def search
-    @paginas = PaginaDecorator.decorate resultados.map(&:indexed_object)
     respond_with resultados
   end
 

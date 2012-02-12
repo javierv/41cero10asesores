@@ -8,12 +8,13 @@ class CajasController < ApplicationController
 
   expose(:caja) { find_or_new_caja }
   expose(:paginas) { PaginaDecorator.decorate Pagina.publicadas.por_orden }
+  expose(:cajas) { CajaDecorator.decorate Caja.paginated_records(params) }
+  expose(:filtracion) { Caja.filtered_search params }
 
-  before_filter :paginate_cajas, only: :index
   before_filter :destroy_caja, only: :destroy
 
   def index
-    respond_with @cajas
+    respond_with cajas
   end
 
   def new

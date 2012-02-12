@@ -1,6 +1,6 @@
 = table_for records do |table|
   = table.data do
-    = table.cell :titulo, heading: sort_link(search, :titulo)
-    = table.cell :principio_cuerpo, heading: sort_link(search, :cuerpo)
-    = table.cell :tipo, heading: sort_link(search, :borrador)
+    = table.cell :titulo, heading: sort_link(filtracion, :titulo)
+    = table.cell :principio_cuerpo, heading: sort_link(filtracion, :cuerpo)
+    = table.cell :tipo, heading: sort_link(filtracion, :borrador)
     = actions_cell table, :actions_list

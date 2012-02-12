@@ -79,12 +79,6 @@ private
       end
     end
 
-    define_method :"paginate_#{resource_name.to_s.pluralize}" do
-      search, records = resource_class.search_paginate params
-      instance_variable_set "@search", search
-      instance_variable_set "@#{resource_name.to_s.pluralize}", decorator_class.decorate(records)
-    end
-
     define_method :"next_resource" do
       resource_class.next(session_params(:index) || {})
     end
