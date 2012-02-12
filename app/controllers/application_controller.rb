@@ -3,9 +3,11 @@
 class ApplicationController < ActionController::Base
   responders :flash
   protect_from_forgery
+
+  expose(:paginas_navegacion) { Navegacion.paginas }
+
   before_filter :conservar_parametros, only: [:index]
   before_filter :authenticate_usuario!, if: :requiere_usuario?
-  before_filter :paginas_navegacion
 
 private
   def public_actions
@@ -16,10 +18,6 @@ private
     define_method :public_actions do
       args
     end
-  end
-
-  def paginas_navegacion
-    @paginas_navegacion = Navegacion.paginas
   end
 
   def requiere_usuario?
