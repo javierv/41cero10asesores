@@ -3,6 +3,6 @@
   = form.input :cuerpo_contains, label: 'Cuerpo'
 
 %section#listado
-  = render 'listado', cajas: @cajas, search: @search
+  = render "shared/listado", records: @cajas, search: @search
 
 = actions_list [:new], Caja
