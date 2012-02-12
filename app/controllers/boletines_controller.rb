@@ -4,8 +4,6 @@ class BoletinesController < ApplicationController
 
   public_actions :show
   resource :boletin
-  before_filter :new_boletin, only: [:new, :create]
-  before_filter :find_boletin, only: [:show, :edit, :update, :destroy, :enviar, :email]
   before_filter :destroy_boletin, only: :destroy
 
   def index
@@ -14,7 +12,7 @@ class BoletinesController < ApplicationController
   end
 
   def show
-    send_file @boletin.archivo.file, filename: @boletin.archivo.name, type: :pdf
+    send_file boletin.archivo.file, filename: boletin.archivo.name, type: :pdf
   end
 
   def new
@@ -24,26 +22,31 @@ class BoletinesController < ApplicationController
   end
 
   def update
-    @boletin.update_attributes params[:boletin]
-    respond_with @boletin, location: boletines_path
+    boletin.update_attributes params[:boletin]
+    respond_with boletin, location: boletines_path
   end
 
   def create
-    @boletin.save
-    respond_with @boletin, location: boletines_path
+    boletin.save
+    respond_with boletin, location: boletines_path
   end
 
   def destroy
-    respond_with @boletin
+    respond_with boletin
   end
 
   def enviar
-    @boletin.clientes = Cliente.all.map(&:mailto)
-    respond_with @boletin
+    boletin.clientes = Cliente.all.map(&:mailto)
+    respond_with boletin
   end
 
   def email
-    @boletin.enviar params[:boletin]
-    respond_with @boletin, location: boletines_path
+    boletin.enviar params[:boletin]
+    respond_with boletin, location: boletines_path
+  end
+
+private
+  def boletin
+    @boletin ||= find_or_new_boletin
   end
 end
