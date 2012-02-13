@@ -52,6 +52,10 @@ class ApplicationDecorator < Draper::Base
   end
 
 private
+  def enlace_accion(action)
+    h.link_to *enlace(action)
+  end
+
   def enlaces(actions)
     actions.map { |action| enlace(action) }
   end

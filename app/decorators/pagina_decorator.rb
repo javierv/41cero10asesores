@@ -12,7 +12,7 @@ class PaginaDecorator < ApplicationDecorator
   end
 
   def etiqueta_con_enlace_a_editar
-    "#{model} #{h.enlace_accion :edit, model}".html_safe
+    "#{model} #{enlace_accion :edit}".html_safe
   end
 
   def tipo

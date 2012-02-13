@@ -25,10 +25,6 @@ module NavegacionHelper
        {class: "desconectar", method: :delete}]
   end
 
-  def enlace_accion(action, resource)
-    link_to *enlace(action, resource)
-  end
- 
 private
   def enlaces_admin
     [
