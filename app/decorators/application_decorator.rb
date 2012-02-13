@@ -126,7 +126,7 @@ private
   end
 
   def cuerpo_truncado(length)
-    h.truncate model.cuerpo, length: length, separator: ' '
+    model.cuerpo.truncate length, separator: ' '
   end
 
   def texto_numero_errores
