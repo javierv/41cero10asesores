@@ -39,9 +39,15 @@ ul.actions
       background-image: image-url("historial.png")
     &.enviar
       background-image: image-url("email.png")
-    &.index.paginas
-      background-image: image-url("paginas.png")
-    &.index.cajas
-      background-image: image-url("cajas.png")
+    &.index
+      &.paginas
+        background-image: image-url("paginas.png")
+      &.cajas
+        background-image: image-url("cajas.png")
+      &.clientes
+        background-image: image-url("clientes.png")
+      &.boletines
+        background-image: image-url("boletines.png")
+
   input
     @include button()
