@@ -65,6 +65,10 @@ class PaginaDecorator < ApplicationDecorator
     end
   end
 
+  def cajas_con_orden
+    CajaDecorator.decorate model.cajas_con_orden
+  end
+
 protected
   def render_pagina
     h.render('paginas/texto_pagina', pagina: self)
