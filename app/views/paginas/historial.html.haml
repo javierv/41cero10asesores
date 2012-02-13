@@ -1,6 +1,6 @@
 = form_tag(compare_vestal_versions_version_path, method: :get, class: "diferencias") do
 
-  %section#listado
+  = listado do
     = table_for versiones do |table|
       = table.data do
         = table.cell :botones_seleccion_diferencias, heading: 'Comparar'
