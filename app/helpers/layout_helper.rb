@@ -2,7 +2,7 @@
 
 module LayoutHelper
   def title(variables = {})
-    @title ||= I18n.translate! page_title_path, {resource: get_resource}.merge(variables)
+    @title ||= I18n.translate! page_title_path, {resource: get_record}.merge(variables)
   end
 
   def show_title?
@@ -19,9 +19,9 @@ private
   end
 
   # Un poco hack...
-  def get_resource
+  def get_record
     begin
-      resource
+      record
     rescue
       nil
     end

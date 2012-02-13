@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   expose(:paginas_navegacion) { Navegacion.paginas }
+  expose(:term) { params[:q] }
 
   before_filter :conservar_parametros, only: [:index]
   before_filter :authenticate_usuario!, if: :requiere_usuario?
@@ -82,12 +83,13 @@ private
     end
 
     define_method :"destroy_#{resource_name}" do
-      if resource.destroy
-        @deshacer = resource.deshacer_borrado_path
+      if record.destroy
+        @deshacer = record.deshacer_borrado_path
       end
     end
 
-    expose(:resource) { send :"#{resource_name}" }
+    expose(:record) { send :"#{resource_name}" }
+    expose(:records) { send :"#{resource_name.to_s.pluralize}"}
     expose(:siguiente) { decorator_class.decorate(next_resource) if next_resource }
   end
 end
