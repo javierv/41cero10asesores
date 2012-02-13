@@ -11,6 +11,12 @@ class ApplicationDecorator < Draper::Base
     resize(size).url
   end
 
+  def admin_actions_list(actions)
+    if h.usuario_signed_in?
+      actions_list(actions)
+    end
+  end
+
   def actions_list(actions = acciones)
     h.actions_list acciones, model
   end
