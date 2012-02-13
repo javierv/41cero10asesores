@@ -2,7 +2,7 @@
   = form.input :titulo_contains, label: 'Título' # No funciona traducir etiqueta de estos atributos
   = form.input :cuerpo_contains, label: 'Cuerpo'
 
-= listado { render "shared/listado" }
+= listado { render "listado" }
 
 = actions_list [:new,
   ['Páginas borradas', borradas_vestal_versions_versions_path, {class: 'destroy'}]],
