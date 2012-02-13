@@ -11,8 +11,8 @@ class ApplicationDecorator < Draper::Base
     resize(size).url
   end
 
-  def actions_list
-    lista_de_acciones acciones
+  def actions_list(actions = acciones)
+    h.actions_list acciones, model
   end
 
   def created_at
@@ -46,10 +46,6 @@ class ApplicationDecorator < Draper::Base
   end
 
 private
-  def lista_de_acciones(acciones)
-    h.actions_list acciones, model
-  end
-
   def resize(size)
     model.imagen.thumb("#{size}x#{size}#")
   end

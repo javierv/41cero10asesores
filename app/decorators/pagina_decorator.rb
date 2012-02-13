@@ -56,7 +56,7 @@ class PaginaDecorator < ApplicationDecorator
   end
 
   def versions_actions_list(version)
-    lista_de_acciones [:historial, recover_version_action(version)]
+    actions_list [:historial, recover_version_action(version)]
   end
 
   def texto_actualizado
