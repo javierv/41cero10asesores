@@ -12,7 +12,7 @@ class PaginaDecorator < ApplicationDecorator
   end
 
   def etiqueta_con_enlace_a_editar
-    "#{model} #{h.enlace_accion :edit, model}".html_safe
+    "#{model} #{enlace_accion :edit}".html_safe
   end
 
   def tipo
@@ -56,7 +56,11 @@ class PaginaDecorator < ApplicationDecorator
   end
 
   def versions_actions_list(version)
-    lista_de_acciones [:historial, recover_version_action(version)]
+    actions_list [:historial, recover_version_action(version)]
+  end
+
+  def edit_actions_list
+    actions_list edit_actions
   end
 
   def texto_actualizado
@@ -81,6 +85,14 @@ private
 
   def acciones
     [show_action, :edit, :destroy, :historial, edit_draft_action].compact
+  end
+
+  def edit_actions
+    if borrador?
+      [:index]
+    else
+      [:show, :index]
+    end
   end
 
   def show_action

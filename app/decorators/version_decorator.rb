@@ -4,7 +4,7 @@ class VersionDecorator < ApplicationDecorator
   decorates :version, class: VestalVersions::Version
 
   def borradas_actions_list
-    lista_de_acciones [[:restore,  {form: true, method: :put}]]
+    actions_list [[:restore,  {form: true, method: :put}]]
   end
 
   def botones_seleccion_diferencias

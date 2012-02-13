@@ -16,16 +16,6 @@ module NavegacionHelper
     lista_con_enlaces enlaces_navegacion(paginas)
   end
 
-  def admin_actions_list(actions, resource)
-    if usuario_signed_in?
-      actions_list(actions, resource)
-    end
-  end
-
-  def actions_list(actions, resource)
-    lista_con_enlaces enlaces(actions, resource), class: 'actions'
-  end
-
   def actions_cell(table, method)
     table.cell method, heading: "Acciones", cell_html: {class: "actions"}
   end
@@ -35,10 +25,6 @@ module NavegacionHelper
        {class: "desconectar", method: :delete}]
   end
 
-  def enlace_accion(action, resource)
-    link_to *enlace(action, resource)
-  end
- 
 private
   def enlaces_admin
     [
@@ -106,60 +92,5 @@ private
     else
       controller
     end
-  end
-
-  def link_text(action, resource)
-    I18n.translate(action,
-                   scope:          "tabletastic.actions",
-                   default:        action.to_s.titleize,
-                   gender:         resource_name(resource).gender,
-                   resource_name:  resource_name(resource).downcase)
-  end
-
-  def resource_name(resource)
-    if resource.respond_to?(:model_name)
-      resource.model_name.human
-    else
-      resource.class.model_name.human
-    end
-  end
-
-  def link_title(action, resource)
-    "#{link_text(action, resource)} #{resource}"
-  end
-
-  def enlaces(actions, resource)
-    actions.map do |action|
-      enlace(action, resource)
-    end
-  end
-
-  def enlace(action, resource, opciones = {})
-    if action.is_a?(Array)
-      opciones.merge! action.extract_options!
-      url = action[1] || action_url(action[0], resource)
-      action = action[0]
-    else
-      url = action_url(action, resource)
-    end
-
-    if url.is_a?(Array)
-      opciones.reverse_merge!(url.extract_options!)
-    end
-    opciones.reverse_merge!(class: action, title: link_title(action, resource))
-    [link_text(action, resource), url, opciones].flatten
-  end
-
-  def action_url(action, resource)
-    case action
-      when :show
-        resource
-      when :index
-        [resource.class, {class: "index #{resource.class.to_s.sub("Decorator", "").tableize}"}]
-      when :destroy
-        [resource, {method: :delete, remote: true}]
-      else
-        polymorphic_path(resource, action: action)
-      end
   end
 end

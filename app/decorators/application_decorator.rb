@@ -11,8 +11,14 @@ class ApplicationDecorator < Draper::Base
     resize(size).url
   end
 
-  def actions_list
-    lista_de_acciones acciones
+  def admin_actions_list(actions)
+    if h.usuario_signed_in?
+      actions_list(actions)
+    end
+  end
+
+  def actions_list(actions = acciones)
+    h.lista_con_enlaces enlaces(actions), class: 'actions'
   end
 
   def created_at
@@ -46,8 +52,57 @@ class ApplicationDecorator < Draper::Base
   end
 
 private
-  def lista_de_acciones(acciones)
-    h.actions_list acciones, model
+  def enlace_accion(action)
+    h.link_to *enlace(action)
+  end
+
+  def enlaces(actions)
+    actions.map { |action| enlace(action) }
+  end
+
+  def enlace(action, opciones = {})
+    if action.is_a?(Array)
+      opciones.merge! action.extract_options!
+      url = action[1] || action_url(action[0])
+      action = action[0]
+    else
+      url = action_url action
+    end
+
+    if url.is_a?(Array)
+      opciones.reverse_merge! url.extract_options!
+    end
+    opciones.reverse_merge! class: action, title: link_title(action)
+    [link_text(action), url, opciones].flatten
+  end
+
+  def link_title(action)
+    "#{link_text(action)} #{self}"
+  end
+
+  def link_text(action)
+    I18n.translate(action,
+                   scope:          "tabletastic.actions",
+                   default:        action.to_s.titleize,
+                   gender:         resource_name.gender,
+                   resource_name:  resource_name.downcase)
+  end
+
+  def resource_name
+    model.class.model_name.human
+  end
+
+  def action_url(action)
+    case action
+      when :show
+        model
+      when :index
+        [model.class, {class: "index #{model.class.to_s.tableize}"}]
+      when :destroy
+        [model, {method: :delete, remote: true}]
+      else
+        h.polymorphic_path(model, action: action)
+      end
   end
 
   def resize(size)
