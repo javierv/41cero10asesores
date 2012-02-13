@@ -16,10 +16,6 @@ module NavegacionHelper
     lista_con_enlaces enlaces_navegacion(paginas)
   end
 
-  def actions_list(actions, resource)
-    resource.actions_list actions
-  end
-
   def actions_cell(table, method)
     table.cell method, heading: "Acciones", cell_html: {class: "actions"}
   end

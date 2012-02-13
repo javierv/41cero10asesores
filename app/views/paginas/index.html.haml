@@ -4,6 +4,5 @@
 
 = listado { render "listado" }
 
-= actions_list [:new,
-  ['Páginas borradas', borradas_vestal_versions_versions_path, {class: 'destroy'}]],
-  Pagina
+= pagina.actions_list [:new,
+  ['Páginas borradas', borradas_vestal_versions_versions_path, {class: 'destroy'}]]

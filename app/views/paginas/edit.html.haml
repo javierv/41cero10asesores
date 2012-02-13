@@ -3,6 +3,6 @@
 = render "form"
 
 - if pagina.borrador?
-  = actions_list [:index], pagina
+  = pagina.actions_list [:index]
 - else
-  = actions_list [:show, :index], pagina
+  = pagina.actions_list [:show, :index]
