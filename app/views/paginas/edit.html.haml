@@ -1,8 +1,3 @@
 - title resource: pagina.title_for_edit
-
 = render "form"
-
-- if pagina.borrador?
-  = pagina.actions_list [:index]
-- else
-  = pagina.actions_list [:show, :index]
+= pagina.edit_actions_list

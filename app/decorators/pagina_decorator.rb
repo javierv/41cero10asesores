@@ -59,6 +59,10 @@ class PaginaDecorator < ApplicationDecorator
     actions_list [:historial, recover_version_action(version)]
   end
 
+  def edit_actions_list
+    actions_list edit_actions
+  end
+
   def texto_actualizado
     unless model.new_record?
       "Página guardada el #{updated_at}".html_safe
@@ -81,6 +85,14 @@ private
 
   def acciones
     [show_action, :edit, :destroy, :historial, edit_draft_action].compact
+  end
+
+  def edit_actions
+    if borrador?
+      [:index]
+    else
+      [:show, :index]
+    end
   end
 
   def show_action
