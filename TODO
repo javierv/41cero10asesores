@@ -13,7 +13,6 @@
 * ValidAttribute https://github.com/bcardarella/valid_attribute
 * Controlar mapas por teclado, de manera similar a como se controla la etiqueta <video>, y manteniendo la opción de usar el ratón.
 
-* Draper.
 * Sugerencias de búsqueda según escribes, basándose en términos existentes y/o buscados.
 * Estilo de los input en función de si son válidos o no.
 * Usar caché en la acción "show".
@@ -23,7 +22,6 @@
 * Motores de comentarios, como https://github.com/Draiken/opinio
 * Fixturized: https://github.com/szarski/Fixturized
 * Client Side Validations (va con Rails 3).
-* Algo similar a decent_exposure, combinado con mi resource.
 
 Sección de imágenes:
 * ¿Paginador en la galería?
