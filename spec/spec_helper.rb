@@ -13,6 +13,7 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'capybara/rspec/matchers'
+  require 'draper/rspec_integration'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -36,6 +37,7 @@ Spork.prefork do
 
     config.include Devise::TestHelpers, type: :controller
     config.include Capybara::RSpecMatchers, type: :helper
+    config.include Capybara::RSpecMatchers, type: :decorator
 
     config.use_transactional_fixtures = true
 
