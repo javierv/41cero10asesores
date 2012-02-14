@@ -6,40 +6,6 @@ class MapTagsTest
 end
 
 describe TextileHelper do
-  describe "extract_coordinates" do
-    let(:block) do
-      lambda { |text| MapTagsTest.new.extract_coordinates(text) }
-    end
-
-    it "permite no poner el título" do
-      data = block["-5.98,4.33"]
-      data[:lat].should == "-5.98"
-      data[:long].should == "4.33"
-      data[:titulo].should be_nil
-    end
-
-    it "permite poner el título" do
-      data = block["-5.98,4.33(Título)"]
-      data[:lat].should == "-5.98"
-      data[:long].should == "4.33"
-      data[:titulo].should == "Título"
-    end
-
-    it "permite comas en el título" do
-      data = block["-5.98,4.33(Título, creo)"]
-      data[:lat].should == "-5.98"
-      data[:long].should == "4.33"
-      data[:titulo].should == "Título, creo"
-    end
-
-    it "permite título en mayúsculas" do
-      data = block["-5.98,4.33(GUAU)"]
-      data[:lat].should == "-5.98"
-      data[:long].should == "4.33"
-      data[:titulo].should == "GUAU"
-    end
-  end
-
   describe "osm maps" do
     let(:html) do
       %Q{<div class="osm" id="openstreetmap" data-latitud="37.34" } +
@@ -48,27 +14,7 @@ describe TextileHelper do
 
     let(:input) { "osm. 37.34,-5.93" }
 
-    it "genera un mapa de open street map" do
-      RedCloth.new(input).to_html.should == html
-    end
-
-    it "genera el mapa con el ayudante de Rails" do
-      textilize(input).should == html
-    end
-
-    it "genera el mapa en modo estricto" do
-      strict_textilize(input).should == html
-    end
-
-    context "indicando el título" do
-      let(:con_titulo) { input + "(Título)" }
-
-      it "pone el título del marcador" do
-        strict_textilize(con_titulo).should have_selector "[data-titulo='Título']"
-      end
-    end
-
-
+    # TODO: ejemplos de "strict" que no tengan que ver con el mapa.
     context "con título en mayúsculas" do
       let(:con_titulo) { input + "(GUAU)" }
 
