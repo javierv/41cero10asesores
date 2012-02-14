@@ -1,8 +1,6 @@
 # encoding: utf-8
 
-class NavegacionCell < Cell::Rails
-  helper :navegacion
-
+class NavegacionCell < ApplicationCell
   def display
     render
   end
