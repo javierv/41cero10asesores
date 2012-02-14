@@ -23,6 +23,6 @@
             %h1= title
         = yield
 
-    %footer#pie{role: 'contentinfo'}= render 'general/pie'
+    = render_cell :pie, :display
     = javascript_include_tag "http://www.openlayers.org/api/OpenLayers.js"
     = javascript_include_tag "application"
