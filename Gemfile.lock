@@ -53,6 +53,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    cells (3.8.2)
+      actionpack (~> 3.0)
+      railties (~> 3.0)
     childprocess (0.3.1)
       ffi (~> 1.0.6)
     chronic (0.6.5)
@@ -211,6 +214,10 @@ GEM
       rspec-core (~> 2.7.0)
       rspec-expectations (~> 2.7.0)
       rspec-mocks (~> 2.7.0)
+    rspec-cells (0.1.2)
+      cells (~> 3.4)
+      rails (~> 3.0)
+      rspec-rails (~> 2.2)
     rspec-core (2.7.1)
     rspec-expectations (2.7.0)
       diff-lcs (~> 1.1.2)
@@ -304,6 +311,7 @@ DEPENDENCIES
   RedCloth (~> 4.2.9)
   acts-as-taggable-on
   capybara
+  cells
   coffee-rails (~> 3.1.0)
   compass (~> 0.12.alpha)
   decent_exposure
@@ -338,6 +346,7 @@ DEPENDENCIES
   redis
   responders
   resque
+  rspec-cells
   rspec-rails
   sass-rails (~> 3.1.0)
   shoulda-matchers

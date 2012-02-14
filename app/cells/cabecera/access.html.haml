@@ -1,0 +1,6 @@
+#privado
+  - if usuario_signed_in?
+    %span.bienvenido Bienvenido, #{current_usuario}
+    %span.desconectar= link_to "Desconectar", destroy_usuario_session_path, {method: :delete}
+  - else
+    %span.conectar= link_to I18n.t("public.privada"), new_usuario_session_path

@@ -8,10 +8,10 @@
     = csrf_meta_tag
 
   %body{class: controller_name}
-    %header#cabecera{role: 'banner'}= render 'general/cabecera'
+    = render_cell :cabecera, :display
     #navegacion
-      %nav= navegacion_principal paginas_navegacion
-      = render 'general/buscador'
+      = render_cell :navegacion, :display
+      = render_cell :buscador, :display
 
     #content
       = render "general/flash", flash: flash
@@ -23,6 +23,6 @@
             %h1= title
         = yield
 
-    %footer#pie{role: 'contentinfo'}= render 'general/pie'
+    = render_cell :pie, :display
     = javascript_include_tag "http://www.openlayers.org/api/OpenLayers.js"
     = javascript_include_tag "application"
