@@ -25,4 +25,9 @@ describe CabeceraCell do
     subject { render_cell(:cabecera, :lema) }
     it { should have_selector("#lema") }
   end
+
+  describe "display" do
+    subject { render_cell :cabecera, :display }
+    it { should have_selector "header[role='banner']" }
+  end
 end
