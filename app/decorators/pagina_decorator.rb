@@ -69,7 +69,7 @@ class PaginaDecorator < ApplicationDecorator
     end
   end
 
-  def cajas_con_orden
+  def cajas
     CajaDecorator.decorate model.cajas_con_orden
   end
 
