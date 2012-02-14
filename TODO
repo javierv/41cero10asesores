@@ -18,7 +18,6 @@
 * Usar caché en la acción "show".
 * Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
 * Buscar usos de almacenamiento local. Uno erróneo: conservar lo que se estaba escribiendo al editar una página, porque puede que el usuario quiera descartar los cambios.
-* Buscar usos de Cells. Una especie de componentes para las vistas.
 * Motores de comentarios, como https://github.com/Draiken/opinio
 * Fixturized: https://github.com/szarski/Fixturized
 * Client Side Validations (va con Rails 3).
