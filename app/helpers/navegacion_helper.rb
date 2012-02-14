@@ -9,7 +9,7 @@ module NavegacionHelper
   end
 
   def navegacion_admin    
-    lista_con_enlaces(enlaces_admin << enlace_desconectar)
+    lista_con_enlaces(enlaces_admin)
   end
 
   def navegacion_principal(paginas)
@@ -18,11 +18,6 @@ module NavegacionHelper
 
   def actions_cell(table, method)
     table.cell method, heading: "Acciones", cell_html: {class: "actions"}
-  end
-
-  def enlace_desconectar
-     ["Desconectar", destroy_usuario_session_path,
-       {class: "desconectar", method: :delete}]
   end
 
 private

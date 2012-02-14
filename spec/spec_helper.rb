@@ -36,6 +36,7 @@ Spork.prefork do
     #config.mock_with :rspec
 
     config.include Devise::TestHelpers, type: :controller
+    config.include Devise::TestHelpers, type: :cell
     config.include Capybara::RSpecMatchers, type: :helper
     config.include Capybara::RSpecMatchers, type: :decorator
 
