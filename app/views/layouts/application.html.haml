@@ -10,7 +10,7 @@
   %body{class: controller_name}
     %header#cabecera{role: 'banner'}= render 'general/cabecera'
     #navegacion
-      %nav= navegacion_principal paginas_navegacion
+      = render_cell :navegacion, :display
       = render 'general/buscador'
 
     #content

@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   responders :flash
   protect_from_forgery
 
-  expose(:paginas_navegacion) { Navegacion.paginas }
   expose(:term) { params[:q] }
 
   before_filter :conservar_parametros, only: [:index]
