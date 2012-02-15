@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Foto < ActiveRecord::Base
+class Foto < ApplicationModel
   image_accessor :imagen
 
   validates :imagen, presence: true

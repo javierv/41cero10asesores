@@ -1,5 +1,4 @@
-- title "Versión de #{@pagina} el #{l @version.created_at, format: :long}", false
-= render 'paginas/pagina', pagina: @pagina, cajas: @pagina.cajas_con_orden
-= actions_list [:historial, 
-  ['Recuperar', recover_vestal_versions_version_path(@version),
-  {form: true, method: :put}]], @pagina
+- title resource: pagina, date: version.date
+- dont_show_title
+= render "paginas/pagina", cajas: pagina.cajas
+= pagina.versions_actions_list version

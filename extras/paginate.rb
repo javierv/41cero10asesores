@@ -1,19 +1,18 @@
 module Paginate
-  def search_paginate(params)
-    search = metasearch params[:search]
-    records = search.paginate params[:page]
-
-    [search, records]
-  end
-
   def next(params)
-    search, records = search_paginate(params)
+    records = paginated_records(params)
     records.last unless records.length != default_per_page
   end
 
   def paginate(page)
     page(page)
   end
-end
 
-ActiveRecord::Base.extend Paginate
+  def filtered_search(params)
+    metasearch params[:search]
+  end
+
+  def paginated_records(params)
+    filtered_search(params).paginate(params[:page])
+  end
+end

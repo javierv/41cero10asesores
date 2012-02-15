@@ -1,5 +1,6 @@
 .foto
-  = thumbnail foto
+  = foto.thumbnail
   = simple_form_for foto, url: thumbnail_foto_path(foto), html: {method: :get} do |form|
-    = form.input :imagen_width, label: 'Tamaño', input_html: {value: 300, step: 100}
+    = form.input :imagen_width, label: 'Tamaño',
+      input_html: {id: "foto_imagen_width_#{foto.id}", value: 300, step: 100}
     = buttons { form.submit 'Insertar' }

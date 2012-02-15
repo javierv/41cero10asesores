@@ -1,6 +1,5 @@
 = table_for records do |table|
   = table.data do
-    = table.cell :titulo, heading: sort_link(search, :titulo)
-    = table.cell :cuerpo, heading: sort_link(search, :cuerpo) do |caja|
-      - truncate(caja.cuerpo, length: 50)
-    = actions_cell(table) { |caja| acciones_para_caja(caja) }
+    = table.cell :titulo, heading: sort_link(filtracion, :titulo)
+    = table.cell :principio_cuerpo, heading: sort_link(filtracion, :cuerpo)
+    = actions_cell table, :actions_list

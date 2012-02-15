@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Portada < ActiveRecord::Base
+class Portada < ApplicationModel
   attr_accessible :pagina_id
   validates :pagina_id, presence: true
   belongs_to :pagina

@@ -6,11 +6,11 @@ module MatcherMethods
   end
 
   define_match :have_error do |actual, options = {}|
-    actual.has_selector? "#flash_alert", options
+    actual.has_selector? "#flash .alert", options
   end
 
   define_match :have_success do |actual, options = {}|
-    actual.has_selector? "#flash_notice", options
+    actual.has_selector? "#flash .notice", options
   end
 
   define_match :have_admin_navigation do |actual|
@@ -64,6 +64,10 @@ module MatcherMethods
 
   define_match :have_link_to_connect do |page|
     page.has_selector?("#cabecera .conectar")
+  end
+
+  define_match :have_pagina_asignada do |page|
+    page.has_selector?("input[checked]")
   end
 end
 

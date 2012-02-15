@@ -10,23 +10,18 @@ describe ClientesController do
     before(:each) { get :index }
 
     it { should respond_with(:success) }
-    it { assigns(:clientes).should be_true }
   end
 
   describe "new" do
     before(:each) { get :new }
 
     it { should respond_with(:success) }
-    it { assigns(:cliente).should be_true }
   end
 
   describe "edit" do
     before(:each) { get :edit, id: @cliente.to_param }
 
-    it do
-      should respond_with(:success)
-      assigns(:cliente).should be_true
-    end
+    it { should respond_with(:success) }
   end
 
   describe "create" do

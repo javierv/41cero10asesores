@@ -3,7 +3,7 @@ jQuery.fn.autosaveHighlightForm = ->
     form = $(this)
     form.autosaveForm(
       target: '#actualizado'
-      data: {draft: true}
+      url: $('input[formaction*="draft"]').attr("formaction")
       success: ->
         $('#actualizado time', form).effect "highlight", {}, 3000
         $('input[name*="borrador_id"]', form).val(

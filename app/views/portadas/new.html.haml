@@ -1,11 +1,9 @@
-- title "Seleccionar portada"
-
 %p
   Selecciona de entre las páginas
   %strong publicadas
   cuál quieres que aparezca en la portada.
 
-= simple_form_for @portada do |form|
-  = form.input :pagina_id, collection: @paginas, include_blank: false
+= simple_form_for portada do |form|
+  = form.input :pagina_id, collection: paginas, include_blank: false
   = buttons do
     = form.submit

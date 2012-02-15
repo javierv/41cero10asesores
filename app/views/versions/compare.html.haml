@@ -1,10 +1,10 @@
-- title "Comparación de #{@pagina}"
+- title resource: pagina
 
 %p#introduccion_differ
   Diferencias entre las versiones:
-  %del.differ= texto_version_modificada(@referencia)
-  %ins.differ= texto_version_modificada(@version) 
+  %del.differ= referencia.texto_version_modificada
+  %ins.differ= version.texto_version_modificada
 
-= diferencias(@pagina, @referencia.reify)
+= pagina.diferencias pagina_referencia
 
-= actions_list [:historial], @pagina
+= pagina.actions_list [:historial]

@@ -1,8 +1,0 @@
-- if !flash.empty?
-  #flash
-    - flash.each do |name, msg|
-      .flash{id: "flash_#{name}"}
-        %p= msg
-        - if @deshacer
-          = button_to "Deshacer", @deshacer, method: :put
-  - flash.discard

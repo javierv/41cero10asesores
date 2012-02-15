@@ -1,10 +1,6 @@
-- title "Listado de cajas"
-
-= filter_form_for @search do |form|
+= filter_form_for filtracion do |form|
   = form.input :titulo_contains, label: 'Título'
   = form.input :cuerpo_contains, label: 'Cuerpo'
 
-%section#listado
-  = render 'listado', cajas: @cajas, search: @search
-
-= actions_list [:new], Caja
+= listado { render "listado" }
+= caja.actions_list [:new]

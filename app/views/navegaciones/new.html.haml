@@ -1,11 +1,9 @@
-- title 'Editar navegación'
-
 %p
   Selecciona de entre las páginas 
   %strong publicadas
   las que aparecerán en la navegación.
 
-= simple_form_for Navegacion.new do |form|
-  = form.input :pagina_id, collection: @paginas, selected: @ids,
+= simple_form_for navegacion do |form|
+  = form.input :pagina_id, collection: paginas, selected: ids,
     input_html: {class: 'cajas', multiple: true}
   = form.submit

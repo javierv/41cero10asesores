@@ -1,17 +1,11 @@
-- title "Enviar boletín #{@boletin}"
-
-- if @boletin.clientes.empty?
+- if boletin.clientes.empty?
   %p
     No hay clientes a los que mandar el boletín. Puedes
     = link_to "añadir un nuevo cliente", new_cliente_path
 - else
-  = simple_form_for @boletin, url: email_boletin_path(@boletin) do |form|
+  = simple_form_for boletin, url: email_boletin_path(boletin) do |form|
     %fieldset.check_boxes#clientes
       %legend El boletín se enviará a los siguientes clientes
-      - @boletin.clientes.each.with_index do |cliente, index|
-        .input.boolean
-          - id = "boletin_destinatarios_#{index}"
-          = check_box_tag "boletin[clientes][]", cliente, true, id: id
-          = label_tag id, cliente
+      = boletin.destinatarios_check_boxes
 
     = buttons { form.submit "Enviar" }

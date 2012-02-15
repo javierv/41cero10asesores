@@ -36,6 +36,7 @@ group :test do
   gem 'simplecov', require: false
   gem "launchy"
   gem "libnotify"
+  gem "rspec-cells"
 end
 
 group :production, :development do
@@ -74,3 +75,6 @@ gem "i18n-inflector-rails"
 gem "goalie"
 gem "yajl-ruby"
 gem "redis"
+gem "draper"
+gem "decent_exposure"
+gem "cells"

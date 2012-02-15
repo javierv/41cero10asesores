@@ -1,7 +1,0 @@
--if record.errors.any?
-  #error_messages
-    %h2= "#{pluralize(record.errors.count, "error")} al rellenar el formulario:"
-    %ul
-      - record.errors.each do |field, msg|
-        %li= link_to "#{record.class.human_attribute_name(field)} #{msg}",
-          "##{record.class.to_s.downcase}_#{field}"

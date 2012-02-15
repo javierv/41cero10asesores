@@ -2,19 +2,19 @@
 %html{lang: I18n.locale}
 
   %head
-    %title= h(title || "Untitled")
+    %title= title
     %meta{charset: "utf-8"}
     = stylesheet_link_tag 'application'
     = csrf_meta_tag
 
   %body{class: controller_name}
-    %header#cabecera{role: 'banner'}= render 'general/cabecera'
+    = render_cell :cabecera, :display
     #navegacion
-      %nav= navegacion_principal(Navegacion.paginas)
-      = render 'general/buscador'
+      = render_cell :navegacion, :display
+      = render_cell :buscador, :display
 
     #content
-      = render 'shared/flash', flash: flash
+      = render "general/flash", flash: flash
       = render "general/sidebar"
 
       %section#main{role: 'main'}
@@ -23,6 +23,6 @@
             %h1= title
         = yield
 
-    %footer#pie{role: 'contentinfo'}= render 'general/pie'
+    = render_cell :pie, :display
     = javascript_include_tag "http://www.openlayers.org/api/OpenLayers.js"
     = javascript_include_tag "application"

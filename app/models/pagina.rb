@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Pagina < ActiveRecord::Base
+class Pagina < ApplicationModel
   attr_accessible :titulo, :cuerpo, :caja_ids, :updated_by
   attr_writer :ids_cajas
 
@@ -93,15 +93,6 @@ class Pagina < ActiveRecord::Base
     end
   end
 
-  def tipo
-    if borrador?
-      'Borrador'
-    else
-      'Publicada'
-    end
-  end
-  
-
   def borrador_con_pagina?
     borrador? && !published.new_record? 
   end
@@ -130,7 +121,9 @@ private
   end
 
   def copy_errors(pagina)
-    pagina.errors.each { |field, message| errors.add(field, message) }
+    unless pagina.errors == errors
+      pagina.errors.each { |field, message| errors.add(field, message) }
+    end
   end
 
   def titulo_nil_si_blank

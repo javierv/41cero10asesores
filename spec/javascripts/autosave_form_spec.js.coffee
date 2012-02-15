@@ -6,9 +6,9 @@ describe 'Formulario de guardado', ->
     loadFixtures "autosave_form"
     $('form').autosaveHighlightForm()
 
-  it "makes an AJAX request to the form action", ->
+  it "makes an AJAX request to the action of the draft button", ->
     expect(ajaxRequests).toHaveLength 1
-    expect(ajaxRequests[0].url).toEqual $('form').attr('action')
+    expect(ajaxRequests[0].url).toEqual "/save_draft"
 
   it 'llama a setInterval', ->
     expect(window.setInterval).toHaveBeenCalled()

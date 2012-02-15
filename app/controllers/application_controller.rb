@@ -3,6 +3,9 @@
 class ApplicationController < ActionController::Base
   responders :flash
   protect_from_forgery
+
+  expose(:term) { params[:q] }
+
   before_filter :conservar_parametros, only: [:index]
   before_filter :authenticate_usuario!, if: :requiere_usuario?
 
@@ -54,30 +57,38 @@ private
       resource_name.to_s.camelize.constantize
     end
 
-    define_method :set_resource do |value|
-      instance_variable_set "@#{resource_name}", value
+    define_method :decorator_class do
+      "#{resource_name}Decorator".camelize.constantize
     end
 
     define_method :"new_#{resource_name}" do
-      set_resource resource_class.new(params[resource_name])
+      decorator_class.decorate(resource_class.new(params[resource_name]))
     end
 
     define_method :"find_#{resource_name}" do
-      set_resource resource_class.find(params[:id])
+      decorator_class.find(params[:id])
     end
 
-    define_method :"paginate_#{resource_name.to_s.pluralize}" do
-      search, records = resource_class.search_paginate params
-      instance_variable_set "@search", search
-      instance_variable_set "@#{resource_name.to_s.pluralize}", records
+    define_method :"find_or_new_#{resource_name}" do
+      if params[:id]
+        send :"find_#{resource_name}"
+      else
+        send :"new_#{resource_name}"
+      end
     end
 
-    define_method :"next_#{resource_name}" do
+    define_method :"next_resource" do
       resource_class.next(session_params(:index) || {})
     end
-  end
 
-  def deshacer_borrado_path(record)
-    restore_vestal_versions_version_path(record.versions.last)
+    define_method :"destroy_#{resource_name}" do
+      if record.destroy
+        @deshacer = record.deshacer_borrado_path
+      end
+    end
+
+    expose(:record) { send :"#{resource_name}" }
+    expose(:records) { send :"#{resource_name.to_s.pluralize}"}
+    expose(:siguiente) { decorator_class.decorate(next_resource) if next_resource }
   end
 end

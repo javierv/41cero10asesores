@@ -1,10 +1,6 @@
-- title 'Páginas borradas'
-
-= table_for @versiones do |table|
+= table_for versiones do |table|
   = table.data do
     = table.cell :versioned, heading: 'Título' do |version|
       - version.restore.titulo
-    = table.cell :created_at, heading: 'Borrada el' do |version|
-      - l version.created_at, format: :long
-    = actions_cell(table) do |version|
-      - actions_list [[:restore,  {form: true, method: :put}]], version
+    = table.cell :created_at, heading: 'Borrada el'
+    = actions_cell table, :borradas_actions_list

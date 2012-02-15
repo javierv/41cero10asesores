@@ -16,22 +16,16 @@ describe VersionsController do
   let(:pagina) { pagina_con_versiones }
 
   describe 'show' do
-    before(:each) do
-      get :show, id: pagina.versions.last.to_param
-    end
-    
-    it do
-      assigns(:pagina).should be_true
-      should respond_with(:success)
-    end
+    before(:each) { get :show, id: pagina.versions.last.to_param }
+    it { should respond_with(:success) }
   end    
 
   describe 'recover' do
     before(:each) do
       put :recover, id: pagina.versions.last.to_param
     end
+
     it do
-      assigns(:pagina).should be_true
       should set_the_flash
       should redirect_to(pagina)
     end
@@ -42,6 +36,7 @@ describe VersionsController do
       pagina.destroy
       put :restore, id: pagina.versions.last.to_param
     end
+
     it do
       should set_the_flash
       should redirect_to(paginas_path)
@@ -50,15 +45,8 @@ describe VersionsController do
 
   describe 'compare' do
     context 'sin versión de referencia' do
-      before(:each) do
-        get :compare, id: pagina.versions.last.to_param
-      end
-
-      it do
-        should respond_with(:success)
-        assigns(:pagina).should be_true
-        assigns(:referencia).should be_true
-      end
+      before(:each) { get :compare, id: pagina.versions.last.to_param }
+      it { should respond_with(:success) }
     end
 
     context 'con versión de referencia' do
@@ -73,10 +61,6 @@ describe VersionsController do
 
   describe 'borradas' do
     before(:each) { get :borradas }
-
-    it do
-      should respond_with(:success)
-      assigns(:versiones).should be_true
-    end
+    it { should respond_with(:success) }
   end
 end

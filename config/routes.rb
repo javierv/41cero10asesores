@@ -38,10 +38,16 @@ Calesur::Application.routes.draw do
   match '/autocomplete' => "ajax_form#autocomplete"
   match '/ayuda-textile' => "static#ayuda_textile"
 
-  resources :paginas, only: [:index, :create]
+  resources :paginas, only: [:index, :create] do
+    post :save_draft,   on: :collection
+    post :preview,      on: :collection
+  end
   resources :paginas, path: "", except: [:index, :create] do
-    get :search, on: :collection
-    get :historial, on: :member
+    get :search,       on: :collection
+    get :historial,    on: :member
+    put :save_draft,   on: :member
+    put :publish,      on: :member
+    put :preview,      on: :member
   end
 
   root to: "portadas#principal"

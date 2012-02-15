@@ -13,6 +13,7 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'capybara/rspec/matchers'
+  require 'draper/rspec_integration'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -35,7 +36,9 @@ Spork.prefork do
     #config.mock_with :rspec
 
     config.include Devise::TestHelpers, type: :controller
+    config.include Devise::TestHelpers, type: :cell
     config.include Capybara::RSpecMatchers, type: :helper
+    config.include Capybara::RSpecMatchers, type: :decorator
 
     config.use_transactional_fixtures = true
 
@@ -95,5 +98,9 @@ Spork.each_run do
 
   def crea_con_titulos(modelo, titulos)
     titulos.map {|titulo| Factory modelo, titulo: titulo}
+  end
+
+  def crea_portada
+    Factory :portada, pagina: Factory(:pagina)
   end
 end

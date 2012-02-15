@@ -1,11 +1,10 @@
 # encoding: utf-8
 
-class Navegacion < ActiveRecord::Base
+class Navegacion < ApplicationModel
   attr_accessible :pagina_id, :orden
   validates :pagina_id, presence: true
   validates :orden, presence: true
   belongs_to :pagina
-  display_name :pagina
 
   scope :por_orden, order(:orden)
   scope :con_paginas, includes(:pagina => :slug).por_orden

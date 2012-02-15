@@ -16,7 +16,6 @@ describe FotosController do
       end
 
       it do
-        assigns(:foto).should be_true
         should respond_with(:success)
         should respond_with_content_type(:js)
         should_not set_the_flash
@@ -31,7 +30,6 @@ describe FotosController do
       end
 
       it do
-        assigns(:foto).should be_true
         should respond_with(:success)
         should respond_with_content_type(:js)
         should render_template(:error)
@@ -44,10 +42,6 @@ describe FotosController do
       xhr :get, :thumbnail, id: foto.to_param, foto: { imagen_width: 300 }
     end
 
-    it do
-      assigns(:foto).should be_true
-      assigns(:size).should be_true
-      should respond_with(:success)
-    end
+    it { should respond_with(:success) }
   end
 end

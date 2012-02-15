@@ -2,63 +2,108 @@
 
 class PaginasController < ApplicationController
   # Tengo que declarar antes el JS para que las peticiones AJAX respondan así.
-  respond_to :js, only: [:index, :search, :destroy]
+  respond_to :js, only: [:index, :search, :destroy, :save_draft, :preview]
   respond_to :html
 
   public_actions :show, :search
   resource :pagina
 
-  before_filter :params_updated_by, only: [:create, :update]
-  before_filter :find_pagina, only: [:edit, :update, :destroy, :historial]
-  before_filter :new_pagina, only: [:new, :create]
-  before_filter :asignar_cajas, only: [:create, :update]
-  before_filter :preview, only: [:create, :update]
-  before_filter :save_draft, only: [:create, :update]
-  before_filter :publish_draft, only: [:create, :update]
-  before_filter :paginate_paginas, only: :index
+  expose(:pagina) do
+    # Código feo, pero más claro que antes de decent_exposure
+    if params[:action].to_sym == :show
+      PaginaDecorator.decorate Pagina.where(borrador: false).find(params[:id])
+    else
+      find_or_new_pagina
+    end
+  end
+
+  expose(:cajas) do
+    if params[:action].to_sym == :preview
+      CajaDecorator.decorate Caja.find_all_by_id(params[:pagina][:caja_ids] || [])
+    end
+  end
+
+  expose(:cajas_a_seleccionar) do
+    CajaDecorator.decorate Caja.al_final_las_de_pagina(pagina)
+  end
+
+  expose(:paginas) do
+    if params[:action].to_sym == :search
+      PaginaDecorator.decorate resultados.map(&:indexed_object)
+    else
+      PaginaDecorator.decorate Pagina.paginated_records(params)
+    end
+  end
+
+  expose(:fotos) { FotoDecorator.all }
+  expose(:foto) { FotoDecorator.decorate Foto.new }
+  expose(:versiones) { VersionDecorator.decorate pagina.versions.order("number DESC") }
+  expose(:resultados) do
+    Pagina.search params[:q], per_page: Pagina.default_per_page, page: params[:page]
+  end
+  expose(:filtracion) { Pagina.filtered_search params }
+
+  before_filter :params_updated_by, only: [:create, :update, :save_draft, :publish]
+  before_filter :asignar_cajas, only: [:create, :update, :save_draft]
+  before_filter :destroy_pagina, only: :destroy
 
   def index
-    respond_with @paginas    
+    respond_with paginas
   end
 
   def show
-    @pagina = Pagina.where(borrador: false).find(params[:id])
-    respond_with @pagina
+    respond_with pagina
   end
 
   def new
-    respond_with @pagina
+    respond_with pagina
   end
 
   def edit
-    respond_with @pagina
+    respond_with pagina
   end
 
   def create
-    @pagina.save
-    respond_with @pagina
+    pagina.save
+    respond_with pagina
   end
 
   def update
-    @pagina.update_attributes(params[:pagina])
-    respond_with @pagina
+    pagina.update_attributes(params[:pagina])
+    respond_with pagina
+  end
+
+  def save_draft
+    pagina.save_draft(params[:pagina])
+    respond_with pagina.draft, location: edit_pagina_path(pagina.draft)
+  end
+
+  def publish
+    if pagina.publish params[:pagina]
+      respond_with pagina.published
+    else
+      respond_with pagina
+    end
+  end
+
+  def preview
+    # HACK: asignar caja_ids guarda la relación en la BD. Ver:
+    # https://github.com/rails/rails/issues/674
+    # Además, no tenemos ningún test que indique que se asignan
+    # las cajas de la forma esperada.
+    pagina.attributes = params[:pagina].clone.tap {|attributes| attributes.delete(:caja_ids)}
+    respond_with pagina
   end
 
   def destroy
-    if @pagina.destroy
-      @deshacer = deshacer_borrado_path(@pagina)
-      @siguiente = next_pagina if request.xhr?
-    end
-    respond_with @pagina
+    respond_with pagina
   end
 
   def historial
-    @versiones = @pagina.versions.order("number DESC")
   end
 
   def search
-    @paginas = Pagina.search params[:q], per_page: Pagina.default_per_page, page: params[:page]
-    respond_with @paginas
+    respond_with resultados
   end
 
 private
@@ -68,46 +113,7 @@ private
 
   def asignar_cajas
     if params[:pagina][:caja_ids]
-      @pagina.ids_cajas = params[:pagina][:caja_ids]
-    end
-  end
-
-  # TODO: pasar a acción independiente en cuanto funcione "formaction".
-  def preview
-    if params[:preview]
-      # HACK: asignar caja_ids guarda la relación en la BD. Ver:
-      # https://rails.lighthouseapp.com/projects/8994/tickets/4521
-      attributes = params[:pagina].clone
-      @cajas = Caja.find_all_by_id(attributes.delete(:caja_ids) || [])
-      @pagina.attributes = attributes
-      if request.xhr?
-        render 'preview.js'
-      else
-        render 'preview'
-      end
-    end
-  end
-
-  def save_draft
-    if params[:draft]
-      if request.xhr?
-        @pagina.save_draft(params[:pagina])
-        render 'borrador.js'
-      else
-        flash[:notice] = 'Borrador guardado.' if @pagina.save_draft(params[:pagina])
-        redirect_to edit_pagina_path(@pagina.draft)
-      end
-    end
-  end
-
-  def publish_draft
-    if params[:publish]
-      if @pagina.publish(params[:pagina])
-        flash[:notice] = 'Borrador publicado.'
-        redirect_to(pagina_path(@pagina.published))
-      else
-        render 'edit'
-      end
+      pagina.ids_cajas = params[:pagina][:caja_ids]
     end
   end
 end

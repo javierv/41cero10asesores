@@ -6,47 +6,40 @@ class CajasController < ApplicationController
 
   resource :caja
 
-  before_filter :find_caja, only: [:edit, :update, :destroy]
-  before_filter :new_caja, only: [:new, :create]
-  before_filter :update_caja, only: :update
-  before_filter :paginate_cajas, only: :index
+  expose(:caja) { find_or_new_caja }
+  expose(:paginas) { PaginaDecorator.decorate Pagina.publicadas.por_orden }
+  expose(:cajas) { CajaDecorator.decorate Caja.paginated_records(params) }
+  expose(:filtracion) { Caja.filtered_search params }
+
+  before_filter :destroy_caja, only: :destroy
 
   def index
-    respond_with @cajas
+    respond_with cajas
   end
 
   def new
-    respond_with @caja
+    respond_with caja
   end
 
   def edit
-    respond_with @caja
+    respond_with caja
   end
 
   def create
-    if @caja.save
-      opciones = {location: edit_caja_path(@caja)}
+    if caja.save
+      opciones = {location: edit_caja_path(caja)}
     else
       opciones = {}
     end
-    respond_with @caja, opciones
+    respond_with caja, opciones
   end
 
   def update
-    @caja.save
-    respond_with @caja, location: edit_caja_path(@caja)
+    caja.update_attributes params[:caja]
+    respond_with caja, location: edit_caja_path(caja)
   end
 
   def destroy
-    if @caja.destroy
-      @deshacer = deshacer_borrado_path(@caja)
-      @siguiente = next_caja if request.xhr?
-    end
-    respond_with @caja
-  end
-
-private
-  def update_caja
-    @caja.attributes = params[:caja]
+    respond_with caja
   end
 end

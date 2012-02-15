@@ -1,30 +1,31 @@
-#actualizado
-  - unless pagina.new_record?
-    Página guardada el #{time_tag pagina.updated_at}
+#actualizado= pagina.texto_actualizado
 
 = simple_form_for pagina do |form|
-
-  = render 'shared/errors', record: pagina
+  = pagina.error_messages
 
   = hidden_field_tag 'pagina[borrador_id]'
   = form.input :titulo
   = form.input :cuerpo
 
+  //Idealmente, habría enlaces a editar las cajas, pero no parece nada sencillo
+  //hacer eso y además mantener la opción de ordenar las cajas.
   = hidden_field_tag "pagina[caja_ids][]"
-  = form.association :cajas, collection: Caja.al_final_las_de_pagina(pagina),
+  = form.association :cajas, collection: cajas_a_seleccionar,
     input_html: {class: 'cajas'}
 
   = buttons do
     - if pagina.borrador?
-      = form.submit 'Publicar', name: 'publish'
+      = form.submit 'Publicar', formaction: publish_pagina_path(pagina)
     - else
       = form.button :submit
     
-    = form.submit 'Guardar borrador', name: 'draft', id: 'draft_submit'
-    = form.submit 'Vista previa', name: 'preview', id: 'preview_submit'
+    = form.submit 'Guardar borrador', id: 'draft_submit',
+      formaction: pagina.save_draft_path
+    = form.submit 'Vista previa', id: 'preview_submit',
+      formaction: pagina.preview_path
 
 %section#fotos
   %header
     %h2 Puedes insertar imágenes de la galería
-  = render 'fotos/form', foto: Foto.new
-  %section#galeria= render Foto.all
+  = render "fotos/form"
+  %section#galeria= render fotos

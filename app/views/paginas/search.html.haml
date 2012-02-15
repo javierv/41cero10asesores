@@ -1,9 +1,3 @@
-- title "Resultados para la búsqueda #{params[:q]}" # TODO: ¿@paginas.search_term o similar?
-- suggestion = @paginas.spelling_suggestion
-
-- if suggestion
-  %p#sugerencia
-    ¿Quiso decir
-    = link_to(suggestion, search_paginas_path(q: suggestion)) + "?"
-
-#resultados_busqueda= render "resultados_busqueda", paginas: @paginas
+- title term: term
+= sugerencia_busqueda resultados.spelling_suggestion
+#resultados_busqueda= render "resultados_busqueda"

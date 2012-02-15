@@ -1,0 +1,56 @@
+es:
+  page_titles:
+    devise/sessions:
+      new: "Identificación de usuarios"
+      create: "Email o contraseña incorrectos; por favor, identifíquese de nuevo"
+
+    portadas:
+      principal: "41 Cero 10 Asesores"
+      new: "Seleccionar portada"
+
+    paginas:
+      index: "Listado de páginas"
+      edit: "Editando %{resource}"
+      update: "Por favor, corrija los errores del formulario"
+      new: "Nueva página"
+      create: "Por favor, corrija los errores del formulario"
+      publish: "Por favor, corrija los errores del formulario"
+      show: "%{resource}"
+      historial: "Historial de %{resource}"
+      preview: "Vista previa de %{resource}"
+      search: "Resultados para la búsqueda %{term}"
+
+    cajas:
+      index: "Listado de cajas"
+      edit: "Editando caja %{resource}"
+      update: "Por favor, corrija los errores del formulario"
+      new: "Nueva caja"
+      create: "Por favor, corrija los errores del formulario"
+
+    boletines:
+      index: "Boletines"
+      edit: "Editando boletín %{resource}"
+      new: "Nuevo boletín"
+      enviar: "Enviar boletín %{resource}"
+
+    clientes:
+      index: "Clientes"
+      edit: "Editando cliente %{resource}"
+      new: "Nuevo cliente"
+
+    navegaciones:
+      new: "Editar navegación"
+
+    static:
+      ayuda_textile: "Ayuda para la sintaxis del editor"
+
+    versions:
+      show: "Versión de %{resource} el %{date}"
+      compare: "Comparación de %{resource}"
+      borradas: "Páginas borradas"
+
+    translations:
+      index: "Textos"
+
+    public_errors:
+      not_found: "Página no encontrada"

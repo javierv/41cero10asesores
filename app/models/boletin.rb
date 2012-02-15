@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Boletin < ActiveRecord::Base
+class Boletin < ApplicationModel
   attr_accessible :titulo, :archivo, :clientes
   display_name :titulo
   image_accessor :archivo
@@ -11,10 +11,6 @@ class Boletin < ActiveRecord::Base
     message: "Tiene que ser un PDF"
 
   versioned dependent: :tracking, initial_version: true
-
-  def filename
-    archivo_name.force_encoding("utf-8")
-  end
 
   def enviar(params = {})
     if enviado?

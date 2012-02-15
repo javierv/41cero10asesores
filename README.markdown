@@ -14,4 +14,18 @@ The third goal was managing image attachments as easily as possible. A gallery w
 
 This system has its drawbacks as well. For example, right now captions aren't allowed, although adding a custom Textile tag in RedCloth implementing figure and figcaption could be interesting.
 
-The site is built using Ruby 1.9.3, Rails 3.1, RSpec, Capybara, jQuery, Jasmine, CoffeeScript, SASS, HAML and XapianDb, among others.
+From a technical perspective, the main goal was to experiment with emerging patterns and technologies. The site is built using, among others:
+
+* Ruby 1.9.3.
+* Rails 3.1, with the asset pipeline. I found it helped a lot to better organize and make more solid CSS and Javascript code.
+* RSpec.
+* Capybara.
+* CoffeeScript.
+* SASS.
+* HAML. Although I agree it might not be superior to HTML (if you're writing just HTML), I find it way cleaner than ERB if you're writing Ruby in HTML.
+* jQuery.
+* [Jasmine](https://github.com/pivotal/jasmine), with [jasminerice](https://github.com/bradphelan/jasminerice). For the first time, I've enjoyed writing and executing JavaScript tests.
+* [Draper](https://github.com/jcasimir/draper), an excellent gem that helped me replace some crappy helper code.
+* [Decent Exposure](https://github.com/voxdolo/decent_exposure) has helped me organize code and realize that controllers do too many things, though I think there's still room for improvement (maybe using Presenters).
+* [XapianDb](https://github.com/garaio/xapian_db), a search gem offering easy and powerful search, spelling suggestions and similar results.
+* [Cells](https://github.com/apotonick/cells) has made me realize there's a better way to do partials, but I still find it a bit complex.

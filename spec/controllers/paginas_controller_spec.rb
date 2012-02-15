@@ -22,7 +22,6 @@ describe PaginasController do
 
       it do
         should respond_with(:success)
-        assigns(:paginas).should be_true
         should render_with_layout(:application) 
       end
     end
@@ -60,32 +59,8 @@ describe PaginasController do
         post :create, pagina: @pagina.attributes
       end
       it do
-        should redirect_to(pagina_path(assigns(:pagina)))
+        should respond_with(:redirect)
         should set_the_flash
-      end
-    end
-
-    context "when using preview button" do
-      context "with a normal request" do
-        before(:each) do
-          post :create, pagina: @pagina.attributes, preview: true
-        end
-
-        it do
-          should render_template(:preview)
-          assigns(:pagina).should be_true
-        end
-      end
-
-      context "with an AJAX request" do
-        before(:each) do
-          xhr :post, :create, pagina: @pagina.attributes, preview: true
-        end
-
-        it do
-          should render_template(:preview)
-          should_not render_with_layout 
-        end
       end
     end
   end
@@ -134,35 +109,13 @@ describe PaginasController do
         should set_the_flash
       end
     end
+  end
 
-    context "when using preview button" do
+  describe "save draft" do
+    context "with an existing record" do
       context "with a normal request" do
         before(:each) do
-          put :update, id: @pagina.to_param, pagina: @pagina.attributes, preview: true
-        end
-
-        it do
-          should render_template(:preview)
-          assigns(:pagina).should be_true
-        end
-      end
-
-      context "with an AJAX request" do
-        before(:each) do
-          xhr :put, :update, id: @pagina.to_param, pagina: @pagina.attributes, preview: true
-        end
-
-        it do
-          should render_template(:preview)
-          should_not render_with_layout
-        end
-      end
-    end
-
-    context "when saving as draft" do
-      context "with a normal request" do
-        before(:each) do
-          put :update, id: @pagina.to_param, pagina: @pagina.attributes, draft: true
+          put :save_draft, id: @pagina.to_param, pagina: @pagina.attributes
         end
 
         it do
@@ -173,41 +126,121 @@ describe PaginasController do
 
       context "with an AJAX request" do
         before(:each) do
-          xhr :put, :update, id: @pagina.to_param, pagina: @pagina.attributes, draft: true
+          xhr :put, :save_draft, id: @pagina.to_param, pagina: @pagina.attributes
         end
 
         it do
-          should render_template(:borrador)
+          should render_template(:save_draft)
+          should respond_with_content_type(:js)
           should_not render_with_layout
         end
       end
     end
 
-    context "when publishing a draft" do
-      before(:each) do
-        @pagina.save_draft
-        @borrador = @pagina.draft
-        @action = -> {put :update, id: @borrador.to_param, pagina: @pagina.attributes, publish: true}
-      end
-      
-      context "when model is valid" do
+    context "with a new record" do
+      context "with a normal request" do
         before(:each) do
-          Pagina.any_instance.stubs(:valid?).returns(true)
-          @action[]
+          post :save_draft, pagina: @pagina.attributes
         end
+
         it do
-          should redirect_to(pagina_path(@pagina))
+          should redirect_to(edit_pagina_path(Pagina.where(borrador: true).last))
           should set_the_flash
         end
       end
 
-      context 'when model is invalid' do
+      context "with an AJAX request" do
         before(:each) do
-          Pagina.any_instance.stubs(:valid?).returns(false)
-          @action[]
+          xhr :post, :save_draft, pagina: @pagina.attributes
         end
 
-        it { should render_template(:edit) }
+        it do
+          should render_template(:save_draft)
+          should respond_with_content_type(:js)
+          should_not render_with_layout
+        end
+      end
+    end
+  end
+
+  describe "publish" do
+    before(:each) do
+      @pagina.save_draft
+      @borrador = @pagina.draft
+      @action = -> {put :publish, id: @borrador.to_param, pagina: @pagina.attributes}
+    end
+
+    context "when model is valid" do
+      before(:each) do
+       pagina_valida_siempre
+       @action[]
+      end
+
+      it do
+        should redirect_to(pagina_path(@pagina))
+        should set_the_flash
+      end
+    end
+
+    context 'when model is invalid' do
+      before(:each) do
+        pagina_falla_validacion
+        @action[]
+      end
+
+      it do
+        should respond_with(:success)
+        should render_template(:edit)
+      end
+    end
+  end
+
+  describe "preview" do
+    context "for an existing record" do
+      context "with a normal request" do
+        before(:each) do
+          put :preview, id: @pagina.to_param, pagina: @pagina.attributes
+        end
+
+        it do
+          should render_template(:preview)
+        end
+      end
+
+      context "with an AJAX request" do
+        before(:each) do
+          xhr :put, :preview, id: @pagina.to_param, pagina: @pagina.attributes
+        end
+
+        it do
+          should render_template(:preview)
+          should respond_with_content_type(:js)
+          should_not render_with_layout
+        end
+      end
+    end
+
+    context "for a new record" do
+      context "with a normal request" do
+        before(:each) do
+          post :preview, pagina: @pagina.attributes
+        end
+
+        it do
+          should render_template(:preview)
+        end
+      end
+
+      context "with an AJAX request" do
+        before(:each) do
+          xhr :post, :preview, pagina: @pagina.attributes
+        end
+
+        it do
+          should render_template(:preview)
+          should respond_with_content_type(:js)
+          should_not render_with_layout
+        end
       end
     end
   end
@@ -239,7 +272,6 @@ describe PaginasController do
 
       it do
         should respond_with(:success)
-        assigns(:paginas).should be_true
       end
     end
 
@@ -260,8 +292,6 @@ describe PaginasController do
 
     it do
       should respond_with(:success)
-      assigns(:pagina).should be_true
-      assigns(:versiones).should be_true
     end
   end
 end

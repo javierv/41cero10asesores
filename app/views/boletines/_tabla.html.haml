@@ -1,0 +1,6 @@
+= table_for records do |table|
+  = table.data do
+    = table.cell :titulo
+    = table.cell(:archivo) { |boletin| boletin.filename }
+    = table.cell :created_at, heading: "Creado"
+    = actions_cell table, :actions_list
