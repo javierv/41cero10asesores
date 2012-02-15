@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Cliente < ActiveRecord::Base
+class Cliente < ApplicationModel
   attr_accessible :nombre, :email
 
   validates :nombre, presence: true

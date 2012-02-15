@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Caja < ActiveRecord::Base
+class Caja < ApplicationModel
   attr_accessible :titulo, :cuerpo, :pagina_ids, :imagen
   validates :titulo, presence: true
 

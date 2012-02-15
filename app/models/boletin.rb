@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Boletin < ActiveRecord::Base
+class Boletin < ApplicationModel
   attr_accessible :titulo, :archivo, :clientes
   display_name :titulo
   image_accessor :archivo
