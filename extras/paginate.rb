@@ -16,5 +16,3 @@ module Paginate
     filtered_search(params).paginate(params[:page])
   end
 end
-
-ActiveRecord::Base.extend Paginate
