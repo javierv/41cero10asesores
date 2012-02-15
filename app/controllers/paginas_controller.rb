@@ -19,7 +19,7 @@ class PaginasController < ApplicationController
 
   expose(:cajas) do
     if params[:action].to_sym == :preview
-      CajaDecorator.decorate Caja.find_all_by_id(params[:pagina].clone.delete(:caja_ids) || [])
+      CajaDecorator.decorate Caja.find_all_by_id(params[:pagina][:caja_ids] || [])
     end
   end
 
