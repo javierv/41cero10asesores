@@ -10,7 +10,7 @@
   //Idealmente, habría enlaces a editar las cajas, pero no parece nada sencillo
   //hacer eso y además mantener la opción de ordenar las cajas.
   = hidden_field_tag "pagina[caja_ids][]"
-  = form.association :cajas, collection: cajas,
+  = form.association :cajas, collection: cajas_a_seleccionar,
     input_html: {class: 'cajas'}
 
   = buttons do

@@ -20,9 +20,11 @@ class PaginasController < ApplicationController
   expose(:cajas) do
     if params[:action].to_sym == :preview
       CajaDecorator.decorate Caja.find_all_by_id(params[:pagina].clone.delete(:caja_ids) || [])
-    else
-      CajaDecorator.decorate Caja.al_final_las_de_pagina(pagina)
     end
+  end
+
+  expose(:cajas_a_seleccionar) do
+    CajaDecorator.decorate Caja.al_final_las_de_pagina(pagina)
   end
 
   expose(:paginas) do
