@@ -4,6 +4,9 @@
   = form.input :titulo
   = form.input :cuerpo
   = form.input :imagen, as: :file
+  - if caja.imagen?
+    = caja.miniatura
+    = form.input :remove_imagen, as: :boolean, label: "Quitar imagen"
   = form.association :paginas, as: :check_boxes, label: "Páginas en las que aparece",
     collection: paginas, label_method: :etiqueta_con_enlace_a_editar
 
