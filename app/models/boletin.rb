@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class Boletin < ApplicationModel
-  attr_accessible :titulo, :archivo, :clientes
+  attr_accessible :titulo, :archivo, :retained_archivo, :clientes
   display_name :titulo
   image_accessor :archivo
 
