@@ -4,6 +4,8 @@ require 'spec_helper'
 
 describe Boletin do
   it { should validate_presence_of(:archivo) }
+  it { should allow_mass_assignment_of(:retained_archivo) }
+  it { should_not allow_mass_assignment_of(:remove_archivo) }
 
   describe "enviado" do
     it "es falso por defecto" do
