@@ -3,7 +3,7 @@
   - if boletin.archivo
     = form.input :archivo, as: :file, required: false
     .adjunto= link_to boletin.archivo_name, boletin.archivo.url
-    = form.input :retained_archivo, as: :hidden
   - else
     = form.input :archivo, as: :file
+  = form.input :retained_archivo, as: :hidden
   = buttons { form.submit }
