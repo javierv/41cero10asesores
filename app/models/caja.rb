@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class Caja < ApplicationModel
-  attr_accessible :titulo, :cuerpo, :pagina_ids, :imagen, :remove_imagen
+  attr_accessible :titulo, :cuerpo, :pagina_ids, :imagen, :remove_imagen, :retained_imagen
   validates :titulo, presence: true
 
   image_accessor :imagen

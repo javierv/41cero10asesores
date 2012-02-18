@@ -4,6 +4,7 @@
   = form.input :titulo
   = form.input :cuerpo
   = form.input :imagen, as: :file
+  = form.input :retained_imagen, as: :hidden
   - if caja.imagen?
     = caja.miniatura
     = form.input :remove_imagen, as: :boolean, label: "Quitar imagen"
