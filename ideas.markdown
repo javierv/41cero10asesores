@@ -13,7 +13,6 @@
 * [ValidAttribute](https://github.com/bcardarella/valid_attribute)
 * Controlar mapas por teclado, de manera similar a como se controla la etiqueta <video>, y manteniendo la opción de usar el ratón.
 
-* Poder borrar el adjunto y previsualizarlo en boletines y cajas. Conservarlo entre peticiones cuando la validación falla.
 * [Leter Opener](https://github.com/ryanb/letter_opener) para correos en entorno de desarrollo.
 * [Excepcion notification](https://github.com/smartinez87/exception_notification)
 * Sugerencias de búsqueda según escribes, basándose en términos existentes y/o buscados.
