@@ -12,6 +12,7 @@
 * En diferencias: usar un clear u overflow: hidden, por si hay fotos o así.
 * [ValidAttribute](https://github.com/bcardarella/valid_attribute)
 * Controlar mapas por teclado, de manera similar a como se controla la etiqueta <video>, y manteniendo la opción de usar el ratón.
+* En el filtrador de páginas y cajas, hacer un único campo, que busque tanto en título como en cuerpo, y que devuelva el título.
 
 * [Leter Opener](https://github.com/ryanb/letter_opener) para correos en entorno de desarrollo.
 * [Excepcion notification](https://github.com/smartinez87/exception_notification)
