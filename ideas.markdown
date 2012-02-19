@@ -1,4 +1,4 @@
-* https://github.com/rubiety/validates_lengths_from_database
+* [Validar tamaño cadenas](https://github.com/rubiety/validates_lengths_from_database)
 * Enlazar a los boletines desde la página.
 * Estilos IE8.
 
@@ -10,16 +10,18 @@
 * Hacer que la paginación sea lista de enlaces, y que el primero tenga el parámetro.
 * Vista previa al editar cajas.
 * En diferencias: usar un clear u overflow: hidden, por si hay fotos o así.
-* ValidAttribute https://github.com/bcardarella/valid_attribute
+* [ValidAttribute](https://github.com/bcardarella/valid_attribute)
 * Controlar mapas por teclado, de manera similar a como se controla la etiqueta <video>, y manteniendo la opción de usar el ratón.
 
+* [Leter Opener](https://github.com/ryanb/letter_opener) para correos en entorno de desarrollo.
+* [Excepcion notification](https://github.com/smartinez87/exception_notification)
 * Sugerencias de búsqueda según escribes, basándose en términos existentes y/o buscados.
 * Estilo de los input en función de si son válidos o no.
 * Usar caché en la acción "show".
 * Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
 * Buscar usos de almacenamiento local. Uno erróneo: conservar lo que se estaba escribiendo al editar una página, porque puede que el usuario quiera descartar los cambios.
-* Motores de comentarios, como https://github.com/Draiken/opinio
-* Fixturized: https://github.com/szarski/Fixturized
+* Motores de comentarios, como [Opinio](https://github.com/Draiken/opinio)
+* [Fixturized](https://github.com/szarski/Fixturized)
 * Client Side Validations (va con Rails 3).
 
 Sección de imágenes:

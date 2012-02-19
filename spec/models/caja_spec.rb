@@ -12,6 +12,8 @@ describe Caja do
 
   it { should allow_mass_assignment_of(:cuerpo) }
   it { should allow_mass_assignment_of(:imagen) }
+  it { should allow_mass_assignment_of(:remove_imagen) }
+  it { should allow_mass_assignment_of(:retained_imagen) }
 
   it { should allow_mass_assignment_of(:pagina_ids) }
   it { should have_many(:sidebars).dependent(:destroy) }

@@ -30,13 +30,17 @@ es:
     boletines:
       index: "Boletines"
       edit: "Editando boletín %{resource}"
+      update: "Por favor, corrija los errores del formulario"
       new: "Nuevo boletín"
+      create: "Por favor, corrija los errores del formulario"
       enviar: "Enviar boletín %{resource}"
 
     clientes:
       index: "Clientes"
       edit: "Editando cliente %{resource}"
+      update: "Por favor, corrija los errores del formulario"
       new: "Nuevo cliente"
+      create: "Por favor, corrija los errores del formulario"
 
     navegaciones:
       new: "Editar navegación"

@@ -1,4 +1,9 @@
 = simple_form_for boletin do |form|
   = form.input :titulo
-  = form.input :archivo, as: :file
+  - if boletin.archivo
+    = form.input :archivo, as: :file, required: false
+    .adjunto= link_to boletin.archivo_name, boletin.archivo.url
+  - else
+    = form.input :archivo, as: :file
+  = form.input :retained_archivo, as: :hidden
   = buttons { form.submit }
