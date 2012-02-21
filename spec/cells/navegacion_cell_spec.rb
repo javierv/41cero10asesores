@@ -6,15 +6,10 @@ describe NavegacionCell do
   describe "display" do
     subject { render_cell(:navegacion, :display) }
     it { should have_selector("nav") }
+  end
 
-    context "cache", cache: true do
-      let(:cache_key) { cell(:navegacion).class.state_cache_key(:display) }
-
-      it "escribe en la caché" do
-        Cell::Base.cache_store.read(cache_key).should be_nil
-        render_cell(:navegacion, :display)
-        Cell::Base.cache_store.read(cache_key).should_not be_nil
-      end
-    end
+  describe "cache", cache: true do
+    subject { cell(:navegacion) }
+    it { should cache :display }
   end
 end

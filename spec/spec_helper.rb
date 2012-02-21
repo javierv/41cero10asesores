@@ -111,4 +111,8 @@ Spork.each_run do
   def crea_portada
     Factory :portada, pagina: Factory(:pagina)
   end
+
+  define_match :cache do |cell, state, *args|
+    cell.cache? state, *args
+  end
 end
