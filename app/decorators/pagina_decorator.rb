@@ -75,7 +75,7 @@ class PaginaDecorator < ApplicationDecorator
 
 protected
   def render_pagina
-    h.render('paginas/texto_pagina', pagina: self)
+    h.render_cell :pagina, :texto, self
   end
 
 private
