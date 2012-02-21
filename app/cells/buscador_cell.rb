@@ -1,7 +1,8 @@
 # encoding: utf-8
 
-class BuscadorCell < Cell::Rails
-  def display
+class BuscadorCell < ApplicationCell
+  def display(term)
+    expose(:term) { term }
     render
   end
 end
