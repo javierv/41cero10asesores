@@ -1,6 +1,10 @@
 # encoding: utf-8
 
 class CajaCell < Cell::Rails
+  cache :contenido do |cell, caja|
+    caja
+  end
+
   def display(caja)
     render locals: { caja: caja }
   end

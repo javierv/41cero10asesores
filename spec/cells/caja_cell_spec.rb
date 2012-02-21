@@ -26,4 +26,9 @@ describe CajaCell do
       it { should have_selector "figure" }
     end
   end
+
+  describe "caché", cache: true do
+    subject { cell(:caja) }
+    it { should cache :contenido, caja }
+  end
 end
