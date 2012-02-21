@@ -3,14 +3,9 @@
 class CajaCell < ApplicationCell
   build { AdminCajaCell if usuario_signed_in? }
 
-  cache :contenido do |cell, caja|
-    caja
-  end
-
-  cache :sidebar do |cell, cajas|
-    # Es un proxy de decoradores. ¿Cómo salvar esto?
-    cajas.map(&:model)
-  end
+  cache(:contenido) { |cell, caja| caja }
+  # Es un proxy de decoradores. ¿Cómo salvar esto?
+  cache(:sidebar) { |cell, cajas| cajas.map(&:model) }
 
   def completa(caja)
     render locals: { caja: caja }
