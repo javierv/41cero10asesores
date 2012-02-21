@@ -38,5 +38,6 @@ describe CajaCell do
   describe "caché", cache: true do
     subject { cell(:caja) }
     it { should cache :contenido, caja }
+    it { should cache :sidebar, [caja, caja] }
   end
 end

@@ -7,6 +7,10 @@ class CajaCell < ApplicationCell
     caja
   end
 
+  cache :sidebar do |cell, cajas|
+    cajas
+  end
+
   def completa(caja)
     render locals: { caja: caja }
   end
