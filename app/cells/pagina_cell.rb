@@ -1,5 +1,5 @@
 class PaginaCell < ApplicationCell
-  cache(:texto) do |cell, pagina|
+  cache(:texto, if: proc { |cell, pagina| !pagina.changed? }) do |cell, pagina|
     pagina
   end
 

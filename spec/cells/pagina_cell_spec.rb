@@ -9,8 +9,19 @@ describe PaginaCell do
     it { should have_selector("article section") }
   end
 
-  describe "cell instance", cache: true do
+  describe "caché", cache: true do
     subject { cell(:pagina) }
-    it { should cache :texto, Factory(:pagina) }
+
+    context "con una página sin modificar" do
+      it { should cache :texto, Factory(:pagina) }
+    end
+
+    context "con una página modificada" do
+      let(:pagina) { Factory :pagina }
+      before(:each) do
+        pagina.titulo = pagina.titulo + "!"
+      end
+      it { should_not cache :texto, pagina }
+    end
   end
 end
