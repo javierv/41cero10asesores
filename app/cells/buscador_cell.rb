@@ -2,7 +2,6 @@
 
 class BuscadorCell < ApplicationCell
   def display(term)
-    expose(:term) { term }
-    render
+    render locals: { term: term }
   end
 end

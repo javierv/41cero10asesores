@@ -4,7 +4,6 @@ class PaginaCell < ApplicationCell
   end
 
   def texto(pagina)
-    expose(:pagina) { pagina }
-    render
+    render locals: {pagina: pagina}
   end
 end

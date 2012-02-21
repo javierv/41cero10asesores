@@ -13,8 +13,4 @@ class ApplicationCell < Cell::Rails
   include Devise::Controllers::Helpers
   helper_method :usuario_signed_in?
   helper_method :current_usuario
-
-  def expose(method, &block)
-    self.class.expose(method) { block.call }
-  end
 end
