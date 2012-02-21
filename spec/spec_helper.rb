@@ -90,9 +90,13 @@ Spork.each_run do
   end
 
   def define_match(nombre, &block)
-    RSpec::Matchers.define nombre do |expected, *args|
-      match { |actual| block[actual, expected, *args] }
+    RSpec::Matchers.define nombre do |expected|
+      match { |actual| block[actual, expected] }
     end
+  end
+
+  RSpec::Matchers.define :cache do |state, *args|
+    match { |cell| cell.cache? state, *args }
   end
 
   # No he conseguido usar define_method para quitar duplicación.
@@ -110,9 +114,5 @@ Spork.each_run do
 
   def crea_portada
     Factory :portada, pagina: Factory(:pagina)
-  end
-
-  define_match :cache do |cell, state, *args|
-    cell.cache? state, *args
   end
 end
