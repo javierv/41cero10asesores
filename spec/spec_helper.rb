@@ -90,8 +90,8 @@ Spork.each_run do
   end
 
   def define_match(nombre, &block)
-    RSpec::Matchers.define nombre do |expected|
-      match { |actual| block[actual, expected] }
+    RSpec::Matchers.define nombre do |expected, *args|
+      match { |actual| block[actual, expected, *args] }
     end
   end
 
