@@ -16,4 +16,8 @@ class CajaCell < Cell::Rails
       render view: :texto, locals: { caja: caja }
     end
   end
+
+  def sidebar(cajas)
+    render locals: { cajas: cajas }
+  end
 end
