@@ -44,6 +44,14 @@ Spork.prefork do
 
     config.before(:each) do
       ActionMailer::Base.deliveries.clear
+      ActionController::Base.perform_caching = true if example.metadata[:cache]
+    end
+
+    config.after(:each) do
+      if example.metadata[:cache]
+        ActionController::Base.cache_store.clear
+        ActionController::Base.perform_caching = false
+      end
     end
   end
 end
