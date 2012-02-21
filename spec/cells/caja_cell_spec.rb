@@ -6,11 +6,19 @@ describe CajaCell do
   # Si uso decoradores desde aquí, falla cuando
   # los decoradores llaman métodos de ayudantes
   let(:caja) { Factory(:caja) }
-  before(:each) { caja.stubs(admin_actions_list: "") }
+  before(:each) { caja.stubs(admin_actions_list: "Admin") }
 
-  describe "display" do
-    subject { render_cell :caja, :display, caja }
-    it { should have_selector "article" }
+  describe "completa" do
+    context "sin usuario identificado" do
+      subject { render_cell :caja, :completa, caja }
+      it { should have_selector "article" }
+    end
+
+    context "con usuario identificado" do
+      before(:each) { authenticate_usuario }
+      subject { render_cell :caja, :completa, caja }
+      it { should have_selector "article" }
+    end
   end
 
   describe "contenido" do

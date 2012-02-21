@@ -1,11 +1,13 @@
 # encoding: utf-8
 
-class CajaCell < Cell::Rails
+class CajaCell < ApplicationCell
+  build { AdminCajaCell if usuario_signed_in? }
+
   cache :contenido do |cell, caja|
     caja
   end
 
-  def display(caja)
+  def completa(caja)
     render locals: { caja: caja }
   end
 
@@ -19,5 +21,11 @@ class CajaCell < Cell::Rails
 
   def sidebar(cajas)
     render locals: { cajas: cajas }
+  end
+end
+
+class AdminCajaCell < CajaCell
+  def contenido(caja)
+    super(caja) + render(view: :actions_list, locals: { caja: caja })
   end
 end
