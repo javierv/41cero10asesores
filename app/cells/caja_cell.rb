@@ -8,7 +8,8 @@ class CajaCell < ApplicationCell
   end
 
   cache :sidebar do |cell, cajas|
-    cajas
+    # Es un proxy de decoradores. ¿Cómo salvar esto?
+    cajas.map(&:model)
   end
 
   def completa(caja)
