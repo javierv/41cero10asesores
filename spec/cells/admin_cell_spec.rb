@@ -15,4 +15,16 @@ describe AdminCell do
       it { should have_selector("#admin") }
     end
   end
+
+  describe "cache", cache: true do
+    specify { cell(:admin).should cache :menu }
+
+    it "pone la caché en función del usuario" do
+      render_cell(:admin, :menu).should_not have_selector("#admin")
+      authenticate_usuario
+      render_cell(:admin, :menu).should have_selector("#admin")
+      sign_out @usuario
+      render_cell(:admin, :menu).should_not have_selector("#admin")
+    end
+  end
 end
