@@ -1,2 +1,4 @@
 = render_cell :pagina, :texto, pagina
-= content_for(:sidebar) { render cajas }
+= content_for(:sidebar) do
+  - cajas.each do |caja|
+    = render_cell :caja, :display, caja
