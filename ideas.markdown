@@ -24,6 +24,7 @@
 * Motores de comentarios, como [Opinio](https://github.com/Draiken/opinio)
 * [Fixturized](https://github.com/szarski/Fixturized)
 * Client Side Validations (va con Rails 3).
+* Crear eventos propios en JavaScript, por ejemplo al previsualizar.
 
 Sección de imágenes:
 * ¿Paginador en la galería?
