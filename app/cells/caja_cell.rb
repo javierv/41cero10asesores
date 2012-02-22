@@ -3,7 +3,7 @@
 class CajaCell < ApplicationCell
   build { AdminCajaCell if usuario_signed_in? }
 
-  cache(:contenido) { |cell, caja| caja }
+  cache(:completa) { |cell, caja| caja }
   # Es un proxy de decoradores. ¿Cómo salvar esto?
   cache(:sidebar) { |cell, cajas| cajas.map(&:model) }
 
