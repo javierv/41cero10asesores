@@ -18,7 +18,6 @@
 * [Excepcion notification](https://github.com/smartinez87/exception_notification)
 * Sugerencias de búsqueda según escribes, basándose en términos existentes y/o buscados.
 * Estilo de los input en función de si son válidos o no.
-* Usar caché en la acción "show".
 * Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
 * Buscar usos de almacenamiento local. Uno erróneo: conservar lo que se estaba escribiendo al editar una página, porque puede que el usuario quiera descartar los cambios.
 * Motores de comentarios, como [Opinio](https://github.com/Draiken/opinio)
