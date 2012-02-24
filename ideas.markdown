@@ -19,8 +19,6 @@
 * Sugerencias de búsqueda según escribes, basándose en términos existentes y/o buscados.
 * Estilo de los input en función de si son válidos o no.
 * Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
-* Buscar usos de almacenamiento local. Uno erróneo: conservar lo que se estaba escribiendo al editar una página, porque puede que el usuario quiera descartar los cambios.
-* Motores de comentarios, como [Opinio](https://github.com/Draiken/opinio)
 * [Fixturized](https://github.com/szarski/Fixturized)
 * Client Side Validations (va con Rails 3).
 * Crear eventos propios en JavaScript, por ejemplo al previsualizar.
@@ -29,9 +27,3 @@ Sección de imágenes:
 * ¿Paginador en la galería?
 * ¿Borrar imagen? No se puede saber si está en otras páginas...
 * Texto alternativo.
-
-Problemas del editor canvas:
-* No van los acentos.
-* No van los atajos ni los botones del markitup.
-* No funcionan bien las teclas de inicio, av.pág, ...
-* El tamaño de la letra parece que ha de darse en pixeles.
