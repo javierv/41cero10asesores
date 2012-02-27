@@ -49,7 +49,7 @@ private
   end
 
   def session_key(action = nil)
-    @session_key ||= :"#{params[:controller]}.#{action || params[:action]}"
+    :"#{params[:controller]}.#{action || params[:action]}"
   end
 
   def self.resource(resource_name)
