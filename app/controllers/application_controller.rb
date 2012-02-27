@@ -77,7 +77,7 @@ private
       end
     end
 
-    define_method :"next_resource" do
+    define_method :next_resource do
       resource_class.next(session_params(:index) || {})
     end
 
