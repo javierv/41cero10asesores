@@ -1,7 +1,7 @@
 Calesur::Application.routes.draw do
 
   if ["development", "test"].include? Rails.env
-    mount Jasminerice::Engine => "/jasmine" 
+    mount Jasminerice::Engine => "/jasmine"
   end
 
   resources :clientes

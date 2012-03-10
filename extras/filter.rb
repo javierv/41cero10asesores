@@ -28,4 +28,4 @@ module Filter
       term.split ' '
     end
   end
-end 
+end

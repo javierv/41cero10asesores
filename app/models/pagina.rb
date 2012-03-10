@@ -38,7 +38,7 @@ class Pagina < ApplicationModel
     cajas.order("sidebars.orden ASC")
   end
 
-  scope :al_final_las_de_navegacion, 
+  scope :al_final_las_de_navegacion,
     includes(:navegacion).where("borrador = ? OR borrador IS NULL", false).
       order("navegaciones.orden, paginas.titulo")
 
@@ -61,7 +61,7 @@ class Pagina < ApplicationModel
 
   def save_draft(attrs = {})
     return update_attributes(attrs) if borrador?
-    
+
     borrador = find_borrador attrs
     borrador.attributes = attributes.merge(attrs)
     borrador.borrador = true
@@ -94,7 +94,7 @@ class Pagina < ApplicationModel
   end
 
   def borrador_con_pagina?
-    borrador? && !published.new_record? 
+    borrador? && !published.new_record?
   end
 
 private
