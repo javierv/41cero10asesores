@@ -22,6 +22,9 @@
 * [Fixturized](https://github.com/szarski/Fixturized)
 * Client Side Validations (va con Rails 3).
 * Crear eventos propios en JavaScript, por ejemplo al previsualizar.
+* Actualizar los títulos de página con las llamadas AJAX. ¿Application.js.haml, con esa etiqueta?
+* Mostrar mensajes de error si las peticiones AJAX fallan.
+* Limitar el tamaño de los logs.
 
 Sección de imágenes:
 * ¿Paginador en la galería?
