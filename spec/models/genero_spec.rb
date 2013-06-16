@@ -7,26 +7,43 @@ class String
 end
 
 describe Gender do
-  it "devuelve femenino para palabras acabadas en 'a'" do
-    "mesa".gender.should == :female
+  context "palabras acabadas en 'a'" do
+    it "devuelve femenino" do
+      "mesa".gender.should == :female
+    end
   end
 
-  it "devuelve masculino para palabras acabadas en 'o'" do
-    "libro".gender.should == :male
+  context "palabras acabadas en 'o'" do
+    it "devuelve masculino" do
+      "libro".gender.should == :male
+    end
   end
 
-  it "devuelve masculino para otros" do
-    "sillón".gender.should == :male
+  context "otras palabras" do
+    it "devuelve masculino" do
+      "sillón".gender.should == :male
+    end
   end
 
-  it "en palabras conocidas devuelve el género definido" do
-    String.add_irregular_gender "calefacción", :female
-    "calefacción".gender.should == :female
-  end
+  describe ".add_irregular_gender" do
+    context "pasando una palabra conocida" do
+      before(:each) { String.add_irregular_gender "calefacción", :female }
 
-  it "acepta un hash con varias palabras para añadir género" do
-    String.add_irregular_gender({"mano" => :female, "volga" => :male})
-    "mano".gender.should == :female
-    "volga".gender.should == :male
+      it "devuelve el género definido" do
+        "calefacción".gender.should == :female
+      end
+
+    end
+
+    context "pasando varias palabras conocidas" do
+      before(:each) do
+        String.add_irregular_gender({"mano" => :female, "volga" => :male})
+      end
+
+      it "reconoce todas las palabras definidas" do
+        "mano".gender.should == :female
+        "volga".gender.should == :male
+      end
+    end
   end
 end
