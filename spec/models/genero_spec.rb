@@ -1,6 +1,10 @@
 # encoding: utf-8
 
-require 'spec_helper'
+require_relative '../../extras/gender.rb'
+
+class String
+  include Gender
+end
 
 describe Gender do
   it "devuelve femenino para palabras acabadas en 'a'" do
