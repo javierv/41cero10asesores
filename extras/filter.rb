@@ -17,15 +17,15 @@ module Filter
 
   class Helper
     def search_field(name)
-      @search_field ||= /\[(.*)\]/.match(name)[1]
+      /\[(.*)\]/.match(name)[1]
     end
 
     def field(name)
-      @field ||= search_field(name).sub('_contains', '').to_sym
+      search_field(name).sub('_contains', '').to_sym
     end
 
     def values(term)
       term.split ' '
     end
   end
-end 
+end

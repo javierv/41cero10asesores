@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module FiltradorHelper
-  def filter_form_for(search, &block)    
+  def filter_form_for(search, &block)
     content_tag :section, id: 'filtrador' do
       filter_form(search, &block) + reset_button(search)
     end

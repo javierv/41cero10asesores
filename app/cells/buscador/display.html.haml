@@ -1,5 +1,5 @@
 = form_for :busqueda, url: search_paginas_path,
   html: {id: "buscador", role: "search", method: :get} do |form|
-  = text_field_tag :q, params[:q], label: nil, type: "search",
+  = text_field_tag :q, term, label: nil, type: "search",
     placeholder: "Teclea tu búsqueda..."
   = form.submit "Buscar"

@@ -8,7 +8,7 @@ module NavegacionHelper
     end
   end
 
-  def navegacion_admin    
+  def navegacion_admin
     lista_con_enlaces(enlaces_admin)
   end
 
@@ -59,7 +59,7 @@ private
 
   def elemento_lista_enlace(enlace)
     opciones = opciones_para_enlace(enlace)
-    
+
     content_tag :li do
       if opciones[:form]
         opciones.delete(:form)

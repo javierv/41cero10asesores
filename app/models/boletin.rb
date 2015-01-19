@@ -21,7 +21,7 @@ class Boletin < ApplicationModel
       BoletinMailer.envio(self).deliver
       self.enviado = true
       save
-    end   
+    end
   end
 
   def clientes

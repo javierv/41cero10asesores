@@ -6,11 +6,11 @@ module LayoutHelper
   end
 
   def show_title?
-    @show_title = true if @show_title.nil?
+    true unless @dont_show_title
   end
 
   def dont_show_title
-    @show_title = false
+    @dont_show_title = true
   end
 
 private

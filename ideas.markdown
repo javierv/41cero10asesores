@@ -12,25 +12,21 @@
 * En diferencias: usar un clear u overflow: hidden, por si hay fotos o así.
 * [ValidAttribute](https://github.com/bcardarella/valid_attribute)
 * Controlar mapas por teclado, de manera similar a como se controla la etiqueta <video>, y manteniendo la opción de usar el ratón.
+* En el filtrador de páginas y cajas, hacer un único campo, que busque tanto en título como en cuerpo, y que devuelva el título.
 
 * [Leter Opener](https://github.com/ryanb/letter_opener) para correos en entorno de desarrollo.
 * [Excepcion notification](https://github.com/smartinez87/exception_notification)
 * Sugerencias de búsqueda según escribes, basándose en términos existentes y/o buscados.
 * Estilo de los input en función de si son válidos o no.
-* Usar caché en la acción "show".
 * Investigar en qué casos es mejor responder con JSON a las peticiones AJAX en vez de con HTML.
-* Buscar usos de almacenamiento local. Uno erróneo: conservar lo que se estaba escribiendo al editar una página, porque puede que el usuario quiera descartar los cambios.
-* Motores de comentarios, como [Opinio](https://github.com/Draiken/opinio)
 * [Fixturized](https://github.com/szarski/Fixturized)
 * Client Side Validations (va con Rails 3).
+* Crear eventos propios en JavaScript, por ejemplo al previsualizar.
+* Actualizar los títulos de página con las llamadas AJAX. ¿Application.js.haml, con esa etiqueta?
+* Mostrar mensajes de error si las peticiones AJAX fallan.
+* Limitar el tamaño de los logs.
 
 Sección de imágenes:
 * ¿Paginador en la galería?
 * ¿Borrar imagen? No se puede saber si está en otras páginas...
 * Texto alternativo.
-
-Problemas del editor canvas:
-* No van los acentos.
-* No van los atajos ni los botones del markitup.
-* No funcionan bien las teclas de inicio, av.pág, ...
-* El tamaño de la letra parece que ha de darse en pixeles.

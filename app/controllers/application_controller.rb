@@ -49,7 +49,7 @@ private
   end
 
   def session_key(action = nil)
-    @session_key ||= :"#{params[:controller]}.#{action || params[:action]}"
+    :"#{params[:controller]}.#{action || params[:action]}"
   end
 
   def self.resource(resource_name)
@@ -77,7 +77,7 @@ private
       end
     end
 
-    define_method :"next_resource" do
+    define_method :next_resource do
       resource_class.next(session_params(:index) || {})
     end
 

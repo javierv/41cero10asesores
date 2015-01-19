@@ -1,7 +1,7 @@
 # encoding: utf-8
 
-class BuscadorCell < Cell::Rails
-  def display
-    render
+class BuscadorCell < ApplicationCell
+  def display(term)
+    render locals: { term: term }
   end
 end

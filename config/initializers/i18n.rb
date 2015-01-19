@@ -8,7 +8,7 @@ db_number = if Rails.env.test?
 
 TRANSLATION_STORE = Translation.new db: db_number
 begin
-  TRANSLATION_STORE.echo "Testing connection with Redis" 
+  TRANSLATION_STORE.echo "Testing connection with Redis"
   I18n.backend = I18n::Backend::Chain.new(I18n::Backend::KeyValue.new(TRANSLATION_STORE), I18n.backend)
 rescue Errno::ECONNREFUSED
 end

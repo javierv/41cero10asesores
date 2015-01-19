@@ -2,7 +2,7 @@
 
 class ApplicationCell < Cell::Rails
   class << self
-    # Hack: se añade el método porque 
+    # Hack: se añade el método porque
     # decent_exposure asume que existe
     # (ya que está pensado para ActionController)
     alias_method :hide_action, :private

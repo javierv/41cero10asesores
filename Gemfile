@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.3'
+gem 'rails', '3.1.8'
 
 group :assets do
   gem "sass-rails", "~> 3.1.0"
@@ -30,12 +30,7 @@ group :test do
   gem "factory_girl_rails"
   gem "mocha"
   gem "capybara"
-  gem 'spork', '~> 0.9.0'
-  gem 'guard-spork'
-  gem "rb-inotify"
-  gem 'simplecov', require: false
   gem "launchy"
-  gem "libnotify"
   gem "rspec-cells"
 end
 
