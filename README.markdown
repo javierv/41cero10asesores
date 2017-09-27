@@ -1,4 +1,4 @@
-This is the source code for the website [41 Cero 10 Asesores](http://41cero10.org), a company from Seville (Spain).
+This is the source code for the [41 Cero 10 Asesores](http://41cero10.org) old website, a company from Seville (Spain).
 
 I had three main goals for the administration of this site.
 
